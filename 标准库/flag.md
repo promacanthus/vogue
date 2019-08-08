@@ -10,7 +10,7 @@ flag包实现了命令行标识的解析。
 
 1. 使用`flag.String()`,`Bool()`,`Int()`等来定义命令行标识。
 
-#### 方式一
+### 方式一
 
 定义一个整数标识`-flagname`，并将值保存在`*int`类型的指针`ip`中，其中`1234`为标识的默认值，`”help message for flagname“`是该标识的帮助信息：
 
@@ -18,7 +18,7 @@ flag包实现了命令行标识的解析。
 var ip = flag.Int("flagname", 1234, "help message for flagname")
 ```
 
-#### 方式二
+### 方式二
 
 使用`Var()`函数将该标识绑定到一个**变量**上，如下所示：
 
@@ -29,7 +29,7 @@ func init() {
 }
 ```
 
-#### 方式三
+### 方式三
 
 创建一个自定义的标识（使用指针接收器），只要该标识满足Value接口，然后将它绑定到标识解析器，如果使用这样的变量来自定义标识，那么默认值就是**变量的初始值**。
 
@@ -201,6 +201,7 @@ func Arg（i int） string
 Arg返回第i个命令行参数。`Arg(0)`是处理完标识后的第一个剩余参数。如果请求的元素不存在，Arg将返回一个空字符串。
 
 ---
+
 ```go
 func Args() []string
 ```
@@ -208,6 +209,7 @@ func Args() []string
 Args返回非标识命令行参数。
 
 ---
+
 ```go
 // Bool定义了一个带有指定名称，默认值和用法字符串的bool标识。返回值是存储标识值的bool变量的地址（指针）
 func Bool(name string, value bool, usage string) *bool{
