@@ -46,14 +46,14 @@ flag.Parse()
 然后可以直接使用这些标识：
 
 - 如果直接使用标识本身，那么它们都是**指针**
-- 如果将标识绑定到变量,那么它们就是**值**
+- 如果将标识绑定到变量，那么它们就是**值**
 
 ```go
 fmt.Println("ip has value ", *ip)
 fmt.Println("flagvar has value ", flagvar)
 ```
 
-解析后，所有标识对应的参数可用用切片`flag.Args()`或用`flag.Arg(i)`一个个独立的获取到。参数从0开始通过`flag.NArg()-1`索引。
+解析后，所有标识对应的参数可用切片`flag.Args()`或用`flag.Arg(i)`一个个独立的获取到。参数从0开始通过`flag.NArg()-1`索引。
 
 ## 命令行标识语法
 
@@ -165,7 +165,7 @@ func main() {
 }
 ```
 
-## Variables
+## 变量
 
 ```go
 var CommandLine = NewFlagSet(os.Args[0], ExitOnError)
@@ -391,7 +391,7 @@ func VisitAll(fn func(*Flag)){
 // ErrorHandling定义了如果解析失败，FlagSet.Parse的行为方式。
 type ErrorHandling int
 
-// 如果解析失败，这些常量会反应了FlagSet.Parse的行为。
+// 如果解析失败，这些常量反应了FlagSet.Parse的行为。
 const (
     ContinueOnError ErrorHandling = iota // 返回描述性错误
     ExitOnError                          // 调用os.Exit(2).
