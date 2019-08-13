@@ -136,6 +136,10 @@ func Println(v ...interface{})
 
 `Print()`调用`Output()`来打印到标准`Logger`，参数以`fmt.Println()`的方式处理。
 
+## 总结几个方法
+
+![image](/标准库/images/log.png)
+
 ## 函数SetFlags
 
 ```go
@@ -171,6 +175,8 @@ func New(out io.Writer, prefix string, flag int) *Logger
 - `out`设置日志数据的目的地
 - `prefix`每行日志记录的前缀
 - `flag`定义日志记录操作的属性
+
+
 
 ## 类型Logger
 
