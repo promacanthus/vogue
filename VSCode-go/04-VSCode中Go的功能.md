@@ -1,0 +1,39 @@
+# VScode中Go的功能
+
+## 智能感知
+
+- 输入时自动补全（`gocode`）
+- 输入时显示函数的帮助信息（`gogetdoc`或者`godef`+`godoc`）
+- 鼠标悬停显示信息（`gogetdoc`或者`godef`+`godoc`）
+
+## 代码导航
+
+- 跳转或直接i西安市符号的定义（`gogetdoc`或者`godef`+`godoc`）
+- 查看符号的引用和接口的实现（`guru`）
+- 跳转到文件中的符号或者查看文件大纲（`go-outline`）
+- 跳转到工作空间中的符号（`go-symbols`）
+- 在Go程序和相应的测试文件之间切换
+
+## 代码编辑
+
+- 用于快速开发的代码片段
+- 手动格式化或者在文件保存时自动格式化代码（`goreturns`或者`goimports`或者`gofmt`）
+  字符重命名（`gorename`,注意:重命名后在窗口中执行撤销操作，需要在`path`中有`diff`工具）
+- 将导入添加到当前文件中（`gopkgs`）
+- 在结构体字段上添加或删除标记（`gomodifytags`）
+- 为接口生成方法`stub`（`impl`）
+- 使用默认值填充结构体字段（`fillstruct`）
+
+## 诊断
+
+- 在文件保存时自动编译代码并显示编译错误（`go build`和`go test`）
+- 在文件保存时自动运行`go vet`命令并将错误以警告形式显示
+- 在文件保存时自动分析代码，并将分析错误以警告形式显示（`golint`，`gometalinter`，`megacheck`，`golang-ci-lint`，`revive`）
+- 输入时报告语义或者语法错误（`gotype-live`）
+
+## 测试
+
+- 使用命令或者`codelens`在整个工作空间、当前代码包、当前文件或光标处运行测试
+- 使用命令或者`codelines`在光标处执行基准测试
+- 根据需要或者在包中运行测试后显示代码覆盖率
+- 生成单元测试框架（`gotests`）
