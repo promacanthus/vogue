@@ -1,4 +1,4 @@
-# gRPC Bacic - Go
+# gRPC Basic - Go
 
 本教程提供了一个基本对Go程序员的指导关于如何使用gRPC。
 
