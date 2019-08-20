@@ -70,7 +70,7 @@ service RouteGuide {
 
 - **客户端侧流数据RPC**：客户端多次使用提供的流写入一系列消息并将它们发送到服务端。一旦客户端写完消息，它就等待服务端全部读取并返回响应的响应。通过在**请求类型**之前放置`stream`关键字来指定客户端流方法。
 
-  ```go 
+  ```go
   // 接受正在遍历的路径上的Points消息类型的流，在遍历完成时返回RouteSummary。
   rpc RecordRoute(stream Point) returns (RouteSummary) {}
   ```
@@ -345,6 +345,7 @@ if err != nil {
 ```go
 log.Println(feature)
 ```
+
 #### 服务端侧流数据RPC
 
 这是调用服务端流方法`ListFeatures()`的地方，该方法返回地理`Feature`流。如果已经阅读过[创建服务端](##创建服务端)，其中一些部分可能看起来非常熟悉：流数据RPC在服务端和客户端之间都以类似的方式实现。
@@ -386,28 +387,28 @@ pointCount := int(r.Int31n(100)) + 2 // Traverse at least two points
 var points []*pb.Point
 
 for i := 0; i < pointCount; i++ {
-	points = append(points, randomPoint(r))
+  points = append(points, randomPoint(r))
 }
 
 log.Printf("Traversing %d points.", len(points))
 
 stream, err := client.RecordRoute(context.Background())
 if err != nil {
-	log.Fatalf("%v.RecordRoute(_) = _, %v", client, err)
+  log.Fatalf("%v.RecordRoute(_) = _, %v", client, err)
 }
 
 for _, point := range points {
-	if err := stream.Send(point); err != nil {
-		if err == io.EOF {
-			break
-		}
-		log.Fatalf("%v.Send(%v) = %v", stream, point, err)
-	}
+  if err := stream.Send(point); err != nil {
+    if err == io.EOF {
+      break
+    }
+    log.Fatalf("%v.Send(%v) = %v", stream, point, err)
+  }
 }
 
 reply, err := stream.CloseAndRecv()
 if err != nil {
-	log.Fatalf("%v.CloseAndRecv() got error %v, want %v", stream, err, nil)
+  log.Fatalf("%v.CloseAndRecv() got error %v, want %v", stream, err, nil)
 }
 
 log.Printf("Route summary: %v", reply)
@@ -423,23 +424,23 @@ log.Printf("Route summary: %v", reply)
 stream, err := client.RouteChat(context.Background())
 waitc := make(chan struct{})
 go func() {
-	for {
-		in, err := stream.Recv()
-		if err == io.EOF {
-			// read done.
-			close(waitc)
-			return
-		}
-		if err != nil {
-			log.Fatalf("Failed to receive a note : %v", err)
-		}
-		log.Printf("Got message %s at point(%d, %d)", in.Message, in.Location.Latitude, in.Location.Longitude)
-	}
+  for {
+    in, err := stream.Recv()
+    if err == io.EOF {
+      // read done.
+      close(waitc)
+      return
+    }
+    if err != nil {
+      log.Fatalf("Failed to receive a note : %v", err)
+    }
+    log.Printf("Got message %s at point(%d, %d)", in.Message, in.Location.Latitude, in.Location.Longitude)
+  }
 }()
 for _, note := range notes {
-	if err := stream.Send(note); err != nil {
-		log.Fatalf("Failed to send a note: %v", err)
-	}
+  if err := stream.Send(note); err != nil {
+    log.Fatalf("Failed to send a note: %v", err)
+  }
 }
 stream.CloseSend()
 <-waitc
