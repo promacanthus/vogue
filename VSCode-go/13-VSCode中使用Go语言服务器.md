@@ -1,0 +1,42 @@
+# Go 语言服务器
+
+Go扩展程序使用大量[Go工具](/VSCode-go/06-扩展程序依赖的Go工具.md)来提供各种语言功能。另一种方法是使用单一语言服务器，该服务器使用[语言服务器协议](https://microsoft.github.io/language-server-protocol/)提供相同的功能。
+
+以前，我们添加了对使用`go-langserver`（[Sourcegraph的语言服务器](https://github.com/sourcegraph/go-langserver)）的支持。它不再有活跃的开发，它不支持Go模块。因此，现在转而使用`gopls`，[Google的语言服务器](https://github.com/golang/go/wiki/gopls)，目前正在积极开发中。
+
+- 如果已经使用·Sourcegraph·中的语言服务器，只要不使用Go模块，就可以继续使用它。建议继续使用`gopls`。
+  - 为此，请删除计算机中的`go-langserver`二进制文件/可执行文件，此扩展程序将在重新加载`VS Code`窗口后提示安装`gopls`。
+- 由于Google的语言服务器为Go模块提供了更好的支持，当扩展程序检测到正在使用Go模块的项目时，系统会进行提示。
+- 如果之前从未使用过语言服务器，现在选择使用它，只要使用**Go版本 > 1.10**，系统就会提示安装并使用Google提供的语言服务器
+
+## 设置以控制Go语言服务器
+
+以下是可用于控制语言服务器使用的设置。需要重新加载`VS Code`窗口才能使这些设置中的任何更改生效。
+
+- 将`go.useLanguageServer`设置为`true`以启用语言服务器
+- 使用`go.languageServerExperimentalFeatures`设置来控制希望语言服务器为哪些功能提供支持。
+- 设置`"go.languageServerFlags"：[" - logfile"，“已存在的文本文件的路径"]`以收集日志文件中的日志。
+- 设置`"go.languageServerFlags"：[" - rrp.trace"]`以在输出面板中查看完整的rpc跟踪（`View`->`Output`->`gopls`）
+
+## 设置更改正在使用的语言服务器
+
+如果想尝试其他语言服务器，例如[`bingo`](https://github.com/saibing/bingo)，请安装它并添加以下设置
+
+```json
+"go.alternateTools": {
+  "gopls": "bingo"
+}
+```
+
+这将告诉Go扩展使用`bingo`代替`gopls`。
+
+## 提供关于`gopls`的反馈
+
+如果在使用gopls语言服务器时发现任何问题，请首先查看[`gopls`的现有问题列表](https://github.com/golang/go/issues?q=is%3Aissue+is%3Aopen+label%3Agopls)，并在登记新案例之前更新相关已经有案例，网址为 https://github.com/golang/go/issues
+
+## `gopls`的有用链接
+
+- [Wiki for gopls](https://github.com/golang/go/wiki/gopls)
+- [Troubleshooting for gopls](https://github.com/golang/go/wiki/gopls#troubleshooting)
+- [Known bugs with gopls](https://github.com/golang/go/wiki/gopls#known-issues)
+- [Github issues for gopls](https://github.com/golang/go/issues?q=is%3Aissue+is%3Aopen+label%3Agopls)
