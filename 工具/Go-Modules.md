@@ -130,7 +130,7 @@ func main() {
 }
 ```
 
-在程序中使用`g`ithub.com/sample_golang_module/example/stringsx`这个包，在导入之前，使用`go get`命令将这个包拉到`GOPATH`或者`vendor`目录下即可，将这个包当成module来使用。
+在程序中使用`github.com/sample_golang_module/example/stringsx`这个包，在导入之前，使用`go get`命令将这个包拉到`GOPATH`或者`vendor`目录下即可，将这个包当成module来使用。
 
 ```bash
 # 在当前项目下初始化module
