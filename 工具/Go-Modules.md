@@ -41,9 +41,10 @@ import (
  "fmt"
 )
 func Hello(name string) string{
-	return fmt.Sprintf("Hello, %s", name), nil
+    return fmt.Sprintf("Hello, %s", name), nil
 }
 ```
+
 ### 第二步
 
 在项目根目录初始化GO Modules:
@@ -101,7 +102,7 @@ Go Modules是需要进行版本化管理的，强烈推荐使用[语义化版本
 
 ### 发布第一个版本
 
-发布relea包，需要给当前的包打上tag，使用语义化的版本，如v1.0.0：
+发布release包，需要给当前的包打上tag，使用语义化的版本，如v1.0.0：
 
 ```bash
 git tag v1.0.0
