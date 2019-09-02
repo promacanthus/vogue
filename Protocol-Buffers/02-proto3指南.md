@@ -7,11 +7,11 @@
 
 它涵盖了`protocol buffers`语言的`proto3`版本：有关较早的`proto2`语法的信息，请参阅[`Proto2`语言指南](https://developers.google.com/protocol-buffers/docs/proto)。
 
-这是一个参考指南 - 对于使用本文档中描述的许多功能的分步示例，请参阅所选语言的[教程](https://developers.google.com/protocol-buffers/docs/tutorials)（目前仅限`proto`2;更多`proto3`文档即将推出）。
+这是一个参考指南，对于使用本文档中描述的许多功能的分步示例，请参阅所选语言的[教程](https://developers.google.com/protocol-buffers/docs/tutorials)（目前仅限`proto`2;更多`proto3`文档即将推出）。
 
 ## 定义消息类型
 
-首先让看一个非常简单的例子。假设要定义搜索请求消息格式，其中每个搜索请求都有：
+首先看一个非常简单的例子。假设要定义搜索请求消息格式，其中每个搜索请求都有：
 
 - 一个字符串类型的查询
 - 所查询的特定页码
@@ -38,7 +38,7 @@ message SearchRequest {     // 消息格式以名称-值对的形式指定三个
 如上所示，消息定义中的每个字段都定义一个**唯一的编号**。这些字段的编号用于在消息的[二进制格式](/Protocol-Buffers/04-编码.md)中标识字段，一旦消息类型被使用就不能再更改。请注意：
 
 - `1到15`范围内的字段编号需要一个字节进行编码，包括字段的编号和字段的类型（可以在[`protocol buffers`编码](/Protocol-Buffers/04-编码.md#消息结构)中找到更多相关信息）
-- `16到2047`范围内的字段编号占用两个字节。 因此，应该为非常频繁出现的消息元素保留数字1到15。请记住为将来可能添加的频繁出现的元素留出一些空间
+- `16到2047`范围内的字段编号占用两个字节。 因此，应该为非常频繁出现的消息元素保留数字1到15，请记住为将来可能添加的频繁出现的元素留出一些空间
 
 可以指定的最小字段数为1，最大字段数为536,870,911（2的29次方-1）。
 
@@ -103,7 +103,7 @@ message Foo {
 
 ### `.proto`文件将生成什么
 
-在`.proto`文件上运行[`protocol buffers`编译器](#生成自定义的类)时，编译器会根据文件中的描述生成所选语言的代码，这些代码是需要使用的消息类型，包括：获取和设置字段值，将消息序列化为输出流，并从输入流中解析的消息。
+在`.proto`文件上运行[`protocol buffers`编译器](#生成自定义的类)时，编译器会根据文件中的描述生成所选语言的代码，这些代码是需要使用的消息类型，包括：获取和设置字段值，将消息序列化为输出流，并从输入流中解析消息。
 
 - 对于`C++`，编译器会从每个`.proto`生成一个`.h`和`.cc`文件，并为文件中描述的每种消息类型提供一个类。
 - 对于`Java`，编译器生成一个`.java`文件，其中包含每种消息类型的类，以及用于创建消息类实例的特殊`Builder`类。
@@ -202,7 +202,7 @@ enum EnumNotAllowingAlias {
 }
 ```
 
-枚举器常量必须在32位整数范围内。由于枚举值在传输时使用[`varint`编码](/Protocol-Buffers/04-编码.md)，因此，负值效率低，不建议使用。可以在消息定义中定义枚举，如上例所示，也可以在外部定义枚举，这些枚举可以在`.proto`文件中的任何消息定义中重用。还可以使用语法`MessageType.EnumType`将一个消息中声明的枚举类型用作不同消息中字段的类型。
+枚举常量必须在32位整数范围内。由于枚举值在传输时使用[`varint`编码](/Protocol-Buffers/04-编码.md)，因此，负值效率低，不建议使用。可以在消息定义中定义枚举，如上例所示，也可以在外部定义枚举，这些枚举可以在`.proto`文件中的任何消息定义中重用。还可以使用语法`MessageType.EnumType`将一个消息中声明的枚举类型用作不同消息中字段的类型。
 
 在使用枚举的`.proto`文件上运行`protocol buffers`编译器时，生成的代码将具有相应的`Java`或`C++`枚举类型，在Python中使用一个特殊的`EnumDescriptor`类，用于在运行时生成类中创建一组带有整数值的符号常量。
 
@@ -246,9 +246,9 @@ message Result {
 
 ### 导入定义
 
-在上面的示例中，`Result`消息类型在与`SearchResponse`相同的文件中定义，如果要用作字段类型的消息类型已在另一个`.proto`文件中定义，该怎么办？
+在上面的示例中，`Result`消息类型在与`SearchResponse`相同的文件中定义，如果要用作字段类型的消息类型在另一个`.proto`文件中定义，可以通过导入来使用其他`.proto`文件中的定义。
 
-可以通过导入来使用其他`.proto`文件中的定义。要导入另一个`.proto`的定义，请在文件顶部添加一个`import`语句：
+要导入另一个`.proto`的定义，请在文件顶部添加一个`import`语句：
 
 ```protobuf
 import "myproject/other_protos.proto";
@@ -320,7 +320,7 @@ message Outer {       // Level 0
 
 ## 更新消息类型
 
-如果现有的消息类型不再满足需求，例如，希望消息格式具有额外的字段，但仍然希望使用使用旧格式创建的代码。**在不破坏任何现有代码的情况下更新消息类型非常简单**。请记住以下规则：
+如果现有的消息类型不再满足需求，例如，希望消息格式具有额外的字段，但仍然希望使用旧格式创建的代码。**在不破坏任何现有代码的情况下更新消息类型非常简单**。请记住以下规则：
 
 - 请勿更改任何现有字段的字段编号。
 - 如果添加新字段，则使用“旧”消息格式序列化的任何消息仍可由新生成的代码进行解析。应该记住这些元素的[默认值](#默认值)，以便新代码可以正确地与旧代码生成的消息进行交互。同样的新代码创建的消息可以由旧代码解析，旧的二进制文件在解析时只是忽略新字段。有关详细信息，请参阅“[未知字段](#未知字段)”部分。
@@ -412,7 +412,7 @@ message SampleMessage {
     CHECK(!message.has_name());
     ```
 
-- 如果解析器在传输中上遇到同一个`oneof`的多个成员，则在解析的消息中仅使用看到的最后一个成员。
+- 如果解析器在传输中遇到同一个`oneof`的多个成员，则在解析的消息中仅使用看到的最后一个成员。
 - `oneof`不能是`repeated`。
 - 如果将`oneof`字段设置为默认值（例如将`int32` `oneof`字段设置为0），那么该`oneof`字段的`“case”`将会被设置，并且这些字段的值将在传输时序列化。
 - 如果使用的是`C++`，请确保代码不会导致内存崩溃。以下示例代码将崩溃，因为通过调用`set_name()`方法删除了`sub_message`。
@@ -438,7 +438,7 @@ message SampleMessage {
 
 ### 向后兼容性问题
 
-添加或删除`oneof`字段时要小心。如果在检查`oneof`的值返回`None/NOT_SET`，这可能意味着`oneof`尚未设置或已设置为`oneof`的另一个不同版本中。没有办法区分，因为没有办法知道传输中的未知字段是否是`oneof`的成员。
+添加或删除`oneof`字段时要小心。如果在检查`oneof`的值返回`None/NOT_SET`，这可能意味着`oneof`尚未设置或已设置为`oneof`的另一个不同版本。没有办法区分，因为没有办法知道传输中的未知字段是否是`oneof`的成员。
 
 #### 标签重用问题
 
@@ -465,7 +465,7 @@ map<string, Project> projects = 3;
 - `map`的字段不能是`repeated`。
 - 传输格式的顺序和`map`值的迭代顺序是未定义的，因此不能依赖`map`中的项目按特定顺序排序。
 - 从`.proto`文件中生成文本格式时，`map`按键排序，数字键按数字排序。
-- 在传输时进行解析或者在合并时，如果有重复的`map`键，那么就使用最后的那个键。从文本格式解析`map`时，如果存在重复键，则解析可能会失败。
+- 在传输或合并时进行解析，如果有重复的`map`键，那么就使用最后的那个键。从文本格式解析`map`时，如果存在重复键，则解析可能会失败。
 - 如果给`map`提供了键却没有提供值，那么字段序列化的具体行为就取决于具体的编程语言。在`c++`,`Java`，`Python`中使用类型的默认值进行序列化，在其他编程语言中，没有值被序列化。
 
 目前，所有`proto3`支持的编程语言都能生成`map`API，更多关于所选语言的`map`API的参考查看[API参考文档](https://developers.google.com/protocol-buffers/docs/reference/overview)。
@@ -521,7 +521,9 @@ message Foo {
 
 ## 定义服务
 
-如果要在RPC（远程过程调用）系统中使用自定义消息类型，可以在`.proto`文件中定义RPC服务接口`protocol buffers`编译器将以选择的编程语言生成服务接口代码和`stub`。例如，要定义一个RPC服务，该服务获取`SearchRequest`请求并返回`SearchResponse`响应消息，可以在`.proto`文件中定义它，如下所示：
+如果要在RPC（远程过程调用）系统中使用自定义消息类型，可以在`.proto`文件中定义RPC服务接口`protocol buffers`编译器将以选择的编程语言生成服务接口代码和`stub`。
+
+> 例如，要定义一个RPC服务，该服务获取`SearchRequest`请求并返回`SearchResponse`响应消息，可以在`.proto`文件中定义它，如下所示：
 
 ```protobuf
 service SearchService {
@@ -529,7 +531,7 @@ service SearchService {
 }
 ```
 
-与`protocol buffers`一起使用的最简单的RPC系统是[gRPC](https://grpc.io/)：一种由Google开发的语言平台中立的开源RPC系统。gRPC特别适用于`protocol buffers`，并允许使用特定的的`protocol buffers`编译器插件直接从`.proto`文件生成相关的RPC代码。
+与`protocol buffers`一起使用的最简单的RPC系统是[gRPC](https://grpc.io/)：一种由Google开发的语言平台中立的开源RPC系统。gRPC特别适用于`protocol buffers`，并允许使用特定的`protocol buffers`编译器插件直接从`.proto`文件生成相关的RPC代码。
 
 如果不想使用gRPC，也可以将`protocol buffers`与自定义的RPC实现一起使用。可以在[`Proto2`语言指南](https://developers.google.com/protocol-buffers/docs/proto#services)中找到更多相关信息。
 
@@ -581,7 +583,7 @@ service SearchService {
 - 一些选项是**消息级选项**，这意味着它们应该写在`message`定义中。
 - 一些选项是**字段级选项**，这意味着它们应该写在字段定义中。
 
-> 可用选项也可以写在枚举类型，枚举值，服务类型和服务方法上;，但是，目前没有任何支持这些的可用选项。
+> 可用选项也可以写在枚举类型，枚举值，服务类型和服务方法上，但是，目前没有任何支持这些的可用选项。
 
 以下是一些最常用的选项：
 
@@ -643,7 +645,7 @@ protoc --proto_path=IMPORT_PATH \
        path/to/file.proto
 ```
 
-- `IMPORT_PATH`指定解析导入指令时查找`.proto`文件的目录,如果省略，则使用当前目录。可以通过多次传递`--proto_path`选项来指定多个导入目录,将按顺序搜索。`-I=IMPORT_PATH`可以用作`--proto_path`的缩写形式。
+- `IMPORT_PATH`指定解析导入指令时查找`.proto`文件的目录，如果省略，则使用当前目录。可以通过多次传递`--proto_path`选项来指定多个导入目录,将按顺序搜索。`-I=IMPORT_PATH`可以用作`--proto_path`的缩写形式。
 - 可以提供一个或多个输出指令：
     - `--cpp_out`在`DST_DIR`中生成`C++`代码。有关更多信息，请参阅[`C++`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/cpp-generated)。
     - `--java_out`在`DST_DIR`中生成`Java`代码。有关更多信息，请参阅[`Java`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/java-generated)。
