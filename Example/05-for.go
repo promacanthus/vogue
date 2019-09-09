@@ -1,3 +1,5 @@
+// for是Golang中唯一的循环结构，for循环有三种基本形式
+
 package main
 
 import "fmt"

@@ -1,3 +1,5 @@
+//  Golang支持的常量包括字符、字符串、布尔和数值
+
 package main
 
 import (

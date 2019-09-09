@@ -1,3 +1,5 @@
+//  map是Go内置的关联数据类型（在其他语言中有时成为hash或者字典）
+
 package main
 
 import "fmt"

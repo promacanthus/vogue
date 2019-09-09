@@ -1,3 +1,5 @@
+// 切片是Go中的关键数据类型，为序列提供了比数组更强大的接口。
+
 package main
 
 import "fmt"

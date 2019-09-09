@@ -1,3 +1,5 @@
+//  Golang有多种值类型，包括字符串、整数、浮点数、布尔值等
+
 package main
 
 import "fmt"

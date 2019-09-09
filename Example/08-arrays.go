@@ -1,3 +1,5 @@
+// 在Go中，数组是定长的元素编号序列
+
 package main
 
 import "fmt"

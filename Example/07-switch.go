@@ -1,3 +1,5 @@
+//  Switch语句表达多个分支的条件
+
 package main
 
 import (
@@ -33,7 +35,7 @@ func main() {
 	}
 
 	whatAmI := func(i interface{}) {
-		switch t := i.(type) {	// switch比较类型而不是比较值,可以用于发现接口值的类型,变量t将会具有和case子句所对应的类型
+		switch t := i.(type) { // switch比较类型而不是比较值,可以用于发现接口值的类型,变量t将会具有和case子句所对应的类型
 		case bool:
 			fmt.Println("I'm a bool")
 		case int:
