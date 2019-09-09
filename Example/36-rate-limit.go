@@ -25,18 +25,20 @@ func main() {
 		burstyLimiter <- time.Now()
 	}
 
-	go func ()  {
-		for t:=range time.Tick(200 * time.Millisecond)
-		burstyLimiter <- t
+	go func() {
+		for t := range time.Tick(200 * time.Millisecond) {
+			burstyLimiter <- t
+		}
+
 	}()
 
-	burstyRequests:=make(chan int, 5)	
+	burstyRequests := make(chan int, 5)
 	for i := 1; i < 5; i++ {
-		burstyRequests<- i
+		burstyRequests <- i
 	}
 	close(burstyRequests)
 	for req := range burstyRequests {
-		<- burstyLimiter
-		fmt.Println("request",req,time.Now())
+		<-burstyLimiter
+		fmt.Println("request", req, time.Now())
 	}
 }
