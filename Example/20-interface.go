@@ -1,3 +1,5 @@
+//  接口是方法签名的命名集合
+
 package main
 
 import (

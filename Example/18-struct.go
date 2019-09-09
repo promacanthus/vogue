@@ -1,3 +1,5 @@
+//  Go中的结构是字段的类型集合，它们可用于将数据分组在一起以形成记录
+
 package main
 
 import "fmt"

@@ -1,3 +1,5 @@
+//  Go支持指针，允许传递对程序中的值和记录的引用
+
 package main
 
 import "fmt"

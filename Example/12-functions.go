@@ -1,3 +1,5 @@
+// 函数是Go的核心
+
 package main
 
 import "fmt"

@@ -1,4 +1,4 @@
-//  递归
+//  Go支持递归函数
 
 package main
 
