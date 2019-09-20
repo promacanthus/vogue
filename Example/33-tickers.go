@@ -25,7 +25,7 @@ func main() {
 	}()
 
 	time.Sleep(3600 * time.Millisecond)
-	ticker.Stop() //  ticker可以像timer那样被停止，一旦ticker被停止就不会在接手任何值传入通道中
+	ticker.Stop() //  ticker可以像timer那样被停止，一旦ticker被停止就不会在接收任何值传入通道中
 	done <- true
 	fmt.Println("Ticker stopped")
 }
