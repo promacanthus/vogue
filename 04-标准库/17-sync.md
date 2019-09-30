@@ -1,6 +1,6 @@
 # sync
 
-## sync.Mutex和sync.RWMutex
+## ``sync.Mutex`和`sync.RWMutex`
 
 ### 竞态条件、临界区和同步工具
 
@@ -70,7 +70,7 @@ fatal error: all goroutines are asleep - deadlock!
 
 ### 传递互斥锁
 
-Go语言中的互斥锁是开箱即用的，声明一个sync.Mutex类型（该类型是一个**结构体**类型，属于**值类型**）的变量就可以直接使用了。
+Go语言中的互斥锁是开箱即用的，声明一个`sync.Mutex`类型（该类型是一个**结构体**类型，属于**值类型**）的变量就可以直接使用了。
 
 对于值类型的操作，把它传给一个函数，将它从函数中返回，把它赋给其他变量，让它进入某个通道都会导致它的副本的产生。**原值与副本、副本与副本之间都是完全独立的，它们都是不同的互斥锁**。
 
@@ -114,7 +114,7 @@ Go语言中的互斥锁是开箱即用的，声明一个sync.Mutex类型（该�
 3. 让每一个互斥锁都只包含一个临界区，或一组相关临界区
 4. 不要解锁未锁定的锁，会引发不可恢复的panic
 
-## sync.Cond
+## `sync.Cond`
 
 ### 条件变量与互斥锁
 
@@ -195,7 +195,7 @@ sendCond.Signal()   // 发起通知情报已经取走
 
 **通过对互斥锁的合理使用，可以是一个goroutine在执行临界区中的代码时，不被其他的goroutine打扰。不过，虽然不会被打扰，但是它仍然可能会被终端（interruption）**。
 
-## sync.WaitGroup 和 sync.Once
+## `sync.WaitGroup` 和 `sync.Once`
 
 使用通道进行多goroutine协作：声明一个通道，使它的容量与手动启动的goroutine的数量相同，之后再利用这个通道，让主goroutine等待其他goroutine的运行结束。
 
@@ -218,7 +218,7 @@ func coordinateWithChan() {
 
 以上操作，略显丑陋。
 
-使用`sync`包的`WaitGroup`类型，它比通道更加适合这种一对多的goroutine协作流程。
+使用sync包的WaitGroup类型，它比通道更加适合这种一对多的goroutine协作流程。
 
 `sync.WaitGroup`开箱即用，并发安全，同样的它一旦真正被使用，就不能再被复制。
 
@@ -267,7 +267,7 @@ WaitGroup值是可以被复用的，但是需要保证其计数周期的完整�
 
 **WaitGroup使用禁忌**：不要把增加计数器值的操作和调用Wait方法的代码，放在不同的goroutine中执行。**杜绝同一个WaitGroup值的两种操作的并发执行**。
 
-### sync.Once类型值的Do方法如何保证只执行参数函数一次
+### `sync.Once`类型值的Do方法如何保证只执行参数函数一次
 
 与`sync.WaitGroup`类型一样，`sync.Once`类型也属于结构体类型，同样也是开箱即用和并发安全的。由于这个类型中包含了一个`sync.Mutex`类型的字段，所以复制该类型的值也会导致功能的失效。
 
@@ -301,7 +301,7 @@ Once值的使用比WaitGroup值更简单，只有一个Do方法，同一个Once�
 
 Once类型使用互斥锁和原子操作实现了功能，而WaitGroup类型中只用到了原子操作。它们都是更高级的同步工具，基于基本的通用工具，实现了某一种特定的功能。**sync包中的其他高级同步工具，都是这样实现的**。
 
-## sync.Pool
+## `sync.Pool`
 
 `sync.Pool`类型（结构体类型，它的值被真正使用之后，就不应再被复制了）被成为临时对象存储池，它的值可以被用来存储临时的对象。
 
@@ -422,3 +422,178 @@ Get：
 
 ![images](/images/Get.png)
 
+## `sync.Map`
+
+Go语言自带的字典类型`map`不是并发安全的，也就是说，在同一时间段内，让不同goroutine中的代码，对同一个字典进行读写操作是不安全的。字典值本身可能会因为这些操作而产生混乱，相关程序也可能会因此发生不可预知的问题。
+
+> 使用`sync.Mutex`或者`sync.RWMutex`,在加上原生的map就可以轻松实现并发安全的字典。
+
+Go 1.9中发布了并发安全的字典类型`sync.Map`。这个字典类型提供了一些常用的键值存取操作方法，并保证了这些操作的并发安全，同时，它的存、取、删等操作都可以基本保证常数时间内执行完毕。它的算法复杂的与map类型一样都是`0(1)`。
+
+> 与单纯使用原生map和互斥锁相比，`sync.Map`可以显著地减少锁的争用。`sync.Map`本身虽然也用到了锁，但是，它其实在尽可能地避免使用锁。因为使用锁就意味着把一些并发的操作强制串行化，这会降低程序的性能，尤其是在计算机拥有多个CPU核心的情况下。因此能用原子操作（原子操作的局限性，只能对一些基本的数据类型提供支持）的情况下就不要用锁。
+
+无论在何种场景下使用`sync.Map`,都需要注意它与原生map明显不同，它只是标准库中的一员，而不是语言层面的东西。编译器并不会对它的键和值进行特殊的类型检查。
+
+`sync.Map`所有的方法涉及的键和值的类型都是`interface{}`，这意味着可以包罗万象，所以必须在程序中自行保证它的键类型和值类型的正确性。
+
+### `sync.Map`对键类型的要求
+
+**键的实际类型不能是函数类型、字段类型和切片类型**。
+
+> Go语言原生字典的键类型也不能是函数类型、字典类型和切片类型。
+
+`sync.Map`内部的存储介质就是原生字典，又因为原生字典的键类型也是`interface{}`，所以绝对不能带这任何实际类型为函数类型、字典类型或切片类型的键值去操作`sync.Map`。**因为这些键值的实际类型只有在程序运行期间才能确定，所以Go语言编译器是无法在编译期间对它们进行检查的，不正确的键值实际类型会引发panic**。
+
+**所以在每次操作`sync.Map`的时候，显式地检查键值的实际类型**。更好的操作是针对同一个`sync.Map`的存、取、删操作都集中起来，然后统一编写检查代码。或者把`sync.Map`封装在一个结构体中也是一个不错的选择。
+
+必须保证键的类型是可比较的（可判等的），实在拿不准，可以：
+
+1. 使用`reflect.Typeof()`函数得到一个键值对应的反射类型值（即：`reflect.Type`类型的值）
+2. 调用这个值的`Comparable`方法得到确切的判断结果
+
+### 保证`sync.Map`中键值的类型正确性
+
+使用类型断言表达式或者反射操作来保证它们的类型正确性。
+
+#### 方案一
+
+让`sync.Map`只能存储某个特定类型的键。一旦确定好了键的类型，就可以在存、取、删操作的时候，使用类型断言表达式去对键的类型做检查。
+
+一般情况下，这样的检查并不繁琐，如果把`sync.Map`封装在一个结构体类型里就更方便了，这样完全可以使用Go语言编译器帮助进行类型检查，如下所示：
+
+```go
+// 键类型为int，值类型为string
+// 在这个结构体中，只有sync.Map类型的字段m
+type IntStrMap struct {
+ m sync.Map
+}
+
+func (iMap *IntStrMap) Delete(key int) {
+ iMap.m.Delete(key)
+}
+
+func (iMap *IntStrMap) Load(key int) (value string, ok bool) {
+ v, ok := iMap.m.Load(key)
+ if v != nil {
+  value = v.(string)
+ }
+ return
+}
+
+func (iMap *IntStrMap) LoadOrStore(key int, value string) (actual string, loaded bool) {
+ a, loaded := iMap.m.LoadOrStore(key, value)
+ actual = a.(string)
+ return
+}
+
+func (iMap *IntStrMap) Range(f func(key int, value string) bool) {
+ f1 := func(key, value interface{}) bool {
+  return f(key.(int), value.(string))
+ }
+ iMap.m.Range(f1)
+}
+
+func (iMap *IntStrMap) Store(key int, value string) {
+ iMap.m.Store(key, value)
+}
+```
+
+这样在这些方法操作键值的时候，就不再需要进行类型检查，也不用担心类型会不正确。
+
+因此，在确定键和值的具体类型的情况下，可以利用Go语言编译器去做类型检查，并用类型断言表达式作为辅助。
+
+#### 方案二
+
+封装的结构体类型的所有方法都可以与`sync.Map`类型的方法完全一致（包括方法名称和方法签名）。不过在这些方法中需要添加一些类型检查的代码。这样`sync.Map`的键和值类型必须在初始化的时候就完全确定，并且必须先保证键的类型是可比较的。
+
+所以封装的结构体如下：
+
+```go
+// 可自定义键和值类型的sync.Map
+type ConcurrentMap struct {
+ m         sync.Map
+
+//  键和值都是反射类型，该类型可以代表Go语言的任何数据类型
+// 这个类型值容易获得，通过调用reflect.Typeof函数并把样本值传入即可
+ keyType   reflect.Type
+ valueType reflect.Type
+}
+
+func (cMap *ConcurrentMap) Load(key interface{}) (value interface{}, ok bool) {
+    // 将一个接口类型值传入reflect.Typeof函数，就可以得到这个值的实际类型对应的反射类型值
+ if reflect.TypeOf(key) != cMap.keyType {
+  return
+ }
+ return cMap.m.Load(key)
+}
+
+func (cMap *ConcurrentMap) Store(key, value interface{}) {
+    // 当key和value的实际类型不符合要求时，store方法会立即引发panic
+    // 因为store方法没有结果声明，所以在参数值有问题的时候，无法通过比较平和的方式告知调用方
+ if reflect.TypeOf(key) != cMap.keyType {
+  panic(fmt.Errorf("wrong key type: %v", reflect.TypeOf(key)))
+ }
+ if reflect.TypeOf(value) != cMap.valueType {
+  panic(fmt.Errorf("wrong value type: %v", reflect.TypeOf(value)))
+ }
+ cMap.m.Store(key, value)
+}
+
+// 也可以为store方法添加一个error类型的结果，在发现参数值类型不正确的时候，
+// 让它直接返回响应的error类型值，而不是引发panic，实际中可根据应用场景进行改进和优化
+```
+
+- 方案一：
+  - 适合可以完全确定键和值类型的情况，可以使用Go语言编译器做类型检查，并用类型断言表达式做辅助。
+  - 明显的缺陷就是无法灵活地改变字典的键和值的类型，需求多样化则编码工作量增加。
+- 方案二：
+  - 无需在程序运行之前明确键和值的类型，只要在初始化`sync.Map`的时候，动态地给它们就可以，主要使用reflect包中的函数和数据类型，外加一些简单的判等操作。
+  - 更灵活，但是反射操作降低程序的性能。
+
+### `sync.Map`如何尽量避免使用锁
+
+`sync.Map`类型在内部使用大量的原子操作来存取键和值，并使用两个原生的map作为存储介质：
+
+- 一个原生map被存在了`sync.Map`的read字段中，该字段是`sycn/atomic.Value`类型的。这个原生字典可以被看做一个快照，它总会在条件满足时，去重新保存所属的`sync.Map`值中包含的所有键值对。
+
+    > read字段虽然不会增减其中的键，但却允许变更其中的键所对应的值，所以它不是传统意义上的快照，它的只读特性只是对其中键的集合而言的。
+
+    read字段的类型可知，`sync.Map`在替换read的时候根本用不着锁，并且read字段在存储键值对的时候，还在值之上封装了一层：
+
+  1. 先把值转换为unsafe.Pointer`类型的值
+  2. 再把后者封装后存储在其中的原生map中
+
+    这样，在变更某个键所对应的值的时候，就可以使用原子操作了。
+
+- 另一个原生map存在`sync.Map`的dirty字段中，它存储键值对的方式与read字段一只，它的键类型是`interface{}`，并且同样把值先做转换和封装，然后再进行存储。
+
+**read和dirty字段如果都存有同一个键值对，那么这里的两个键指的肯定是同一个基本值，对于两个值来说也是如此**。
+
+这两个字典在存储键和值的时候，只会存入它们的某个指针，而不是基本值。
+
+读取：
+
+  1. `sync.Map`在查找指定的键锁对应的值的时候，总会先去read中寻找，并不需要锁定互斥锁
+  2. 只有在确定read中没有，但dirty中可能还有这个键的时候，它才会在锁的包含下去访问dirty
+
+存储：
+
+  1. `sync.Map`在存储键值对的时候，只要read中已存有这个键
+  2. 并且该键值对未被标记为“已删除”，就会把新值存到里面直接返回，这种情况下也不需要用到锁
+  3. 否则，它才会在锁的保护下把键值对存储到dirty中，这个时候，该键值对的“已删除”标记会被抹去
+
+![images](/images/sync-Map.png)
+
+只有当一个键值对应该被删除，但却仍然存在与read中的时候，才会被用标记为“已删除”的方式进行逻辑删除，而不会直接被物理删除。这种情况会在重建dirty后的一段时间内出现，过不了多久，就会被真正删除。**在查找和遍历键值对的时候，已经被逻辑删除的键值对永远会被无视**。
+
+对于删除键值对，`sync.Map`会先去检查read中是否有对应的键，如果没有，dirty中可能有，那么它会在锁保护下，试图从dirty中删除该键值对。最后，`sync.Map`会把该键值对中指向值的那个指针置为nil，这是另一种逻辑删除方式。
+
+> 需要注意，read和dirty之间是会相互转换的，在dirty中查找键值对次数足够多的时候，`sync.Map`会把dirty直接作为read，保存在它的read字段中，然后把代表dirty的dirty字段置为nil。
+
+在这之后，一旦再有新的键值对存入，它就会依据read去重建dirty，这个时候会把read中已经逻辑删除的键值对过滤掉，这些操作都在锁的保护下进行。
+
+![images](/images/read-dirty.png)
+
+综上，`sync.Map`的read和dirty中的键值对集合并不是实时同步的，它们在某些时间段内可能会不同，由于read中的键值对的集合不能被改变，所以其中的键值对有时候可能是不全的，相反，dirty中的键值对集合总是完全的，并且其中不会包含已被逻辑删除的键值对。
+
+**因此在读操作很多，写操作很少的情况下，`sync.Map`的性能会更好，在几个写操作当中，新增键值对的操作对`sync.Map`的性能影响最大，其次是删除操作，最后是修改操作**。如果被操作的键值对已经存在于`sync.Map`的read中，并且没有被逻辑删除，那么修改它并不会使用到锁，对其性能的影响会很小。
