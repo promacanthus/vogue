@@ -45,7 +45,7 @@ go get github.com/drhodes/golorem
 go get github.com/gorilla/mux
 ```
 
-无论使用哪种最酷的工具，都需要在第一时间创建业务逻辑。如用例所述，我们的业务逻辑是根据单词，句子或段落创建lorem ipsum文本。因此，让我们在工作区下创建lorem文件夹。就我而言，我的文件夹是`$GOPATH / github.com/ru-rocker/gokit-playground/lorem`。然后在该文件夹下创建文件`service.go`并添加以下代码：
+无论使用哪种最酷的工具，都需要在第一时间创建业务逻辑。如用例所述，我们的业务逻辑是根据单词，句子或段落创建lorem ipsum文本。因此，让我们在工作区下创建lorem文件夹。就我而言，我的文件夹是`$GOPATH/github.com/ru-rocker/gokit-playground/lorem`。然后在该文件夹下创建文件`service.go`并添加以下代码：
 
 ```go
 // Define service interface
