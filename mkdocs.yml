@@ -1,0 +1,3 @@
+site_name: Golang Guide
+theme:
+  name: 'material'
