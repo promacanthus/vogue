@@ -10,7 +10,7 @@
 
 与许多RPC系统一样，gRPC基于定义服务的思想，指定可以被远程调用的方法，包括方法的参数和返回类型。默认情况下，gRPC使用`protocol buffers`作为接口定义语言（IDL）来描述**服务接口**和**有效消息负载的结构**。如果需要，也可以使用其他替代方案。
 
-```go
+```protobuf
 service HelloService {
   rpc SayHello (HelloRequest) returns (HelloResponse);
 }
@@ -28,30 +28,26 @@ gRPC允许您定义四种服务方法：
 
 - **简单RPC**，客户端向服务端发送单个请求并返回单个响应，就像正常的函数调用一样。
 
-```go
-rpc SayHello(HelloRequest) returns (HelloResponse){
-}  
+```protobuf
+rpc SayHello(HelloRequest) returns (HelloResponse);
 ```
 
 - **服务端侧流数据RPC**，客户端向服务端发送单个请求并获取返回流以读取消息序列，客户端从返回的流中读取，直到没有更多消息，gRPC保证单个RPC调用中的消息的顺序。
 
-```go
-rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse){
-}
+```protobuf
+rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
 ```
 
 - **客户端侧流数据PC**，客户端多次使用提供的流写入一系列消息并将其发送到服务端。 一旦客户端写完消息，它就等待服务端读取并返回响应，gRPC保证在单个RPC调用中的消息的顺序。
 
-```go
-rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse) {
-}
+```protobuf
+rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse) ;
 ```
 
 - **双向流数据RPC**，双方使用读写流发送一系列消息，这两个流独立运行，因此客户端和服务端可以按照自己喜欢的顺序进行读写（例如，服务端可以在写入响应之前等待接收所有客户端消息，或者它可以交替地读取消息然后写入消息，或者其他一些读写组合）。gRPC保留每个流中的消息顺序。
 
-```go
-rpc BidiHello(stream HelloRequest) returns (stream HelloResponse){
-}
+```protobuf
+rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
 ```
 
 我们将在下面的RPC生命周期部分中更详细地介绍不同类型的RPC。
