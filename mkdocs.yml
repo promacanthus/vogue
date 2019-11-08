@@ -1,8 +1,14 @@
 # Project information
 site_name: Golang Guide
-site_description: Go language full stack development guide.
+site_description: Go language full stack development guide
 site_author: bowen zhu
-site_url: https://promacanthus.github.io/Golang-Guide/.
+site_url: https://promacanthus.github.io/Golang-Guide/
 
+# Repository
+repo_name: promacanthus/Golang-Guide
+repo_url: https://promacanthus.github.io/Golang-Guide/
+edit_uri: ""
+
+# Configuration
 theme:
   name: 'material'
