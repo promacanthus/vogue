@@ -3,7 +3,6 @@ site_name: Golang Guide
 site_description: Go language full stack development guide
 site_author: bowen zhu
 site_url: https://promacanthus.github.io/Golang-Guide/
-site_favicon: favicon.ico
 
 # Repository
 repo_name: promacanthus/Golang-Guide
@@ -17,16 +16,8 @@ theme:
 # Copyright
 copyright: 'Copyright &copy; 2019 - 2020 Promacanthus'
 
-# 404 page
-static_templates:
-  - 404.html
-
 # Analytics
 google_analytics: ['UA-151903408-1', 'mkdocs.org']
-
-# Don't include MkDocs' JavaScript
-include_search_page: false
-search_index_only: true
 
 # Customization
 extra:
