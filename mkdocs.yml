@@ -6,9 +6,8 @@ site_url: https://promacanthus.github.io/Golang-Guide/
 
 # Repository
 repo_name: promacanthus/Golang-Guide
-repo_url: https://promacanthus.github.io/Golang-Guide/
+repo_url: https://github.com/Promacanthus/Golang-Guide
 edit_uri: ""
-baseurl: ""
 
 # Configuration
 theme:
@@ -33,4 +32,3 @@ extra:
   social:
     - type: github
       link: https://github.com/Promacanthus/Golang-Guide
-
