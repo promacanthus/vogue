@@ -8,7 +8,29 @@ site_url: https://promacanthus.github.io/Golang-Guide/
 repo_name: promacanthus/Golang-Guide
 repo_url: https://promacanthus.github.io/Golang-Guide/
 edit_uri: ""
+baseurl: ""
 
 # Configuration
 theme:
   name: 'material'
+
+# Copyright
+copyright: 'Copyright &copy; 2019 - 2020 Promacanthus'
+
+# 404 page
+static_templates:
+  - 404.html
+
+# Analytics
+google_analytics: ['UA-151903408-1', 'mkdocs.org']
+
+# Don't include MkDocs' JavaScript
+include_search_page: false
+search_index_only: true
+
+# Customization
+extra:
+  social:
+    - type: github
+      link: https://github.com/Promacanthus/Golang-Guide
+
