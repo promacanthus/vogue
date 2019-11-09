@@ -74,7 +74,7 @@ func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
 
 撤销函数被调用后，Context值会先关闭它内部的接收通道，即Done方法会返回的那个通道。然后，它会向它的所有子值（或者说子节点）传达撤销信号。这些子值会继续把撤销信号传播下去，最后这个context值会断开它与其父值之间的关联。
 
-![images](/images/context.png)
+![images](/docs/images/context.png)
 
 ```go
 func WithDeadline(parent Context, d time.Time) (Context, CancelFunc)

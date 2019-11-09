@@ -138,7 +138,7 @@ func Println(v ...interface{})
 
 ## 总结几个方法
 
-![image](/标准库/images/log.png)
+![image](/标准库/docs/images/log.png)
 
 ## 函数SetFlags
 

@@ -93,7 +93,7 @@ fmt.Printf("  => bytes(hex): [% x]\n", []byte(str))     //   => bytes(hex): [47 
 - 可以展现为单一的整数：7231
 - 也可以展现为三个整数：e7 88 b1
 
-![images](/images/UTF-8.png)
+![images](/docs/images/UTF-8.png)
 
 一个string类型的值会由若干个Unicode字符组成，每个Unicode字符都可以由一个rune类型的值来承载。这些字符在底层都会被转换为UTF-8编码值，而这些UTF-8编码值有会以字节序列的形式表达和存储。因此一个string类型的值在底层就是一个能够表达若干个UTF-8编码值的字节序列。
 
