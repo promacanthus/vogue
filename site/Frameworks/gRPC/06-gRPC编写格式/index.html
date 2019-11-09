@@ -1,0 +1,2385 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Go language full stack development guide">
+      
+      
+        <link rel="canonical" href="https://promacanthus.github.io/Golang-Guide/Frameworks/gRPC/06-gRPC编写格式/">
+      
+      
+        <meta name="author" content="bowen zhu">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>gRPC over HTTP2 - Golang Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#grpc-over-http2" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://promacanthus.github.io/Golang-Guide/" title="Golang Guide" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Golang Guide
+            </span>
+            <span class="md-header-nav__topic">
+              
+                gRPC over HTTP2
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://promacanthus.github.io/Golang-Guide/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    promacanthus/Golang-Guide
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://promacanthus.github.io/Golang-Guide/" title="Golang Guide" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Golang Guide
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://promacanthus.github.io/Golang-Guide/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    promacanthus/Golang-Guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Welcome to Golang-Guide" class="md-nav__link">
+      Welcome to Golang-Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Frameworks
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Frameworks
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../常用框架/" title="框架" class="md-nav__link">
+      框架
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../微服务框架对比/" title="Microservices in Go" class="md-nav__link">
+      Microservices in Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Go Web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Go Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3-1" type="checkbox" id="nav-2-3-1">
+    
+    <label class="md-nav__link" for="nav-2-3-1">
+      HTTP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-3-1">
+        HTTP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-Web/HTTP/HTTP/" title="HTTP" class="md-nav__link">
+      HTTP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Go kit
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        Go kit
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/FAQ/" title="Go-kit" class="md-nav__link">
+      Go-kit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/架构与设计/" title="架构与设计" class="md-nav__link">
+      架构与设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4-3" type="checkbox" id="nav-2-4-3">
+    
+    <label class="md-nav__link" for="nav-2-4-3">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-4-3">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/00-Endpoints(REST)/" title="REST Endpoints" class="md-nav__link">
+      REST Endpoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/01-Endpoints(gRPC)/" title="gRPC Endpoint" class="md-nav__link">
+      gRPC Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/API-Monitoring/" title="API Monitoring" class="md-nav__link">
+      API Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Hystrix-Circuit-Breaker/" title="Hystrix Circuit Breaker" class="md-nav__link">
+      Hystrix Circuit Breaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Logging(ELK)/" title="Logging(ELK)" class="md-nav__link">
+      Logging(ELK)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Logging/" title="Logging" class="md-nav__link">
+      Logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Rate-Limiting/" title="Rate Limiting" class="md-nav__link">
+      Rate Limiting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Service-Discovery/" title="Service Discovery" class="md-nav__link">
+      Service Discovery
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Protocol Buffers
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Protocol Buffers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/01-简介/" title="什么是Protocol Buffers" class="md-nav__link">
+      什么是Protocol Buffers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/02-proto3指南/" title="`proto3`指南" class="md-nav__link">
+      `proto3`指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/03-样式指南/" title="样式指南" class="md-nav__link">
+      样式指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/04-编码/" title="编码" class="md-nav__link">
+      编码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/05-技术/" title="技术" class="md-nav__link">
+      技术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/06-第三方插件/" title="第三方插件" class="md-nav__link">
+      第三方插件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/07-Go语言指南/" title="`Protocol Buffers`：Go语言指南" class="md-nav__link">
+      `Protocol Buffers`：Go语言指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/08-Go生成代码指南/" title="Go生成代码指南" class="md-nav__link">
+      Go生成代码指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/09-proto3规范/" title="`proto3`规范" class="md-nav__link">
+      `proto3`规范
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6" checked>
+    
+    <label class="md-nav__link" for="nav-2-6">
+      gRPC
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        gRPC
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01-gRPC简介/" title="gRPC" class="md-nav__link">
+      gRPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02-gRPC概念/" title="gRPC概念" class="md-nav__link">
+      gRPC概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03-认证/" title="认证" class="md-nav__link">
+      认证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04-错误处理和调试/" title="错误处理" class="md-nav__link">
+      错误处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05-基准化分析法/" title="基准化分析法" class="md-nav__link">
+      基准化分析法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        gRPC over HTTP2
+      </label>
+    
+    <a href="./" title="gRPC over HTTP2" class="md-nav__link md-nav__link--active">
+      gRPC over HTTP2
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol" class="md-nav__link">
+    Protocol
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outline" class="md-nav__link">
+    Outline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requests" class="md-nav__link">
+    Requests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responses" class="md-nav__link">
+    Responses
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-agents" class="md-nav__link">
+    User Agents
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-and-retries" class="md-nav__link">
+    Idempotency and Retries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http2-transport-mapping" class="md-nav__link">
+    HTTP2 Transport Mapping
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-identification" class="md-nav__link">
+    Stream Identification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-frames" class="md-nav__link">
+    Data Frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    Errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    Security
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-management" class="md-nav__link">
+    Connection Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goaway-frame" class="md-nav__link">
+    GOAWAY Frame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping-frame" class="md-nav__link">
+    PING Frame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-failure" class="md-nav__link">
+    Connection failure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-a-grpc-for-protobuf" class="md-nav__link">
+    Appendix A - GRPC for Protobuf
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../07-Golang快速入门/" title="Go 快速入门" class="md-nav__link">
+      Go 快速入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../08-Golang应用/" title="gRPC Basic - Go" class="md-nav__link">
+      gRPC Basic - Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../09-Go生成代码指南/" title="Go生成代码指南" class="md-nav__link">
+      Go生成代码指南
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      IDE
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        IDE
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      VSCode
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        VSCode
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/01-扩展程序中的设置与命令/" title="扩展程序中的设置与命令" class="md-nav__link">
+      扩展程序中的设置与命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/02-编译调试扩展程序/" title="在VSCode中编译、调试并在侧边加载扩展程序" class="md-nav__link">
+      在VSCode中编译、调试并在侧边加载扩展程序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/03-使用VSCode调试Go代码/" title="使用`VSCode`调试Go语言" class="md-nav__link">
+      使用`VSCode`调试Go语言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/04-VSCode中Go的功能/" title="VScode中Go的功能" class="md-nav__link">
+      VScode中Go的功能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/05-VSCode支持Go-Modules/" title="Go Modules" class="md-nav__link">
+      Go Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/06-扩展程序依赖的Go工具/" title="Go扩展程序依赖的Go工具" class="md-nav__link">
+      Go扩展程序依赖的Go工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/07-FAQ/" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/08-扩展程序中设置GOPATH/" title="Go 扩展程序中设置`GOPATH`" class="md-nav__link">
+      Go 扩展程序中设置`GOPATH`
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/09-保存时自动执行的功能/" title="保存时自动执行的功能" class="md-nav__link">
+      保存时自动执行的功能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/10-烟囱测试/" title="烟囱测试" class="md-nav__link">
+      烟囱测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/11.使用Go执行VScode的任务/" title="使用Go执行VSCode的任务" class="md-nav__link">
+      使用Go执行VSCode的任务
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/12-使用扩展程序最新的测试版/" title="使用扩展程程序最新的测试版" class="md-nav__link">
+      使用扩展程程序最新的测试版
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/13-VSCode中使用Go语言服务器/" title="Go 语言服务器" class="md-nav__link">
+      Go 语言服务器
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Issues
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Issues
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Issues/FAQ/" title="错误和解决方案" class="md-nav__link">
+      错误和解决方案
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Language
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Language
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Basic
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Basic
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/00-Go工具/" title="00 Go工具" class="md-nav__link">
+      00 Go工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/00-程序结构/" title="程序结构" class="md-nav__link">
+      程序结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/01-GOPATH和工作区/" title="版本的特性：" class="md-nav__link">
+      版本的特性：
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/02-命令源码文件/" title="02 命令源码文件" class="md-nav__link">
+      02 命令源码文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/03-库源码文件/" title="03 库源码文件" class="md-nav__link">
+      03 库源码文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/04-程序实体/" title="程序实体" class="md-nav__link">
+      程序实体
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/05-数组和切片/" title="数组和切片" class="md-nav__link">
+      数组和切片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/06-链表/" title="链表" class="md-nav__link">
+      链表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/07-字典/" title="字典" class="md-nav__link">
+      字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/08-通道/" title="通道" class="md-nav__link">
+      通道
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/09-函数/" title="函数" class="md-nav__link">
+      函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/10-结构体类型/" title="结构体类型" class="md-nav__link">
+      结构体类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/11-接口类型/" title="接口类型" class="md-nav__link">
+      接口类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/12-指针/" title="指针" class="md-nav__link">
+      指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/13-语句执行规则/" title="Go语句及其执行规则" class="md-nav__link">
+      Go语句及其执行规则
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/14-流程控制语句/" title="流程控制语句" class="md-nav__link">
+      流程控制语句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/15-错误处理/" title="错误处理" class="md-nav__link">
+      错误处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/16-panic&recover&defer/" title="异常" class="md-nav__link">
+      异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/17-sync/" title="sync" class="md-nav__link">
+      sync
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/18-atomic/" title="原子操作" class="md-nav__link">
+      原子操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/19-context/" title="Context" class="md-nav__link">
+      Context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/20-Unicode/" title="Unicode" class="md-nav__link">
+      Unicode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/21-strings/" title="strings" class="md-nav__link">
+      strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/22-bytes/" title="bytes" class="md-nav__link">
+      bytes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/23-io/" title="io" class="md-nav__link">
+      io
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/24-bufio/" title="bufio" class="md-nav__link">
+      bufio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/25-os/" title="os" class="md-nav__link">
+      os
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/26.net/" title="net" class="md-nav__link">
+      net
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/Go-Modules/" title="Go Modules" class="md-nav__link">
+      Go Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/测试规则与流程/" title="测试的基本规则与流程" class="md-nav__link">
+      测试的基本规则与流程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Library
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Library
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/context/" title="package context" class="md-nav__link">
+      package context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/flag/" title="package flag" class="md-nav__link">
+      package flag
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/log/" title="packages log" class="md-nav__link">
+      packages log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-4" type="checkbox" id="nav-5-2-4">
+    
+    <label class="md-nav__link" for="nav-5-2-4">
+      Io
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-4">
+        Io
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/io/ioutil/" title="package ioutil" class="md-nav__link">
+      package ioutil
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-5" type="checkbox" id="nav-5-2-5">
+    
+    <label class="md-nav__link" for="nav-5-2-5">
+      Log
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-5">
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/log/syslog/" title="package syslog" class="md-nav__link">
+      package syslog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-6" type="checkbox" id="nav-5-2-6">
+    
+    <label class="md-nav__link" for="nav-5-2-6">
+      Net
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-6">
+        Net
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/net/http/" title="package http" class="md-nav__link">
+      package http
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/net/rpc/" title="rpc" class="md-nav__link">
+      rpc
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-7" type="checkbox" id="nav-5-2-7">
+    
+    <label class="md-nav__link" for="nav-5-2-7">
+      Os
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-7">
+        Os
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/os/exec/" title="package exec" class="md-nav__link">
+      package exec
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Regexp
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Regexp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Regexp/基础/" title="正则表达式" class="md-nav__link">
+      正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Regexp/常用/" title="常用" class="md-nav__link">
+      常用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol" class="md-nav__link">
+    Protocol
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outline" class="md-nav__link">
+    Outline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requests" class="md-nav__link">
+    Requests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responses" class="md-nav__link">
+    Responses
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-agents" class="md-nav__link">
+    User Agents
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-and-retries" class="md-nav__link">
+    Idempotency and Retries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http2-transport-mapping" class="md-nav__link">
+    HTTP2 Transport Mapping
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-identification" class="md-nav__link">
+    Stream Identification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-frames" class="md-nav__link">
+    Data Frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    Errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    Security
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-management" class="md-nav__link">
+    Connection Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goaway-frame" class="md-nav__link">
+    GOAWAY Frame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping-frame" class="md-nav__link">
+    PING Frame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-failure" class="md-nav__link">
+    Connection failure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-a-grpc-for-protobuf" class="md-nav__link">
+    Appendix A - GRPC for Protobuf
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="grpc-over-http2">gRPC over HTTP2</h1>
+<h2 id="_1">介绍</h2>
+<p>本文档用作<a href="ttps://tools.ietf.org/html/rfc7540">HTTP2 framing</a>承载的gRPC实现的详细描述。它假设您熟悉HTTP2规范。</p>
+<h2 id="protocol">Protocol</h2>
+<p>Production rules are using <a href="http://tools.ietf.org/html/rfc5234">ABNF syntax</a>.</p>
+<h3 id="outline">Outline</h3>
+<p>The following is the general sequence of message atoms in a GRPC request &amp; response message stream</p>
+<ul>
+<li>Request → Request-Headers *Length-Prefixed-Message EOS</li>
+<li>Response → (Response-Headers *Length-Prefixed-Message Trailers) / Trailers-Only</li>
+</ul>
+<h3 id="requests">Requests</h3>
+<ul>
+<li>Request → Request-Headers *Length-Prefixed-Message EOS</li>
+</ul>
+<p>Request-Headers are delivered as HTTP2 headers in HEADERS + CONTINUATION frames.</p>
+<ul>
+<li><strong>Request-Headers</strong> → Call-Definition *Custom-Metadata</li>
+<li><strong>Call-Definition</strong> → Method Scheme Path TE [Authority] [Timeout] Content-Type [Message-Type] [Message-Encoding] [Message-Accept-Encoding] [User-Agent]</li>
+<li><strong>Method</strong> →  ":method POST"</li>
+<li><strong>Scheme</strong> → ":scheme "  ("http" / "https")</li>
+<li><strong>Path</strong> → ":path" "/" Service-Name "/" {<em>method name</em>}  # But see note below.</li>
+<li><strong>Service-Name</strong> → {<em>IDL-specific service name</em>}</li>
+<li><strong>Authority</strong> → ":authority" {<em>virtual host name of authority</em>}</li>
+<li><strong>TE</strong> → "te" "trailers"  # Used to detect incompatible proxies</li>
+<li><strong>Timeout</strong> → "grpc-timeout" TimeoutValue TimeoutUnit</li>
+<li><strong>TimeoutValue</strong> → {<em>positive integer as ASCII string of at most 8 digits</em>}</li>
+<li><strong>TimeoutUnit</strong> → Hour / Minute / Second / Millisecond / Microsecond / Nanosecond</li>
+<li><strong>Hour</strong> → "H"</li>
+<li><strong>Minute</strong> → "M"</li>
+<li><strong>Second</strong> → "S"</li>
+<li><strong>Millisecond</strong> → "m"</li>
+<li><strong>Microsecond</strong> → "u"</li>
+<li><strong>Nanosecond</strong> → "n"</li>
+<li><strong>Content-Type</strong> → "content-type" "application/grpc" [("+proto" / "+json" / {<em>custom</em>})]</li>
+<li><strong>Content-Coding</strong> → "identity" / "gzip" / "deflate" / "snappy" / {<em>custom</em>}</li>
+<li><a name="message-encoding"></a><strong>Message-Encoding</strong> → "grpc-encoding" Content-Coding</li>
+<li><strong>Message-Accept-Encoding</strong> → "grpc-accept-encoding" Content-Coding *("," Content-Coding)</li>
+<li><strong>User-Agent</strong> → "user-agent" {<em>structured user-agent string</em>}</li>
+<li><strong>Message-Type</strong> → "grpc-message-type" {<em>type name for message schema</em>}</li>
+<li><strong>Custom-Metadata</strong> → Binary-Header / ASCII-Header</li>
+<li><strong>Binary-Header</strong> → {Header-Name "-bin" } {<em>base64 encoded value</em>}</li>
+<li><strong>ASCII-Header</strong> → Header-Name ASCII-Value</li>
+<li><strong>Header-Name</strong> → 1*( %x30-39 / %x61-7A / "_" / "-" / ".") ; 0-9 a-z _ - .</li>
+<li><strong>ASCII-Value</strong> → 1*( %x20-%x7E ) ; space and printable ASCII</li>
+</ul>
+<p>HTTP2 requires that reserved headers, ones starting with ":" appear before all other headers. Additionally implementations should send <strong>Timeout</strong> immediately after the reserved headers and they should send the <strong>Call-Definition</strong> headers before sending <strong>Custom-Metadata</strong>.</p>
+<p>Some gRPC implementations may allow the <strong>Path</strong> format shown above
+to be overridden, but this functionality is strongly discouraged.
+gRPC does not go out of its way to break users that are using this kind
+of override, but we do not actively support it, and some functionality
+(e.g., service config support) will not work when the path is not of
+the form shown above.</p>
+<p>If <strong>Timeout</strong> is omitted a server should assume an infinite timeout. Client implementations are free to send a default minimum timeout based on their deployment requirements.</p>
+<p>If <strong>Content-Type</strong> does not begin with "application/grpc", gRPC servers SHOULD respond with HTTP status of 415 (Unsupported Media Type).  This will prevent other HTTP/2 clients from interpreting a gRPC error response, which uses status 200 (OK), as successful.</p>
+<p><strong>Custom-Metadata</strong> is an arbitrary set of key-value pairs defined by the application layer. Header names starting with "grpc-" but not listed here are reserved for future GRPC use and should not be used by applications as <strong>Custom-Metadata</strong>.</p>
+<p>Note that HTTP2 does not allow arbitrary octet sequences for header values so binary header values must be encoded using Base64 as per https://tools.ietf.org/html/rfc4648#section-4. Implementations MUST accept padded and un-padded values and should emit un-padded values. Applications define binary headers by having their names end with "-bin". Runtime libraries use this suffix to detect binary headers and properly apply base64 encoding &amp; decoding as headers are sent and received.</p>
+<p><strong>Custom-Metadata</strong> header order is not guaranteed to be preserved except for
+values with duplicate header names. Duplicate header names may have their values
+joined with "," as the delimiter and be considered semantically equivalent.
+Implementations must split <strong>Binary-Header</strong>s on "," before decoding the
+Base64-encoded values.</p>
+<p><strong>ASCII-Value</strong> should not have leading or trailing whitespace. If it contains
+leading or trailing whitespace, it may be stripped. The <strong>ASCII-Value</strong>
+character range defined is more strict than HTTP. Implementations must not error
+due to receiving an invalid <strong>ASCII-Value</strong> that's a valid <strong>field-value</strong> in
+HTTP, but the precise behavior is not strictly defined: they may throw the value
+away or accept the value. If accepted, care must be taken to make sure that the
+application is permitted to echo the value back as metadata. For example, if the
+metadata is provided to the application as a list in a request, the application
+should not trigger an error by providing that same list as the metadata in the
+response.</p>
+<p>Servers may limit the size of <strong>Request-Headers</strong>, with a default of 8 KiB
+suggested.  Implementations are encouraged to compute total header size like
+HTTP/2's <code>SETTINGS_MAX_HEADER_LIST_SIZE</code>: the sum of all header fields, for each
+field the sum of the uncompressed field name and value lengths plus 32, with
+binary values' lengths being post-Base64.</p>
+<p>The repeated sequence of <strong>Length-Prefixed-Message</strong> items is delivered in DATA frames</p>
+<ul>
+<li><strong>Length-Prefixed-Message</strong> → Compressed-Flag Message-Length Message</li>
+<li><a name="compressed-flag"></a><strong>Compressed-Flag</strong> → 0 / 1   # encoded as 1 byte unsigned integer</li>
+<li><strong>Message-Length</strong> → {<em>length of Message</em>}  # encoded as 4 byte unsigned integer (big endian)</li>
+<li><strong>Message</strong> → *{binary octet}</li>
+</ul>
+<p>A <strong>Compressed-Flag</strong> value of 1 indicates that the binary octet sequence of <strong>Message</strong> is compressed using the mechanism declared by the <strong>Message-Encoding</strong> header. A value of 0 indicates that no encoding of <strong>Message</strong> bytes has occurred. Compression contexts are NOT maintained over message boundaries, implementations must create a new context for each message in the stream. If the <strong>Message-Encoding</strong> header is omitted then the <strong>Compressed-Flag</strong> must be 0.</p>
+<p>For requests, <strong>EOS</strong> (end-of-stream) is indicated by the presence of the END_STREAM flag on the last received DATA frame. In scenarios where the <strong>Request</strong> stream needs to be closed but no data remains to be sent implementations MUST send an empty DATA frame with this flag set.</p>
+<h3 id="responses">Responses</h3>
+<ul>
+<li><strong>Response</strong> → (Response-Headers *Length-Prefixed-Message Trailers) / Trailers-Only</li>
+<li><strong>Response-Headers</strong> → HTTP-Status [Message-Encoding] [Message-Accept-Encoding] Content-Type *Custom-Metadata</li>
+<li><strong>Trailers-Only</strong> → HTTP-Status Content-Type Trailers</li>
+<li><strong>Trailers</strong> → Status [Status-Message] *Custom-Metadata</li>
+<li><strong>HTTP-Status</strong> → ":status 200"</li>
+<li><strong>Status</strong> → "grpc-status" 1*DIGIT ; 0-9</li>
+<li><strong>Status-Message</strong> → "grpc-message" Percent-Encoded</li>
+<li><strong>Percent-Encoded</strong> → 1*(Percent-Byte-Unencoded / Percent-Byte-Encoded)</li>
+<li><strong>Percent-Byte-Unencoded</strong> → 1*( %x20-%x24 / %x26-%x7E ) ; space and VCHAR, except %</li>
+<li><strong>Percent-Byte-Encoded</strong> → "%" 2HEXDIGIT ; 0-9 A-F</li>
+</ul>
+<p><strong>Response-Headers</strong> &amp; <strong>Trailers-Only</strong> are each delivered in a single HTTP2 HEADERS frame block. Most responses are expected to have both headers and trailers but <strong>Trailers-Only</strong> is permitted for calls that produce an immediate error. Status must be sent in <strong>Trailers</strong> even if the status code is OK.</p>
+<p>For responses end-of-stream is indicated by the presence of the END_STREAM flag on the last received HEADERS frame that carries <strong>Trailers</strong>.</p>
+<p>Implementations should expect broken deployments to send non-200 HTTP status codes in responses as well as a variety of non-GRPC content-types and to omit <strong>Status</strong> &amp; <strong>Status-Message</strong>. Implementations must synthesize a <strong>Status</strong> &amp; <strong>Status-Message</strong> to propagate to the application layer when this occurs.</p>
+<p>Clients may limit the size of <strong>Response-Headers</strong>, <strong>Trailers</strong>, and
+<strong>Trailers-Only</strong>, with a default of 8 KiB each suggested.</p>
+<p>The value portion of <strong>Status</strong> is a decimal-encoded integer as an ASCII string,
+without any leading zeros.</p>
+<p>The value portion of <strong>Status-Message</strong> is conceptually a Unicode string
+description of the error, physically encoded as UTF-8 followed by
+percent-encoding. Percent-encoding is specified in <a href="https://tools.ietf.org/html/rfc3986#section-2.1">RFC 3986
+§2.1</a>, although the form used
+here has different restricted characters. When decoding invalid values,
+implementations MUST NOT error or throw away the message. At worst, the
+implementation can abort decoding the status message altogether such that the
+user would received the raw percent-encoded form. Alternatively, the
+implementation can decode valid portions while leaving broken %-encodings as-is
+or replacing them with a replacement character (e.g., '?' or the Unicode
+replacement character).</p>
+<h4 id="example">Example</h4>
+<p>Sample unary-call showing HTTP2 framing sequence</p>
+<p><strong>Request</strong></p>
+<pre><code>HEADERS (flags = END_HEADERS)
+:method = POST
+:scheme = http
+:path = /google.pubsub.v2.PublisherService/CreateTopic
+:authority = pubsub.googleapis.com
+grpc-timeout = 1S
+content-type = application/grpc+proto
+grpc-encoding = gzip
+authorization = Bearer y235.wef315yfh138vh31hv93hv8h3v
+
+DATA (flags = END_STREAM)
+&lt;Length-Prefixed Message&gt;
+</code></pre>
+
+<p><strong>Response</strong></p>
+<pre><code>HEADERS (flags = END_HEADERS)
+:status = 200
+grpc-encoding = gzip
+content-type = application/grpc+proto
+
+DATA
+&lt;Length-Prefixed Message&gt;
+
+HEADERS (flags = END_STREAM, END_HEADERS)
+grpc-status = 0 # OK
+trace-proto-bin = jher831yy13JHy3hc
+</code></pre>
+
+<h4 id="user-agents">User Agents</h4>
+<p>While the protocol does not require a user-agent to function it is recommended that clients provide a structured user-agent string that provides a basic description of the calling library, version &amp; platform to facilitate issue diagnosis in heterogeneous environments. The following structure is recommended to library developers</p>
+<pre><code>User-Agent → &quot;grpc-&quot; Language ?(&quot;-&quot; Variant) &quot;/&quot; Version ?( &quot; (&quot;  *(AdditionalProperty &quot;;&quot;) &quot;)&quot; )
+</code></pre>
+
+<p>E.g.</p>
+<pre><code>grpc-java/1.2.3
+grpc-ruby/1.2.3
+grpc-ruby-jruby/1.3.4
+grpc-java-android/0.9.1 (gingerbread/1.2.4; nexus5; tmobile)
+</code></pre>
+
+<h4 id="idempotency-and-retries">Idempotency and Retries</h4>
+<p>Unless explicitly defined to be, gRPC Calls are not assumed to be idempotent.  Specifically:</p>
+<ul>
+<li>Calls that cannot be proven to have started will not be retried.</li>
+<li>There is no mechanism for duplicate suppression as it is not necessary.</li>
+<li>Calls that are marked as idempotent may be sent multiple times.</li>
+</ul>
+<h4 id="http2-transport-mapping">HTTP2 Transport Mapping</h4>
+<h5 id="stream-identification">Stream Identification</h5>
+<p>All GRPC calls need to specify an internal ID. We will use HTTP2 stream-ids as call identifiers in this scheme. NOTE: These ids are contextual to an open HTTP2 session and will not be unique within a given process that is handling more than one HTTP2 session nor can they be used as GUIDs.</p>
+<h5 id="data-frames">Data Frames</h5>
+<p>DATA frame boundaries have no relation to <strong>Length-Prefixed-Message</strong> boundaries and implementations should make no assumptions about their alignment.</p>
+<h5 id="errors">Errors</h5>
+<p>When an application or runtime error occurs during an RPC a <strong>Status</strong> and <strong>Status-Message</strong> are delivered in <strong>Trailers</strong>.</p>
+<p>In some cases it is possible that the framing of the message stream has become corrupt and the RPC runtime will choose to use an <strong>RST_STREAM</strong> frame to indicate this state to its peer. RPC runtime implementations should interpret RST_STREAM as immediate full-closure of the stream and should propagate an error up to the calling application layer.</p>
+<p>The following mapping from RST_STREAM error codes to GRPC error codes is applied.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP2 Code</th>
+<th>GRPC Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NO_ERROR(0)</td>
+<td>INTERNAL - An explicit GRPC status of OK should have been sent but this might be used to aggressively lameduck in some scenarios.</td>
+</tr>
+<tr>
+<td>PROTOCOL_ERROR(1)</td>
+<td>INTERNAL</td>
+</tr>
+<tr>
+<td>INTERNAL_ERROR(2)</td>
+<td>INTERNAL</td>
+</tr>
+<tr>
+<td>FLOW_CONTROL_ERROR(3)</td>
+<td>INTERNAL</td>
+</tr>
+<tr>
+<td>SETTINGS_TIMEOUT(4)</td>
+<td>INTERNAL</td>
+</tr>
+<tr>
+<td>STREAM_CLOSED</td>
+<td>No mapping as there is no open stream to propagate to. Implementations should log.</td>
+</tr>
+<tr>
+<td>FRAME_SIZE_ERROR</td>
+<td>INTERNAL</td>
+</tr>
+<tr>
+<td>REFUSED_STREAM</td>
+<td>UNAVAILABLE - Indicates that no processing occurred and the request can be retried, possibly elsewhere.</td>
+</tr>
+<tr>
+<td>CANCEL(8)</td>
+<td>Mapped to call cancellation when sent by a client.Mapped to CANCELLED when sent by a server. Note that servers should only use this mechanism when they need to cancel a call but the payload byte sequence is incomplete.</td>
+</tr>
+<tr>
+<td>COMPRESSION_ERROR</td>
+<td>INTERNAL</td>
+</tr>
+<tr>
+<td>CONNECT_ERROR</td>
+<td>INTERNAL</td>
+</tr>
+<tr>
+<td>ENHANCE_YOUR_CALM</td>
+<td>RESOURCE_EXHAUSTED ...with additional error detail provided by runtime to indicate that the exhausted resource is bandwidth.</td>
+</tr>
+<tr>
+<td>INADEQUATE_SECURITY</td>
+<td>PERMISSION_DENIED … with additional detail indicating that permission was denied as protocol is not secure enough for call.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="security">Security</h5>
+<p>The HTTP2 specification mandates the use of TLS 1.2 or higher when TLS is used with HTTP2. It also places some additional constraints on the allowed ciphers in deployments to avoid known-problems as well as requiring SNI support. It is also expected that HTTP2 will be used in conjunction with proprietary transport security mechanisms about which the specification can make no meaningful recommendations.</p>
+<h5 id="connection-management">Connection Management</h5>
+<h6 id="goaway-frame">GOAWAY Frame</h6>
+<p>Sent by servers to clients to indicate that they will no longer accept any new streams on the associated connections. This frame includes the id of the last successfully accepted stream by the server. Clients should consider any stream initiated after the last successfully accepted stream as UNAVAILABLE and retry the call elsewhere. Clients are free to continue working with the already accepted streams until they complete or the connection is terminated.</p>
+<p>Servers should send GOAWAY before terminating a connection to reliably inform clients which work has been accepted by the server and is being executed.</p>
+<h6 id="ping-frame">PING Frame</h6>
+<p>Both clients and servers can send a PING frame that the peer must respond to by precisely echoing what they received. This is used to assert that the connection is still live as well as providing a means to estimate end-to-end latency. If a server initiated PING does not receive a response within the deadline expected by the runtime all outstanding calls on the server will be closed with a CANCELLED status. An expired client initiated PING will cause all calls to be closed with an UNAVAILABLE status. Note that the frequency of PINGs is highly dependent on the network environment, implementations are free to adjust PING frequency based on network and application requirements.</p>
+<h6 id="connection-failure">Connection failure</h6>
+<p>If a detectable connection failure occurs on the client all calls will be closed with an UNAVAILABLE status. For servers open calls will be closed with a CANCELLED status.</p>
+<h3 id="appendix-a-grpc-for-protobuf">Appendix A - GRPC for Protobuf</h3>
+<p>The service interfaces declared by protobuf are easily mapped onto GRPC by
+code generation extensions to protoc. The following defines the mapping
+to be used.</p>
+<ul>
+<li><strong>Service-Name</strong> → ?( {<em>proto package name</em>} "." ) {<em>service name</em>}</li>
+<li><strong>Message-Type</strong> → {<em>fully qualified proto message name</em>}</li>
+<li><strong>Content-Type</strong> → "application/grpc+proto"</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../05-基准化分析法/" title="基准化分析法" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                基准化分析法
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../07-Golang快速入门/" title="Go 快速入门" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Go 快速入门
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

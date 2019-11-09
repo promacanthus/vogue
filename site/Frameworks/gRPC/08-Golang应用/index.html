@@ -1,0 +1,2520 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Go language full stack development guide">
+      
+      
+        <link rel="canonical" href="https://promacanthus.github.io/Golang-Guide/Frameworks/gRPC/08-Golang应用/">
+      
+      
+        <meta name="author" content="bowen zhu">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>gRPC Basic - Go - Golang Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#grpc-basic-go" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://promacanthus.github.io/Golang-Guide/" title="Golang Guide" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Golang Guide
+            </span>
+            <span class="md-header-nav__topic">
+              
+                gRPC Basic - Go
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://promacanthus.github.io/Golang-Guide/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    promacanthus/Golang-Guide
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://promacanthus.github.io/Golang-Guide/" title="Golang Guide" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Golang Guide
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://promacanthus.github.io/Golang-Guide/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    promacanthus/Golang-Guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Welcome to Golang-Guide" class="md-nav__link">
+      Welcome to Golang-Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Frameworks
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Frameworks
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../常用框架/" title="框架" class="md-nav__link">
+      框架
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../微服务框架对比/" title="Microservices in Go" class="md-nav__link">
+      Microservices in Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Go Web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Go Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3-1" type="checkbox" id="nav-2-3-1">
+    
+    <label class="md-nav__link" for="nav-2-3-1">
+      HTTP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-3-1">
+        HTTP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-Web/HTTP/HTTP/" title="HTTP" class="md-nav__link">
+      HTTP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Go kit
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        Go kit
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/FAQ/" title="Go-kit" class="md-nav__link">
+      Go-kit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/架构与设计/" title="架构与设计" class="md-nav__link">
+      架构与设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4-3" type="checkbox" id="nav-2-4-3">
+    
+    <label class="md-nav__link" for="nav-2-4-3">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-4-3">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/00-Endpoints(REST)/" title="REST Endpoints" class="md-nav__link">
+      REST Endpoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/01-Endpoints(gRPC)/" title="gRPC Endpoint" class="md-nav__link">
+      gRPC Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/API-Monitoring/" title="API Monitoring" class="md-nav__link">
+      API Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Hystrix-Circuit-Breaker/" title="Hystrix Circuit Breaker" class="md-nav__link">
+      Hystrix Circuit Breaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Logging(ELK)/" title="Logging(ELK)" class="md-nav__link">
+      Logging(ELK)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Logging/" title="Logging" class="md-nav__link">
+      Logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Rate-Limiting/" title="Rate Limiting" class="md-nav__link">
+      Rate Limiting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Service-Discovery/" title="Service Discovery" class="md-nav__link">
+      Service Discovery
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Protocol Buffers
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Protocol Buffers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/01-简介/" title="什么是Protocol Buffers" class="md-nav__link">
+      什么是Protocol Buffers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/02-proto3指南/" title="`proto3`指南" class="md-nav__link">
+      `proto3`指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/03-样式指南/" title="样式指南" class="md-nav__link">
+      样式指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/04-编码/" title="编码" class="md-nav__link">
+      编码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/05-技术/" title="技术" class="md-nav__link">
+      技术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/06-第三方插件/" title="第三方插件" class="md-nav__link">
+      第三方插件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/07-Go语言指南/" title="`Protocol Buffers`：Go语言指南" class="md-nav__link">
+      `Protocol Buffers`：Go语言指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/08-Go生成代码指南/" title="Go生成代码指南" class="md-nav__link">
+      Go生成代码指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocol-Buffers/09-proto3规范/" title="`proto3`规范" class="md-nav__link">
+      `proto3`规范
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6" checked>
+    
+    <label class="md-nav__link" for="nav-2-6">
+      gRPC
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        gRPC
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01-gRPC简介/" title="gRPC" class="md-nav__link">
+      gRPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02-gRPC概念/" title="gRPC概念" class="md-nav__link">
+      gRPC概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03-认证/" title="认证" class="md-nav__link">
+      认证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04-错误处理和调试/" title="错误处理" class="md-nav__link">
+      错误处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05-基准化分析法/" title="基准化分析法" class="md-nav__link">
+      基准化分析法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06-gRPC编写格式/" title="gRPC over HTTP2" class="md-nav__link">
+      gRPC over HTTP2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../07-Golang快速入门/" title="Go 快速入门" class="md-nav__link">
+      Go 快速入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        gRPC Basic - Go
+      </label>
+    
+    <a href="./" title="gRPC Basic - Go" class="md-nav__link md-nav__link--active">
+      gRPC Basic - Go
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#grpc" class="md-nav__link">
+    为何使用gRPC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    样例代码与设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    定义服务
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    生成客户端和服务端代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    创建服务端
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routeguide" class="md-nav__link">
+    实现 RouteGuide
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rpc" class="md-nav__link">
+    简单RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_1" class="md-nav__link">
+    服务端侧流数据RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_2" class="md-nav__link">
+    客户端侧流数据RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_3" class="md-nav__link">
+    双向流数据RPC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    启动服务端
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    创建客户端
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stub" class="md-nav__link">
+    创建一个stub（存根）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    调用服务端方法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rpc_4" class="md-nav__link">
+    简单RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_5" class="md-nav__link">
+    服务端侧流数据RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_6" class="md-nav__link">
+    客户端侧流数据RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_7" class="md-nav__link">
+    双向流数据RPC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    搞起来
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../09-Go生成代码指南/" title="Go生成代码指南" class="md-nav__link">
+      Go生成代码指南
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      IDE
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        IDE
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      VSCode
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        VSCode
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/01-扩展程序中的设置与命令/" title="扩展程序中的设置与命令" class="md-nav__link">
+      扩展程序中的设置与命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/02-编译调试扩展程序/" title="在VSCode中编译、调试并在侧边加载扩展程序" class="md-nav__link">
+      在VSCode中编译、调试并在侧边加载扩展程序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/03-使用VSCode调试Go代码/" title="使用`VSCode`调试Go语言" class="md-nav__link">
+      使用`VSCode`调试Go语言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/04-VSCode中Go的功能/" title="VScode中Go的功能" class="md-nav__link">
+      VScode中Go的功能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/05-VSCode支持Go-Modules/" title="Go Modules" class="md-nav__link">
+      Go Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/06-扩展程序依赖的Go工具/" title="Go扩展程序依赖的Go工具" class="md-nav__link">
+      Go扩展程序依赖的Go工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/07-FAQ/" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/08-扩展程序中设置GOPATH/" title="Go 扩展程序中设置`GOPATH`" class="md-nav__link">
+      Go 扩展程序中设置`GOPATH`
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/09-保存时自动执行的功能/" title="保存时自动执行的功能" class="md-nav__link">
+      保存时自动执行的功能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/10-烟囱测试/" title="烟囱测试" class="md-nav__link">
+      烟囱测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/11.使用Go执行VScode的任务/" title="使用Go执行VSCode的任务" class="md-nav__link">
+      使用Go执行VSCode的任务
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/12-使用扩展程序最新的测试版/" title="使用扩展程程序最新的测试版" class="md-nav__link">
+      使用扩展程程序最新的测试版
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/13-VSCode中使用Go语言服务器/" title="Go 语言服务器" class="md-nav__link">
+      Go 语言服务器
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Issues
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Issues
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Issues/FAQ/" title="错误和解决方案" class="md-nav__link">
+      错误和解决方案
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Language
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Language
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Basic
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Basic
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/00-Go工具/" title="00 Go工具" class="md-nav__link">
+      00 Go工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/00-程序结构/" title="程序结构" class="md-nav__link">
+      程序结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/01-GOPATH和工作区/" title="版本的特性：" class="md-nav__link">
+      版本的特性：
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/02-命令源码文件/" title="02 命令源码文件" class="md-nav__link">
+      02 命令源码文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/03-库源码文件/" title="03 库源码文件" class="md-nav__link">
+      03 库源码文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/04-程序实体/" title="程序实体" class="md-nav__link">
+      程序实体
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/05-数组和切片/" title="数组和切片" class="md-nav__link">
+      数组和切片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/06-链表/" title="链表" class="md-nav__link">
+      链表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/07-字典/" title="字典" class="md-nav__link">
+      字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/08-通道/" title="通道" class="md-nav__link">
+      通道
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/09-函数/" title="函数" class="md-nav__link">
+      函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/10-结构体类型/" title="结构体类型" class="md-nav__link">
+      结构体类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/11-接口类型/" title="接口类型" class="md-nav__link">
+      接口类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/12-指针/" title="指针" class="md-nav__link">
+      指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/13-语句执行规则/" title="Go语句及其执行规则" class="md-nav__link">
+      Go语句及其执行规则
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/14-流程控制语句/" title="流程控制语句" class="md-nav__link">
+      流程控制语句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/15-错误处理/" title="错误处理" class="md-nav__link">
+      错误处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/16-panic&recover&defer/" title="异常" class="md-nav__link">
+      异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/17-sync/" title="sync" class="md-nav__link">
+      sync
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/18-atomic/" title="原子操作" class="md-nav__link">
+      原子操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/19-context/" title="Context" class="md-nav__link">
+      Context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/20-Unicode/" title="Unicode" class="md-nav__link">
+      Unicode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/21-strings/" title="strings" class="md-nav__link">
+      strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/22-bytes/" title="bytes" class="md-nav__link">
+      bytes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/23-io/" title="io" class="md-nav__link">
+      io
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/24-bufio/" title="bufio" class="md-nav__link">
+      bufio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/25-os/" title="os" class="md-nav__link">
+      os
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/26.net/" title="net" class="md-nav__link">
+      net
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/Go-Modules/" title="Go Modules" class="md-nav__link">
+      Go Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/测试规则与流程/" title="测试的基本规则与流程" class="md-nav__link">
+      测试的基本规则与流程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Library
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Library
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/context/" title="package context" class="md-nav__link">
+      package context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/flag/" title="package flag" class="md-nav__link">
+      package flag
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/log/" title="packages log" class="md-nav__link">
+      packages log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-4" type="checkbox" id="nav-5-2-4">
+    
+    <label class="md-nav__link" for="nav-5-2-4">
+      Io
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-4">
+        Io
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/io/ioutil/" title="package ioutil" class="md-nav__link">
+      package ioutil
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-5" type="checkbox" id="nav-5-2-5">
+    
+    <label class="md-nav__link" for="nav-5-2-5">
+      Log
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-5">
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/log/syslog/" title="package syslog" class="md-nav__link">
+      package syslog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-6" type="checkbox" id="nav-5-2-6">
+    
+    <label class="md-nav__link" for="nav-5-2-6">
+      Net
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-6">
+        Net
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/net/http/" title="package http" class="md-nav__link">
+      package http
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/net/rpc/" title="rpc" class="md-nav__link">
+      rpc
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-7" type="checkbox" id="nav-5-2-7">
+    
+    <label class="md-nav__link" for="nav-5-2-7">
+      Os
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-7">
+        Os
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/os/exec/" title="package exec" class="md-nav__link">
+      package exec
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Regexp
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Regexp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Regexp/基础/" title="正则表达式" class="md-nav__link">
+      正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Regexp/常用/" title="常用" class="md-nav__link">
+      常用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#grpc" class="md-nav__link">
+    为何使用gRPC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    样例代码与设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    定义服务
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    生成客户端和服务端代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    创建服务端
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routeguide" class="md-nav__link">
+    实现 RouteGuide
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rpc" class="md-nav__link">
+    简单RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_1" class="md-nav__link">
+    服务端侧流数据RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_2" class="md-nav__link">
+    客户端侧流数据RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_3" class="md-nav__link">
+    双向流数据RPC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    启动服务端
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    创建客户端
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stub" class="md-nav__link">
+    创建一个stub（存根）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    调用服务端方法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rpc_4" class="md-nav__link">
+    简单RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_5" class="md-nav__link">
+    服务端侧流数据RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_6" class="md-nav__link">
+    客户端侧流数据RPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc_7" class="md-nav__link">
+    双向流数据RPC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    搞起来
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="grpc-basic-go">gRPC Basic - Go</h1>
+<p>本教程提供了一个基本对Go程序员的指导关于如何使用gRPC。</p>
+<p>通过练习这个例子，可以学习到如下知识：</p>
+<ol>
+<li>在<code>.proto</code>文件中定义服务。</li>
+<li>使用<code>protocol buffers</code>编译器生成服务端和客户端代码。</li>
+<li>使用Go gRPC API为你的服务编写一个简单的客户端和服务端。</li>
+</ol>
+<p>假定已阅读<a href="https://grpc.io/docs/">概述</a>并熟悉<a href="https://developers.google.com/protocol-buffers/docs/overview"><code>protocol buffers</code></a>。请注意，本教程中的示例使用<code>protocol buffers</code>的<code>proto3</code>版本：可以在<a href="https://developers.google.com/protocol-buffers/docs/proto3">proto3语言指南</a>和<a href="https://developers.google.com/protocol-buffers/docs/reference/go-generated">Go代码生成指南</a>中找到更多信息。</p>
+<h2 id="grpc">为何使用gRPC</h2>
+<p>我们的示例是一个简单的路径映射应用程序，允许客户端获取有关其路径<code>Feature</code>的信息，并创建其<code>RouteSummary</code>后与其他服务端或客户端交换路径信息，如，进行流量更新。</p>
+<p>使用gRPC，只需要在<code>.proto</code>文件中定义一次服务，然后就可以使用gRPC支持的任何语言实现客户端和服务端，而这些语言又可以在谷歌内部的服务器或个人平板电脑等各种环境中运行，不同的语言和环境之间通信的复杂性都由gRPC处理。我们还获得了使用<code>protocol buffers</code>的所有优势，包括<strong>高效的序列化</strong>，<strong>简单的IDL</strong>和<strong>简单的接口更新</strong>。</p>
+<h2 id="_1">样例代码与设置</h2>
+<p>本例子的样例代码在GitHub的<a href="https://github.com/grpc/grpc-go/tree/master/examples/route_guide">grcp-go仓库</a>中。执行如下指令来克隆仓库中的代码：</p>
+<pre><code class="bash">go get google.golang.org/grpc
+</code></pre>
+
+<p>然后，切换到样例目录<code>$GOPATH/src/grpc-go/examples/route_guide</code>中：</p>
+<pre><code class="bash">cd $GOPATH/src/google.golang.org/grpc/examples/route_guide
+</code></pre>
+
+<p>还应该安装相关工具来生成服务端和客户端接口代码，如果还没有准备好，请按照<a href="/gRPC/07-Golang快速入门.md">Go快速入门指南</a>中的设置说明进行操作。</p>
+<h2 id="_2">定义服务</h2>
+<p>第一步，使用<code>protocol buffers</code>定义：</p>
+<ol>
+<li>gRPC服务</li>
+<li>方法请求类型</li>
+<li>方法响应的类型</li>
+</ol>
+<p>完整的<a href="/gRPC/route_guide.proto"><code>.proto</code>文件</a>在这里。</p>
+<p>定义一个服务需要在<code>.proto</code>文件中指定服务的名字：</p>
+<pre><code class="go">service RouteGuide {
+   ...
+}
+</code></pre>
+
+<p>然后在定义的服务中定义<code>rpc</code>方法，指定方法请求和响应的类型。gRPC允许定义四种类型的服务方法，在示例服务<code>RouterGuide</code>中都用到了，具体如下。</p>
+<ul>
+<li><strong>简单RPC</strong>：客户端使用<code>stub</code>向服务端发送请求然后等待响应返回，就像普通的方法调用：</li>
+</ul>
+<p><code>go
+  // 获得给定位置的特征。
+  rpc GetFeature(Point) returns (Feature) {}</code></p>
+<ul>
+<li><strong>服务端侧流数据RPC</strong>：客户端向服务端发送单个请求并获取返回流以读取消息序列。客户端从返回的流中读取，直到没有更多消息。正如在示例中所写的那样，将<code>stream</code>关键字放在<strong>响应类型</strong>之前来指定服务器端流方法。</li>
+</ul>
+<p><code>go
+  // 获得给定Rectangle中可用的特征。
+  // 得到的结果是流式传输而不是一次返回（例如，在响应消息中有重复字段），
+  // 因为rectangle可能覆盖很大面积并且包含大量的特征。
+  rpc ListFeatures(Rectangle) returns (stream Feature) {}</code></p>
+<ul>
+<li><strong>客户端侧流数据RPC</strong>：客户端多次使用提供的流写入一系列消息并将它们发送到服务端。一旦客户端写完消息，它就等待服务端全部读取并返回响应的响应。通过在<strong>请求类型</strong>之前放置<code>stream</code>关键字来指定客户端流方法。</li>
+</ul>
+<p><code>go
+  // 接受正在遍历的路径上的Points消息类型的流，在遍历完成时返回RouteSummary。
+  rpc RecordRoute(stream Point) returns (RouteSummary) {}</code></p>
+<ul>
+<li><strong>双向流数据RPC</strong>：双方使用读写流发送一系列消息，这两个流独立运行，因此客户端和服务端可以按照自己喜欢的顺序进行读写。（例如，服务端可以在写入响应之前等待接收所有客户端消息，或者它可以交替地读取消息然后写入响应消息，或者其他一些读写组合）。每个流中的消息顺序都能得到保证。可以通过在请求和响应之前放置<code>stream</code>关键字来指定此类方法。</li>
+</ul>
+<p><code>go
+  // 接受在遍历路径时发送的RouteNotes消息类型的流，同时接收其他RouteNotes消息类型的消息（例如，来自其他用户）。
+  rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}</code></p>
+<p><code>.proto</code>文件还包含服务方法中使用的所有请求和响应类型的<code>protocol buffers</code>消息类型定义，例如，这里是Point消息类型：</p>
+<pre><code class="go">message Point {
+  int32 latitude = 1;
+  int32 longitude = 2;
+}
+</code></pre>
+
+<h2 id="_3">生成客户端和服务端代码</h2>
+<p>第二步，使用<code>protoc</code>(<code>protocol buffers</code>的编译器)和特定的<code>gRPC-GO</code>插件(<code>protoc-gen-go</code>)，根据<code>.proto</code>文件中定义的服务生成gRPC客户端和服务端接口。这与<a href="/gRPC/07-Golang快速入门">快速入门</a>中的操作一样。</p>
+<p>在<code>route_guide</code>的示例目录中运行如下命令：</p>
+<pre><code class="bash">protoc -I routeguide/ routeguide/route_guide.proto --go_out=plugins=grpc:routeguide
+
+#  在目录下生成如下文件
+
+route_guide.pb.go
+</code></pre>
+
+<p>route_guide.pb.go文件包含：</p>
+<ul>
+<li>填充，序列化和检索请求和响应消息类型的所有<code>protocol buffers</code>代码</li>
+<li>实现<code>RouteGuide</code>服务中定义的客户端接口类型或stub（存根）和方法</li>
+<li>实现<code>RouteGuide</code>服务中定义的服务端接口类型和方法</li>
+</ul>
+<h2 id="_4">创建服务端</h2>
+<p>首先创建<code>RouteGuide</code>服务端。如果只对创建gRPC客户端感兴趣，可以跳过本节直接阅读<a href="##创建客户端">创建客户端</a>。</p>
+<p>要使<code>RouteGuide</code>服务能够正常提供它的服务，有两个部分需要完成：</p>
+<ol>
+<li>实现从服务定义中生成的服务接口：它执行服务的实际“工作”</li>
+<li>运行gRPC服务以监听来自客户端的请求并将其分派给正确的服务端实现</li>
+</ol>
+<p>在<code>grpc-go/examples/route_guide/server/server.go</code>中可以看到<code>RouteGuide</code>服务端样例。</p>
+<h3 id="routeguide">实现 RouteGuide</h3>
+<p>如下所示，服务端有一个叫<code>routeGuideServer</code>的结构体类型它实现了自动生成的<code>RouteGuideServer</code>接口。</p>
+<pre><code class="go">type routeGuideServer struct {
+        ...
+}
+...
+
+func (s *routeGuideServer) GetFeature(ctx context.Context, point *pb.Point) (*pb.Feature, error) {
+        ...
+}
+...
+
+func (s *routeGuideServer) ListFeatures(rect *pb.Rectangle, stream pb.RouteGuide_ListFeaturesServer) error {
+        ...
+}
+...
+
+func (s *routeGuideServer) RecordRoute(stream pb.RouteGuide_RecordRouteServer) error {
+        ...
+}
+...
+
+func (s *routeGuideServer) RouteChat(stream pb.RouteGuide_RouteChatServer) error {
+        ...
+}
+...
+</code></pre>
+
+<h4 id="rpc">简单RPC</h4>
+<p><code>routeGuideServer</code>实现了所有的服务方法，先看看最简单的类型<code>GetFeature()</code>，它只是从客户端获取一个<code>Point</code>并从某个<code>Feature</code>自己的数据库中返回相应的特征信息。</p>
+<pre><code class="go">func (s *routeGuideServer) GetFeature(ctx context.Context, point *pb.Point) (*pb.Feature, error) {
+  for _, feature := range s.savedFeatures {
+    if proto.Equal(feature.Location, point) {
+      return feature, nil
+    }
+  }
+  // No feature was found, return an unnamed feature
+  return &amp;pb.Feature{&quot;&quot;, point}, nil
+}
+</code></pre>
+
+<p>该方法传递RPC的上下文对象和客户端<code>Point</code>类型的<code>protocol buffers</code>请求。它返回一个<code>Feature</code>类型的<code>protocol buffers</code>对象，其中包含响应信息和错误。在此方法中，我们使用适当的信息填充<code>Feature</code>，然后将其与<code>nil</code>错误一起返回来告诉gRPC已经完成了RPC的处理，然后<code>Feature</code>就可以返回给客户端。</p>
+<h4 id="rpc_1">服务端侧流数据RPC</h4>
+<p>现在看一下流数据RPC。<code>ListFeatures()</code>方法是服务端侧流数据RPC，因此需要将多个<code>Feature</code>返回给客户端。</p>
+<pre><code class="go">func (s *routeGuideServer) ListFeatures(rect *pb.Rectangle, stream pb.RouteGuide_ListFeaturesServer) error {
+  for _, feature := range s.savedFeatures {
+    if inRange(feature.Location, rect) {
+      if err := stream.Send(feature); err != nil {
+        return err
+      }
+    }
+  }
+  return nil
+}
+</code></pre>
+
+<p>如上所示，此方法不是在方法参数中获取简单的请求和响应对象，而是得到一个请求对象（在<code>Feature</code>中客户端想要查找的<code>Rectangle</code>）和一个特定的<code>RouteGuide_ListFeaturesServer</code>对象来编写我们的响应。</p>
+<p>在该方法中，填充尽可能多的需要被返回的<code>Feature</code>对象，并使用其<code>Send()</code>方法将<code>Feature</code>都写入<code>RouteGuide_ListFeaturesServer</code>。最后，就像在简单RPC方法中那样，返回一个<code>nil</code>错误告诉gRPC已经完成了写响应信息的操作。如果在此调用中发生任何错误，那么将返回非零错误; gRPC层会将其转换为适当的RPC状态，以便在线路上发送。</p>
+<h4 id="rpc_2">客户端侧流数据RPC</h4>
+<p>现在来看一些更复杂的东西：客户端侧流数据方法<code>RecordRoute()</code>，从客户端获取<code>Points</code>类型的流并返回单个包含有关传输链路信息的<code>RouteSummary</code>。如下所示，该方法根本没有请求参数。相反，它获取<code>RouteGuide_RecordRouteServer</code>流，服务端可以使用该流来读取和写入消息，服务端可以使用它的<code>Recv()</code>方法接收客户端消息，并使用它的<code>SendAndClose()</code>方法返回其单个响应。</p>
+<pre><code class="go">func (s *routeGuideServer) RecordRoute(stream pb.RouteGuide_RecordRouteServer) error {
+  var pointCount, featureCount, distance int32
+  var lastPoint *pb.Point
+  startTime := time.Now()
+
+  for {
+    point, err := stream.Recv()
+    if err == io.EOF {
+      endTime := time.Now()
+      return stream.SendAndClose(&amp;pb.RouteSummary{
+        PointCount:   pointCount,
+        FeatureCount: featureCount,
+        Distance:     distance,
+        ElapsedTime:  int32(endTime.Sub(startTime).Seconds()),
+      })
+    }
+
+    if err != nil {
+      return err
+    }
+
+    pointCount++
+    for _, feature := range s.savedFeatures {
+      if proto.Equal(feature.Location, point) {
+        featureCount++
+      }
+    }
+
+    if lastPoint != nil {
+      distance += calcDistance(lastPoint, point)
+    }
+
+    lastPoint = point
+  }
+}
+</code></pre>
+
+<p>在方法体中，使用<code>RouteGuide_RecordRouteServer</code>的<code>Recv()</code>方法重复读取客户端请求一个请求对象（在本例中为一个<code>Point</code>）的请求，直到没有更多消息，服务端需要检查每次调用<code>Recv()</code>方法后从中返回的错误<code>err</code>。</p>
+<ul>
+<li>如果错误是<code>nil</code>，那么说明流仍然处于正常状态并且可以继续进行读取操作</li>
+<li>如果错误是<code>io.EOF</code>，那么说明消息流已经结束，服务端可以返回它的<code>RouteSummary</code></li>
+<li>如果错误是任何其他值，那么将“按原样”返回错误，以便gRPC层将其转换为RPC状态</li>
+</ul>
+<h4 id="rpc_3">双向流数据RPC</h4>
+<p>最后，看一下双向流数据PRC <code>RouteChat()</code>方法。</p>
+<pre><code class="go">func (s *routeGuideServer) RouteChat(stream pb.RouteGuide_RouteChatServer) error {
+  for {
+    in, err := stream.Recv()
+    if err == io.EOF {
+      return nil
+    }
+
+    if err != nil {
+      return err
+    }
+
+    key := serialize(in.Location)
+
+                ... // 此处代码  寻找要发送给客户端的note
+
+    for _, note := range s.routeNotes[key] {
+      if err := stream.Send(note); err != nil {
+        return err
+      }
+    }
+
+  }
+}
+</code></pre>
+
+<p>得到一个<code>RouteGuide_RouteChatServer</code>流，就像客户端侧流数据示例那样，可用于读取和写入消息。但是，在这里通过方法的流来返回值，哪怕此时客户端仍在向其消息流写入消息。</p>
+<p>这里的读写语法与客户端流方法中的语法非常相似，只是此处服务端使用流的<code>Send()</code>方法而不是<code>SendAndClose()</code>方法，因为它正在写入多个响应。尽管每一方都会按照写入的顺序获取对方的消息，但客户端和服务端都可以按任意顺序进行读写，因为，这些流完全独立运行。</p>
+<h3 id="_5">启动服务端</h3>
+<p>实现了所有方法后，还需要启动一个gRPC服务端，以便客户端可以实际使用我们的服务。以下代码段显示了如何为<code>RouteGuide</code>服务执行此操作：</p>
+<pre><code class="go">flag.Parse()
+lis, err := net.Listen(&quot;tcp&quot;, fmt.Sprintf(&quot;:%d&quot;, *port))
+
+if err != nil {
+        log.Fatalf(&quot;failed to listen: %v&quot;, err)
+}
+
+grpcServer := grpc.NewServer()
+pb.RegisterRouteGuideServer(grpcServer, &amp;routeGuideServer{})
+
+... // 此处代码  确定是否启动TLS
+
+grpcServer.Serve(lis)
+</code></pre>
+
+<p>要构建和启动一个服务端，我们需要：</p>
+<ol>
+<li>使用<code>lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port)).</code>指定需要监听客户端请求的端口</li>
+<li>使用<code>grpc.NewServer()</code>创建一个gRPC服务端实例</li>
+<li>使用gRPC服务端注册我们实现的服务</li>
+<li>使用端口详细信息调用服务端的<code>Serve()</code>方法进行阻塞等待，直到进程被终止或调用<code>Stop()</code>。</li>
+</ol>
+<h2 id="_6">创建客户端</h2>
+<p>在本节中，将介绍如何为<code>RouteGuide</code>服务创建Go客户端，可以在<code>grpc-go/examples/route_guide/client/client.go</code>中查看完整的示例客户端代码。</p>
+<h3 id="stub">创建一个stub（存根）</h3>
+<p>要调用服务端的方法，首先需要创建一个gRPC通道来与服务端通信。通过将服务器地址和端口号传递给<code>grpc.Dial()</code>来创建它，如下所示：</p>
+<pre><code class="go">conn, err := grpc.Dial(*serverAddr)
+if err != nil {
+    ...
+}
+defer conn.Close()
+</code></pre>
+
+<p>如果请求的服务需要身份认证，可以使用<code>DialOptions</code>在<code>grpc.Dial()</code>方法中设置身份验证凭据（例如，TLS，GCE凭据，JWT凭证，但是，在这里的<code>RouteGuide</code>服务中不需要执行此操作。</p>
+<p>一旦gRPC通道建立起来，就需要有一个客户端stub(存根)来执行RPC调用。我们使用从<code>.proto</code>文件中生成的在<code>pb</code>包中提供的<code>NewRouteGuideClient()</code>方法创建一个客户端stub。</p>
+<pre><code class="go">client := pb.NewRouteGuideClient(conn)
+</code></pre>
+
+<h3 id="_7">调用服务端方法</h3>
+<p>现在来看看如何调用服务方法。请注意，在<code>gRPC-Go</code>中，RPC以<strong>阻塞/同步</strong>模式运行，这意味着RPC调用等待服务端响应，并将返回响应或错误。</p>
+<h4 id="rpc_4">简单RPC</h4>
+<p>调用简单RPC的<code>GetFeature()</code>方法几乎与调用本地方法一样简单。</p>
+<pre><code class="go">feature, err := client.GetFeature(context.Background(), &amp;pb.Point{409146138, -746188906})
+if err != nil {
+        ...
+}
+</code></pre>
+
+<p>如上所示：在之前获得的<code>stub</code>上调用该方法，在方法参数中，创建并填充请求<code>protocol buffers</code>对象（在例子中为<code>Point</code>）。 还传递一个<code>context.Context</code>对象，它允许我们在必要时更改RPC的行为，例如超时/取消执行中的RPC请求。如果调用没有返回错误，那么可以从第一个返回值中读取服务端的响应信息。</p>
+<pre><code class="go">log.Println(feature)
+</code></pre>
+
+<h4 id="rpc_5">服务端侧流数据RPC</h4>
+<p>这是调用服务端流方法<code>ListFeatures()</code>的地方，该方法返回地理<code>Feature</code>流。如果已经阅读过<a href="##创建服务端">创建服务端</a>，其中一些部分可能看起来非常熟悉：流数据RPC在服务端和客户端之间都以类似的方式实现。</p>
+<pre><code class="go">rect := &amp;pb.Rectangle{ ... }  // initialize a pb.Rectangle
+stream, err := client.ListFeatures(context.Background(), rect)
+if err != nil {
+    ...
+}
+for {
+    feature, err := stream.Recv()
+    if err == io.EOF {
+        break
+    }
+    if err != nil {
+        log.Fatalf(&quot;%v.ListFeatures(_) = _, %v&quot;, client, err)
+    }
+    log.Println(feature)
+}
+</code></pre>
+
+<p>与简单的RPC一样，传递上下文和请求给方法，但是在这里不会返回响应对象，而是返回<code>RouteGuide_ListFeaturesClient</code>的实例。这个客户端实例可以使用<code>RouteGuide_ListFeaturesClient</code>流来读取服务端的响应。</p>
+<p>使用<code>RouteGuide_ListFeaturesClient</code>的<code>Recv()</code>方法重复的在服务器的响应中读取protocol buffers对象（在本例中为Feature），直到没有更多消息：这个客户端实例需要检查每次调用<code>Recv()</code>返回的错误<code>err</code>。</p>
+<ul>
+<li>如果是<code>nil</code>，那么说明这个流仍然是正常的并且可以继续读取</li>
+<li>如果是<code>io.EOF</code>，那么说明消息流已经结束</li>
+<li>否则必须有一个RPC错误，它通过<code>err</code>参数传递。</li>
+</ul>
+<h4 id="rpc_6">客户端侧流数据RPC</h4>
+<p>客户端流方法<code>RecordRoute</code>类似于服务器端方法，不过只传递给方法一个上下文，然后会获取一个<code>RouteGuide_RecordRouteClient</code>流的返回，这个流可以用来写和读消息。</p>
+<pre><code class="go">// Create a random number of random points
+r := rand.New(rand.NewSource(time.Now().UnixNano()))
+pointCount := int(r.Int31n(100)) + 2 // Traverse at least two points
+var points []*pb.Point
+
+for i := 0; i &lt; pointCount; i++ {
+  points = append(points, randomPoint(r))
+}
+
+log.Printf(&quot;Traversing %d points.&quot;, len(points))
+
+stream, err := client.RecordRoute(context.Background())
+if err != nil {
+  log.Fatalf(&quot;%v.RecordRoute(_) = _, %v&quot;, client, err)
+}
+
+for _, point := range points {
+  if err := stream.Send(point); err != nil {
+    if err == io.EOF {
+      break
+    }
+    log.Fatalf(&quot;%v.Send(%v) = %v&quot;, stream, point, err)
+  }
+}
+
+reply, err := stream.CloseAndRecv()
+if err != nil {
+  log.Fatalf(&quot;%v.CloseAndRecv() got error %v, want %v&quot;, stream, err, nil)
+}
+
+log.Printf(&quot;Route summary: %v&quot;, reply)
+</code></pre>
+
+<p><code>RouteGuide_RecordRouteClient</code>有一个<code>Send()</code>方法，可以用它向服务端发送请求。一旦使用<code>Send()</code>将客户端的请求向流中写入完成，就需要在流上调用<code>CloseAndRecv()</code>方法让gRPC知道我们已完成写入并期望收到响应。可以从<code>CloseAndRecv()</code>返回的错误<code>err</code>中获取RPC状态，如果状态为<code>nil</code>，那么<code>CloseAndRecv()</code>的第一个返回值将是有效的服务端响应。</p>
+<h4 id="rpc_7">双向流数据RPC</h4>
+<p>最后是双向流数据RPC<code>RouteChat()</code>。与<code>RecordRoute</code>的情况一样，只给方法传递一个上下文对象，然后获得返回一个可用于写入和读取消息的流。但是，这次通过方法的流返回值，而服务端仍在向其消息流写入消息。</p>
+<pre><code class="go">stream, err := client.RouteChat(context.Background())
+waitc := make(chan struct{})
+go func() {
+  for {
+    in, err := stream.Recv()
+    if err == io.EOF {
+      // read done.
+      close(waitc)
+      return
+    }
+    if err != nil {
+      log.Fatalf(&quot;Failed to receive a note : %v&quot;, err)
+    }
+    log.Printf(&quot;Got message %s at point(%d, %d)&quot;, in.Message, in.Location.Latitude, in.Location.Longitude)
+  }
+}()
+for _, note := range notes {
+  if err := stream.Send(note); err != nil {
+    log.Fatalf(&quot;Failed to send a note: %v&quot;, err)
+  }
+}
+stream.CloseSend()
+&lt;-waitc
+</code></pre>
+
+<p>这里的读写语法与客户端流方法的语法非常相似，只是在完成调用后使用流的<code>CloseSend()</code>方法。尽管每一方都会按照写入顺序获取对方的消息，但客户端和服务端都可以按任意顺序进行读写，这些流完全独立运行。</p>
+<h2 id="_8">搞起来</h2>
+<p>要编译和运行服务端，假设位于<code>$GOPATH/src/google.golang.org/grpc/examples/route_guide</code>文件夹中，只需：</p>
+<pre><code class="go">go run server/server.go
+</code></pre>
+
+<p>同样，要运行客户端：</p>
+<pre><code class="go">go run client/client.go
+</code></pre>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../07-Golang快速入门/" title="Go 快速入门" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Go 快速入门
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../09-Go生成代码指南/" title="Go生成代码指南" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Go生成代码指南
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

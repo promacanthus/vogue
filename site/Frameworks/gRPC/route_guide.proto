@@ -1,0 +1,74 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.routeguide";
+option java_outer_classname = "RouteGuideProto";
+
+package routeguide;
+
+// 服务暴露的接口
+service RouteGuide {
+  // 简单RPC，获得给定Point的Feature。
+  // 如果给定Point没有任何Feature，则返回具有空名称的Feature。
+  rpc GetFeature(Point) returns (Feature) {}
+
+  // 服务端侧流数据RPC，获得给定Rectangle中可用的Feature。
+  // 结果被流化而不是立即返回（例如，在具有重复字段的响应消息中），
+  // 此Rectangle可能覆盖大面积并且包含大量Feature。
+  rpc ListFeatures(Rectangle) returns (stream Feature) {}
+
+  // 客户端侧流数据RPC，接受正在遍历的路径上的Points流，在遍历完成时返回RouteSummary。
+  rpc RecordRoute(stream Point) returns (RouteSummary) {}
+
+  // 双向流数据RPC，接受在遍历路径时发送的RouteNotes流，
+  // 同时接收其他RouteNotes（例如，来自其他用户）。
+  rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+}
+
+// Points在E7表示法中表示经度和纬度对（度数乘以10**7然后四舍五入到最近的整数）。
+// 纬度应在+/-90度范围内，经度应在+/-180度（含）范围内。
+message Point {
+  // 纬度
+  int32 latitude = 1;     
+  // 经度
+  int32 longitude = 2;    
+}
+
+// 纬度-经度矩形，表示为两个对角相对的点“lo”和“hi”。
+message Rectangle {
+  // 矩形的一个角
+  Point lo = 1;   
+  // 矩形的另一个角
+  Point hi = 2;   
+}
+
+// Feature在给定点上命名。如果一个Feature没有被命令，那么名字就是空的。
+message Feature {
+  // Feature的名字
+  string name = 1;     
+  // 检测到Feature的Point
+  Point location = 2;   
+}
+
+// RouteNote是在给定Point发送的消息。
+message RouteNote {
+  // 消息发送的位置
+  Point location = 1;   
+  // 将要被发送的消息
+  string message = 2;   
+}
+
+// RouteSummary是从RecordRoute rpc的响应中接收到的内容。
+// 它包含接收到的各个Point的数量，
+// 检测到的Feature数量以及作为每个Point之间距离的累积总和所涵盖的总距离。
+message RouteSummary {
+  // 接收到的Point数量
+  int32 point_count = 1;      
+  // 遍历路径时传递的已知Feature的数量
+  int32 feature_count = 2;    
+  // 距离以米为单位
+  int32 distance = 3;         
+  // 遍历的持续时间，以秒为单位
+  int32 elapsed_time = 4;     
+}

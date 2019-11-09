@@ -1,0 +1,3134 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Go language full stack development guide">
+      
+      
+        <link rel="canonical" href="https://promacanthus.github.io/Golang-Guide/Frameworks/Protocol-Buffers/02-proto3指南/">
+      
+      
+        <meta name="author" content="bowen zhu">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>`proto3`指南 - Golang Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#proto3" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://promacanthus.github.io/Golang-Guide/" title="Golang Guide" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Golang Guide
+            </span>
+            <span class="md-header-nav__topic">
+              
+                `proto3`指南
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://promacanthus.github.io/Golang-Guide/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    promacanthus/Golang-Guide
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://promacanthus.github.io/Golang-Guide/" title="Golang Guide" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Golang Guide
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://promacanthus.github.io/Golang-Guide/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    promacanthus/Golang-Guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Welcome to Golang-Guide" class="md-nav__link">
+      Welcome to Golang-Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Frameworks
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Frameworks
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../常用框架/" title="框架" class="md-nav__link">
+      框架
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../微服务框架对比/" title="Microservices in Go" class="md-nav__link">
+      Microservices in Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Go Web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Go Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3-1" type="checkbox" id="nav-2-3-1">
+    
+    <label class="md-nav__link" for="nav-2-3-1">
+      HTTP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-3-1">
+        HTTP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-Web/HTTP/HTTP/" title="HTTP" class="md-nav__link">
+      HTTP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Go kit
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        Go kit
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/FAQ/" title="Go-kit" class="md-nav__link">
+      Go-kit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/架构与设计/" title="架构与设计" class="md-nav__link">
+      架构与设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4-3" type="checkbox" id="nav-2-4-3">
+    
+    <label class="md-nav__link" for="nav-2-4-3">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-4-3">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/00-Endpoints(REST)/" title="REST Endpoints" class="md-nav__link">
+      REST Endpoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/01-Endpoints(gRPC)/" title="gRPC Endpoint" class="md-nav__link">
+      gRPC Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/API-Monitoring/" title="API Monitoring" class="md-nav__link">
+      API Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Hystrix-Circuit-Breaker/" title="Hystrix Circuit Breaker" class="md-nav__link">
+      Hystrix Circuit Breaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Logging(ELK)/" title="Logging(ELK)" class="md-nav__link">
+      Logging(ELK)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Logging/" title="Logging" class="md-nav__link">
+      Logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Rate-Limiting/" title="Rate Limiting" class="md-nav__link">
+      Rate Limiting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Go-kit/Examples/Service-Discovery/" title="Service Discovery" class="md-nav__link">
+      Service Discovery
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5" checked>
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Protocol Buffers
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Protocol Buffers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01-简介/" title="什么是Protocol Buffers" class="md-nav__link">
+      什么是Protocol Buffers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        `proto3`指南
+      </label>
+    
+    <a href="./" title="`proto3`指南" class="md-nav__link md-nav__link--active">
+      `proto3`指南
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    定义消息类型
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    指定字段类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    分配字段编号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    自定字段规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    添加更多消息类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    添加注释
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    保留字段
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proto" class="md-nav__link">
+    .proto文件将生成什么
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    标量值类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    默认值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    枚举
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    保留值
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    使用其他消息类型
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    导入定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proto2" class="md-nav__link">
+    使用proto2消息类型
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    嵌套类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    更新消息类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    未知字段
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#any" class="md-nav__link">
+    Any
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oneof" class="md-nav__link">
+    Oneof
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oneof_1" class="md-nav__link">
+    使用Oneof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oneof_2" class="md-nav__link">
+    Oneof的功能
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    向后兼容性问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    标签重用问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maps" class="md-nav__link">
+    Maps
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    向后兼容性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packages" class="md-nav__link">
+    Packages
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    包和名称解析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    定义服务
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    JSON映射
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    JSON选项
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    可用选项
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    自定义选项
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    生成自定义的类
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03-样式指南/" title="样式指南" class="md-nav__link">
+      样式指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04-编码/" title="编码" class="md-nav__link">
+      编码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05-技术/" title="技术" class="md-nav__link">
+      技术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06-第三方插件/" title="第三方插件" class="md-nav__link">
+      第三方插件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../07-Go语言指南/" title="`Protocol Buffers`：Go语言指南" class="md-nav__link">
+      `Protocol Buffers`：Go语言指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../08-Go生成代码指南/" title="Go生成代码指南" class="md-nav__link">
+      Go生成代码指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../09-proto3规范/" title="`proto3`规范" class="md-nav__link">
+      `proto3`规范
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      gRPC
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        gRPC
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/01-gRPC简介/" title="gRPC" class="md-nav__link">
+      gRPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/02-gRPC概念/" title="gRPC概念" class="md-nav__link">
+      gRPC概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/03-认证/" title="认证" class="md-nav__link">
+      认证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/04-错误处理和调试/" title="错误处理" class="md-nav__link">
+      错误处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/05-基准化分析法/" title="基准化分析法" class="md-nav__link">
+      基准化分析法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/06-gRPC编写格式/" title="gRPC over HTTP2" class="md-nav__link">
+      gRPC over HTTP2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/07-Golang快速入门/" title="Go 快速入门" class="md-nav__link">
+      Go 快速入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/08-Golang应用/" title="gRPC Basic - Go" class="md-nav__link">
+      gRPC Basic - Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gRPC/09-Go生成代码指南/" title="Go生成代码指南" class="md-nav__link">
+      Go生成代码指南
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      IDE
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        IDE
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      VSCode
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        VSCode
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/01-扩展程序中的设置与命令/" title="扩展程序中的设置与命令" class="md-nav__link">
+      扩展程序中的设置与命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/02-编译调试扩展程序/" title="在VSCode中编译、调试并在侧边加载扩展程序" class="md-nav__link">
+      在VSCode中编译、调试并在侧边加载扩展程序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/03-使用VSCode调试Go代码/" title="使用`VSCode`调试Go语言" class="md-nav__link">
+      使用`VSCode`调试Go语言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/04-VSCode中Go的功能/" title="VScode中Go的功能" class="md-nav__link">
+      VScode中Go的功能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/05-VSCode支持Go-Modules/" title="Go Modules" class="md-nav__link">
+      Go Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/06-扩展程序依赖的Go工具/" title="Go扩展程序依赖的Go工具" class="md-nav__link">
+      Go扩展程序依赖的Go工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/07-FAQ/" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/08-扩展程序中设置GOPATH/" title="Go 扩展程序中设置`GOPATH`" class="md-nav__link">
+      Go 扩展程序中设置`GOPATH`
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/09-保存时自动执行的功能/" title="保存时自动执行的功能" class="md-nav__link">
+      保存时自动执行的功能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/10-烟囱测试/" title="烟囱测试" class="md-nav__link">
+      烟囱测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/11.使用Go执行VScode的任务/" title="使用Go执行VSCode的任务" class="md-nav__link">
+      使用Go执行VSCode的任务
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/12-使用扩展程序最新的测试版/" title="使用扩展程程序最新的测试版" class="md-nav__link">
+      使用扩展程程序最新的测试版
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../IDE/VSCode/13-VSCode中使用Go语言服务器/" title="Go 语言服务器" class="md-nav__link">
+      Go 语言服务器
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Issues
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Issues
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Issues/FAQ/" title="错误和解决方案" class="md-nav__link">
+      错误和解决方案
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Language
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Language
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Basic
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Basic
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/00-Go工具/" title="00 Go工具" class="md-nav__link">
+      00 Go工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/00-程序结构/" title="程序结构" class="md-nav__link">
+      程序结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/01-GOPATH和工作区/" title="版本的特性：" class="md-nav__link">
+      版本的特性：
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/02-命令源码文件/" title="02 命令源码文件" class="md-nav__link">
+      02 命令源码文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/03-库源码文件/" title="03 库源码文件" class="md-nav__link">
+      03 库源码文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/04-程序实体/" title="程序实体" class="md-nav__link">
+      程序实体
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/05-数组和切片/" title="数组和切片" class="md-nav__link">
+      数组和切片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/06-链表/" title="链表" class="md-nav__link">
+      链表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/07-字典/" title="字典" class="md-nav__link">
+      字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/08-通道/" title="通道" class="md-nav__link">
+      通道
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/09-函数/" title="函数" class="md-nav__link">
+      函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/10-结构体类型/" title="结构体类型" class="md-nav__link">
+      结构体类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/11-接口类型/" title="接口类型" class="md-nav__link">
+      接口类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/12-指针/" title="指针" class="md-nav__link">
+      指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/13-语句执行规则/" title="Go语句及其执行规则" class="md-nav__link">
+      Go语句及其执行规则
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/14-流程控制语句/" title="流程控制语句" class="md-nav__link">
+      流程控制语句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/15-错误处理/" title="错误处理" class="md-nav__link">
+      错误处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/16-panic&recover&defer/" title="异常" class="md-nav__link">
+      异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/17-sync/" title="sync" class="md-nav__link">
+      sync
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/18-atomic/" title="原子操作" class="md-nav__link">
+      原子操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/19-context/" title="Context" class="md-nav__link">
+      Context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/20-Unicode/" title="Unicode" class="md-nav__link">
+      Unicode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/21-strings/" title="strings" class="md-nav__link">
+      strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/22-bytes/" title="bytes" class="md-nav__link">
+      bytes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/23-io/" title="io" class="md-nav__link">
+      io
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/24-bufio/" title="bufio" class="md-nav__link">
+      bufio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/25-os/" title="os" class="md-nav__link">
+      os
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/26.net/" title="net" class="md-nav__link">
+      net
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/Go-Modules/" title="Go Modules" class="md-nav__link">
+      Go Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Basic/测试规则与流程/" title="测试的基本规则与流程" class="md-nav__link">
+      测试的基本规则与流程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Library
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Library
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/context/" title="package context" class="md-nav__link">
+      package context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/flag/" title="package flag" class="md-nav__link">
+      package flag
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/log/" title="packages log" class="md-nav__link">
+      packages log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-4" type="checkbox" id="nav-5-2-4">
+    
+    <label class="md-nav__link" for="nav-5-2-4">
+      Io
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-4">
+        Io
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/io/ioutil/" title="package ioutil" class="md-nav__link">
+      package ioutil
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-5" type="checkbox" id="nav-5-2-5">
+    
+    <label class="md-nav__link" for="nav-5-2-5">
+      Log
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-5">
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/log/syslog/" title="package syslog" class="md-nav__link">
+      package syslog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-6" type="checkbox" id="nav-5-2-6">
+    
+    <label class="md-nav__link" for="nav-5-2-6">
+      Net
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-6">
+        Net
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/net/http/" title="package http" class="md-nav__link">
+      package http
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/net/rpc/" title="rpc" class="md-nav__link">
+      rpc
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-7" type="checkbox" id="nav-5-2-7">
+    
+    <label class="md-nav__link" for="nav-5-2-7">
+      Os
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-7">
+        Os
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Library/os/exec/" title="package exec" class="md-nav__link">
+      package exec
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Regexp
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Regexp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Regexp/基础/" title="正则表达式" class="md-nav__link">
+      正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Language/Regexp/常用/" title="常用" class="md-nav__link">
+      常用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    定义消息类型
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    指定字段类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    分配字段编号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    自定字段规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    添加更多消息类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    添加注释
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    保留字段
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proto" class="md-nav__link">
+    .proto文件将生成什么
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    标量值类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    默认值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    枚举
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    保留值
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    使用其他消息类型
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    导入定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proto2" class="md-nav__link">
+    使用proto2消息类型
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    嵌套类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    更新消息类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    未知字段
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#any" class="md-nav__link">
+    Any
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oneof" class="md-nav__link">
+    Oneof
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oneof_1" class="md-nav__link">
+    使用Oneof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oneof_2" class="md-nav__link">
+    Oneof的功能
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    向后兼容性问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    标签重用问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maps" class="md-nav__link">
+    Maps
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    向后兼容性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packages" class="md-nav__link">
+    Packages
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    包和名称解析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    定义服务
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    JSON映射
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    JSON选项
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    可用选项
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    自定义选项
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    生成自定义的类
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="proto3"><code>proto3</code>指南</h1>
+<p>本指南介绍如何使用<code>protocol buffers</code>语言构建<code>protocol buffers</code>数据，包括：</p>
+<ul>
+<li><code>.proto</code>文件语法</li>
+<li>如何从<code>.proto</code>文件生成数据访问类</li>
+</ul>
+<p>它涵盖了<code>protocol buffers</code>语言的<code>proto3</code>版本：有关较早的<code>proto2</code>语法的信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/proto"><code>Proto2</code>语言指南</a>。</p>
+<p>这是一个参考指南，对于使用本文档中描述的许多功能的分步示例，请参阅所选语言的<a href="https://developers.google.com/protocol-buffers/docs/tutorials">教程</a>（目前仅限<code>proto</code>2;更多<code>proto3</code>文档即将推出）。</p>
+<h2 id="_1">定义消息类型</h2>
+<p>首先看一个非常简单的例子。假设要定义搜索请求消息格式，其中每个搜索请求都有：</p>
+<ul>
+<li>一个字符串类型的查询</li>
+<li>所查询的特定页码</li>
+<li>每页返回的结果数</li>
+</ul>
+<p>这是用于定义消息类型的<code>.proto</code>文件。</p>
+<pre><code class="protobuf">syntax = &quot;proto3&quot;;      // 指定正在使用proto3语法，默认认为使用proto2，必须是文件的第一个非空注释行
+
+message SearchRequest {     // 消息格式以名称-值对的形式指定三个字段
+  string query = 1;         // 每个字段有一个名称和类型
+  int32 page_number = 2;
+  int32 result_per_page = 3;
+}
+</code></pre>
+
+<h3 id="_2">指定字段类型</h3>
+<p>在上面的例子中，所有的字段都是<a href="##标量值类型">标量类型</a>：两个整型一个字符串类型。同时也可以给字段指定组合类型（包括<a href="##枚举">枚举</a>或其他类型）。</p>
+<h3 id="_3">分配字段编号</h3>
+<p>如上所示，消息定义中的每个字段都定义一个<strong>唯一的编号</strong>。这些字段的编号用于在消息的<a href="/Protocol-Buffers/04-编码.md">二进制格式</a>中标识字段，一旦消息类型被使用就不能再更改。请注意：</p>
+<ul>
+<li><code>1到15</code>范围内的字段编号需要一个字节进行编码，包括字段的编号和字段的类型（可以在<a href="/Protocol-Buffers/04-编码.md#消息结构"><code>protocol buffers</code>编码</a>中找到更多相关信息）</li>
+<li><code>16到2047</code>范围内的字段编号占用两个字节。 因此，应该为非常频繁出现的消息元素保留数字1到15，请记住为将来可能添加的频繁出现的元素留出一些空间</li>
+</ul>
+<p>可以指定的最小字段数为1，最大字段数为536,870,911（2的29次方-1）。</p>
+<blockquote>
+<p>不能使用数字19000到19999（<code>FieldDescriptor::kFirstReservedNumber</code>到<code>FieldDescriptor::kLastReservedNumber</code>），因为它们是为<code>protocol buffers</code>实现而保留的。</p>
+</blockquote>
+<p>如果在<code>.proto</code>中使用这些保留数字之一，<code>protocol buffers</code>编译器会发出警告。同样，不能使用任何以前<a href="#保留字段">保留</a>的字段编号。</p>
+<h3 id="_4">自定字段规则</h3>
+<p>消息的字段可以是以下之一：</p>
+<ul>
+<li>单数：格式良好的消息可以包含零个或一个（但不超过一个）这样的字段。这是<code>proto3</code>语法的默认字段规则。</li>
+<li>重复：该字段可以在格式良好的消息中重复任意次数（包括零）。将保留重复值的顺序。</li>
+</ul>
+<p>在<code>proto3</code>中，标量数字类型的重复字段默认使用<strong>压缩</strong>编码。</p>
+<p>在<a href="/Protocol-Buffers/04-编码.md#压缩重复字段"><code>Protocol Buffer Encoding</code></a>中找到有关压缩编码的更多信息。</p>
+<h3 id="_5">添加更多消息类型</h3>
+<p>可以在单个<code>.proto</code>文件中定义多种消息类型。如果要定义多个相关消息，这非常有用。例如，如果要定义与<code>SearchResponse</code>消息类型对应的回复消息格式，则可以将其添加到相同的<code>.proto</code>：</p>
+<pre><code class="protobuf">message SearchRequest {
+  string query = 1;
+  int32 page_number = 2;
+  int32 result_per_page = 3;
+}
+
+message SearchResponse {
+ ...
+}
+</code></pre>
+
+<h3 id="_6">添加注释</h3>
+<p>要为<code>.proto</code>文件添加注释，请使用<code>C/C++</code>样式<code>//</code>和<code>/* ... */</code>语法。</p>
+<pre><code class="protobuf">/* SearchRequest 代表一个查询请求,
+ * 带有分页选项以指示要包含在响应中的结果。*/
+
+message SearchRequest {
+  string query = 1;
+  int32 page_number = 2;  // 我们需要的页码
+  int32 result_per_page = 3;  // 每页返回的结果数
+}
+</code></pre>
+
+<h3 id="_7">保留字段</h3>
+<p>如果通过完全删除字段或将其注释来<a href="#更新消息类型">更新</a>消息类型，未来的用户可以在对类型进行更新时再次使用该字段编号。如果以后加载相同<code>.proto</code>文件的旧版本，这可能会导致严重问题，包括数据损坏，隐私错误等。确保不会发生这种情况的一种方法是<strong>指定已删除字段或字段的编号为保留的</strong>（并且/或命名可能导致JSON序列化问题）。如果将来的任何用户尝试使用这些字段标识符，<code>protocol buffers</code>编译器将会发出警告。</p>
+<pre><code class="protobuf">message Foo {
+  reserved 2, 15, 9 to 11;
+  reserved &quot;foo&quot;, &quot;bar&quot;;
+}
+</code></pre>
+
+<p>请注意，不能在同一保留语句中混合字段名称和字段编号。</p>
+<h3 id="proto"><code>.proto</code>文件将生成什么</h3>
+<p>在<code>.proto</code>文件上运行<a href="#生成自定义的类"><code>protocol buffers</code>编译器</a>时，编译器会根据文件中的描述生成所选语言的代码，这些代码是需要使用的消息类型，包括：获取和设置字段值，将消息序列化为输出流，并从输入流中解析消息。</p>
+<ul>
+<li>对于<code>C++</code>，编译器会从每个<code>.proto</code>生成一个<code>.h</code>和<code>.cc</code>文件，并为文件中描述的每种消息类型提供一个类。</li>
+<li>对于<code>Java</code>，编译器生成一个<code>.java</code>文件，其中包含每种消息类型的类，以及用于创建消息类实例的特殊<code>Builder</code>类。</li>
+<li><code>Python</code>有点不同：<code>Python</code>编译器生成一个模块，其中包含<code>.proto</code>中每种消息类型的静态描述符，然后与元类一起使用，以在运行时创建必要的<code>Python</code>数据访问类。</li>
+<li>对于<code>Go</code>，编译器会生成一个<code>.pb.go</code>文件，其中包含文件中每种消息类型的类型。</li>
+<li>对于<code>Ruby</code>，编译器生成一个带有包含消息类型的<code>Ruby</code>模块的<code>.rb</code>文件。</li>
+<li>对于<code>Objective-C</code>，编译器从每个<code>.proto</code>生成一个<code>pbobjc.h</code>和<code>pbobjc.m</code>文件，其中包含文件中描述的每种消息类型的类。</li>
+<li>对于<code>C＃</code>，编译器从每个<code>.proto</code>生成一个<code>.cs</code>文件，其中包含文件中描述的每种消息类型的类。</li>
+<li>对于<code>Dart</code>，编译器会生成一个<code>.pb.dart</code>文件，其中包含文件中每种消息类型的类。</li>
+</ul>
+<p>可以按照所选语言的教程（即将推出的proto3版本）了解有关为每种语言使用API​​的更多信息。有关更多API详细信息，请参阅相关<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">API参考</a>（proto3版本即将推出）。</p>
+<h2 id="_8">标量值类型</h2>
+<p>标量消息字段可以具有以下类型之一：该表显示<code>.proto</code>文件中指定的类型，以及自动生成的类中的相应类型：</p>
+<table>
+<thead>
+<tr>
+<th>.proto 类型</th>
+<th>注释</th>
+<th>Go类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>double</td>
+<td></td>
+<td>float64</td>
+</tr>
+<tr>
+<td>float</td>
+<td></td>
+<td>float32</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>使用可变长度编码，编码负数的效率低（如果字段可能有负值，改用sint32）</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>使用可变长度编码，编码负数的效率低（如果字段可能有负值，改用sint64）</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>uint32</td>
+<td>使用可变长度编码</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>使用可变长度编码</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>sint32</td>
+<td>使用可变长度编码，有符号int值（这比常规int32更有效地编码负数）</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>sint64</td>
+<td>使用可变长度编码，有符号int值（这比常规int64更有效地编码负数）</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>fixed32</td>
+<td>总是四个字节，如果值大于2的28次方则比uint32更有效</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>fixed64</td>
+<td>总是八个字节，如果值大于2的56次方则比uint32更有效</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>sfixed32</td>
+<td>总是四个字节</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>sfixed64</td>
+<td>总是八个字节</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>bool</td>
+<td></td>
+<td>bool</td>
+</tr>
+<tr>
+<td>string</td>
+<td>字符串必须始终包含UTF-8编码或7位ASCII文本，且不能超过2的32次方</td>
+<td>string</td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>可以包含不超过2的32次方的任意字节序列</td>
+<td>[]bytes</td>
+</tr>
+</tbody>
+</table>
+<p>在<a href="/Protocol-Buffers/04-编码.md"><code>protocol buffers</code>编码</a>中可以找到更多关于在序列化消息时这些类型是如何被编码的信息。</p>
+<h2 id="_9">默认值</h2>
+<p>在解析消息时，如果编码消息不包含某个特定的单数元素，则解析对象中相应的字段将被设置为该字段的默认值。这些默认值根据类型而不同：</p>
+<ul>
+<li>对于字符串，默认值为空字符串。</li>
+<li>对于字节，默认值为空字节。</li>
+<li>对于布尔型，默认值为false。</li>
+<li>对于数字类型，默认值为零。</li>
+<li>对于<a href="#枚举">枚举</a>，默认值是<strong>第一个定义的枚举值</strong>，该值必须为0。</li>
+<li>对于消息字段，未设置该字段。它的确切值取决于编程语言。有关详细信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">生成代码指南</a>。</li>
+</ul>
+<p>重复（repeated）字段的默认值为空（通常是相应编程语言的空列表）。</p>
+<blockquote>
+<p>请注意，对于<strong>标量消息字段</strong>，一旦解析了消息，就无法确定字段是否显式设置为默认值（例如，布尔值是否设置为<code>false</code>）或根本没有设置值，因此，在定义消息类型时要注意。例如，如果不希望默认情况下也发生这种行为，那么当设置为<code>false</code>时，没有一个布尔值可以打开某些行为。另外请注意，如果标量消息字段设置为其默认值，则该值不会在传输时序列化。</p>
+</blockquote>
+<p>有关默认值如何在生成的代码中工作的更多详细信息，请参阅所选语言的<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">生成代码指南</a>。</p>
+<h2 id="_10">枚举</h2>
+<p>在定义消息类型时，可能希望其中一个字段只有一个预定义的值列表。例如，假设要为每个<code>SearchRequest</code>添加语料库（<code>corups</code>）字段，其中语料库可以是<code>UNIVERSAL</code>，<code>WEB</code>，<code>IMAGES</code>，<code>LOCAL</code>，<code>NEWS</code>，<code>PRODUCTS</code>或<code>VIDEO</code>。可以非常简单地通过向消息定义添加枚举（<code>enum</code>），并为每个可能的值添加常量。</p>
+<p>在下面的例子中，添加了一个名为<code>Corpus</code>的枚举，其中包含所有可能的值，以及一个类型为Corpus的字段：</p>
+<pre><code class="protobuf">message SearchRequest {
+  string query = 1;
+  int32 page_number = 2;
+  int32 result_per_page = 3;
+  enum Corpus {
+    UNIVERSAL = 0;
+    WEB = 1;
+    IMAGES = 2;
+    LOCAL = 3;
+    NEWS = 4;
+    PRODUCTS = 5;
+    VIDEO = 6;
+  }
+  Corpus corpus = 4;
+}
+</code></pre>
+
+<p>如上所示，<code>Corpus</code>枚举的第一个常量映射为零：每个枚举定义<strong>必须</strong>包含一个映射到零的常量作为其第一个元素。这是因为：</p>
+<ul>
+<li>必须有一个零值，以便可以使用0作为数字<a href="#默认值">默认值</a>。</li>
+<li>零值必须是第一个元素，以便与<code>proto2</code>语义兼容，其中第一个枚举值始终是默认值。</li>
+</ul>
+<p>可以通过为不同的枚举常量指定相同的值来定义别名。为此，需要将<code>allow_alias</code>选项设置为<code>true</code>，否则<code>proto</code>编译器将在找到别名时生成错误消息。</p>
+<pre><code class="protobuf">enum EnumAllowingAlias {
+  option allow_alias = true;    // 开启配置
+  UNKNOWN = 0;
+  STARTED = 1;
+  RUNNING = 1;
+}
+enum EnumNotAllowingAlias {
+  UNKNOWN = 0;
+  STARTED = 1;
+  // RUNNING = 1;  // 取消注释此行将导致Google内部的编译错误和外部的警告消息。
+}
+</code></pre>
+
+<p>枚举常量必须在32位整数范围内。由于枚举值在传输时使用<a href="/Protocol-Buffers/04-编码.md"><code>varint</code>编码</a>，因此，负值效率低，不建议使用。可以在消息定义中定义枚举，如上例所示，也可以在外部定义枚举，这些枚举可以在<code>.proto</code>文件中的任何消息定义中重用。还可以使用语法<code>MessageType.EnumType</code>将一个消息中声明的枚举类型用作不同消息中字段的类型。</p>
+<p>在使用枚举的<code>.proto</code>文件上运行<code>protocol buffers</code>编译器时，生成的代码将具有相应的<code>Java</code>或<code>C++</code>枚举类型，在Python中使用一个特殊的<code>EnumDescriptor</code>类，用于在运行时生成类中创建一组带有整数值的符号常量。</p>
+<p>在反序列化期间，无法识别的枚举值将保留在消息中，如何表示这种值取决于具体的编程语言。</p>
+<ul>
+<li>在支持具有超出指定符号范围的值的开放枚举类型的编程语言中（例如<code>C++</code>和<code>Go</code>），未知的枚举值仅作为其基础整数表示存储。</li>
+<li>在支持封闭枚举类型（如<code>Java</code>）的编程语言中，枚举中的大小写用于表示无法识别的值，并且可以使用特殊访问器访问基础整数。</li>
+</ul>
+<p>在任何一种情况下，如果消息被序列化了，那么无法识别的值仍然会和消息一起被序列化。</p>
+<p>有关如何在应用程序中使用消息枚举的详细信息，请参阅所选语言的<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">生成代码指南</a>。</p>
+<h3 id="_11">保留值</h3>
+<p>如果通过完全删除枚举条目或将其注释掉来<a href="#更新消息类型">更新</a>枚举类型，那么未来的用户可以在对类型进行更新时重用该数值。如果后面又加载相同<code>.proto</code>文件的旧版本，这可能会导致严重问题（包括数据损坏，隐私错误等）。确保不会发生这种情况的一种方法是设置已删除条目的数值（和<code>/</code>或名称，也可能导致JSON序列化问题））为<code>reserved</code>。如果将来的任何用户尝试使用这些标识符，<code>protocol buffers</code>编译器将会发出警告。可以使用<code>max</code>关键字指定保留（<code>reserved</code>）的数值范围达到最大可能值。</p>
+<pre><code class="protobuf">enum Foo {
+  reserved 2, 15, 9 to 11, 40 to max;
+  reserved &quot;FOO&quot;, &quot;BAR&quot;;
+}
+</code></pre>
+
+<p>请注意，不能在同一保留（<code>reserved</code>）语句中混合字段名称和数值。</p>
+<h2 id="_12">使用其他消息类型</h2>
+<p>可以使用其他消息类型作为字段类型。例如，假设在每个<code>SearchResponse</code>消息中包含<code>Result</code>消息，为此，可以在同一<code>.proto</code>中定义<code>Result</code>消息类型，然后在<code>SearchResponse</code>中指定<code>Result</code>类型的字段：</p>
+<pre><code class="protobuf">message SearchResponse {
+  repeated Result results = 1;
+}
+
+message Result {
+  string url = 1;
+  string title = 2;
+  repeated string snippets = 3;
+}
+</code></pre>
+
+<h3 id="_13">导入定义</h3>
+<p>在上面的示例中，<code>Result</code>消息类型在与<code>SearchResponse</code>相同的文件中定义，如果要用作字段类型的消息类型在另一个<code>.proto</code>文件中定义，可以通过导入来使用其他<code>.proto</code>文件中的定义。</p>
+<p>要导入另一个<code>.proto</code>的定义，请在文件顶部添加一个<code>import</code>语句：</p>
+<pre><code class="protobuf">import &quot;myproject/other_protos.proto&quot;;
+</code></pre>
+
+<p>默认情况下，只能使用直接导入的<code>.proto</code>文件中的定义。但是，有时可能需要将<code>.proto</code>文件移动到新位置。那么，可以在旧位置放置一个虚拟<code>.proto</code>文件，以使用<code>import public</code>将所有导入转发到新位置，而不是直接移动<code>.proto</code>文件并在一次更改中更新所有导入它的文件。<code>import public</code>的依赖可以被任何包含<code>import public</code>语句的<code>proto</code>文件传递。 例如：</p>
+<pre><code class="protobuf">// new.proto
+// 所有定义都移动到了这里。
+
+// old.proto
+// 这是proto文件，所有的clients都导入了它。
+import public &quot;new.proto&quot;;
+import &quot;other.proto&quot;;
+
+// client.proto
+import &quot;old.proto&quot;;
+// 使用old.proto和new.proto中的定义，但不使用other.proto
+</code></pre>
+
+<p><code>proto</code>编译器使用<code>-I/--proto_path</code>标志在编译器命令行中指定的一组目录中搜索导入的文件。如果没有给出标志，它将查找调用编译器的目录。通常，应将<code>--proto_path</code>标志设置为项目的根目录，并对所有导入使用完全限定名称。</p>
+<h3 id="proto2">使用<code>proto2</code>消息类型</h3>
+<p>可以导入<a href="https://developers.google.com/protocol-buffers/docs/proto"><code>proto2</code></a>消息类型并在<code>proto3</code>消息中使用它们，反之亦然。但是，<code>proto2</code>枚举不能直接用于<code>proto3</code>语法（如果已导入的<code>proto2</code>消息使用它们就没关系）。</p>
+<h2 id="_14">嵌套类型</h2>
+<p>可以在其他消息类型中定义和使用消息类型，如下例所示：此处<code>Result</code>消息在<code>SearchResponse</code>消息中定义：</p>
+<pre><code class="protobuf">message SearchResponse {
+  message Result {
+    string url = 1;
+    string title = 2;
+    repeated string snippets = 3;
+  }
+  repeated Result results = 1;
+}
+</code></pre>
+
+<p>如果要在其父消息类型之外重用此消息类型，请将其称为<code>Parent.Type</code>：</p>
+<pre><code class="protobuf">message SomeOtherMessage {
+  SearchResponse.Result result = 1;
+}
+</code></pre>
+
+<p>可以根据需要深入嵌套消息：</p>
+<pre><code class="protobuf">message Outer {       // Level 0
+  message MiddleAA {  // Level 1
+    message Inner {   // Level 2
+      int64 ival = 1;
+      bool  booly = 2;
+    }
+  }
+  message MiddleBB {  // Level 1
+    message Inner {   // Level 2
+      int32 ival = 1;
+      bool  booly = 2;
+    }
+  }
+}
+</code></pre>
+
+<h2 id="_15">更新消息类型</h2>
+<p>如果现有的消息类型不再满足需求，例如，希望消息格式具有额外的字段，但仍然希望使用旧格式创建的代码。<strong>在不破坏任何现有代码的情况下更新消息类型非常简单</strong>。请记住以下规则：</p>
+<ul>
+<li>请勿更改任何现有字段的字段编号。</li>
+<li>如果添加新字段，则使用“旧”消息格式序列化的任何消息仍可由新生成的代码进行解析。应该记住这些元素的<a href="#默认值">默认值</a>，以便新代码可以正确地与旧代码生成的消息进行交互。同样的新代码创建的消息可以由旧代码解析，旧的二进制文件在解析时只是忽略新字段。有关详细信息，请参阅“<a href="#未知字段">未知字段</a>”部分。</li>
+<li>在更新的消息类型中不再使用的字段编号就可以删除。 有时想要重命名该字段，可能添加前缀“<code>OBSOLETE_</code>”，或者将字段编号设置为<a href="#保留字段">保留</a>（<code>reserved</code>），以便<code>.proto</code>的未来用户不会意外地重复使用该编号。</li>
+<li><code>int32</code>，<code>uint32</code>，<code>int64</code>，<code>uint64</code>和<code>bool</code>都是兼容的，这意味着可以将字段从这些类型之一更改为另一种类型，而不会破坏向前或向后兼容性。如果在传输中解析出一个不适合相应类型的数字，将获得与在<code>C++</code>中将该数字转换为该类型相同的效果（例如，如果将64位数字作为int32读取，它将被截断为32位）。</li>
+<li><code>sint32</code>和<code>sint64</code>彼此兼容，但与其他整数类型不兼容。</li>
+<li>只要<code>byte</code>是有效的<code>UTF-8</code>，<code>string</code>和<code>byte</code>是兼容的。</li>
+<li>如果<code>byte</code>包含消息的编码版本，则嵌入消息与<code>byte</code>兼容。</li>
+<li><code>fixed32</code>与<code>sfixed32</code>兼容，<code>fixed64</code>与<code>sfixed64</code>兼容。</li>
+<li><code>enum</code>在传输格式中与<code>int32</code>，<code>uint32</code>，<code>int64</code>和<code>uint64</code>兼容（请注意，如果值不合适，将截断值）。但请注意，在反序列化消息时，客户端代码可能会以不同方式对待它们：例如，无法识别的<code>proto3</code>枚举类型将保留在消息中，但在反序列化消息时如何表示它是依赖于编程语言的。<code>Int</code>字段总是保留它们的值。</li>
+<li>将单个值更改为新<code>oneof</code>的成员是安全且二进制兼容的。如果确保没有代码一次设置多个字段，那么将多个字段移动到新的<code>oneof</code>可能是安全的。将任何字段移动到某个现有的<code>oneof</code>中都是不安全的。</li>
+</ul>
+<h2 id="_16">未知字段</h2>
+<p>未知字段是格式良好的<code>protocol buffers</code>序列化数据，它表示解析器无法识别的字段。例如，当旧二进制文件解析具有新字段的新二进制文件发送的数据时，这些新字段将成为旧二进制文件中的未知字段。</p>
+<p>最初，<code>proto3</code>消息在解析期间总是丢弃未知字段，但在3.5版本中，重新引入了未知字段的保存以匹配<code>proto2</code>行为。在版本3.5及更高版本中，未知字段在解析期间保留并包含在序列化输出中。</p>
+<h2 id="any"><code>Any</code></h2>
+<p><code>Any</code>消息类型允许将消息用作嵌入类型，而无需使用这些消息的<code>.proto</code>定义。<code>Any</code>包含任意序列化消息（如<code>byte</code>），并带有一个<code>URL</code>作为该消息类型的全局唯一标识符用于表示和解析它。要使用<code>Any</code>类型，需要<a href="#导入定义">导入</a><code>google/protobuf/any.proto</code>。</p>
+<pre><code class="protobuf">import &quot;google/protobuf/any.proto&quot;;
+
+message ErrorStatus {
+  string message = 1;
+  repeated google.protobuf.Any details = 2;
+}
+</code></pre>
+
+<p><code>type.googleapis.com/packagename.messagename</code>是给定消息类型的默认类型<code>URL</code>。</p>
+<p>不同的编程语言实现将支持运行时库来帮助程序以类型安全的方式打包和解压缩<code>Any</code>值。例如，在<code>Java</code>中，<code>Any</code>类型将具有特殊的<code>pack()</code>和<code>unpack()</code>访问器，而在<code>C++</code>中则有<code>PackFrom()</code>和<code>UnpackTo ()</code>方法：</p>
+<pre><code class="c++">// 在Any中存储任意消息类型。
+NetworkErrorDetails details = ...;
+ErrorStatus status;
+status.add_details()-&gt;PackFrom(details);
+
+// 从Any读取任意消息。
+ErrorStatus status = ...;
+for (const Any&amp; detail : status.details()) {
+  if (detail.Is&lt;NetworkErrorDetails&gt;()) {
+    NetworkErrorDetails network_error;
+    detail.UnpackTo(&amp;network_error);
+    ... processing network_error ...
+  }
+}
+</code></pre>
+
+<p><strong>目前，正在开发用于处理<code>Any</code>类型的运行时库。</strong></p>
+<p>如果已熟悉<a href="https://developers.google.com/protocol-buffers/docs/proto"><code>proto2</code>语法</a>，则<code>Any</code>类型将替换<a href="https://developers.google.com/protocol-buffers/docs/proto#extensions">扩展</a>。</p>
+<h2 id="oneof"><code>Oneof</code></h2>
+<p>如果有一个包含许多字段的消息，并且最多只能同时设置一个字段，则可以使用<code>oneof</code>来强制执行此操作同时还能节省内存。</p>
+<p><code>oneof</code>字段与正常的字段一样，只是在同一个<code>oneof</code>中的所有字段共享内存，并且最多可以同时设置一个字段。设置<code>oneof</code>中的任何一个成员时都会自动清除所有其他成员。可以使用<code>case()</code>或<code>WhichOneof()</code>方法检查<code>oneof</code>中的哪个值（如果有）被设置了，具体使用哪个取决于选择的编程语言。</p>
+<h3 id="oneof_1">使用<code>Oneof</code></h3>
+<p>要在<code>.proto</code>中定义<code>oneof</code>，请使用<code>oneof</code>关键字，并在后面跟着<code>oneof</code>名称，在本例中为<code>test_oneof</code>：</p>
+<pre><code class="protobuf">message SampleMessage {
+  oneof test_oneof {
+    string name = 4;
+    SubMessage sub_message = 9;
+  }
+}
+</code></pre>
+
+<p>然后，将<code>oneof</code>字段添加到<code>oneof</code>定义中。可以添加任何类型的字段，但不能使用<code>repeated</code>字段。</p>
+<p>在生成的代码中，<code>oneof</code>字段与常规字段具有相同的<code>getter</code>和<code>setter</code>。还可以获得一种特殊方法来检查<code>oneof</code>中设置了哪个值（如果有）。可以在相关<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">API参考</a>中找到有关所选语言的<code>oneof API</code>的更多信息。</p>
+<h3 id="oneof_2"><code>Oneof</code>的功能</h3>
+<ul>
+<li>
+<p>设置<code>oneof</code>字段将自动清除<code>oneof</code>的所有其他成员。因此，如果设置多个字段，则只有设置的最后一个字段仍然具有值。</p>
+<p><code>c++
+SampleMessage message;
+message.set_name("name");
+CHECK(message.has_name());
+message.mutable_sub_message();   // Will clear name field.
+CHECK(!message.has_name());</code></p>
+</li>
+<li>
+<p>如果解析器在传输中遇到同一个<code>oneof</code>的多个成员，则在解析的消息中仅使用看到的最后一个成员。</p>
+</li>
+<li><code>oneof</code>不能是<code>repeated</code>。</li>
+<li>如果将<code>oneof</code>字段设置为默认值（例如将<code>int32</code> <code>oneof</code>字段设置为0），那么该<code>oneof</code>字段的<code>“case”</code>将会被设置，并且这些字段的值将在传输时序列化。</li>
+<li>
+<p>如果使用的是<code>C++</code>，请确保代码不会导致内存崩溃。以下示例代码将崩溃，因为通过调用<code>set_name()</code>方法删除了<code>sub_message</code>。</p>
+<p><code>c++
+SampleMessage message;
+SubMessage* sub_message = message.mutable_sub_message();
+message.set_name("name");      // Will delete sub_message
+sub_message-&gt;set_...            // Crashes here</code></p>
+</li>
+<li>
+<p>同样在<code>C++</code>中，如果<code>Swap()</code>两条<code>oneof</code>的消息，则每条消息都将以另一条消息的<code>“case”</code>作为结束：在下面的示例中，<code>msg1</code>将会有<code>sub_message</code>同时<code>msg2</code>将会有<code>name</code>。</p>
+<p><code>c++
+SampleMessage msg1;
+msg1.set_name("name");
+SampleMessage msg2;
+msg2.mutable_sub_message();
+msg1.swap(&amp;msg2);
+CHECK(msg1.has_sub_message());
+CHECK(msg2.has_name());</code></p>
+</li>
+</ul>
+<h3 id="_17">向后兼容性问题</h3>
+<p>添加或删除<code>oneof</code>字段时要小心。如果在检查<code>oneof</code>的值返回<code>None/NOT_SET</code>，这可能意味着<code>oneof</code>尚未设置或已设置为<code>oneof</code>的另一个不同版本。没有办法区分，因为没有办法知道传输中的未知字段是否是<code>oneof</code>的成员。</p>
+<h4 id="_18">标签重用问题</h4>
+<ul>
+<li><strong>将字段移入或移出<code>oneof</code></strong>：在序列化或解析消息后，可能会丢失一些信息（某些字段将被清除）。但是，可以安全地将单个字段移动到新的<code>oneof</code>字段中，并且如果已知只有一个字段被设置，则可以移动多个字段。</li>
+<li><strong>删除<code>oneof</code>字段并将其添加回</strong>：在序列化或解析消息后，这可能会清除当前设置的<code>oneof</code>字段。</li>
+<li><strong>拆分或合并<code>oneof</code></strong>：这与移动常规字段有类似的问题。</li>
+</ul>
+<h2 id="maps">Maps</h2>
+<p>如果要在数据定义中创建关联映射，<code>protocol buffers</code>提供了一种方便的快捷方式语法：</p>
+<pre><code class="protobuf">map&lt;key_type, value_type&gt; map_field = N;
+</code></pre>
+
+<p>其中<code>key_type</code>可以是任何<strong>整数</strong>或<strong>字符串</strong>类型（除了浮点类型和字节之外的任何<a href="#标量值类型">标量</a>类型）。请注意，枚举不是有效的<code>key_type</code>。 <code>value_type</code>可以是<code>map</code>之外的任何类型。</p>
+<p>如果要创建一个<code>map</code>，其中每个<code>Project</code>消息与字符串键相关联，则可以像下面这样定义它：</p>
+<pre><code class="protobuf">map&lt;string, Project&gt; projects = 3;
+</code></pre>
+
+<ul>
+<li><code>map</code>的字段不能是<code>repeated</code>。</li>
+<li>传输格式的顺序和<code>map</code>值的迭代顺序是未定义的，因此不能依赖<code>map</code>中的项目按特定顺序排序。</li>
+<li>从<code>.proto</code>文件中生成文本格式时，<code>map</code>按键排序，数字键按数字排序。</li>
+<li>在传输或合并时进行解析，如果有重复的<code>map</code>键，那么就使用最后的那个键。从文本格式解析<code>map</code>时，如果存在重复键，则解析可能会失败。</li>
+<li>如果给<code>map</code>提供了键却没有提供值，那么字段序列化的具体行为就取决于具体的编程语言。在<code>c++</code>,<code>Java</code>，<code>Python</code>中使用类型的默认值进行序列化，在其他编程语言中，没有值被序列化。</li>
+</ul>
+<p>目前，所有<code>proto3</code>支持的编程语言都能生成<code>map</code>API，更多关于所选语言的<code>map</code>API的参考查看<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">API参考文档</a>。</p>
+<h3 id="_19">向后兼容性</h3>
+<p>在传输时，<code>map</code>的语法等效于下面的示例，因此不支持<code>map</code>的<code>protocol buffers</code>实现仍然可以处理传输的数据：</p>
+<pre><code class="protobuf">message MapFieldEntry {
+  key_type key = 1;
+  value_type value = 2;
+}
+
+repeated MapFieldEntry map_field = N;
+</code></pre>
+
+<p>支持<code>map</code>的任何<code>protocol buffers</code>实现都必须生成和接受上述定义所表示的可接受的数据。</p>
+<h2 id="packages">Packages</h2>
+<p>可以将可选的<code>package</code>说明符添加到<code>.proto</code>文件，以防止<code>protocol buffers</code>消息类型之间的名称冲突。</p>
+<pre><code class="protobuf">package foo.bar;
+message Open { ... }
+</code></pre>
+
+<p>然后，可以在定义消息类型的字段时使用<code>package</code>说明符：</p>
+<pre><code class="protobuf">message Foo {
+  ...
+  foo.bar.Open open = 1;
+  ...
+}
+</code></pre>
+
+<p><code>package</code>说明符影响生成代码的方式取决于选择的编程语言：</p>
+<ul>
+<li>在<code>C++</code>中，生成的类包含在<code>C++</code>命名空间中。例如，<code>Open</code>将位于命名空间<code>foo::bar</code>中。</li>
+<li>在<code>Java</code>中，除非在<code>.proto</code>文件中明确提供选项<code>java_package</code>，否则该包将用作<code>Java</code>包。</li>
+<li>在<code>Python</code>中，将忽略<code>package</code>指令，因为<code>Python</code>模块是根据它们在文件系统中的位置进行组织的。</li>
+<li>在<code>Go</code>中，除非在<code>.proto</code>文件中明确提供选项<code>go_package</code>，否则该包将用作<code>Go</code>包名称。</li>
+<li>在<code>Ruby</code>中，生成的类包含在嵌套的<code>Ruby</code>命名空间中，转换为所需的<code>Ruby</code>大写形式（首字母大写;如果第一个字符不是字母，则<code>PB_</code>前置）。例如，<code>Open</code>将位于名称空间<code>Foo::Bar</code>中。</li>
+<li>在<code>C＃</code>中，转换为<code>PascalCase</code>后，包将用作命名空间，除非在<code>.proto</code>文件中明确提供选项<code>csharp_namespace</code>。例如，<code>Open</code>将位于名称空间<code>Foo.Bar</code>中。</li>
+</ul>
+<h3 id="_20">包和名称解析</h3>
+<p><code>protocol buffers</code>语言中的类型名称解析与<code>C++</code>类似：首先搜索最里面的范围，然后搜索下一个范围，依此类推，每个包被认为是其父包的“内部”。一个<code>'.'</code> （例如<code>.foo.bar.Baz</code>）意味着从最外层的范围开始。</p>
+<p><code>protocol buffers</code>编译器通过解析导入的<code>.proto</code>文件来解析所有类型名称。每种编程语言的代码生成器都知道如何引用该语言中的每种类型，即使它具有不同的范围规则。</p>
+<h2 id="_21">定义服务</h2>
+<p>如果要在RPC（远程过程调用）系统中使用自定义消息类型，可以在<code>.proto</code>文件中定义RPC服务接口<code>protocol buffers</code>编译器将以选择的编程语言生成服务接口代码和<code>stub</code>。</p>
+<blockquote>
+<p>例如，要定义一个RPC服务，该服务获取<code>SearchRequest</code>请求并返回<code>SearchResponse</code>响应消息，可以在<code>.proto</code>文件中定义它，如下所示：</p>
+</blockquote>
+<pre><code class="protobuf">service SearchService {
+  rpc Search (SearchRequest) returns (SearchResponse);
+}
+</code></pre>
+
+<p>与<code>protocol buffers</code>一起使用的最简单的RPC系统是<a href="https://grpc.io/">gRPC</a>：一种由Google开发的语言平台中立的开源RPC系统。gRPC特别适用于<code>protocol buffers</code>，并允许使用特定的<code>protocol buffers</code>编译器插件直接从<code>.proto</code>文件生成相关的RPC代码。</p>
+<p>如果不想使用gRPC，也可以将<code>protocol buffers</code>与自定义的RPC实现一起使用。可以在<a href="https://developers.google.com/protocol-buffers/docs/proto#services"><code>Proto2</code>语言指南</a>中找到更多相关信息。</p>
+<p>还有一些正在进行的第三方项目为<code>Protocol Buffers</code>开发RPC实现。有关我们了解的项目的链接列表，请参阅<a href="https://github.com/protocolbuffers/protobuf/blob/master/docs/third_party.md">第三方加载项wiki页面</a>。</p>
+<h2 id="json">JSON映射</h2>
+<p><code>Proto3</code>支持<code>JSON</code>中的规范编码，使得在系统之间共享数据变得更加容易。在下表中逐个类型地描述编码。</p>
+<p>如果<code>JSON</code>编码数据中缺少某个值，或者其值为<code>null</code>，则在解析为<code>protocol buffers</code>时，它将被解释为相应的<a href="#默认值">默认值</a>。如果某个字段在<code>protocol buffers</code>中具有默认值，则默认情况下将在<code>JSON</code>编码的数据中省略该字段以节省空间。一种实现方式是提供可选选项在<code>JSON</code>编码的输出中输出字段和它的默认值。</p>
+<table>
+<thead>
+<tr>
+<th>proto3</th>
+<th>JSON</th>
+<th>JSON example</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>object</td>
+<td><code>{"fooBar": v, "g": null, …}</code></td>
+<td>生成JSON对象。<code>message</code>字段名称映射到小驼峰命名并成为JSON对象的<code>key</code>。如果指定了<code>json_name</code>字段这个选项，则将指定的值作为<code>key</code>。解析器接受小驼峰命名的名称（或<code>json_name</code>选项指定的名称）和原始的<code>proto</code>字段名称。<code>null</code>是所有字段类型都可接受的值，并被视为相应字段类型的默认值。</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>string</td>
+<td><code>"FOO_BAR"</code></td>
+<td>使用<code>proto</code>中指定的枚举值的名称。解析器接受枚举名称和整数值。</td>
+</tr>
+<tr>
+<td>map<K,V></td>
+<td>object</td>
+<td><code>{"k": v, …}</code></td>
+<td>所有键都转换为字符串。</td>
+</tr>
+<tr>
+<td>repeated V</td>
+<td>array</td>
+<td><code>[v, …]</code></td>
+<td><code>null</code>被接受为空的<code>list[]</code>。</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>true, false</td>
+<td><code>true, false</code></td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+<td><code>"Hello World!"</code></td>
+<td></td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>base64 string</td>
+<td><code>"YWJjMTIzIT8kKiYoKSctPUB+"</code></td>
+<td>JSON值将是使用带填充的标准base64编码方式编码的字符串数据。带有/不带填充的标准或URL安全的base64编码方式也是可接受的。</td>
+</tr>
+<tr>
+<td>int32, fixed32, uint32</td>
+<td>number</td>
+<td><code>1, -10, 0</code></td>
+<td>十进制数形式的JSON值，接受数字或字符串。</td>
+</tr>
+<tr>
+<td>int64, fixed64, uint64</td>
+<td>string</td>
+<td><code>"1", "-10"</code></td>
+<td>十进制字符串形式的JSON值，接受数字或字符串。</td>
+</tr>
+<tr>
+<td>float, double</td>
+<td>number</td>
+<td><code>1.1, -10.0, 0, "NaN", "Infinity"</code></td>
+<td>一个或多个特殊字符串<code>“NaN”</code>，<code>“Infinity”</code>和<code>“-Infinity”</code>形式的JSON值，接受数字或字符串，指数表示法也被接受。</td>
+</tr>
+<tr>
+<td>Any</td>
+<td>object</td>
+<td><code>{"@type": "url", "f": v, … }</code></td>
+<td>如果<code>Any</code>包含具有特殊JSON映射的值，则它将按如下方式转换：<code>{“@ type”：xxx，“value”：yyy}</code>。 否则，该值将转换为JSON对象，并将插入<code>“@type”</code>字段以指示实际数据类型。</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>string</td>
+<td><code>"1972-01-01T10:00:20.021Z"</code></td>
+<td>使用<code>RFC 3339</code>，其中生成的输出将始终被<strong>Z-标准化</strong>并使用0,3,6或9个小数位。也接受“Z”以外的偏移。</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>string</td>
+<td><code>"1.000340012s", "1s"</code></td>
+<td>生成的输出始终包含0,3,6或9个小数位，具体取决于所需的精度，后跟后缀<code>“s”</code>。接受任何小数位（也可以没有小数位），只要它们符合纳秒精度并且需要后缀<code>“s”</code>。</td>
+</tr>
+<tr>
+<td>Struct</td>
+<td>object</td>
+<td><code>{ … }</code></td>
+<td>任意JSON对象，查看<code>struct.proto</code>文件</td>
+</tr>
+<tr>
+<td>Wrapper types</td>
+<td>various types</td>
+<td><code>2, "2", "foo", true, "true", null, 0, …</code></td>
+<td><code>Wrappers</code>在JSON中使用与包装基元类型相同的表示形式，除了在数据转换和传输期间允许和保留<code>null</code>。</td>
+</tr>
+<tr>
+<td>FieldMask</td>
+<td>string</td>
+<td><code>"f.fooBar,h"</code></td>
+<td>查看<code>field_mask.proto</code>文件</td>
+</tr>
+<tr>
+<td>ListValue</td>
+<td>array</td>
+<td><code>[foo, bar, …]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Value</td>
+<td>value</td>
+<td></td>
+<td>任意JSON值</td>
+</tr>
+<tr>
+<td>NullValue</td>
+<td>null</td>
+<td></td>
+<td>JSON中的<code>null</code></td>
+</tr>
+<tr>
+<td>Empty</td>
+<td>object</td>
+<td><code>{}</code></td>
+<td>空的JSON对象</td>
+</tr>
+</tbody>
+</table>
+<h3 id="json_1">JSON选项</h3>
+<p><code>proto3 JSON</code>实现可以提供以下可用选项：</p>
+<ul>
+<li><strong>输出字段的默认值</strong>：在<code>proto3 JSON</code>的输出中默认省略字段的默认值。有一个选项可以提供覆盖此行为并输出字段的默认值。</li>
+<li><strong>忽略未知字段</strong>：默认情况下，<code>proto3 JSON</code>解析器会拒绝未知字段，可以提供一个选项来忽略解析未知字段。</li>
+<li><strong>使用<code>proto</code>字段名称而不是小驼峰命名的名称</strong>：默认情况下，<code>proto3 JSON</code>会将字段名称转换为小驼峰命名并将其用作JSON的名称。有一个选项可以提供使用<code>proto</code>字段名称作为JSON的名称。<code>proto3 JSON</code>解析器需要接受转换后的小驼峰命名的名称和<code>proto</code>字段名称。</li>
+<li><strong>将枚举值作为整数而不是字符串输出</strong>：默认情况下，在JSON输出中使用枚举值的名称。可以提供一个选项以使用枚举值的数值。</li>
+</ul>
+<h2 id="_22">可用选项</h2>
+<p><code>.proto</code>文件中的各个声明可以使用许多选项进行注释。选项不会更改声明的整体含义，但可能会影响该声明在特定上下文中被处理的方式。可用选项的完整列表在<code>google/protobuf/descriptor.proto</code>中定义。</p>
+<ul>
+<li>一些选项是<strong>文件级选项</strong>，这意味着它们应该在顶级范围内编写，而不是在任何<code>message</code>、<code>enum</code>或<code>service</code>的定义中。</li>
+<li>一些选项是<strong>消息级选项</strong>，这意味着它们应该写在<code>message</code>定义中。</li>
+<li>一些选项是<strong>字段级选项</strong>，这意味着它们应该写在字段定义中。</li>
+</ul>
+<blockquote>
+<p>可用选项也可以写在枚举类型，枚举值，服务类型和服务方法上，但是，目前没有任何支持这些的可用选项。</p>
+</blockquote>
+<p>以下是一些最常用的选项：</p>
+<ul>
+<li>
+<p><code>java_package</code>（文件级选项）：用于生成的Java类的包。如果<code>.proto</code>文件中没有给出显式的<code>java_package</code>选项，那么默认情况下将使用<code>proto</code>包（.<code>proto</code>文件中的<code>“package”</code>关键字指定的包）。但是，<code>proto</code>包通常不能生成好的<code>Java</code>包，因为<code>proto</code>包不会以反向域名开头。如果不生成Java代码，则此选项无效。</p>
+<p><code>protobuf
+option java_package = "com.example.foo";</code></p>
+</li>
+<li>
+<p><code>java_multiple_files</code>（文件级选项）：生成在包级别中定义的顶级<code>message</code>、<code>enum</code>和<code>service</code>，而不是在<code>.proto</code>文件之后命名的外部类中。</p>
+<p><code>protobuf
+option java_multiple_files = true;</code></p>
+</li>
+<li>
+<p><code>java_outer_classname</code>（文件级选项）：生成最外层的Java类的类名（以及文件名）。如果<code>.proto</code>文件中没有指定显式的<code>java_outer_classname</code>，则通过将<code>.proto</code>文件名转换为驼峰命名来构造类名（因此<code>foo_bar.proto</code>变为<code>FooBar.java</code>）。如果不生成Java代码，则此选项无效。</p>
+<p><code>protobuf
+option java_outer_classname = "Ponycopter";</code></p>
+</li>
+<li>
+<p>optimize_for（文件级选项）：可以设置为<code>SPEED</code>，<code>CODE_SIZE</code>或<code>LITE_RUNTIME</code>。这会影响<code>C++</code>和<code>Java</code>代码生成器（可能还有第三方生成器），以下列方式：</p>
+<p><code>protobuf
+option optimize_for = CODE_SIZE;</code></p>
+<ul>
+<li><code>SPEED</code>（default）：<code>protocol buffers</code>编译器将生成用于对消息类型进行序列化、解析和执行其他常见操作的代码。此代码经过高度优化。</li>
+<li><code>CODE_SIZE</code>：<code>protocol buffers</code>编译器将生成最小的类，并依赖于基于反射的共享代码来实现序列化、解析和各种其他操作。因此生成的代码将比使用<code>SPEED</code>小得多，但操作会更慢。生成的类仍将实现与<code>SPEED</code>模式完全相同的公共API。此模式在包含大量<code>.proto</code>文件的应用程序中最有用，并且不需要所有这些文件都非常快速。</li>
+<li><code>LITE_RUNTIME</code>：<code>protocol buffers</code>编译器将生成仅依赖于<code>“lite”</code>的运行时库的类（即依赖于<code>libprotobuf-lite</code>而不是<code>libprotobuf</code>）。<code>lite</code>运行时库比完整库小得多（大约小一个数量级），其中省略了描述符和反射等功能。这对于在移动电话等受限平台上运行的应用程序尤其有用。编译器仍将生成所有方法的快速实现，就像在<code>SPEED</code>模式下那样。生成的类将仅实现每种语言的<code>MessageLite</code>接口，该接口仅提供完整<code>Message</code>接口的方法的子集。
+`</li>
+<li><code>cc_enable_arenas</code>（文件级选项）：为<code>C++</code>生成的代码启用<a href="https://developers.google.com/protocol-buffers/docs/reference/arenas">竞技场分配</a>。</li>
+<li><code>objc_class_prefix</code>（文件级选项）：设置<code>Objective-C</code>类前缀，该前缀由此<code>.proto</code>文件提供给所有<code>Objective-C</code>生成的类和枚举，没有默认值。应该使用<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html#//apple_ref/doc/uid/TP40011210-CH10-SW4">Apple建议</a>的3-5个大写字符之间的前缀。请注意，Apple保留所有2个字母的前缀。</li>
+<li><code>deprecated</code>（文件级选项）：如果设置为<code>true</code>，则表示该字段已弃用，新代码不应使用该字段。在大多数语言中，这没有实际效果。在<code>Java</code>中，这将成为<code>@Deprecated</code>注释。将来，其他特定语言的代码生成器可能会在字段的访问器上生成弃用注释，这将导致在编译尝试使用该字段的代码时发出警告。如果任何人都没有使用该字段，并且想要阻止新用户使用该字段，请考虑使用<a href="#保留字段">保留语句</a>替换字段声明。</li>
+</ul>
+<p><code>protobuf
+int32 old_field = 6 [deprecated=true];</code></p>
+</li>
+</ul>
+<h3 id="_23">自定义选项</h3>
+<p><code>Protocol Buffers</code>还允许定义和使用自定义的选项。这是大多数人不需要的<strong>高级功能</strong>。如果确实认为需要创建自定义的选项，请参阅<a href="https://developers.google.com/protocol-buffers/docs/proto.html#customoptions"><code>proto2</code>语言指南</a>以获取详细信息。请注意，创建自定义的选项使用的<a href="https://developers.google.com/protocol-buffers/docs/proto.html#extensions">扩展</a>仅允许用于<code>proto3</code>中的自定义的选项。</p>
+<h2 id="_24">生成自定义的类</h2>
+<p>需要使<code>.proto</code>文件中定义的消息类型来生成<code>Java</code>，<code>Python</code>，<code>C++</code>，<code>Go</code>，<code>Ruby</code>，<code>Objective-C</code>或<code>C＃</code>代码，这需要在<code>.proto</code>上运行<code>protocol buffers</code>编译器<code>protoc</code>。如果尚未安装编译器，请下载该软件包并按照自述文件中的说明进行操作。对于<code>Go</code>，还需要为编译器安装一个特殊的代码生成器插件，可以在<code>GitHub</code>上的<code>golang/protobuf</code>存储库中找到这个插件和安装说明。</p>
+<p>协议编译器的调用如下：</p>
+<pre><code class="bash">protoc --proto_path=IMPORT_PATH \
+       --cpp_out=DST_DIR \
+       --java_out=DST_DIR \
+       --python_out=DST_DIR \
+       --go_out=DST_DIR \
+       --ruby_out=DST_DIR \
+       --objc_out=DST_DIR \
+       --csharp_out=DST_DIR \
+       path/to/file.proto
+</code></pre>
+
+<ul>
+<li><code>IMPORT_PATH</code>指定解析导入指令时查找<code>.proto</code>文件的目录，如果省略，则使用当前目录。可以通过多次传递<code>--proto_path</code>选项来指定多个导入目录,将按顺序搜索。<code>-I=IMPORT_PATH</code>可以用作<code>--proto_path</code>的缩写形式。</li>
+<li>
+<p>可以提供一个或多个输出指令：</p>
+<ul>
+<li><code>--cpp_out</code>在<code>DST_DIR</code>中生成<code>C++</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/cpp-generated"><code>C++</code>生成代码参考</a>。</li>
+<li><code>--java_out</code>在<code>DST_DIR</code>中生成<code>Java</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/java-generated"><code>Java</code>生成代码参考</a>。</li>
+<li><code>--python_out</code>在<code>DST_DIR</code>中生成<code>Python</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/python-generated"><code>Python</code>生成代码参考</a>。</li>
+<li><code>--go_out</code>在<code>DST_DIR</code>中生成<code>Go</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/go-generated"><code>Go</code>生成代码参考</a>。</li>
+<li><code>--ruby_out</code>在<code>DST_DIR</code>中生成<code>Ruby</code>代码。<code>Ruby</code>生成的代码参考即将推出！</li>
+<li><code>--objc_out</code>在<code>DST_DIR</code>中生成<code>Objective-C</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/objective-c-generated"><code>Objective-C</code>生成的代码参考</a>。</li>
+<li><code>--csharp_out</code>在<code>DST_DIR</code>中生成<code>C＃</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/csharp-generated"><code>C＃</code>生成代码参考</a>。</li>
+<li><code>--php_out</code>在<code>DST_DIR</code>中生成<code>PHP</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/php-generated"><code>PHP</code>生成代码参考</a>。</li>
+</ul>
+<p>为方便起见，如果<code>DST_DIR</code>以<code>.zip</code>或.<code>jar</code>结尾，编译器会将输出写入具有给定名称的单个<code>ZIP</code>格式存档文件。<code>.jar</code>输出还将根据<code>Java JAR</code>规范的要求提供清单文件。请注意，如果输出存档已存在，则会被覆盖; 编译器不够智能，无法将文件添加到现有存档中。</p>
+</li>
+<li>
+<p>必须提供一个或多个<code>.proto</code>文件作为输入。可以一次指定多个<code>.proto</code>文件。虽然文件是相对于当前目录命名的，但每个文件必须驻留在其中一个<code>IMPORT_PATH</code>中，以便编译器可以确定其规范名称。</p>
+</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../01-简介/" title="什么是Protocol Buffers" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                什么是Protocol Buffers
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../03-样式指南/" title="样式指南" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                样式指南
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

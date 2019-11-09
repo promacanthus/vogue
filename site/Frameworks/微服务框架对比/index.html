@@ -1,0 +1,3100 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Go language full stack development guide">
+      
+      
+        <link rel="canonical" href="https://promacanthus.github.io/Golang-Guide/Frameworks/微服务框架对比/">
+      
+      
+        <meta name="author" content="bowen zhu">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Microservices in Go - Golang Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#microservices-in-go" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://promacanthus.github.io/Golang-Guide/" title="Golang Guide" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Golang Guide
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Microservices in Go
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://promacanthus.github.io/Golang-Guide/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    promacanthus/Golang-Guide
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://promacanthus.github.io/Golang-Guide/" title="Golang Guide" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Golang Guide
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://promacanthus.github.io/Golang-Guide/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    promacanthus/Golang-Guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Welcome to Golang-Guide" class="md-nav__link">
+      Welcome to Golang-Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Frameworks
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Frameworks
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../常用框架/" title="框架" class="md-nav__link">
+      框架
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Microservices in Go
+      </label>
+    
+    <a href="./" title="Microservices in Go" class="md-nav__link md-nav__link--active">
+      Microservices in Go
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    框架介绍
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#go-micro" class="md-nav__link">
+    Go Micro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go-kit" class="md-nav__link">
+    Go Kit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gizmo" class="md-nav__link">
+    Gizmo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kite" class="md-nav__link">
+    Kite
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    框架对比
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    Github统计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    文档和示例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    用户和社区
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    代码质量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    编写微服务
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gommicro-greeter" class="md-nav__link">
+    GomMicro greeter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go-kit-greeter" class="md-nav__link">
+    Go Kit greeter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gizmo-greeter" class="md-nav__link">
+    Gizmo greeter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Go Web
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Go Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3-1" type="checkbox" id="nav-2-3-1">
+    
+    <label class="md-nav__link" for="nav-2-3-1">
+      HTTP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-3-1">
+        HTTP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Web/HTTP/HTTP/" title="HTTP" class="md-nav__link">
+      HTTP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Go kit
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        Go kit
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/FAQ/" title="Go-kit" class="md-nav__link">
+      Go-kit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/架构与设计/" title="架构与设计" class="md-nav__link">
+      架构与设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4-3" type="checkbox" id="nav-2-4-3">
+    
+    <label class="md-nav__link" for="nav-2-4-3">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-4-3">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/Examples/00-Endpoints(REST)/" title="REST Endpoints" class="md-nav__link">
+      REST Endpoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/Examples/01-Endpoints(gRPC)/" title="gRPC Endpoint" class="md-nav__link">
+      gRPC Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/Examples/API-Monitoring/" title="API Monitoring" class="md-nav__link">
+      API Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/Examples/Hystrix-Circuit-Breaker/" title="Hystrix Circuit Breaker" class="md-nav__link">
+      Hystrix Circuit Breaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/Examples/Logging(ELK)/" title="Logging(ELK)" class="md-nav__link">
+      Logging(ELK)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/Examples/Logging/" title="Logging" class="md-nav__link">
+      Logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/Examples/Rate-Limiting/" title="Rate Limiting" class="md-nav__link">
+      Rate Limiting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Go-kit/Examples/Service-Discovery/" title="Service Discovery" class="md-nav__link">
+      Service Discovery
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Protocol Buffers
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Protocol Buffers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/01-简介/" title="什么是Protocol Buffers" class="md-nav__link">
+      什么是Protocol Buffers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/02-proto3指南/" title="`proto3`指南" class="md-nav__link">
+      `proto3`指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/03-样式指南/" title="样式指南" class="md-nav__link">
+      样式指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/04-编码/" title="编码" class="md-nav__link">
+      编码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/05-技术/" title="技术" class="md-nav__link">
+      技术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/06-第三方插件/" title="第三方插件" class="md-nav__link">
+      第三方插件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/07-Go语言指南/" title="`Protocol Buffers`：Go语言指南" class="md-nav__link">
+      `Protocol Buffers`：Go语言指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/08-Go生成代码指南/" title="Go生成代码指南" class="md-nav__link">
+      Go生成代码指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Protocol-Buffers/09-proto3规范/" title="`proto3`规范" class="md-nav__link">
+      `proto3`规范
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      gRPC
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        gRPC
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/01-gRPC简介/" title="gRPC" class="md-nav__link">
+      gRPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/02-gRPC概念/" title="gRPC概念" class="md-nav__link">
+      gRPC概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/03-认证/" title="认证" class="md-nav__link">
+      认证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/04-错误处理和调试/" title="错误处理" class="md-nav__link">
+      错误处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/05-基准化分析法/" title="基准化分析法" class="md-nav__link">
+      基准化分析法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/06-gRPC编写格式/" title="gRPC over HTTP2" class="md-nav__link">
+      gRPC over HTTP2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/07-Golang快速入门/" title="Go 快速入门" class="md-nav__link">
+      Go 快速入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/08-Golang应用/" title="gRPC Basic - Go" class="md-nav__link">
+      gRPC Basic - Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gRPC/09-Go生成代码指南/" title="Go生成代码指南" class="md-nav__link">
+      Go生成代码指南
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      IDE
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        IDE
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      VSCode
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        VSCode
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/01-扩展程序中的设置与命令/" title="扩展程序中的设置与命令" class="md-nav__link">
+      扩展程序中的设置与命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/02-编译调试扩展程序/" title="在VSCode中编译、调试并在侧边加载扩展程序" class="md-nav__link">
+      在VSCode中编译、调试并在侧边加载扩展程序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/03-使用VSCode调试Go代码/" title="使用`VSCode`调试Go语言" class="md-nav__link">
+      使用`VSCode`调试Go语言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/04-VSCode中Go的功能/" title="VScode中Go的功能" class="md-nav__link">
+      VScode中Go的功能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/05-VSCode支持Go-Modules/" title="Go Modules" class="md-nav__link">
+      Go Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/06-扩展程序依赖的Go工具/" title="Go扩展程序依赖的Go工具" class="md-nav__link">
+      Go扩展程序依赖的Go工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/07-FAQ/" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/08-扩展程序中设置GOPATH/" title="Go 扩展程序中设置`GOPATH`" class="md-nav__link">
+      Go 扩展程序中设置`GOPATH`
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/09-保存时自动执行的功能/" title="保存时自动执行的功能" class="md-nav__link">
+      保存时自动执行的功能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/10-烟囱测试/" title="烟囱测试" class="md-nav__link">
+      烟囱测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/11.使用Go执行VScode的任务/" title="使用Go执行VSCode的任务" class="md-nav__link">
+      使用Go执行VSCode的任务
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/12-使用扩展程序最新的测试版/" title="使用扩展程程序最新的测试版" class="md-nav__link">
+      使用扩展程程序最新的测试版
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../IDE/VSCode/13-VSCode中使用Go语言服务器/" title="Go 语言服务器" class="md-nav__link">
+      Go 语言服务器
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Issues
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Issues
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Issues/FAQ/" title="错误和解决方案" class="md-nav__link">
+      错误和解决方案
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Language
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Language
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Basic
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Basic
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/00-Go工具/" title="00 Go工具" class="md-nav__link">
+      00 Go工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/00-程序结构/" title="程序结构" class="md-nav__link">
+      程序结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/01-GOPATH和工作区/" title="版本的特性：" class="md-nav__link">
+      版本的特性：
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/02-命令源码文件/" title="02 命令源码文件" class="md-nav__link">
+      02 命令源码文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/03-库源码文件/" title="03 库源码文件" class="md-nav__link">
+      03 库源码文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/04-程序实体/" title="程序实体" class="md-nav__link">
+      程序实体
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/05-数组和切片/" title="数组和切片" class="md-nav__link">
+      数组和切片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/06-链表/" title="链表" class="md-nav__link">
+      链表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/07-字典/" title="字典" class="md-nav__link">
+      字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/08-通道/" title="通道" class="md-nav__link">
+      通道
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/09-函数/" title="函数" class="md-nav__link">
+      函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/10-结构体类型/" title="结构体类型" class="md-nav__link">
+      结构体类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/11-接口类型/" title="接口类型" class="md-nav__link">
+      接口类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/12-指针/" title="指针" class="md-nav__link">
+      指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/13-语句执行规则/" title="Go语句及其执行规则" class="md-nav__link">
+      Go语句及其执行规则
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/14-流程控制语句/" title="流程控制语句" class="md-nav__link">
+      流程控制语句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/15-错误处理/" title="错误处理" class="md-nav__link">
+      错误处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/16-panic&recover&defer/" title="异常" class="md-nav__link">
+      异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/17-sync/" title="sync" class="md-nav__link">
+      sync
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/18-atomic/" title="原子操作" class="md-nav__link">
+      原子操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/19-context/" title="Context" class="md-nav__link">
+      Context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/20-Unicode/" title="Unicode" class="md-nav__link">
+      Unicode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/21-strings/" title="strings" class="md-nav__link">
+      strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/22-bytes/" title="bytes" class="md-nav__link">
+      bytes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/23-io/" title="io" class="md-nav__link">
+      io
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/24-bufio/" title="bufio" class="md-nav__link">
+      bufio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/25-os/" title="os" class="md-nav__link">
+      os
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/26.net/" title="net" class="md-nav__link">
+      net
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/Go-Modules/" title="Go Modules" class="md-nav__link">
+      Go Modules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Basic/测试规则与流程/" title="测试的基本规则与流程" class="md-nav__link">
+      测试的基本规则与流程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Library
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Library
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Library/context/" title="package context" class="md-nav__link">
+      package context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Library/flag/" title="package flag" class="md-nav__link">
+      package flag
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Library/log/" title="packages log" class="md-nav__link">
+      packages log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-4" type="checkbox" id="nav-5-2-4">
+    
+    <label class="md-nav__link" for="nav-5-2-4">
+      Io
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-4">
+        Io
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Library/io/ioutil/" title="package ioutil" class="md-nav__link">
+      package ioutil
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-5" type="checkbox" id="nav-5-2-5">
+    
+    <label class="md-nav__link" for="nav-5-2-5">
+      Log
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-5">
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Library/log/syslog/" title="package syslog" class="md-nav__link">
+      package syslog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-6" type="checkbox" id="nav-5-2-6">
+    
+    <label class="md-nav__link" for="nav-5-2-6">
+      Net
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-6">
+        Net
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Library/net/http/" title="package http" class="md-nav__link">
+      package http
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Library/net/rpc/" title="rpc" class="md-nav__link">
+      rpc
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2-7" type="checkbox" id="nav-5-2-7">
+    
+    <label class="md-nav__link" for="nav-5-2-7">
+      Os
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2-7">
+        Os
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Library/os/exec/" title="package exec" class="md-nav__link">
+      package exec
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Regexp
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Regexp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Regexp/基础/" title="正则表达式" class="md-nav__link">
+      正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Language/Regexp/常用/" title="常用" class="md-nav__link">
+      常用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    框架介绍
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#go-micro" class="md-nav__link">
+    Go Micro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go-kit" class="md-nav__link">
+    Go Kit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gizmo" class="md-nav__link">
+    Gizmo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kite" class="md-nav__link">
+    Kite
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    框架对比
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    Github统计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    文档和示例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    用户和社区
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    代码质量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    编写微服务
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gommicro-greeter" class="md-nav__link">
+    GomMicro greeter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go-kit-greeter" class="md-nav__link">
+    Go Kit greeter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gizmo-greeter" class="md-nav__link">
+    Gizmo greeter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="microservices-in-go">Microservices in Go</h1>
+<p><a href="https://medium.com/seek-blog/microservices-in-go-2fc1570f6800#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjhhNjNmZTcxZTUzMDY3NTI0Y2JiYzZhM2E1ODQ2M2IzODY0YzA3ODciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE1NzIyMjg1MTUsImF1ZCI6IjIxNjI5NjAzNTgzNC1rMWs2cWUwNjBzMnRwMmEyamFtNGxqZGNtczAwc3R0Zy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwMDcxNzY1ODE2MzQ3MjgyOTc1NiIsImVtYWlsIjoicHJvbWFjYW50aHVzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoi5pyx5Y2a5paHIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BQXVFN21EazdrbjJqZ29WcmlFbUU4R1A3ZnJEOHVmaVk0ZlduVWhoc3R5WD1zOTYtYyIsImdpdmVuX25hbWUiOiLljZrmlociLCJmYW1pbHlfbmFtZSI6IuacsSIsImlhdCI6MTU3MjIyODgxNSwiZXhwIjoxNTcyMjMyNDE1LCJqdGkiOiJjMjE2ZGFmYTI0MmVjNGM5MjJmMmNiNDhiZjQzNDgyODllNGM3M2NkIn0.ls7DvPanvP_FMw2tWVbXCb9qixJyt6zYE-cMLphP9qj2dLS7rPXW0P86ZCXy0qXOejOYpnuJGjBhyqHt4xy7oz1l520VoVHZqIuMlVMWXDoQ060RChcwCsGfZG1CJ4o_WdCn5KO9HRHPGtzGqzXo4u8qJHpZ9Lp4pHZwlMhn23sjKxopKRzPdMu5i3eP7jjeurQ8RXUHlCCLy5dG1rz8DL6LzSvf5e4KLAQwRqBuK0d9HrH4V_ho7r-eOmy34AFqjU5UEU4C1GFxgvt_Xu_xCKp0RMPgKYPpK5FX5lr0WruDfyJ4autZjHajoqeuHzrU7OYaW_U3DLDHgbib6FtqYQ">Medium原文</a>点这里。</p>
+<p>对以下四个框架进行比较：</p>
+<ul>
+<li><a href="https://micro.mu/">Go Micro</a></li>
+<li><a href="https://gokit.io/">Go Kit</a></li>
+<li><a href="https://github.com/NYTimes/gizmo">Gizmo</a></li>
+<li><a href="https://github.com/koding/kite">Kite</a></li>
+</ul>
+<h2 id="_1">框架介绍</h2>
+<h3 id="go-micro">Go Micro</h3>
+<p>最受欢迎的框架只一，网上有很多的博客、文章，还有很多使用示例。可以在Medium上关注<a href="https://medium.com/microhq">microhq</a>，来获得Go Micro中的最新更新。</p>
+<p>Go Micro是使用Go语言编写微服务的可插拔RPC框架，它开箱即用，有如下功能：</p>
+<ol>
+<li>服务发现：应用程序自动在服务发现系统中注册</li>
+<li>负载均衡：客户端侧负载均衡，用于平衡服务实例之间的请求</li>
+<li>同步通信：传输层提供请求/响应</li>
+<li>异步通信：内置发布订阅功能</li>
+<li>消息编码：基于消息的<code>Content-Type</code>标头的编码/解码</li>
+<li>RPC客户端和服务端包：利用上述功能并暴露接口以构建微服务</li>
+</ol>
+<p>Go Micro架构可以描述为如下所示的三层堆栈：</p>
+<p><img alt="images" src="/images/Go-Micro.png" /></p>
+<p>顶层由客户端-服务器模型和服务抽象组成。服务器(Server)是用于编写服务的构建块，客户端(Client)提供了向服务请求的接口。</p>
+<p>底层由以下类型的插件组成：</p>
+<ul>
+<li>代理：为异步发布/订阅通信提供消息代理的接口</li>
+<li>编解码器：用于编码/解码消息，支持的格式包括<code>json</code>，<code>bson</code>，<code>protobuf</code>，<code>msgpack</code>等</li>
+<li>注册中心：提供服务发现机制（默认为<a href="https://www.consul.io/">Consul</a>）</li>
+<li>选择器：建立在注册中心上的负载均衡抽象，允许使用诸如随机，轮循，最少连接等算法来“选择”服务</li>
+<li>传输：服务之间同步请求/响应通信的接口</li>
+</ul>
+<p>Go Micro还提供了Sidecar等功能。这就可以使用以Go以外的语言编写的服务。Sidecar提供服务注册，gRPC编码/解码和HTTP处理程序。它支持多种语言。</p>
+<h3 id="go-kit">Go Kit</h3>
+<p>Go Kit是用于在Go中构建微服务的编程工具包。与Go Micro不同，它是一个旨在导入二进制软件包的库。Go Kit遵循简单原则，例如：</p>
+<ul>
+<li>没有全局状态</li>
+<li>声明式组成</li>
+<li>显式依赖</li>
+<li>合约式接口</li>
+<li>领域驱动设计</li>
+</ul>
+<p>在Go Kit中可以找到以下软件包：</p>
+<ol>
+<li>身份验证：<code>basic</code>和<code>JWT</code></li>
+<li>数据传输：HTTP、Nats（开源消息传递系统）、gRPC等</li>
+<li>日志记录：通用接口用于结构化服务的日志记录</li>
+<li>指标监控：<a href="https://aws.amazon.com/cn/cloudwatch/">CloudWatch</a>，<a href="https://github.com/statsd/statsd">Statsd</a>，<a href="https://github.com/springside/springside4/wiki/Graphite">Graphite</a>等</li>
+<li>链路追踪： <a href="https://zipkin.io/">Zipkin</a>和<a href="https://opentracing.io/">Opentracing</a></li>
+<li>服务发现：<a href="https://www.consul.io/">Consul</a>、<a href="https://etcd.io/">Etcd</a>、<a href="https://github.com/Netflix/eureka">Eureka</a>等</li>
+<li>断路器：使用Go语言实现的<a href="https://github.com/afex/hystrix-go">Hystrix</a></li>
+</ol>
+<p>Peter Bourgon的文章和演示幻灯片是对Go Kit最好的描述之一：</p>
+<ul>
+<li><a href="https://peter.bourgon.org/go-kit/">Go kit: Go in the modern enterprise</a></li>
+<li><a href="https://github.com/peterbourgon/go-microservices">Go + microservices</a></li>
+</ul>
+<p>在“ Go + microservices”幻灯片中，可以找到使用Go Kit构建的服务体系结构的示例。为了快速参考，服务架构图如下所示：</p>
+<p><img alt="images" src="/images/Go-Kit.png" /></p>
+<h3 id="gizmo">Gizmo</h3>
+<p>Gizmo是《纽约时报》的微服务工具包。它提供了将服务和<code>pubsub</code>守护进程放在一起的软件包。它公开了以下软件包：</p>
+<ul>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/server"> server</a>：提供两种服务实现方式：</li>
+<li>简单服务（基于HTTP）</li>
+<li>RPC服务（基于gRPC）</li>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/server/kit">server/kit</a>：基于Go Kit的实验性软件包</li>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/config">config</a>：从以下位置获取配置参数的配置函数：</li>
+<li>JSON文件，</li>
+<li>Consul k/v中的JSON blob</li>
+<li>环境变量</li>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/pubsub">pubsub</a>：提供用于发布和订阅队列中数据的通用接口</li>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/pubsub/pubsubtest">pubsub/pubsubtest </a>：包含发布者和订阅者接口的测试实现</li>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/web">web</a>：暴露用于从请求查询和有效负载中解析类型的函数</li>
+</ul>
+<p><code>Pubsub</code>软件包提供了与以下队列一起使用的接口：</p>
+<ul>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/pubsub/aws">pubsub/aws</a> ：Amazon SNS/SQS</li>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/pubsub/gcp">pubsub/gcp</a> ：Google Pubsub.</li>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/pubsub/kafka">pubsub/kafka</a> ：Kafka topics</li>
+<li><a href="https://godoc.org/github.com/NYTimes/gizmo/pubsub/http">pubsub/http</a> ： publishing via HTTP</li>
+</ul>
+<p>因此，可以认为Gizmo位于Go Micro和Go Kit之间。它不是像Go Micro这样的完整“黑箱”。同时，它不像Go Kit那样原始。它提供了更高级别的构建组件，例如config和pubsub软件包。</p>
+<h3 id="kite">Kite</h3>
+<p>Kite是用于在Go中开发微服务的框架。它公开了RPC客户端和服务器程序包。创建的服务会自动在服务发现系统Kontrol中注册。 Kontrol是用Kite编写的，它本身就是Kite服务。这意味着Kite微服务在其自己的环境中运行良好。<strong>如果需要将Kite微服务连接到另一个服务发现系统，则需要自定义</strong>。这是从列表中删除Kite并决定不审查此框架的主要原因。</p>
+<h2 id="_2">框架对比</h2>
+<p>使用四个类别来比较框架：</p>
+<ul>
+<li>目标比较：基于GitHub统计</li>
+<li>文档和示例</li>
+<li>用户和社区</li>
+<li>代码质量</li>
+</ul>
+<h3 id="github">Github统计</h3>
+<p>时间：2019/10/28</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Go Micro</th>
+<th>Go Kit</th>
+<th>Gizmo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>License</td>
+<td>Apache License 2.0</td>
+<td>MIT</td>
+<td>Apache License 2.0</td>
+</tr>
+<tr>
+<td>Created</td>
+<td>Jan 2015</td>
+<td>Feb 2015</td>
+<td>Dec 2015</td>
+</tr>
+<tr>
+<td>Release</td>
+<td>60</td>
+<td>9</td>
+<td>48</td>
+</tr>
+<tr>
+<td>Author</td>
+<td>Asim  Aslam</td>
+<td>Peter Bourgon</td>
+<td>JP Robinson</td>
+</tr>
+<tr>
+<td>Stars</td>
+<td>9484</td>
+<td>15190</td>
+<td>2937</td>
+</tr>
+<tr>
+<td>Open/Closed Issues</td>
+<td>35/400</td>
+<td>56/370</td>
+<td>12/52</td>
+</tr>
+<tr>
+<td>Last Update</td>
+<td>Oct 26, 2019</td>
+<td>Oct 18, 2019</td>
+<td>Oct 14, 2019</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">文档和示例</h3>
+<p>Go Micro和Go kit 提供了一个主页，其中包含正式的文档和示例。Gizmo框架没有提供可靠的文档，唯一的正式文档是仓库中的README文件。</p>
+<p>有关Go Micro的大量信息和公告，请访问<a href="https://micro.mu/">micro.mu</a>，<a href="https://medium.com/microhq">microhq</a>和社交媒体<a href="https://twitter.com/MicroHQ">@MicroHQ</a>。</p>
+<p>如果使用Go Kit，最好的文档可在<a href="https://peter.bourgon.org/go-kit/">Peter Bourgon博客</a>中找到。我发现的最好的例子之一是在<a href="http://www.ru-rocker.com/2017/04/17/micro-services-using-go-kit-service-discovery/">ru-rocker博客</a>中。</p>
+<p>使用Gizmo，源代码提供了最佳的文档和示例。</p>
+<blockquote>
+<p>综上所述，如果您来自NodeJS领域，并希望看到类似ExpressJS的教程，您将感到失望。另一方面，这是创建自己的教程的绝佳机会。</p>
+</blockquote>
+<h3 id="_4">用户和社区</h3>
+<p>Go Kit是最流行的微服务框架，基于GitHub统计数据，它已超过1万五千颗星。它有大量的贡献者（161）和超过1600个分叉。最后，Go Kit受<a href="https://www.digitalocean.com/">DigitalOcean</a>支持。</p>
+<p>拥有9484颗星，54个贡献者和993个分叉-Go Micro位居第二。 <a href="https://www.sixt.com/">Sixt</a>是Go Micro的最大赞助商之一。</p>
+<p>Gizmo第三名。超过2937星，41个贡献者和188个分叉。由《纽约时报》支持和创建。</p>
+<h3 id="_5">代码质量</h3>
+<p>Go Kit在代码质量类别中排名第一。它具有近80％的代码覆盖率，并且具有出色的<a href="https://goreportcard.com/report/github.com/go-kit/kit">Go报告评级</a>。Gizmo也具有出色的<a href="https://goreportcard.com/report/github.com/NYTimes/gizmo">Go报告评级</a>。但是它的代码覆盖率只有46％。Go Micro不提供覆盖范围信息，但确实具有很高的<a href="https://goreportcard.com/report/github.com/micro/go-micro">Go报告评级</a>。</p>
+<blockquote>
+<p>https://goreportcard.com/ 代码质量评级网站</p>
+</blockquote>
+<h2 id="_6">编写微服务</h2>
+<p>为了更好地了解框架，创建了三个简单的微服务，如下图所示：</p>
+<p><img alt="images" src="/images/microservice-example.png" /></p>
+<p>这些服务都实现了一个业务逻辑：打招呼（greeting），当用户向服务中输入“名称”参数时，服务会发送问候语作为响应。所有服务都满足以下需求：</p>
+<ul>
+<li>服务应自行在服务发现系统中注册</li>
+<li>服务应具有运行状况检查端点</li>
+<li>服务应至少支持HTTP和gRPC传输协议</li>
+</ul>
+<p>对于喜欢阅读源代码的人，可以在这里访问<a href="https://github.com/antklim/go-microservices">仓库</a>源代码。</p>
+<h3 id="gommicro-greeter">GomMicro greeter</h3>
+<p>使用Go Micro创建服务所需要做的第一件事是定义protobuf描述。所有这三种服务都使用了相同的protobuf定义。创建了以下服务描述：</p>
+<pre><code class="protobuf">syntax = &quot;proto3&quot;;
+
+package pb;
+
+service Greeter {
+  rpc Greeting(GreetingRequest) returns (GreetingResponse) {}
+}
+
+message GreetingRequest {
+  string name = 1;
+}
+
+message GreetingResponse {
+  string greeting = 2;
+}
+</code></pre>
+
+<p>这个接口包含一个方法Greeting，它有一个请求参数(name)和一个响应参数(greeting)</p>
+<p>然后使用修改后的protoc从protobuf中生成服务接口，该<a href="https://github.com/micro/protoc-gen-micro">proto生成器</a>是Go Micro的一个分叉，并经过修改以支持该框架的某些功能。在打招呼服务中将所有这些连接在一起，此时，服务正在启动并在服务发现系统中注册，它仅支持gRPC传输协议。</p>
+<pre><code class="go">package main
+
+import (
+    &quot;log&quot;
+
+    pb &quot;github.com/antklim/go-microservices/go-micro-greeter/pb&quot;
+    &quot;github.com/micro/go-micro&quot;
+    &quot;golang.org/x/net/context&quot;
+)
+
+// Greeter implements greeter service.
+type Greeter struct{}
+
+// Greeting method implementation.
+func (g *Greeter) Greeting(ctx context.Context, in *pb.GreetingRequest, out *pb.GreetingResponse) error {
+    out.Greeting = &quot;GO-MICRO Hello &quot; + in.Name
+    return nil
+}
+
+func main() {
+    service := micro.NewService(
+        micro.Name(&quot;go-micro-srv-greeter&quot;),
+        micro.Version(&quot;latest&quot;),
+    )
+
+    service.Init()
+
+    pb.RegisterGreeterHandler(service.Server(), new(Greeter))
+
+    if err := service.Run(); err != nil {
+        log.Fatal(err)
+    }
+}
+</code></pre>
+
+<p>为了支持HTTP传输，必须添加其他模块。它将HTTP请求映射到protobuf定义的请求，并调用gRPC服务。然后，它将服务响应映射到HTTP响应，并将其响应返回给用户。</p>
+<pre><code class="go">package main
+
+import (
+    &quot;context&quot;
+    &quot;encoding/json&quot;
+    &quot;log&quot;
+    &quot;net/http&quot;
+
+    proto &quot;github.com/antklim/go-microservices/go-micro-greeter/pb&quot;
+    &quot;github.com/micro/go-micro/client&quot;
+    web &quot;github.com/micro/go-web&quot;
+)
+
+func main() {
+    service := web.NewService(
+        web.Name(&quot;go-micro-web-greeter&quot;),
+    )
+
+    service.HandleFunc(&quot;/greeting&quot;, func(w http.ResponseWriter, r *http.Request) {
+        if r.Method == &quot;GET&quot; {
+            var name string
+            vars := r.URL.Query()
+            names, exists := vars[&quot;name&quot;]
+            if !exists || len(names) != 1 {
+                name = &quot;&quot;
+            } else {
+                name = names[0]
+            }
+
+            cl := proto.NewGreeterClient(&quot;go-micro-srv-greeter&quot;, client.DefaultClient)
+            rsp, err := cl.Greeting(context.Background(), &amp;proto.GreetingRequest{Name: name})
+            if err != nil {
+                http.Error(w, err.Error(), 500)
+                return
+            }
+
+            js, err := json.Marshal(rsp)
+            if err != nil {
+                http.Error(w, err.Error(), http.StatusInternalServerError)
+                return
+            }
+
+            w.Header().Set(&quot;Content-Type&quot;, &quot;application/json&quot;)
+            w.Write(js)
+            return
+        }
+    })
+
+    if err := service.Init(); err != nil {
+        log.Fatal(err)
+    }
+
+    if err := service.Run(); err != nil {
+        log.Fatal(err)
+    }
+}
+</code></pre>
+
+<p>一方面，Go Micro在后台处理了许多事情，例如在服务发现系统中进行注册。另一方面，很难创建纯HTTP服务。</p>
+<h3 id="go-kit-greeter">Go Kit greeter</h3>
+<p>在完成Go Micro之后，继续进行Go Kit服务的实现。我花了很多时间阅读Go Kit存储库中提供的代码示例。了解端点的概念花了很多时间。下一个耗时的难题是服务发现注册中心代码。在找到一个很好的<a href="https://www.ru-rocker.com/2017/04/17/micro-services-using-go-kit-service-discovery/">例子</a>之前，我无法实现它。</p>
+<p>最后，创建了四个包用于：</p>
+<ol>
+<li>服务逻辑实现</li>
+<li>传输不可知服务端点</li>
+<li>传输特定端点（gRPC、HTTP）</li>
+<li>服务发现注册中心</li>
+</ol>
+<p>服务逻辑实现如下所示，代码没有任何依赖关系，它只是实现逻辑。</p>
+<pre><code class="go">package greeterservice
+
+// Service describe greetings service.
+type Service interface {
+    Health() bool
+    Greeting(name string) string
+}
+
+// GreeterService implementation of the Service interface.
+type GreeterService struct{}
+
+// Health implementation of the Service.
+func (GreeterService) Health() bool {
+    return true
+}
+
+// Greeting implementation of the Service.
+func (GreeterService) Greeting(name string) (greeting string) {
+    greeting = &quot;GO-KIT Hello &quot; + name
+    return
+}
+</code></pre>
+
+<p>下一段代码显示了端点定义：</p>
+<pre><code class="go">package greeterendpoint
+
+import (
+    &quot;context&quot;
+
+    &quot;github.com/go-kit/kit/log&quot;
+
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pkg/greeterservice&quot;
+    &quot;github.com/go-kit/kit/endpoint&quot;
+)
+
+//  端点集合收集打招呼服务的所有端点，它旨在用作辅助结构将所有端点收集到单个参数
+type Endpoints struct {
+    HealthEndpoint   endpoint.Endpoint // used by Consul for the healthcheck
+    GreetingEndpoint endpoint.Endpoint
+}
+
+// MakeServerEndpoints返回服务端点，并在所有提供的中间件中进行连线
+func MakeServerEndpoints(s greeterservice.Service, logger log.Logger) Endpoints {
+    var healthEndpoint endpoint.Endpoint
+    {
+        healthEndpoint = MakeHealthEndpoint(s)
+        healthEndpoint = LoggingMiddleware(log.With(logger, &quot;method&quot;, &quot;Health&quot;))(healthEndpoint)
+    }
+
+    var greetingEndpoint endpoint.Endpoint
+    {
+        greetingEndpoint = MakeGreetingEndpoint(s)
+        greetingEndpoint = LoggingMiddleware(log.With(logger, &quot;method&quot;, &quot;Greeting&quot;))(greetingEndpoint)
+    }
+
+    return Endpoints{
+        HealthEndpoint:   healthEndpoint,
+        GreetingEndpoint: greetingEndpoint,
+    }
+}
+
+//  MakeHealthEndpoint构造Health端点来包装服务
+func MakeHealthEndpoint(s greeterservice.Service) endpoint.Endpoint {
+    return func(ctx context.Context, request interface{}) (response interface{}, err error) {
+        healthy := s.Health()
+        return HealthResponse{Healthy: healthy}, nil
+    }
+}
+
+//  MakeHealthEndpoint构造Greeter端点来包装服务
+func MakeGreetingEndpoint(s greeterservice.Service) endpoint.Endpoint {
+    return func(ctx context.Context, request interface{}) (response interface{}, err error) {
+        req := request.(GreetingRequest)
+        greeting := s.Greeting(req.Name)
+        return GreetingResponse{Greeting: greeting}, nil
+    }
+}
+
+// Failer是应该由响应类型实现的接口
+// 响应编码器可以检查响应是否为Failer，如果是Failer，
+// 判断是否失败，或者是否基于错误使用单独的写入路径对响应进行编码
+type Failer interface {
+    Failed() error
+}
+
+// HealthRequest收集Health方法的请求参数
+type HealthRequest struct{}
+
+// HealthResponse收集Health方法的响应值
+type HealthResponse struct {
+    Healthy bool  `json:&quot;healthy,omitempty&quot;`
+    Err     error `json:&quot;err,omitempty&quot;`
+}
+
+// Failed实现Failer接口
+func (r HealthResponse) Failed() error { return r.Err }
+
+// GreetingRequest收集Greeting方法的请求参数
+type GreetingRequest struct {
+    Name string `json:&quot;name,omitempty&quot;`
+}
+
+// GreetingResponse收集Greeting方法的响应值
+type GreetingResponse struct {
+    Greeting string `json:&quot;greeting,omitempty&quot;`
+    Err      error  `json:&quot;err,omitempty&quot;`
+}
+
+// Failed实现Failer接口
+func (r GreetingResponse) Failed() error { return r.Err }
+</code></pre>
+
+<p>定义服务和端点后，通过不同的传输协议暴露端点。从HTTP传输开始：</p>
+<pre><code class="go">package greetertransport
+
+import (
+&quot;context&quot;
+    &quot;encoding/json&quot;
+    &quot;errors&quot;
+    &quot;net/http&quot;
+
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pkg/greeterendpoint&quot;
+    &quot;github.com/go-kit/kit/log&quot;
+    httptransport &quot;github.com/go-kit/kit/transport/http&quot;
+    &quot;github.com/gorilla/mux&quot;
+)
+
+var (
+    // 如果缺少预期的路径变量，则返回ErrBadRouting
+    ErrBadRouting = errors.New(&quot;inconsistent mapping between route and handler&quot;)
+)
+
+// NewHTTPHandler返回一个HTTP处理程序，该处理程序使一组端点在预定义路径上可用
+func NewHTTPHandler(endpoints greeterendpoint.Endpoints, logger log.Logger) http.Handler {
+    m := mux.NewRouter()
+    options := []httptransport.ServerOption{
+        httptransport.ServerErrorEncoder(encodeError),
+        httptransport.ServerErrorLogger(logger),
+    }
+
+    // GET /health                      retrieves service heath information
+    // GET /greeting?name        retrieves greeting
+
+    m.Methods(&quot;GET&quot;).Path(&quot;/health&quot;).Handler(httptransport.NewServer(
+        endpoints.HealthEndpoint,
+        DecodeHTTPHealthRequest,
+        EncodeHTTPGenericResponse,
+        options...,
+    ))
+    m.Methods(&quot;GET&quot;).Path(&quot;/greeting&quot;).Handler(httptransport.NewServer(
+        endpoints.GreetingEndpoint,
+        DecodeHTTPGreetingRequest,
+        EncodeHTTPGenericResponse,
+        options...,
+    ))
+    return m
+}
+
+// DecodeHTTPHealthRequest method.
+func DecodeHTTPHealthRequest(_ context.Context, _ *http.Request) (interface{}, error) {
+    return greeterendpoint.HealthRequest{}, nil
+}
+
+// DecodeHTTPGreetingRequest method.
+func DecodeHTTPGreetingRequest(_ context.Context, r *http.Request) (interface{}, error) {
+    vars := r.URL.Query()
+    names, exists := vars[&quot;name&quot;]
+    if !exists || len(names) != 1 {
+        return nil, ErrBadRouting
+    }
+    req := greeterendpoint.GreetingRequest{Name: names[0]}
+    return req, nil
+}
+
+func encodeError(_ context.Context, err error, w http.ResponseWriter) {
+    w.WriteHeader(err2code(err))
+    json.NewEncoder(w).Encode(errorWrapper{Error: err.Error()})
+}
+
+func err2code(err error) int {
+    switch err {
+    default:
+        return http.StatusInternalServerError
+    }
+}
+
+type errorWrapper struct {
+    Error string `json:&quot;error&quot;`
+}
+
+// EncodeHTTPGenericResponse是`transport/http.EncodeResponseFunc`，它将响应编码为JSON编码到响应编写器
+func EncodeHTTPGenericResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
+    if f, ok := response.(greeterendpoint.Failer); ok &amp;&amp; f.Failed() != nil {
+        encodeError(ctx, f.Failed(), w)
+        return nil
+    }
+    w.Header().Set(&quot;Content-Type&quot;, &quot;application/json; charset=utf-8&quot;)
+    return json.NewEncoder(w).Encode(response)
+}
+</code></pre>
+
+<p>在开始gRPC端点实现之前，不需要protobuf定义。直接复制上面Go Micro服务的protobuf定义。但是对于Go Kit，使用默认的服务生成器来创建服务接口。</p>
+<pre><code class="bash">protoc greeter.proto --go_out=plugins=grpc:.
+</code></pre>
+
+<pre><code class="go">package greetertransport
+
+import (
+    &quot;context&quot;
+
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pb&quot;
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pkg/greeterendpoint&quot;
+    &quot;github.com/go-kit/kit/log&quot;
+    grpctransport &quot;github.com/go-kit/kit/transport/grpc&quot;
+    oldcontext &quot;golang.org/x/net/context&quot;
+)
+
+type grpcServer struct {
+    greeter grpctransport.Handler
+}
+
+// NewGRPCServer使一组端点可用作gRPC GreeterServer
+func NewGRPCServer(endpoints greeterendpoint.Endpoints, logger log.Logger) pb.GreeterServer {
+    options := []grpctransport.ServerOption{
+        grpctransport.ServerErrorLogger(logger),
+    }
+
+    return &amp;grpcServer{
+        greeter: grpctransport.NewServer(
+            endpoints.GreetingEndpoint,
+            decodeGRPCGreetingRequest,
+            encodeGRPCGreetingResponse,
+            options...,
+        ),
+    }
+}
+
+//  Greeting实现GreeterService接口的方法
+func (s *grpcServer) Greeting(ctx oldcontext.Context, req *pb.GreetingRequest) (*pb.GreetingResponse, error) {
+    _, res, err := s.greeter.ServeGRPC(ctx, req)
+    if err != nil {
+        return nil, err
+    }
+    return res.(*pb.GreetingResponse), nil
+}
+
+// encodeGRPCGreetingRequest是一个`transport/grpc.DecodeRequestFunc`，它将gRPC问候请求转换为用户域问候请求
+func decodeGRPCGreetingRequest(_ context.Context, grpcReq interface{}) (interface{}, error) {
+    req := grpcReq.(*pb.GreetingRequest)
+    return greeterendpoint.GreetingRequest{Name: req.Name}, nil
+}
+
+
+// encodeGRPCGreetingResponse是`transport/grpc.EncodeResponseFunc`，它将用户域问候响应转换为gRPC问候响应
+func encodeGRPCGreetingResponse(_ context.Context, response interface{}) (interface{}, error) {
+    res := response.(greeterendpoint.GreetingResponse)
+    return &amp;pb.GreetingResponse{Greeting: res.Greeting}, nil
+}
+</code></pre>
+
+<p>最后，实现服务发现注册器：</p>
+<pre><code class="go">package greetersd
+
+import (
+    &quot;math/rand&quot;
+    &quot;os&quot;
+    &quot;strconv&quot;
+    &quot;time&quot;
+
+    &quot;github.com/go-kit/kit/log&quot;
+    &quot;github.com/go-kit/kit/sd&quot;
+    consulsd &quot;github.com/go-kit/kit/sd/consul&quot;
+    &quot;github.com/hashicorp/consul/api&quot;
+)
+
+// ConsulRegister method.
+func ConsulRegister(consulAddress string,
+    consulPort string,
+    advertiseAddress string,
+    advertisePort string) (registar sd.Registrar) {
+
+    // Logging domain.
+    var logger log.Logger
+    {
+        logger = log.NewLogfmtLogger(os.Stderr)
+        logger = log.With(logger, &quot;ts&quot;, log.DefaultTimestampUTC)
+        logger = log.With(logger, &quot;caller&quot;, log.DefaultCaller)
+    }
+
+    rand.Seed(time.Now().UTC().UnixNano())
+
+    // Service discovery domain. In this example we use Consul.
+    var client consulsd.Client
+    {
+        consulConfig := api.DefaultConfig()
+        consulConfig.Address = consulAddress + &quot;:&quot; + consulPort
+        consulClient, err := api.NewClient(consulConfig)
+        if err != nil {
+            logger.Log(&quot;err&quot;, err)
+            os.Exit(1)
+        }
+        client = consulsd.NewClient(consulClient)
+    }
+
+    check := api.AgentServiceCheck{
+        HTTP:     &quot;http://&quot; + advertiseAddress + &quot;:&quot; + advertisePort + &quot;/health&quot;,
+        Interval: &quot;10s&quot;,
+        Timeout:  &quot;1s&quot;,
+        Notes:    &quot;Basic health checks&quot;,
+    }
+
+    port, _ := strconv.Atoi(advertisePort)
+    num := rand.Intn(100) // to make service ID unique
+    asr := api.AgentServiceRegistration{
+        ID:      &quot;go-kit-srv-greeter-&quot; + strconv.Itoa(num), //unique service ID
+        Name:    &quot;go-kit-srv-greeter&quot;,
+        Address: advertiseAddress,
+        Port:    port,
+        Tags:    []string{&quot;go-kit&quot;, &quot;greeter&quot;},
+        Check:   &amp;check,
+    }
+    registar = consulsd.NewRegistrar(client, &amp;asr, logger)
+    return
+}
+</code></pre>
+
+<p>准备好所有构建块之后，我将它们连接到服务启动器中：</p>
+<pre><code class="go">package main
+
+import (
+    &quot;flag&quot;
+    &quot;fmt&quot;
+    &quot;net&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
+    &quot;os/signal&quot;
+    &quot;syscall&quot;
+    &quot;text/tabwriter&quot;
+
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pb&quot;
+    &quot;google.golang.org/grpc&quot;
+
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pkg/greeterendpoint&quot;
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pkg/greetersd&quot;
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pkg/greeterservice&quot;
+    &quot;github.com/antklim/go-microservices/go-kit-greeter/pkg/greetertransport&quot;
+
+    &quot;github.com/go-kit/kit/log&quot;
+    &quot;github.com/oklog/oklog/pkg/group&quot;
+)
+
+func main() {
+    fs := flag.NewFlagSet(&quot;greetersvc&quot;, flag.ExitOnError)
+    var (
+        debugAddr  = fs.String(&quot;debug.addr&quot;, &quot;:9100&quot;, &quot;Debug and metrics listen address&quot;)
+        consulAddr = fs.String(&quot;consul.addr&quot;, &quot;&quot;, &quot;Consul Address&quot;)
+        consulPort = fs.String(&quot;consul.port&quot;, &quot;8500&quot;, &quot;Consul Port&quot;)
+        httpAddr   = fs.String(&quot;http.addr&quot;, &quot;&quot;, &quot;HTTP Listen Address&quot;)
+        httpPort   = fs.String(&quot;http.port&quot;, &quot;9110&quot;, &quot;HTTP Listen Port&quot;)
+        grpcAddr   = fs.String(&quot;grpc-addr&quot;, &quot;:9120&quot;, &quot;gRPC listen address&quot;)
+    )
+    fs.Usage = usageFor(fs, os.Args[0]+&quot; [flags]&quot;)
+    fs.Parse(os.Args[1:])
+
+    var logger log.Logger
+    {
+        logger = log.NewLogfmtLogger(os.Stderr)
+        logger = log.With(logger, &quot;ts&quot;, log.DefaultTimestampUTC)
+        logger = log.With(logger, &quot;caller&quot;, log.DefaultCaller)
+    }
+
+    var service greeterservice.Service
+    {
+        service = greeterservice.GreeterService{}
+        service = greeterservice.LoggingMiddleware(logger)(service)
+    }
+
+    var (
+        endpoints   = greeterendpoint.MakeServerEndpoints(service, logger)
+        httpHandler = greetertransport.NewHTTPHandler(endpoints, logger)
+        registar    = greetersd.ConsulRegister(*consulAddr, *consulPort, *httpAddr, *httpPort)
+        grpcServer  = greetertransport.NewGRPCServer(endpoints, logger)
+    )
+
+    var g group.Group
+    {
+        // The debug listener mounts the http.DefaultServeMux, and serves up
+        // stuff like the Go debug and profiling routes, and so on.
+        debugListener, err := net.Listen(&quot;tcp&quot;, *debugAddr)
+        if err != nil {
+            logger.Log(&quot;transport&quot;, &quot;debug/HTTP&quot;, &quot;during&quot;, &quot;Listen&quot;, &quot;err&quot;, err)
+            os.Exit(1)
+        }
+        g.Add(func() error {
+            logger.Log(&quot;transport&quot;, &quot;debug/HTTP&quot;, &quot;addr&quot;, *debugAddr)
+            return http.Serve(debugListener, http.DefaultServeMux)
+        }, func(error) {
+            debugListener.Close()
+        })
+    }
+
+    {
+        // The service discovery registration.
+        g.Add(func() error {
+            logger.Log(&quot;transport&quot;, &quot;HTTP&quot;, &quot;addr&quot;, *httpAddr, &quot;port&quot;, *httpPort)
+            registar.Register()
+            return http.ListenAndServe(&quot;:&quot;+*httpPort, httpHandler)
+        }, func(error) {
+            registar.Deregister()
+        })
+    }
+    {
+        // The gRPC listener mounts the Go kit gRPC server we created.
+        grpcListener, err := net.Listen(&quot;tcp&quot;, *grpcAddr)
+        if err != nil {
+            logger.Log(&quot;transport&quot;, &quot;gRPC&quot;, &quot;during&quot;, &quot;Listen&quot;, &quot;err&quot;, err)
+            os.Exit(1)
+        }
+        g.Add(func() error {
+            logger.Log(&quot;transport&quot;, &quot;gRPC&quot;, &quot;addr&quot;, *grpcAddr)
+            baseServer := grpc.NewServer()
+            pb.RegisterGreeterServer(baseServer, grpcServer)
+            return baseServer.Serve(grpcListener)
+        }, func(error) {
+            grpcListener.Close()
+        })
+    }
+
+    {
+        // This function just sits and waits for ctrl-C.
+        cancelInterrupt := make(chan struct{})
+        g.Add(func() error {
+            c := make(chan os.Signal, 1)
+            signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+            select {
+            case sig := &lt;-c:
+                return fmt.Errorf(&quot;received signal %s&quot;, sig)
+            case &lt;-cancelInterrupt:
+                return nil
+            }
+        }, func(error) {
+            close(cancelInterrupt)
+        })
+    }
+    logger.Log(&quot;exit&quot;, g.Run())
+}
+
+func usageFor(fs *flag.FlagSet, short string) func() {
+    return func() {
+        fmt.Fprintf(os.Stderr, &quot;USAGE\n&quot;)
+        fmt.Fprintf(os.Stderr, &quot;  %s\n&quot;, short)
+        fmt.Fprintf(os.Stderr, &quot;\n&quot;)
+        fmt.Fprintf(os.Stderr, &quot;FLAGS\n&quot;)
+        w := tabwriter.NewWriter(os.Stderr, 0, 2, 2, ' ', 0)
+        fs.VisitAll(func(f *flag.Flag) {
+            fmt.Fprintf(w, &quot;\t-%s %s\t%s\n&quot;, f.Name, f.DefValue, f.Usage)
+        })
+        w.Flush()
+        fmt.Fprintf(os.Stderr, &quot;\n&quot;)
+    }
+}
+</code></pre>
+
+<p>在几个地方使用了日志记录中间件。它使我们能够将日志记录逻辑与主要服务/端点工作流分离。</p>
+<pre><code class="go">package greeterservice
+
+import (
+    &quot;time&quot;
+
+    &quot;github.com/go-kit/kit/log&quot;
+)
+
+// ServiceMiddleware描述了服务中间件
+type ServiceMiddleware func(Service) Service
+
+// LoggingMiddleware将记录器作为依赖项，并返回ServiceMiddleware。
+func LoggingMiddleware(logger log.Logger) ServiceMiddleware {
+    return func(next Service) Service {
+        return loggingMiddleware{next, logger}
+    }
+}
+
+type loggingMiddleware struct {
+    Service
+    logger log.Logger
+}
+
+func (m loggingMiddleware) Health() (healthy bool) {
+    defer func(begin time.Time) {
+        m.logger.Log(
+            &quot;method&quot;, &quot;Health&quot;,
+            &quot;healthy&quot;, healthy,
+            &quot;took&quot;, time.Since(begin),
+        )
+    }(time.Now())
+    healthy = m.Service.Health()
+    return
+}
+
+func (m loggingMiddleware) Greeting(name string) (greeting string) {
+    defer func(begin time.Time) {
+        m.logger.Log(
+            &quot;method&quot;, &quot;Greeting&quot;,
+            &quot;name&quot;, name,
+            &quot;greeting&quot;, greeting,
+            &quot;took&quot;, time.Since(begin),
+        )
+    }(time.Now())
+    greeting = m.Service.Greeting(name)
+    return
+}
+</code></pre>
+
+<pre><code class="go">package greeterendpoint
+
+import (
+    &quot;context&quot;
+    &quot;time&quot;
+
+    &quot;github.com/go-kit/kit/endpoint&quot;
+    &quot;github.com/go-kit/kit/log&quot;
+)
+
+// LoggingMiddleware返回一个端点中间件，该中间件记录每次调用的持续时间以及所产生的错误（如果有）
+func LoggingMiddleware(logger log.Logger) endpoint.Middleware {
+    return func(next endpoint.Endpoint) endpoint.Endpoint {
+        return func(ctx context.Context, request interface{}) (response interface{}, err error) {
+            defer func(begin time.Time) {
+                logger.Log(&quot;transport_error&quot;, err, &quot;took&quot;, time.Since(begin))
+            }(time.Now())
+            return next(ctx, request)
+        }
+    }
+}
+</code></pre>
+
+<h3 id="gizmo-greeter">Gizmo greeter</h3>
+<p>以与Go Kit类似的方式创建了Gizmo服务。为服务，端点，传输和服务发现注册器定义了四个包。服务实现和服务发现系统注册中心与Go Kit服务共享相同的代码。但是端点定义和传输实现必须根据Gizmo的功能来完成。</p>
+<pre><code class="go">package greeterendpoint
+
+import (
+    &quot;net/http&quot;
+
+    ocontext &quot;golang.org/x/net/context&quot;
+
+    &quot;github.com/NYTimes/gizmo/server&quot;
+    &quot;github.com/antklim/go-microservices/gizmo-greeter/pkg/greeterservice&quot;
+)
+
+// Endpoints collects all of the endpoints that compose a greeter service.
+type Endpoints struct {
+    HealthEndpoint   server.JSONContextEndpoint
+    GreetingEndpoint server.JSONContextEndpoint
+}
+
+// MakeServerEndpoints returns service Endoints
+func MakeServerEndpoints(s greeterservice.Service) Endpoints {
+    healthEndpoint := MakeHealthEndpoint(s)
+    greetingEndpoint := MakeGreetingEndpoint(s)
+
+    return Endpoints{
+        HealthEndpoint:   healthEndpoint,
+        GreetingEndpoint: greetingEndpoint,
+    }
+}
+
+// MakeHealthEndpoint constructs a Health endpoint.
+func MakeHealthEndpoint(s greeterservice.Service) server.JSONContextEndpoint {
+    return func(ctx ocontext.Context, r *http.Request) (int, interface{}, error) {
+        healthy := s.Health()
+        return http.StatusOK, HealthResponse{Healthy: healthy}, nil
+    }
+}
+
+// MakeGreetingEndpoint constructs a Greeting endpoint.
+func MakeGreetingEndpoint(s greeterservice.Service) server.JSONContextEndpoint {
+    return func(ctx ocontext.Context, r *http.Request) (int, interface{}, error) {
+        vars := r.URL.Query()
+        names, exists := vars[&quot;name&quot;]
+        if !exists || len(names) != 1 {
+            return http.StatusBadRequest, errorResponse{Error: &quot;query parameter 'name' required&quot;}, nil
+        }
+        greeting := s.Greeting(names[0])
+        return http.StatusOK, GreetingResponse{Greeting: greeting}, nil
+    }
+}
+
+// HealthRequest collects the request parameters for the Health method.
+type HealthRequest struct{}
+
+// HealthResponse collects the response values for the Health method.
+type HealthResponse struct {
+    Healthy bool `json:&quot;healthy,omitempty&quot;`
+}
+
+// GreetingRequest collects the request parameters for the Greeting method.
+type GreetingRequest struct {
+    Name string `json:&quot;name,omitempty&quot;`
+}
+
+// GreetingResponse collects the response values for the Greeting method.
+type GreetingResponse struct {
+    Greeting string `json:&quot;greeting,omitempty&quot;`
+}
+
+type errorResponse struct {
+    Error string `json:&quot;error&quot;`
+}
+</code></pre>
+
+<p>如上所示，该代码段类似于Go Kit。主要区别在于应返回的接口类型：</p>
+<pre><code class="go">package greetertransport
+
+import (
+    &quot;context&quot;
+
+    &quot;github.com/NYTimes/gizmo/server&quot;
+    &quot;google.golang.org/grpc&quot;
+
+    &quot;errors&quot;
+    &quot;net/http&quot;
+
+    &quot;github.com/NYTimes/gziphandler&quot;
+    pb &quot;github.com/antklim/go-microservices/gizmo-greeter/pb&quot;
+    &quot;github.com/antklim/go-microservices/gizmo-greeter/pkg/greeterendpoint&quot;
+    &quot;github.com/sirupsen/logrus&quot;
+)
+
+type (
+    // TService will implement server.RPCService and handle all requests to the server.
+    TService struct {
+        Endpoints greeterendpoint.Endpoints
+    }
+
+    // Config is a struct to contain all the needed
+    // configuration for our JSONService.
+    Config struct {
+        Server *server.Config
+    }
+)
+
+// NewTService will instantiate a RPCService with the given configuration.
+func NewTService(cfg *Config, endpoints greeterendpoint.Endpoints) *TService {
+    return &amp;TService{Endpoints: endpoints}
+}
+
+// Prefix returns the string prefix used for all endpoints within this service.
+func (s *TService) Prefix() string {
+    return &quot;&quot;
+}
+
+// Service provides the TService with a description of the service to serve and
+// the implementation.
+func (s *TService) Service() (*grpc.ServiceDesc, interface{}) {
+    return &amp;pb.Greeter_serviceDesc, s
+}
+
+// Middleware provides an http.Handler hook wrapped around all requests.
+// In this implementation, we're using a GzipHandler middleware to
+// compress our responses.
+func (s *TService) Middleware(h http.Handler) http.Handler {
+    return gziphandler.GzipHandler(h)
+}
+
+// ContextMiddleware provides a server.ContextHAndler hook wrapped around all
+// requests. This could be handy if you need to decorate the request context.
+func (s *TService) ContextMiddleware(h server.ContextHandler) server.ContextHandler {
+    return h
+}
+
+// JSONMiddleware provides a JSONEndpoint hook wrapped around all requests.
+// In this implementation, we're using it to provide application logging and to check errors
+// and provide generic responses.
+func (s *TService) JSONMiddleware(j server.JSONContextEndpoint) server.JSONContextEndpoint {
+    return func(ctx context.Context, r *http.Request) (int, interface{}, error) {
+
+        status, res, err := j(ctx, r)
+        if err != nil {
+            server.LogWithFields(r).WithFields(logrus.Fields{
+                &quot;error&quot;: err,
+            }).Error(&quot;problems with serving request&quot;)
+            return http.StatusServiceUnavailable, nil, errors.New(&quot;sorry, this service is unavailable&quot;)
+        }
+
+        server.LogWithFields(r).Info(&quot;success!&quot;)
+        return status, res, nil
+    }
+}
+
+// ContextEndpoints may be needed if your server has any non-RPC-able
+// endpoints. In this case, we have none but still need this method to
+// satisfy the server.RPCService interface.
+func (s *TService) ContextEndpoints() map[string]map[string]server.ContextHandlerFunc {
+    return map[string]map[string]server.ContextHandlerFunc{}
+}
+
+// JSONEndpoints is a listing of all endpoints available in the TService.
+func (s *TService) JSONEndpoints() map[string]map[string]server.JSONContextEndpoint {
+    return map[string]map[string]server.JSONContextEndpoint{
+        &quot;/health&quot;: map[string]server.JSONContextEndpoint{
+            &quot;GET&quot;: s.Endpoints.HealthEndpoint,
+        },
+        &quot;/greeting&quot;: map[string]server.JSONContextEndpoint{
+            &quot;GET&quot;: s.Endpoints.GreetingEndpoint,
+        },
+    }
+}
+</code></pre>
+
+<pre><code class="go">package greetertransport
+
+import (
+    pb &quot;github.com/antklim/go-microservices/gizmo-greeter/pb&quot;
+    ocontext &quot;golang.org/x/net/context&quot;
+)
+
+// Greeting implementation of the gRPC service.
+func (s *TService) Greeting(ctx ocontext.Context, r *pb.GreetingRequest) (*pb.GreetingResponse, error) {
+    return &amp;pb.GreetingResponse{Greeting: &quot;Hola Gizmo RPC &quot; + r.Name}, nil
+}
+</code></pre>
+
+<p>Go Kit和Gizmo之间的明显区别在于传输方式。 Gizmo提供了几种可以利用的服务类型。要做的就是将HTTP路径映射到端点定义。低级HTTP请求/响应处理由Gizmo处理。</p>
+<h2 id="_7">总结</h2>
+<p>Go Micro是启动微服务系统的最快方法。框架提供了许多功能。因此，无需重新发明轮子。但是，这种舒适性和速度会牺牲灵活性。更改或更新系统部件并不像Go Kit那样容易。并且将gRPC强制为一等的通信类型。</p>
+<p>可能需要一些时间来熟悉Go Kit。它需要具备Go语言特性的丰富知识和软件架构方面的经验。另一方面，没有框架限制。所有部件均可独立更改和更新。</p>
+<p>Gizmo位于Go Micro和Go Kit之间。它提供了一些更高级别的抽象，例如Service包。但是缺少文档和示例，这意味着不得不通读源代码以了解不同服务类型的工作方式。使用Gizmo比使用Go Kit容易。但是它不像Go Micro那样流畅。</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../常用框架/" title="框架" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                框架
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Go-Web/HTTP/HTTP/" title="HTTP" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                HTTP
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
