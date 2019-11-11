@@ -6,7 +6,7 @@ RPC框架的目标就是让**远程服务调用更加简单、透明**，RPC框�
 
 RPC框架的调用原理图如下所示：
 
-![image](/docs/images/RPC.png)https://github.com/Promacanthus/Golang-Guide/raw/master/docs/images/
+![image](/docs/images/RPC.png)../images/
 
 ## 主流的RPC框架
 
@@ -39,7 +39,7 @@ RPC框架的调用原理图如下所示：
 
 gRPC的调用示例如下所示：
 
-![image](/docs/images/landing-2.svg)https://github.com/Promacanthus/Golang-Guide/raw/master/docs/images/
+![image](/docs/images/landing-2.svg)../images/
 
 gRPC客户端和服务端可以在各种环境中相互运行和通信（从Google内部的服务器到桌面应用），并且可以使用任何gRPC支持的语言编写。因此，可以使用Go，Python或Ruby轻松创建gRPC客户端与使用Java编写的gRPC服务端通信。此外，最新的Google API将具有gRPC版本的接口，可以轻松地在编写的应用程序中构建Google提供的功能和服务。
 

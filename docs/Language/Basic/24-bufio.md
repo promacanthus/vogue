@@ -66,7 +66,7 @@ bufio包提供了两个用于初始化Reader值的函数：
 
 缓冲区的压缩过程，如下图所示：
 
-![images](https://github.com/Promacanthus/Golang-Guide/raw/master/docs/images/compression.png)
+![images](../images/compression.png)
 
 实际上，fill方法只要在开始时发现其所属值的已读计数大于0，就会对缓冲区进行一次压缩，之后，如果缓冲区中还有可写的位置，那么该方法就会对其进行填充。
 
