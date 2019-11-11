@@ -99,7 +99,7 @@ func Socket(domain, typ, proto int) (fd int, err error)
     - 当两个参数分别为`syscall.AF_INET`和`syscall.SOCK_DGRAM`的时候，内核程序会选择UDP作为协议
     -  当两个参数分别为`syscall.AF_INET6`和`syscall.SOCK_STREAM`的时候，内核程序会选择TCP作为协议
 
-![images](../images/syscall-socket.png)
+![images](../../images/syscall-socket.png)
 
 在使用net包中的高层次API的时候，前两个参数（domain和typ）也不需要给定，只需要把前面洛克的那些字符串字面量的其中一个，作为network参数的值就好了。
 
