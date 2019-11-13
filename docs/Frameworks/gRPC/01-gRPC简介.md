@@ -1,4 +1,4 @@
-# gRPC
+# 01-gRPC简介
 
 ## RPC框架原理
 
@@ -6,18 +6,15 @@ RPC框架的目标就是让**远程服务调用更加简单、透明**，RPC框�
 
 RPC框架的调用原理图如下所示：
 
-![image](/docs/images/RPC.png)../images/
+![image](../../images/RPC.png)
 
 ## 主流的RPC框架
 
 业界主流的RPC框架整体上分为三类：
 
-1. 支持**多语言**的RPC框架:
-   1. Google的**gRPC**
-   2. Apache（Facebook）的**Thrift**
-2. 只支持特定语言的RPC框架:新浪微博的**Motan**
-3. 支持**服务治理**等服务化特性的分布式服务框架，其底层内核仍然是RPC框架:阿里的
-**Dubbo**
+1. 支持**多语言**的RPC框架：Google的**gRPC**和Apache（Facebook）的**Thrift**
+2. 只支持特定语言的RPC框架：新浪微博的**Motan**
+3. 支持**服务治理**等服务化特性的分布式服务框架，其底层内核仍然是RPC框架：阿里的**Dubbo**
 
 随着微服务的发展，基于语言中立性原则构建微服务，逐渐成为一种主流模式，例如:
 
@@ -30,7 +27,7 @@ RPC框架的调用原理图如下所示：
 
 ## gRPC简介
 
-本文档介绍gRPC和protocol buffers，gRPC可以使用protocol buffers作为其接口定义语言（Interface Definition Language,IDL）和其基础消息交换格式。
+本文档介绍gRPC和protocol buffers，gRPC可以使用protocol buffers作为其接口定义语言（Interface Definition Language，IDL）和其基础消息交换格式。
 
 在gRPC中，客户端应用程序可以直接调用不同计算机上的应用程序中的方法，就像它是本地对象一样，可以更轻松地创建分布式应用程序和服务。与许多RPC系统一样，gRPC**基于定义服务的思想**，指定可以使用其参数和返回类型的远程调用方法。
 
@@ -39,7 +36,7 @@ RPC框架的调用原理图如下所示：
 
 gRPC的调用示例如下所示：
 
-![image](/docs/images/landing-2.svg)../images/
+![image](../../images/landing-2.svg)
 
 gRPC客户端和服务端可以在各种环境中相互运行和通信（从Google内部的服务器到桌面应用），并且可以使用任何gRPC支持的语言编写。因此，可以使用Go，Python或Ruby轻松创建gRPC客户端与使用Java编写的gRPC服务端通信。此外，最新的Google API将具有gRPC版本的接口，可以轻松地在编写的应用程序中构建Google提供的功能和服务。
 

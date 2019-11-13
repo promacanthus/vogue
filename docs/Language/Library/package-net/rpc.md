@@ -1,4 +1,4 @@
-# rpc
+# package rpc
 
 ```go
 import "net/rpc"

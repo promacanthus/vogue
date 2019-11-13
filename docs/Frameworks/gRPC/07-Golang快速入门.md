@@ -1,4 +1,4 @@
-# Go 快速入门
+# 07-Golang快速入门
 
 本指南以简单的工作示例为您介绍Go中的gRPC。
 
@@ -25,7 +25,7 @@ go get -u google.golang.org/grpc
 
 ### 安装protocol buffers v3
 
-安装用于生成gRPC服务代码的protoc编译器。最简单的方法是从[此处](https//github.com/google/protobuf/releases)下载适用于您的平台的预编译二进制文件（`protoc-<version>-<platform>.zip`）：
+安装用于生成gRPC服务代码的protoc编译器。最简单的方法是从[此处](https://github.com/google/protobuf/releases)下载适用于您的平台的预编译二进制文件（`protoc-<version>-<platform>.zip`）：
 
 1. 解压缩此文件
 2. 更新环境变量PATH以包含protoc二进制文件的路径
@@ -41,7 +41,7 @@ export PATH=$PATH:/opt/protoc/bin
 go get -u github.com/golang/protobuf/protoc-gen-go
 ```
 
-编译器插件`protoc-gen-go`将安装在`$GOBIN`中，默认为`$GOPATH/bin`,它必须在你的`$PATH`中，这样protocol的编译器`protoc`才能找到它。
+protoc编译器插件`protoc-gen-go`将安装在`$GOBIN`中，默认为`$GOPATH/bin`,它必须在你的`$PATH`中，这样protocol的编译器`protoc`才能找到它。
 
 ```bash
 # Golang environment
@@ -88,7 +88,7 @@ $ go run greeter_client/main.go
 
 ## 更新gRPC服务端
 
-现在让我们看看如何使用其他方法更新应用程序中服务端的代码以供客户端调用。我们的gRPC服务是使用protocol buffers定义的；可以在[gRPC简介](/gRPC/01-gRPC简介.md)和[gRPC基础:Go](https://grpc.io/docs/tutorials/basic/go/)中找到更多关于如何在`.proto`文件中定义服务的知识。现在需要知道的是，服务端和客户端是stub都有一个`SayHello` RPC方法，该方法从客户端获取`HelloRequest`参数并从服务器返回`HelloReply`，此方法定义如下：
+现在让我们看看如何使用其他方法更新应用程序中服务端的代码以供客户端调用。我们的gRPC服务是使用protocol buffers定义的；可以在[gRPC简介](../gRPC/01-gRPC简介.md)和[gRPC基础:Go](https://grpc.io/docs/tutorials/basic/go/)中找到更多关于如何在`.proto`文件中定义服务的知识。现在需要知道的是，服务端和客户端的stub都有一个`SayHello` RPC方法，该方法从客户端获取`HelloRequest`参数并从服务器返回`HelloReply`，此方法定义如下：
 
 ```go
 // The greeting service definition.

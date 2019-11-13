@@ -1,14 +1,14 @@
-# gRPC Basic - Go
+# 08-Golang应用
 
 本教程提供了一个基本对Go程序员的指导关于如何使用gRPC。
 
 通过练习这个例子，可以学习到如下知识：
 
-1. 在`.proto`文件中定义服务。
-2. 使用`protocol buffers`编译器生成服务端和客户端代码。
-3. 使用Go gRPC API为你的服务编写一个简单的客户端和服务端。
+1. 在`.proto`文件中定义服务
+2. 使用`protocol buffers`编译器生成服务端和客户端代码
+3. 使用Go gRPC API为你的服务编写一个简单的客户端和服务端
 
-假定已阅读[概述](https://grpc.io/docs/)并熟悉[`protocol buffers`](https://developers.google.com/protocol-buffers/docs/overview)。请注意，本教程中的示例使用`protocol buffers`的`proto3`版本：可以在[proto3语言指南](https://developers.google.com/protocol-buffers/docs/proto3)和[Go代码生成指南](https://developers.google.com/protocol-buffers/docs/reference/go-generated)中找到更多信息。
+假定已阅读[概述](../gRPC/01-gRPC简介.md)并熟悉[`protocol buffers`](../Protocol-Buffers/01-Protocol-Buffers简介.md)。请注意，本教程中的示例使用`protocol buffers`的`proto3`版本：可以在[proto3语言指南](../Protocol-Buffers/02-proto3指南.md)和[Go代码生成指南](../gRPC/09-Go生成代码指南.md)中找到更多信息。
 
 ## 为何使用gRPC
 
@@ -30,7 +30,7 @@ go get google.golang.org/grpc
 cd $GOPATH/src/google.golang.org/grpc/examples/route_guide
 ```
 
-还应该安装相关工具来生成服务端和客户端接口代码，如果还没有准备好，请按照[Go快速入门指南](/gRPC/07-Golang快速入门.md)中的设置说明进行操作。
+还应该安装相关工具来生成服务端和客户端接口代码，如果还没有准备好，请按照[Go快速入门指南](../gRPC/07-Golang快速入门.md)中的设置说明进行操作。
 
 ## 定义服务
 
@@ -40,7 +40,7 @@ cd $GOPATH/src/google.golang.org/grpc/examples/route_guide
 2. 方法请求类型
 3. 方法响应的类型
 
-完整的[`.proto`文件](/gRPC/route_guide.proto)在这里。
+完整的[`.proto`文件](../gRPC/route_guide.proto)在这里。
 
 定义一个服务需要在`.proto`文件中指定服务的名字：
 
@@ -54,33 +54,34 @@ service RouteGuide {
 
 - **简单RPC**：客户端使用`stub`向服务端发送请求然后等待响应返回，就像普通的方法调用：
 
-  ```go
-  // 获得给定位置的特征。
-  rpc GetFeature(Point) returns (Feature) {}
-  ```
+```go
+// 获得给定位置的特征。
+rpc GetFeature(Point) returns (Feature) {}
+```
 
 - **服务端侧流数据RPC**：客户端向服务端发送单个请求并获取返回流以读取消息序列。客户端从返回的流中读取，直到没有更多消息。正如在示例中所写的那样，将`stream`关键字放在**响应类型**之前来指定服务器端流方法。
 
-  ```go
-  // 获得给定Rectangle中可用的特征。
-  // 得到的结果是流式传输而不是一次返回（例如，在响应消息中有重复字段），
-  // 因为rectangle可能覆盖很大面积并且包含大量的特征。
-  rpc ListFeatures(Rectangle) returns (stream Feature) {}
-  ```
+```go
+// 获得给定Rectangle中可用的特征。
+// 得到的结果是流式传输而不是一次返回（例如，在响应消息中有重复字段），
+// 因为rectangle可能覆盖很大面积并且包含大量的特征。
+rpc ListFeatures(Rectangle) returns (stream Feature) {}
+```
 
 - **客户端侧流数据RPC**：客户端多次使用提供的流写入一系列消息并将它们发送到服务端。一旦客户端写完消息，它就等待服务端全部读取并返回响应的响应。通过在**请求类型**之前放置`stream`关键字来指定客户端流方法。
 
-  ```go
-  // 接受正在遍历的路径上的Points消息类型的流，在遍历完成时返回RouteSummary。
-  rpc RecordRoute(stream Point) returns (RouteSummary) {}
-  ```
+```go
+// 接受正在遍历的路径上的Points消息类型的流，在遍历完成时返回RouteSummary。
+rpc RecordRoute(stream Point) returns (RouteSummary) {}
+```
 
 - **双向流数据RPC**：双方使用读写流发送一系列消息，这两个流独立运行，因此客户端和服务端可以按照自己喜欢的顺序进行读写。（例如，服务端可以在写入响应之前等待接收所有客户端消息，或者它可以交替地读取消息然后写入响应消息，或者其他一些读写组合）。每个流中的消息顺序都能得到保证。可以通过在请求和响应之前放置`stream`关键字来指定此类方法。
 
-  ```go
-  // 接受在遍历路径时发送的RouteNotes消息类型的流，同时接收其他RouteNotes消息类型的消息（例如，来自其他用户）。
-  rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
-  ```
+```go
+// 接受在遍历路径时发送的RouteNotes消息类型的流，
+// 同时接收其他RouteNotes消息类型的消息（例如，来自其他用户）。
+rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+```
 
 `.proto`文件还包含服务方法中使用的所有请求和响应类型的`protocol buffers`消息类型定义，例如，这里是Point消息类型：
 
@@ -93,7 +94,7 @@ message Point {
 
 ## 生成客户端和服务端代码
 
-第二步，使用`protoc`(`protocol buffers`的编译器)和特定的`gRPC-GO`插件(`protoc-gen-go`)，根据`.proto`文件中定义的服务生成gRPC客户端和服务端接口。这与[快速入门](/gRPC/07-Golang快速入门)中的操作一样。
+第二步，使用`protoc`(`protocol buffers`的编译器)和特定的`gRPC-GO`插件(`protoc-gen-go`)，根据`.proto`文件中定义的服务生成gRPC客户端和服务端接口。这与[快速入门](../gRPC/07-Golang快速入门)中的操作一样。
 
 在`route_guide`的示例目录中运行如下命令：
 
@@ -113,7 +114,7 @@ route_guide.pb.go文件包含：
 
 ## 创建服务端
 
-首先创建`RouteGuide`服务端。如果只对创建gRPC客户端感兴趣，可以跳过本节直接阅读[创建客户端](##创建客户端)。
+首先创建`RouteGuide`服务端。如果只对创建gRPC客户端感兴趣，可以跳过本节直接阅读创建客户端。
 
 要使`RouteGuide`服务能够正常提供它的服务，有两个部分需要完成：
 
@@ -348,7 +349,7 @@ log.Println(feature)
 
 #### 服务端侧流数据RPC
 
-这是调用服务端流方法`ListFeatures()`的地方，该方法返回地理`Feature`流。如果已经阅读过[创建服务端](##创建服务端)，其中一些部分可能看起来非常熟悉：流数据RPC在服务端和客户端之间都以类似的方式实现。
+这是调用服务端流方法`ListFeatures()`的地方，该方法返回地理`Feature`流。如果已经阅读过创建服务端，其中一些部分可能看起来非常熟悉：流数据RPC在服务端和客户端之间都以类似的方式实现。
 
 ```go
 rect := &pb.Rectangle{ ... }  // initialize a pb.Rectangle
