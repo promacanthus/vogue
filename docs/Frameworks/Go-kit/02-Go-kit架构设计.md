@@ -1,6 +1,6 @@
-# 架构与设计
+# 02-Go-kit架构设计
 
-## 简介--了解Go kit核心概念
+## 简介：Go kit核心概念
 
 如果之前使用的是MVC样式框架，如：
 
@@ -18,7 +18,7 @@
 
 这可能还会有调整，但是一旦懂了这些概念，便会发现Go kit的设计非常适合现代软件设计：微服务和所谓的优雅的单体架构。
 
-## 传输
+### 传输
 
 传输域绑定到HTTP或gRPC之类的具体传输方式上，在微服务可能支持一个或者多个传输方式的世界中，这是非常强大的。可以在单个微服务中支持旧版的HTTP API和新版的RPC服务。
 
@@ -33,21 +33,21 @@ r.Methods("POST").Path("/profiles/").Handler(httptransport.NewServer(
 ))
 ```
 
-### 支持的传输协议
+#### 支持的传输协议
 
 Go kit附带了对HTTP，[gRPC](http://www.grpc.io/)，[Thrift](https://thrift.apache.org/)和[net/rpc](https://golang.org/pkg/net/rpc/)的支持。添加对新传输的支持很简单；如果需要的东西还没有提供，就提出一个[issue](https://github.com/go-kit/kit/issues/new)。
 
-## 端点
+### 端点
 
 端点就像是控制器上的处理程序，它是安全且抗逻辑脆弱性的。如果实现了两种传输（HTTP和gRPC），那么可能有两种方法将请求发送到同一个端点。
 
-## 服务
+### 服务
 
 服务是实现所有业务逻辑的地方，服务通常将多个端点粘合在一起。在Go kit中，服务通常被建模为接口（interface），并且这些接口的实现包含业务逻辑。
 
 Go kit的服务应该努力遵守“[清洁架构](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)”或者“[六角架构](https://medium.com/@BertilMuth/implementing-a-hexagonal-architecture-bcfbe0d63622)”，也就是说，业务逻辑应该不了解端点或传输域的概念，服务不应该知道HTTP标头或gRPC错误代码。
 
-## 中间件
+### 中间件
 
 Go kit试图通过使用中间件（修饰器）模式来严格分离关注点。中间件可以包装端点或服务以添加功能，例如日志记录、速率限制、负载均衡或分布式追踪。在端点或服务周围链接多个中间件是很常见的。
 
@@ -153,7 +153,7 @@ Go kit附带了对现代监控系统（如[Prometheus](https://prometheus.io/)�
 
 ## Panics
 
-运行时恐慌表示程序员编码错误，并发出错误的程序状态信号。 不应将它们视为错误或`ersatz`异常。 通常，不应明确地从恐慌中恢复：应该允许它们使程序或处理程序goroutine崩溃，并允许服务将中断的响应返回给调用客户端。 可观察性堆栈应在出现这些问题时发出提醒，然后应尽快修复去它们。
+运行时恐慌表示程序员编码错误，并发出错误的程序状态信号。 不应将它们视为错误或`ersatz`异常。 通常，不应明确地从恐慌中恢复：应该允许它们使程序或处理程序goroutine崩溃，并允许服务将中断的响应返回给调用客户端。 可观察性堆栈应在出现这些问题时发出提醒，然后应尽快修复它们。
 
 话虽如此，如果需要处理异常，最好的策略可能是使用执行恢复的传输层的特定中间件包装具体的传输协议。例如，使用HTTP：
 
@@ -166,7 +166,7 @@ h = newRecoveringMiddleware(h, ...)
 
 ## 持久性：如何使用数据库和数据存储
 
-访问数据库通常是核心业务逻辑的一部分。因此，包含一个`* sql.DB`指针在服务的具体实现中。
+访问数据库通常是核心业务逻辑的一部分。因此，包含一个`*sql.DB`指针在服务的具体实现中。
 
 ```go
 type MyService struct {
@@ -200,4 +200,4 @@ func (s *databaseStore) Select(id string) (Profile, error) { /* ... */ }
 func (s *databaseStore) Delete(id string) error            { /* ... */ }
 ```
 
-在这种情况下，在具体的实现中包含一个store，而不是一个`* sql.DB`。
+在这种情况下，在具体的实现中包含一个store，而不是一个`*sql.DB`。
