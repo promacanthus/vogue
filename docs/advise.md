@@ -1,5 +1,7 @@
 # Advise
 
+![images](images/Go-BB_cover.jpg)
+
 ## 手动置顶
 
 这个[仓库](https://awesome-go.com/)必须知道，精选的Go框架，库和软件。
