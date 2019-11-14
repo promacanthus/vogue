@@ -76,10 +76,10 @@ gRPC服务在`.proto`文件中定义，该文件用于生成相应的`.pb.go`文
 
 ```bash
 # 在第一个命令行终端
-$ go run greeter_server/main.go
+go run greeter_server/main.go
 
 # 在第二个命令行终端
-$ go run greeter_client/main.go
+go run greeter_client/main.go
 ```
 
 如果一切顺利的话，将会在运行客户端的命令行终端中看到输出信息：`Greeting: Hello World`。
@@ -94,7 +94,7 @@ $ go run greeter_client/main.go
 // The greeting service definition.
 service Greeter {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc SayHello (HelloRequest) returns (HelloReply) ;
 }
 
 // The request message containing the user's name.
@@ -116,9 +116,9 @@ message HelloReply {
 // The greeting service definition.
 service Greeter {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc SayHello (HelloRequest) returns (HelloReply) ;
   // Sends another greeting
-  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) ;
 }
 
 // The request message containing the user's name.
@@ -172,10 +172,10 @@ log.Printf("Greeting: %s", r.Message)
 
 ```bash
 # 第一个命令行终端，运行服务端
-$ go run greeter_server/main.go
+go run greeter_server/main.go
 
 # 第二个命令行终端，运行客户端
-$ go run greeter_client/main.go
+go run greeter_client/main.go
 
 # 得到如下输出
 Greeting: Hello world

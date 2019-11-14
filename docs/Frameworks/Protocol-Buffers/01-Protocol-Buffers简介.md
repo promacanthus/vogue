@@ -44,7 +44,7 @@ message Person {
 - 必填字段（required）
 - 重复字段（repeated）
 
-可以在[`Protocol Buffer Language Guide`](/Protocol-Buffers/02-proto3指南.md)中找到有关编写`.proto`文件的更多信息。
+可以在[`proto3指南`](../Protocol-Buffers/02-proto3指南.md)中找到有关编写`.proto`文件的更多信息。
 
 一旦定义了消息，就可以在`.proto`文件上运行相应编程语言的`protocol buffers`编译器来生成数据访问类，他们为每个字段提供了简单的访问器，如`name()`和`set_name()`，以及将整个结构序列化或解析为原始字节的方法。
 
@@ -95,8 +95,8 @@ cout << "E-mail: " << person.email() << endl;
 而相应的`protocol buffers`消息（`protocol buffers`文本格式）是：
 
 ```go
-# Textual representation of a protocol buffer.
-# This is *not* the binary format used on the wire.
+# protocol buffer的文本表示
+# 这不是在实际传输中的二进制格式
 person {
   name: "John Doe"
   email: "jdoe@example.com"
@@ -133,7 +133,7 @@ cout << "E-mail: " << person.email() << endl;
 
 [下载这个包](https://developers.google.com/protocol-buffers/docs/downloads)，它包含`Java`，`Python`和`C++`版本的`protocol buffers`编译器的完整源代码，以及`I/O`和测试所需的类。要构建和安装编译器，请按照自述文件中的说明进行操作。
 
-完成所有设置后，请尝试按照所选语言的[教程](https://developers.google.com/protocol-buffers/docs/tutorials)进行操作,这将指导你创建一个使用`protocol buffers`的简单应用程序。
+完成所有设置后，请尝试按照所选语言的[教程](https://developers.google.com/protocol-buffers/docs/tutorials)进行操作，这将指导你创建一个使用`protocol buffers`的简单应用程序。
 
 ## `proto3`简介
 
@@ -143,7 +143,7 @@ cout << "E-mail: " << person.email() << endl;
 
 可以在[发行说明](https://github.com/protocolbuffers/protobuf/releases)中看到与当前默认版本的主要差异，并了解`Proto3`语言指南中的`proto3`语法。proto3的完整文档即将推出！
 
-（如果名称`proto2`和`proto3`看起来有点令人困惑，那是因为最初开源`protocol buffers`时，它实际上是Google的第二版语言，也称为`proto2`。这也开源版本号从v2开始的原因。
+（如果名称`proto2`和`proto3`看起来有点令人困惑，那是因为最初开源`protocol buffers`时，它实际上是Google的第二版语言，也称为`proto2`，这也是开源版本号从v2开始的原因。
 
 ## 一点小历史
 

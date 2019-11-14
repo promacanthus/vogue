@@ -9,7 +9,7 @@
 {}  repetition (any number of times)
 ```
 
-有关使用proto3的更多信息，请参阅[语言指南](/Protocol-Buffers/02-proto3指南.md)。
+有关使用proto3的更多信息，请参阅[语言指南](../Protocol-Buffers/02-proto3指南.md)。
 
 ## 词汇元素
 
@@ -122,7 +122,7 @@ package foo.bar;
 
 ## 可用选项
 
-选项可用于`proto`文件，消息，枚举和服务。可用选项可以是`protobuf`定义的选项或自定义选项。有关更多信息，请参阅[语言指南中的选项](/Protocol-Buffers/02-proto3指南.md#可用选项)。
+选项可用于`proto`文件，消息，枚举和服务。可用选项可以是`protobuf`定义的选项或自定义选项。有关更多信息，请参阅[语言指南中的选项](../Protocol-Buffers/02-proto3指南.md)。
 
 ```protobuf
 option = "option" optionName  "=" constant ";"
