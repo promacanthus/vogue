@@ -7,20 +7,48 @@ site_url: https://promacanthus.github.io/Golang-Guide/
 # Repository
 repo_name: promacanthus/Golang-Guide
 repo_url: https://github.com/Promacanthus/Golang-Guide
-edit_uri: "blob/gh-pages/"
 
 # Configuration
 theme:
   name: 'material'
+  palette:
+    primary: 'Black'
+    accent: 'Cyan'
+  logo: 
+    icon: 'code'
+  language: 'zh'
+  feature:
+    tabs: true
+  favicon: 'code'
+  # font:
+  #   text: 'Ubuntu'
+  #   code: 'Consolas'
 
 # Copyright
 copyright: 'Copyright &copy; 2019 - 2020 Promacanthus'
 
 # Analytics
-google_analytics: ['UA-151903408-1', 'mkdocs.org']
+google_analytics: 
+  - 'UA-151903408-1'
+  - 'auto'
 
 # Customization
 extra:
   social:
     - type: github
       link: https://github.com/Promacanthus/Golang-Guide
+  # disqus: disqus_VS56K9XVsG
+
+# Markdown
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+
+# Plugins
+plugins:
+  - search
+  - minify:
+      minify_html: true
