@@ -38,7 +38,7 @@ go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 
 3. 将GOBIN也要添加到PATH中：
 
-``bash
+```bash
 # GOPATH
 export GOPATH=~/workspace-golang/
 export GOBIN=$GOPATH/bin/
