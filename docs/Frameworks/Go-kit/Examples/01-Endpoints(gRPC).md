@@ -1,6 +1,6 @@
-# gRPC Endpoint
+# 01-gRPC Endpoint
 
-原文链接：https://www.ru-rocker.com/2017/02/24/micro-services-using-go-kit-grpc-endpoint/
+查看[原文](https://www.ru-rocker.com/2017/02/24/micro-services-using-go-kit-grpc-endpoint/)。
 
 本文将展示如何使用Golang编程语言和Go-kit作为其框架来创建微服务。该服务将通过gRPC协议公开。
 
@@ -20,30 +20,30 @@
 
 ## 一步步操作
 
-假设我们已经从[上一篇文章](/Frameworks/Go-kit/Examples/00-Endpoints(REST).md)中获得了所需的库。但这还不够，我们需要安装其他库和`protocol buffers`。
+假设我们已经从[上一篇文章](../Examples/00-Endpoints(REST).md)中获得了所需的库。但这还不够，我们需要安装其他库和`protocol buffers`。
 
 1. 从[这里](https://github.com/google/protobuf/releases)下载`protocol buffers`的编译器，提取bin文件夹并将其导出到`$PATH`中。
 
-    ```bash
-    #PROTOC
-    export PROTOC_HOME=~/opt/protoc-3.2.0-osx-x86_64
-    export PATH=${PATH}:$PROTOC_HOME/bin/
-    ```
+```bash
+#PROTOC
+export PROTOC_HOME=~/opt/protoc-3.2.0-osx-x86_64
+export PATH=${PATH}:$PROTOC_HOME/bin/
+```
 
 2. 在命令行执行如下操作：
 
-    ```bash
-    go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
-    ```
+```bash
+go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
+```
 
 3. 将GOBIN也要添加到PATH中：
 
-    ```bash
-    #GOPATH
-    export GOPATH=~/workspace-golang/
-    export GOBIN=$GOPATH/bin/
-    export PATH=${PATH}:$GOBIN
-    ```
+``bash
+# GOPATH
+export GOPATH=~/workspace-golang/
+export GOBIN=$GOPATH/bin/
+export PATH=${PATH}:$GOBIN
+```
 
 然后创建新文件夹，为其命名：`lorem-grpc`。就我而言，我是在`$GOPATH/github.com/ru-rocker/gokit-playground/lorem-grpc`下完成的。我将其称为WORKDIR。
 
@@ -146,7 +146,6 @@ import (
     "context"
     "errors"
 )
-
 
 //request
 type LoremRequest struct {

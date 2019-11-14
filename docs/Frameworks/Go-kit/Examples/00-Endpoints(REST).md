@@ -1,6 +1,6 @@
-# REST Endpoints
+# 00-REST Endpoints
 
-原文链接：https://www.ru-rocker.com/2017/02/17/micro-services-using-go-kit-http-endpoint/
+查看[原文](https://www.ru-rocker.com/2017/02/17/micro-services-using-go-kit-http-endpoint/)。
 
 在本文中，将使用Go编程语言和go-kit作为标准微服务库创建一个简单的微服务。该服务将通过REST端点公开。
 
@@ -8,17 +8,17 @@
 
 在当今世界，微服务体系结构已得到普及。 我不会特别解释什么是微服务架构，因为互联网上已经讨论了很多。 但是，我将提供两个有关微服务的良好网站。
 
-- 首先是我最喜欢的martinfowler.com，可以在[这里](https://martinfowler.com/articles/microservices.html)看到他的惊人解释。
+- 首先是我最喜欢的[martinfowler.com](https://martinfowler.com/)，可以在[这里](https://martinfowler.com/articles/microservices.html)看到他的惊人解释。
 
-- 另一个来自microservices.io，里面有很多关于模式和示例的好文章。
+- 另一个来自[microservices.io](https://microservices.io/)，里面有很多关于模式和示例的好文章。
 
 ### Go-lang
 
-Go是一种开放源代码编程语言，可轻松构建简单，可靠和高效的软件。该语言由Google设计，旨在解决Google的问题。因此，人们可以希望这种语言能够大规模运行，适用于大型程序和依赖项。
+Go是一种开放源代码的编程语言，可轻松构建简单，可靠和高效的软件。该语言由Google设计，旨在解决Google的问题。因此，人们可以希望这种语言能够大规模运行，适用于大型程序和依赖项。
 
 ### Go-kit
 
-Go-kit确实有助于简化构建微服务架构的过程。 这是因为它具有许多功能，例如服务连接性，指标和日志记录。 因此，我要特别感谢Peter Bourgon（@peterbourgon）和所有提供此出色库的贡献者。
+Go-kit确实有助于简化构建微服务架构的过程。 这是因为它具有许多功能，例如服务连接性，指标和日志记录。 因此，我要特别感谢Peter Bourgon（@[peterbourgon](https://peter.bourgon.org/)）和所有提供此出色库的贡献者。
 
 ## 用例
 
@@ -33,9 +33,9 @@ Go-kit确实有助于简化构建微服务架构的过程。 这是因为它具�
 
 在逐步开始之前，此示例需要几个库。那些是：
 
-1. go-kit libraries
-2. golorem libraries:用于生成lorem ipsum文本
-3. gorilla mux libraries: 用于http处理程序
+1. [go-kit libraries](https://godoc.org/github.com/go-kit/kit)
+2. [golorem libraries](https://godoc.org/github.com/drhodes/golorem)：用于生成lorem ipsum文本
+3. [gorilla mux libraries](https://godoc.org/github.com/gorilla/mux)： 用于http处理程序
 
 ### 第一步：创建Service
 
