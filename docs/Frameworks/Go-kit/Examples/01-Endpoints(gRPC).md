@@ -58,7 +58,7 @@ syntax = "proto3";
 package pb;
 
 service Lorem {
-    rpc Lorem(LoremRequest) returns (LoremResponse) {}
+    rpc Lorem(LoremRequest) returns (LoremResponse) ;
 }
 
 message LoremRequest {
@@ -349,11 +349,6 @@ func main() {
         errChan <- fmt.Errorf("%s", <-c)
     }()
 
-    go func() {
-        c := make(chan os.Signal, 1)
-        signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
-        errChan <- fmt.Errorf("%s", <-c)
-    }()
     fmt.Println(<- errChan)
 }
 ```
