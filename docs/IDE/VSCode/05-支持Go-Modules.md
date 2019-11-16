@@ -1,4 +1,4 @@
-# Go Modules
+# 05-支持Go Modules
 
 VS Code使用大量[Go工具](/VSCode-go/06-扩展程序依赖的Go工具.md)来提供代码导航，代码完成，构建，分析等功能。
 

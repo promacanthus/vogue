@@ -1,4 +1,4 @@
-# Go 扩展程序中设置`GOPATH`
+# 08-插件中设置`GOPATH`
 
 在任何使用都可以使用`Go: Current GOPATH`命令来查看扩展程序使用的`GOPATH`。
 
