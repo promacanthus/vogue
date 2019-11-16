@@ -12,13 +12,13 @@
 
 实体书携带不方便，那就看看电子书。还是推荐购买一本实体书，支持一下作者，也可以当做纪念。
 
-## 基础
+### 语言基础
 
 [go-fundamental-programming](https://github.com/unknwon/go-fundamental-programming)
 
 [the-way-to-go_ZH_CN](https://github.com/unknwon/the-way-to-go_ZH_CN)
 
-## Web
+### Web开发
 
 [building-web-applications-in-go](https://github.com/unknwon/building-web-applications-in-go)
 
@@ -26,7 +26,7 @@
 
 无闻大神这里有一个非常强大的仓库，[go-study-index](https://github.com/unknwon/go-study-index)。
 
-## 设计模式
+### 设计模式
 
 [golang-design-pattern](https://github.com/senghoo/golang-design-pattern)
 
