@@ -26,6 +26,10 @@
 
 无闻大神这里有一个非常强大的仓库，[go-study-index](https://github.com/unknwon/go-study-index)。
 
+## 设计模式
+
+[golang-design-pattern](https://github.com/senghoo/golang-design-pattern)
+
 ## 关于这个仓库
 
 这个仓库是使用`mkdocs`和对应的主题`mkdocs-material`。
