@@ -12,17 +12,14 @@ repo_url: https://github.com/Promacanthus/Golang-Guide
 theme:
   name: 'material'
   palette:
-    primary: 'Black'
+    primary: 'Cyan'
     accent: 'Cyan'
   logo: 
     icon: 'code'
   language: 'zh'
   feature:
     tabs: true
-  favicon: 'code'
-  # font:
-  #   text: 'Ubuntu'
-  #   code: 'Consolas'
+  favicon: https://go.dev/favicon.ico
 
 # Copyright
 copyright: 'Copyright &copy; 2019 - 2020 Promacanthus'
