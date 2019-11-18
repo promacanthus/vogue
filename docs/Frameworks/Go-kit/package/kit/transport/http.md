@@ -207,7 +207,7 @@ Clientfinalizerfunc 可以用于在客户端 HTTP 请求已经结束，响应返
 type ClientOption func(*Client)
 ```
 
-Clientoption 为客户机设置一个可选参数。
+ClientOption 为客户机设置一个可选参数。
 
 ## func BufferedStream
 
@@ -255,7 +255,7 @@ Setclient 设置用于请求的基础 HTTP 客户端。 默认情况下，使用
 type ClientResponseFunc func(context.Context, *http.Response) context.Context
 ```
 
-Clientresponsefunc 可以从 HTTP 请求中获取信息，并使响应可用于使用。 Clientresponsefunc只在clients中执行，在一个请求已经到达，但是还没被解码之前执行。
+ClientResponseFunc 可以从 HTTP 请求中获取信息，并使响应可用于使用。 ClientResponseFunc只在clients中执行，在一个请求已经到达，但是还没被解码之前执行。
 
 ## type DecodeRequestFunc
 
@@ -263,7 +263,7 @@ Clientresponsefunc 可以从 HTTP 请求中获取信息，并使响应可用于�
 type DecodeRequestFunc func(context.Context, *http.Request) (request interface{}, err error)
 ```
 
-Decoderequestfunc 从 HTTP 请求对象中提取用户域请求对象。 它被设计用于 HTTP 服务器，用于服务器侧端点。 一个简单的 DecodeRequestFunc 可以是从请求体解码JSON到具体请求类型。
+DecodeRequestFunc 从 HTTP 请求对象中提取用户域请求对象。 它被设计用于 HTTP 服务器，用于服务器侧端点。 一个简单的 DecodeRequestFunc 可以是从请求体解码JSON到具体请求类型。
 
 ## type DecodeResponseFunc
 
@@ -271,7 +271,7 @@ Decoderequestfunc 从 HTTP 请求对象中提取用户域请求对象。 它被�
 type DecodeResponseFunc func(context.Context, *http.Response) (response interface{}, err error)
 ```
 
-Decoderesponsefunc 从 HTTP 响应对象中提取用户域响应对象。 它被设计用于 HTTP 客户端，用于客户端侧端点。 一个简单的Decoderesponsefunc 可以是从响应体解码JSON到具体响应类型。
+DecodeResponseFunc 从 HTTP 响应对象中提取用户域响应对象。 它被设计用于 HTTP 客户端，用于客户端侧端点。 一个简单的 DecodeResponseFunc 可以是从响应体解码JSON到具体响应类型。
 
 ## type EncodeRequestFunc
 
@@ -279,7 +279,7 @@ Decoderesponsefunc 从 HTTP 响应对象中提取用户域响应对象。 它被
 type EncodeRequestFunc func(context.Context, *http.Request, interface{}) error
 ```
 
-Encoderequestfunc 将传递的请求对象编码为 HTTP 请求对象。 它被设计用于 HTTP 客户端，用于客户端侧端点。 一个简单的 EncodeRequestFunc 可以是将 JSON对象直接编码到请求体。
+EncodeRequestFunc 将传递的请求对象编码为 HTTP 请求对象。 它被设计用于 HTTP 客户端，用于客户端侧端点。 一个简单的 EncodeRequestFunc 可以是将 JSON对象直接编码到请求体。
 
 ## type EncodeResponseFunc
 
@@ -287,7 +287,7 @@ Encoderequestfunc 将传递的请求对象编码为 HTTP 请求对象。 它被�
 type EncodeResponseFunc func(context.Context, http.ResponseWriter, interface{}) error
 ```
 
-Encoderesponsefunc 将传递的响应对象编码到 HTTP 响应写入器。 它被设计用于 HTTP 服务器，用于服务器侧端点。 一个简单的 EncodeResponseFunc 可以是将 JSON 对象直接编码到响应主体。
+EncodeResponseFunc 将传递的响应对象编码到 HTTP 响应写入器。 它被设计用于 HTTP 服务器，用于服务器侧端点。 一个简单的 EncodeResponseFunc 可以是将 JSON 对象直接编码到响应主体。
 
 ## type ErrorEncoder
 
@@ -295,7 +295,7 @@ Encoderesponsefunc 将传递的响应对象编码到 HTTP 响应写入器。 它
 type ErrorEncoder func(ctx context.Context, err error, w http.ResponseWriter)
 ```
 
-Errorencoder 负责将错误编码到 ResponseWriter。 鼓励用户使用自定义 ErrorEncoder 向其客户端编码 HTTP 错误，并可能希望传递和检查自定义的错误类型。 请参阅`shaipping/handling`服务示例。
+ErrorEncoder 负责将错误编码到 ResponseWriter。 鼓励用户使用自定义 ErrorEncoder 向其客户端编码 HTTP 错误，并可能希望传递和检查自定义的错误类型。 请参阅`shaipping/handling`服务示例。
 
 ## type HTTPClient
 
@@ -415,7 +415,7 @@ func ServerErrorEncoder(ee ErrorEncoder) ServerOption
 func ServerErrorHandler(errorHandler transport.ErrorHandler) ServerOption
 ```
 
-Servererrorhandler 用于处理非终端(non-terminal)错误。 默认情况下，会忽略非终端错误。 这是作为一种诊断措施。 更细粒度的错误处理控制，包括更详细的日志记录，应该在定制的 ServerErrorEncoder 或 ServerFinizer 中执行，这两者都可以访问context。
+ServerErrorHandler 用于处理非终端(non-terminal)错误。 默认情况下，会忽略非终端错误。 这是作为一种诊断措施。 更细粒度的错误处理控制，包括更详细的日志记录，应该在定制的 ServerErrorEncoder 或 ServerFinizer 中执行，这两者都可以访问context。
 
 ## func ServerErrorLogger
 
