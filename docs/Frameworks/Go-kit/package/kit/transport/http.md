@@ -8,50 +8,64 @@ http包为端点提供通用的HTTP绑定。
 
 ```go
 const (
-    // ContextKeyRequestMethod由 PopulateRequestContext在 context中填充，它的值是  r.Method。
+    // ContextKeyRequestMethod由 PopulateRequestContext在 context中填充，
+    // 它的值是  r.Method。
     ContextKeyRequestMethod contextKey = iota
 
-    // ContextKeyRequestURI 由 PopulateRequestContext 在 context 中填充，它的值是 r.RequestURI。
+    // ContextKeyRequestURI 由 PopulateRequestContext 在 context 中填充，
+    // 它的值是 r.RequestURI。
     ContextKeyRequestURI
 
-    // ContextKeyRequestPath 由 PopulateRequestContext在 context 中填充，它的值是 r.URL.Path。
+    // ContextKeyRequestPath 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.URL.Path。
     ContextKeyRequestPath
 
-    // ContextKeyRequestProto由 PopulateRequestContext 在 context 中填充，它的值是 r.Proto。
+    // ContextKeyRequestProto由 PopulateRequestContext 在 context 中填充，
+    // 它的值是 r.Proto。
     ContextKeyRequestProto
 
-    // ContextKeyRequestHost 由 PopulateRequestContext在 context 中填充，它的值是 r.Host。
+    // ContextKeyRequestHost 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.Host。
     ContextKeyRequestHost
 
-    // ContextKeyRequestRemoteAddr 由 PopulateRequestContext在 context 中填充，它的值是 r.RemoteAddr。
+    // ContextKeyRequestRemoteAddr 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.RemoteAddr。
     ContextKeyRequestRemoteAddr
 
-    // ContextKeyRequestXForwardedFor由 PopulateRequestContext在 context 中填充，它的值是 r.Header.Get("X-Forwarded-For")。
+    // ContextKeyRequestXForwardedFor由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.Header.Get("X-Forwarded-For")。
     ContextKeyRequestXForwardedFor
 
-    // ContextKeyRequestXForwardedProto 由 PopulateRequestContext在 context 中填充，它的值是 r.Header.Get("X-Forwarded-Proto")。
+    // ContextKeyRequestXForwardedProto 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.Header.Get("X-Forwarded-Proto")。
     ContextKeyRequestXForwardedProto
 
-    // ContextKeyRequestAuthorization 由 PopulateRequestContext在 context 中填充，它的值是 r.Header.Get("Authorization")。
+    // ContextKeyRequestAuthorization 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.Header.Get("Authorization")。
     ContextKeyRequestAuthorization
 
-    // ContextKeyRequestReferer 由 PopulateRequestContext在 context 中填充，它的值是 r.Header.Get("Referer")。
+    // ContextKeyRequestReferer 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.Header.Get("Referer")。
     ContextKeyRequestReferer
 
-    // ContextKeyRequestUserAgent 由 PopulateRequestContext在 context 中填充，它的值是 r.Header.Get("User-Agent")。
+    // ContextKeyRequestUserAgent 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.Header.Get("User-Agent")。
     ContextKeyRequestUserAgent
 
-    // ContextKeyRequestXRequestID 由 PopulateRequestContext在 context 中填充，它的值是 r.Header.Get("X-Request-Id")。
+    // ContextKeyRequestXRequestID 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.Header.Get("X-Request-Id")。
     ContextKeyRequestXRequestID
 
-    // ContextKeyRequestAccept 由 PopulateRequestContext在 context 中填充，它的值是 r.Header.Get("Accept")。
+    // ContextKeyRequestAccept 由 PopulateRequestContext在 context 中填充，
+    // 它的值是 r.Header.Get("Accept")。
     ContextKeyRequestAccept
 
     // 每当指定ServerFinalizerFunc，就会在context中填充 ContextKeyResponseHeaders，
     // 它的值是  http.Header类型, 并且仅在写入整个响应后才捕获。
     ContextKeyResponseHeaders
 
-    // 每当指定ServerFinalizerFunc，就会在 context 中填充 ContextKeyResponseSize，它的值是 int64 类型。
+    // 每当指定ServerFinalizerFunc，就会在 context 中填充 ContextKeyResponseSize，
+    // 它的值是 int64 类型。
     ContextKeyResponseSize
 )
 ```
