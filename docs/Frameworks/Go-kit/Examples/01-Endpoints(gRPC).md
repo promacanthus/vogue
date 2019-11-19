@@ -368,7 +368,7 @@ import (
 )
 
 // Return new lorem_grpc service
-func New(conn *grpc.ClientConn) lorem_grpc.Service {
+func NewGRPCClient(conn *grpc.ClientConn) lorem_grpc.Service {
     var loremEndpoint = grpctransport.NewClient(
         conn, "Lorem", "Lorem",
         lorem_grpc.EncodeGRPCLoremRequest,
