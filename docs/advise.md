@@ -24,6 +24,7 @@ module example
 go 1.13
 
 require(
+    github.com/ugorji/go v1.1.7 // indirect
     ...
 )
 
@@ -56,11 +57,11 @@ module mod-a
 go 1.13
 
 require (
+    mod-b v0.0.0-00010101000000-000000000000
     ...
 )
 
 replace (
     mod-b => ./mod-b
-    mod-b/pkg => ./mod-b
 )
 ```
