@@ -13,9 +13,8 @@ resp , err := http.Get("http://example.com/")
 ...
 resp, err := http.Post("http://example.com/upload","image/jpeg",&buf)
 ...
-resp, err := http.PostForm("http://example.com/form",url.Values{
-    "Key":{"Value"},
-    "id":{"123"}})
+resp, err := http.PostForm("http://example.com/form",
+    url.Values{"Key":{"Value"}, "id":{"123"}})
 ```
 
 结束后，客户端必须关闭响应体：
@@ -39,7 +38,7 @@ client := &http.Client{
 resp, err := client.Get("http://example.com")
 // ...
 
-req, err := http,NewRequest("GET","http://example.com",nil)
+req, err := http.NewRequest("GET","http://example.com",nil)
 // ...
 req.Header.Add("if-None-Match",`W/"wyzzy"`)
 resp, err := client.Do(req)
@@ -60,16 +59,16 @@ resp, err := client.Get("https://example.com")
 
 `Client`和`Transport`可以安全地被多个`goroutine`并发使用，为了高效应该只创建一次并重复使用。
 
-`ListenAndServe`使用给定地址和处理程序启动一个HTTP服务端。这个处理程序通常是`nil`,这表示使用`DefaultServeMux`。`Handle`和`HandleFunc`将处理程序添加到`DefaultServeMux`:
+`ListenAndServe`使用给定地址和处理程序启动一个HTTP服务端。这个处理程序通常是`nil`，这表示使用`DefaultServeMux`。`Handle`和`HandleFunc`将处理程序添加到`DefaultServeMux`:
 
 ```go
 http.Handle("/foo"，fooHandler)
 
 http.HandleFunc("/bar",func(w http.ResponseWriter, r *http.Request){
-    fmt.Fprintf(w,"Hello,%q",html.EscapeString(r.URL,Path))
+    fmt.Fprintf(w, "Hello,%q", html.EscapeString(r.URL, Path))
 })
 
-log.Fatal(http.ListenAndServe(":8080",nil))
+log.Fatal(http.ListenAndServe(":8080", nil))
 ```
 
 创建一个自定义的Server来更好的控制server的行为：
@@ -88,7 +87,7 @@ log.Fatal(s.ListenAndServe())
 
 从Go 1.6开始，使用HTTPS时，http包对HTTP/2协议具有透明支持。
 
-必须禁用HTTP/2的程序可以通过设置`Transport.TLSNextProto(客户端设置)`或者`Server.TLSNextProto`(服务端设置)的值为非nil的空map。或者，当前支持如下的`GODEBUG`环境变量：
+必须禁用HTTP/2的程序可以通过设置`Transport.TLSNextProto`(客户端设置)或者`Server.TLSNextProto`(服务端设置)的值为非nil的空map。或者，当前支持如下的`GODEBUG`环境变量：
 
 ```go
 GODEBUG=http2client=0 // 禁用HTTP/2客户端支持
@@ -97,9 +96,9 @@ GODEBUG=http2debug=1 // 启动详细的HTTP/2 调试日志
 GODEBUG=http2debug=2 // 更详细的日志，包含 frame dumps
 ```
 
-Go的API兼容性保证不涵盖GODEBUG变量。在禁用HTTP / 2支持之前，请报告所有问题：`https://golang.org/s/http2bug`
+Go的API兼容性保证不涵盖GODEBUG变量。在禁用HTTP/2支持之前，请报告所有问题：`https://golang.org/s/http2bug`
 
-为了简化配置 http 包中的`Transport`和`Server`都自定启动HTTP/2支持。要为更复杂的配置启用HTTP/2，以使用低级别HTTP/2功能或使用Go的http2软件包的新版本，请直接导入 `golang.org/x/net/http2` 并使用其`ConfigureTransport`和 `/`或`ConfigureServer`功能。通过`golang.org/x/net/http2`包手动配置HTTP/2优先于net/http包的内置HTTP/2支持。
+为了简化配置， http 包中的`Transport`和`Server`都自动启动HTTP/2支持。要为更复杂的配置启用HTTP/2，以使用低级别HTTP/2功能或使用Go的http2软件包的新版本，请直接导入 `golang.org/x/net/http2` 并使用其`ConfigureTransport`或`ConfigureServer`功能。通过`golang.org/x/net/http2`包手动配置HTTP/2优先于`net/http`包的内置HTTP/2支持。
 
 ## Constants
 
@@ -112,7 +111,7 @@ const(
     MethodPath      =       "PATCH"     // RFC 5789
     MethodDelete    =       "DELETE"
     MethodConnect   =       "CONNECT"
-    MethodOPtions   =       "OPTIONS"
+    MethodOptions   =       "OPTIONS"
     MethodTrace        =        "TRACE"
 )
 ```
@@ -234,7 +233,7 @@ var (
     // ErrNotSupported 是由Pusher的Push方法返回的，表示不可获得对HTTP/2的支持
     ErrNotSupported = &ProtocolError{"feature not supported"}
 
-    // Deprecated
+    // 弃用
     // net/http包中的任何方法都不会再返回 ErrUnexpectedTrailer
     // 调用者不应该将错误与这个变量进行比较
     ErrUnexpectedTrailer = &ProtocolError{"trailer header without chunked transfer encoding"}
@@ -245,17 +244,17 @@ var (
     // 当请求的 Content-Type 不是 multipart/form-data 时，Request.MultipartReader 返回 ErrNotMultipart
     ErrNotMultipart = &ProtocolError{"request Content-Type isn't multipart/form-data"}
 
-    // Deprecated
+    // 弃用
     // net/http包中的任何方法都不会再返回 ErrHeaderTooLong
     // 调用者不应该将错误与这个变量进行比较
     ErrHeaderTooLong = &ProtocolError{"header too long"}
 
-    // Deprecated
+    // 弃用
     // net/http包中的任何方法都不会再返回 ErrShortBody
     // 调用者不应该将错误与这个变量进行比较
     ErrShortBody = &ProtocolError{"entity body too short"}
 
-    // Deprecated
+    // 弃用
     // net/http包中的任何方法都不会再返回 ErrMissingContentLength
     // 调用者不应该将错误与这个变量进行比较
     ErrMissingContentLength = &ProtocolError{"missing ContentLength in HEAD response"}
@@ -275,7 +274,7 @@ var (
     // ResponseWriter.Write调用返回ErrContentLength
     ErrContentLength = errors.New("http: wrote more than the declared Content-Length")
 
-    // Deprecated
+    // 弃用
     // net/http包中的任何方法都不会再返回 ErrWriteAfterFlush
     // 调用者不应该将错误与这个变量进行比较
     ErrWriteAfterFlush = errors.New("unused")
@@ -287,8 +286,7 @@ HTTP服务端使用的错误。
 ```go
 var (
     // ServerContextKey是 context key。可以在带有 Context.Value 的 HTTP handler 中
-    // 使用它来访问启动 handler 的服务器
-    // 关联的值将是* Server类型
+    // 使用它来访问启动 handler 的服务器，关联的值将是*Server类型
     ServerContextKey = &contextKey{"http-server"}
 
     // LocalAddrContextKey是context key。 可以在带有Context.Value的HTTP handler中使用它来访问连接的本地地址
@@ -375,17 +373,15 @@ var NoBody = noBody{}
 
 `NoBody`是一个没有字节的`io.ReadCloser`。读取始终返回EOF，而关闭始终返回nil。可以在传出客户端请求中使用它来明确表示请求的字节数为零。也可以很容易的将`Request.Body`设置为nil。
 
-## 函数
-
-### func CanonicalHeaderKey
+## func CanonicalHeaderKey
 
 ```go
 func CanonicalHeaderKey(s string) string
 ```
 
-`CanonicalHeaderKey`返回header key `s` 的规范格式。规范化将第一个字母和连字符后的任何字母转换为大写；其余的将转换为小写。例如，"accept-encoding"的规范格式是"Accept-Encoding"。如果`s``包含空格或无效的header field bytes，则返回它而无需进行任何修改。
+`CanonicalHeaderKey`返回header key `s` 的规范格式。规范化将第一个字母和连字符后的任何字母转换为大写；其余的将转换为小写。例如，"accept-encoding"的规范格式是"Accept-Encoding"。如果 `s` 包含空格或无效的header field bytes，则返回它而无需进行任何修改。
 
-### func DetectContentType
+## func DetectContentType
 
 ```go
 func DetectContentType(data []byte) string
@@ -393,7 +389,7 @@ func DetectContentType(data []byte) string
 
 `DetectContentType`实现在`https://mimesniff.spec.whatwg.org/`上描述的算法，以确定给定数据的`Content-Type`。它最多考虑前512个字节的数据。 `DetectContentType`始终返回有效的`MIME`类型：如果无法确定更具体的类型，则返回`"application/octet-stream"`。
 
-### func Error
+## func Error
 
 ```go
 func Error(w ResponseWriter, error string, code int)
@@ -401,7 +397,7 @@ func Error(w ResponseWriter, error string, code int)
 
 Error回复带有特定错误消息和HTTP代码的请求。否则，它不会结束请求；调用者应确保不再对`w`进行写操作。错误消息应为纯文本。
 
-### func Handle
+## func Handle
 
 ```go
 func Handle(pattern string, handler Handler)
@@ -409,9 +405,9 @@ func Handle(pattern string, handler Handler)
 
 `Handle`在`DefaultServeMux`中注册给定模式的处理程序。`ServeMux`的文档说明了如何匹配模式。
 
-#### handler-example
+### Handle Example
 
-```
+```go
 package main
 
 import (
@@ -430,7 +426,7 @@ func (h *countHandler) ServeHTTP(w http.ResponseWriter, r *http.Request){
     h.mu.Lock()
     defer h.mu.Unlock()
     h.n++
-    fmt.Fprintf(w, "count is %d\n",h.n)
+    fmt.Fprintf(w, "count is %d\n", h.n)
 }
 
 func main(){
@@ -439,7 +435,7 @@ func main(){
 }
 ```
 
-### func HandleFunc
+## func HandleFunc
 
 ```go
 func HandleFunc(pattern string, handler func(ResponseWriter, *Request))
@@ -447,7 +443,7 @@ func HandleFunc(pattern string, handler func(ResponseWriter, *Request))
 
 `HandleFunc`在`DefaultServeMux`中注册给定模式的处理函数。`ServeMux`的文档说明了如何匹配模式。
 
-#### handlerfunc-example
+### HandleFunc Example
 
 ```go
 h1 := func(w http.ResponseWriter, _ *http.Request){
@@ -464,19 +460,19 @@ http.HandleFunc("/endpoint", h2)
 log.Fatal(http.ListenAndServe(":8080",nil))
 ```
 
-### func ListenAndServe
+## func ListenAndServe
 
 ```go
 func ListenAndServe(addr string, handler Handler) error
 ```
 
-`ListenAndServe`侦听TCP网络地址addr，然后调用带有处理程序的Serve来处理传入连接上的请求。能够接受的连接需要配置为启用TCP keep-alives。
+`ListenAndServe`监听TCP网络地址`addr`，然后调用带有处理程序的Serve来处理传入连接上的请求。能够接受的连接需要配置为启用TCP keep-alives。
 
 该处理程序通常为nil，在这种情况下，将使用`DefaultServeMux`。
 
 `ListenAndServe`始终返回非nil错误。
 
-#### listenandserve-example
+### ListenAndServe Example
 
 ```go
 helloHandler := func(w http.ResponseWriter, req *http.Request){
@@ -487,7 +483,7 @@ http.HandlerFunc("/hello",helloHandler)
 log.Fatal(http.ListenAndServe(":8080",nil))
 ```
 
-### func ListenAndServeTLS
+## func ListenAndServeTLS
 
 ```go
 func ListenAndServeTLS(addr, certFile, keyFile string, handler Handler) error
@@ -495,7 +491,7 @@ func ListenAndServeTLS(addr, certFile, keyFile string, handler Handler) error
 
 `ListenAndServeTLS`的行为与`ListenAndServe`相同，不同之处在于它需要`HTTPS`连接。此外，必须提供包含服务器证书和匹配私钥的文件。如果证书是由证书颁发机构签名的，则`certFile`应该是服务器证书，任何中间件和CA证书的串联。
 
-#### listenandservetls-example
+### ListenAndServeTLS Example
 
 ```go
 http.HandlerFunc("/",func(w http.ResponseWriter, req *http.Request){
@@ -508,7 +504,7 @@ err := http.ListenAndServeTLS(":8443","cert.pem","key.pem",nil)
 log.Fatal(err)
 ```
 
-### func MaxBytesReader
+## func MaxBytesReader
 
 ```go
 func MaxBytesReader(w ResponseWriter, r io.ReadCloser, n int64) io.ReadCloser
@@ -518,7 +514,7 @@ func MaxBytesReader(w ResponseWriter, r io.ReadCloser, n int64) io.ReadCloser
 
 `MaxBytesReader`可以防止客户端意外或恶意发送大请求并浪费服务器资源。
 
-### func NotFound
+## func NotFound
 
 ```go
 func NotFound(w ResponseWriter, r *Request)
@@ -526,7 +522,7 @@ func NotFound(w ResponseWriter, r *Request)
 
 `NotFound`回复请求，并显示HTTP 404 not found错误。
 
-### func ParseHTTPVersion
+## func ParseHTTPVersion
 
 ```go
 func ParseHTTPVersion(vers string) (major, minor int, ok bool)
@@ -534,7 +530,7 @@ func ParseHTTPVersion(vers string) (major, minor int, ok bool)
 
 `ParseHTTPVersion`解析HTTP版本字符串。 `"HTTP/1.0"`返回`(1,0,true)`。
 
-### funcParseTime
+## funcParseTime
 
 ```go
 func ParseTime(text string) (t time.Time, err error)
@@ -542,7 +538,7 @@ func ParseTime(text string) (t time.Time, err error)
 
 `ParseTime`解析时间标头（例如`Date: header`），尝试使用HTTP/1.1允许的三种格式：`TimeFormat`，`time.RFC850`和`time.ANSIC`。
 
-### func ProxyFromEnvironment
+## func ProxyFromEnvironment
 
 ```go
 func ProxyFromEnvironment(req *Request) (*url.URL, error)
@@ -556,7 +552,7 @@ func ProxyFromEnvironment(req *Request) (*url.URL, error)
 
 在特殊情况下，如果`req.URL.Host`为`"localhost"`（有或没有端口号），则将返回nil URL和nil错误。
 
-### func ProxyURL
+## func ProxyURL
 
 ```go
 func ProxyURL(fixedURL *url.URL) func(*Request) (*url.URL, error)
@@ -564,7 +560,7 @@ func ProxyURL(fixedURL *url.URL) func(*Request) (*url.URL, error)
 
 `ProxyURL`返回一个代理函数（在Transport中使用），该函数始终返回相同URL。
 
-### func Redirect
+## func Redirect
 
 ```go
 func Redirect(w ResponseWriter, r *Request, url string, code int)
@@ -576,7 +572,7 @@ func Redirect(w ResponseWriter, r *Request, url string, code int)
 
 如果尚未设置`Content-Type`标头，`Redirect`会将其设置为 `"text / html; charset = utf-8"` 并编写一个小的HTML。将`Content-Type`标头设置为任何值（包括nil）将禁用该行为。
 
-### func Serve
+## func Serve
 
 ```go
 func Serve(l net.Listener, handler Handler) error
@@ -586,7 +582,7 @@ func Serve(l net.Listener, handler Handler) error
 
 仅当侦听器返回`* tls.Conn`连接并且在`TLS Config.NextProtos`中将它们配置为`"h2"`时，才启用HTTP/2支持。`Serve`始终返回非nil错误。
 
-### func ServeContent
+## func ServeContent
 
 ```go
 func ServeContent(w ResponseWriter, req *Request, name string, modtime time.Time, content io.ReadSeeker)
@@ -602,4 +598,4 @@ func ServeContent(w ResponseWriter, req *Request, name string, modtime time.Time
 
 如果调用方设置了按照[RFC 7232第2.3节](http://tools.ietf.org/html/rfc7232#section-2.3)格式化的w的ETag标头，则ServeContent使用它来处理使用If-Match，If-None-Match或If-Range的请求。
 
-请注意，* os.File实现了io.ReadSeeker接口。
+请注意，`*os.File`实现了`io.ReadSeeker`接口。
