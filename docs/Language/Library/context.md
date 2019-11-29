@@ -19,19 +19,19 @@ import "context"
 - 不要将`Context`存储在结构类型中；而应该将`Context`明确传递给需要它的每个函数。
 - Context应该是第一个参数，通常命名为ctx：
 
-    ```go
-    func DoSomething(ctx context.Context, arg Arg) error {
-        // ... use ctx ...
-    }
-    ```
+```go
+func DoSomething(ctx context.Context, arg Arg) error {
+    // ... use ctx ...
+}
+```
 
-即使函数允许，也不要传递`nil Context`。如果不确定要使用哪个`context`，请传递[`context.TODO`](###方法TODO)。
+即使函数允许，也不要传递`nil Context`。如果不确定要使用哪个`context`，请传递`context.TODO`。
 
 仅将`Context`值用于转换进程和API之间的请求数据，而不是将可选参数传递给函数。
 
 可以将相同的`Context`传递给在不同`goroutine`中运行的函数；`Context`对于多个`goroutine`同时使用是安全的。
 
-有关使用`Context`的服务示例代码，请参阅[示例](https://blog.golang.org/context)
+有关使用`Context`的服务示例代码，请参阅[示例](../Blog/context.md)
 
 ## 变量
 
@@ -61,8 +61,7 @@ func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
 
 
 // gen在单独的goroutine中生成整数将它们发送到返回的channel。
-// gen的调用者需要取消一次上下文，他们消费生成的整数而不泄漏，
-// 内部的goroutine由gen开始
+// gen的调用者需要取消一次context，他们消费生成的整数而不泄漏，内部的goroutine由gen开始
 
 gen := func(ctx context.Context) <-chan int {
     dst := make(chan int)
@@ -110,7 +109,7 @@ WithDeadline返回`context`的副本，且该副本的截止时间被调整为�
 
 ### WithDeadline示例
 
-这个例子传递一个带有任意截止时间的`contezt`来告诉阻塞函数它应该在截止时间到达时放弃它的工作。
+这个例子传递一个带有任意截止时间的`context`来告诉阻塞函数它应该在截止时间到达时放弃它的工作。
 
 ```go
 d := time.Now().Add(50 * time.Millisecond)
@@ -149,11 +148,11 @@ func slowOperationWithTimeout(ctx context.Context) (Result, error) {
 
 ### WithTimeout示例
 
-此示例传递具有超时的上下文，以告知阻塞函数在超时过后它应该放弃其工作。
+此示例传递具有超时的context，以告知阻塞函数在超时过后它应该放弃其工作。
 
 ```go
-// 传递一个带有超时时间的context来告诉一个正在阻塞的函数，
-// 它应该在超时时间过后放弃正在进的工作。
+// 传递一个带有超时时长的context来告诉一个正在阻塞的函数，
+// 它应该在超时时长过后放弃正在进的工作。
 ctx, cancel := context.WithTimeout(context.Background(), 50*time.Millisecond)
 defer cancel()
 
@@ -188,12 +187,12 @@ type Context interface {
 
     // 当取消被调用时，WithCancel安排Done通道关闭
     // 当截止时间过期时，WithDeadline安排Done通道关闭
-    // 当超时时间到期时，WithTimeout安排Done通道关闭
+    // 当超时时长到期时，WithTimeout安排Done通道关闭
     //
     // Done提供用于select语句:
     //
     //  // Stream使用DoSomething来生成值并将这些值发送出去，
-    //  // 知道DoSomething返回一个错误或者ctx.Done被关闭。
+    //  // 直到DoSomething返回一个错误或者ctx.Done被关闭。
     //  func Stream(ctx context.Context, out chan<- Value) error {
     //      for {
     //          v, err := DoSomething(ctx)
@@ -218,16 +217,16 @@ type Context interface {
     // 在Err函数返回一个non-nil错误后, 持续的调用Err返回的都是同一个错误。
     Err() error
 
-    // Value函数返回与此context的键关联的值，如果没有值与键关联，则返回nil。
-    // 使用相同的键连续调用Value函数会返回相同的结果。
+    // Value函数返回与此context的key关联的value，如果没有value与key关联，则返回nil。
+    // 使用相同的key连续调用Value函数会返回相同的结果。
 
     // 仅将context值用于切换进程和API的请求数据，而不是将可选参数传递给函数。
 
-    // 键标识context中特定的值。想要在Context中存储值的函数通常在全局变量中分配一个键，
-    // 然后使用该键作为context.WithValue和Context.Value的参数。
-    // 键可以是支持判等的任何类型; 包应该将键定义为未导出类型以避免冲突。
+    // key标识context中特定的值。想要在Context中存储值的函数通常在全局变量中分配一个key，
+    // 然后使用该key作为context.WithValue和Context.Value的参数。
+    // key可以是支持判等的任何类型; 包应该将key定义为未导出类型以避免冲突。
 
-    // 定义Context键的包应该为使用该键存储的值提供类型安全的访问器：
+    // 定义Context key的包应该为使用该key存储的值提供类型安全的访问器：
     //  // 包使用者定义一个User类型存储在Context中。
     //  package user
     //
@@ -236,12 +235,12 @@ type Context interface {
     //  // User是存储在context中的值的类型
     //  type User struct {...}
     //
-    //  // 定义在本包中的键是一个非导出类型。
-    //  // 这避免了与定义在其他包中的键产生冲突。
+    //  // 定义在本包中的key是一个非导出类型。
+    //  // 这避免了与定义在其他包中的key产生冲突。
     //  type key int
     //
-    //  // userKey是context中user.User值的键。它的未导出的。
-    //  // 客户端使用user.NewContext和user.FromContext而不是直接使用这个键。
+    //  // userKey是context中user.User值的key。它的未导出的。
+    //  // 客户端使用user.NewContext和user.FromContext而不是直接使用这个key。
     //  var userKey key
     //
     //  // NewContext返回一个新的Context其中携带值u。
@@ -286,7 +285,7 @@ func WithValue(parent Context, key, val interface{}) Context
 
 仅将`context`值用于转换进程和API请求数据，而不是将可选参数传递给函数。
 
-提供的键必须是可比较的，不应该是字符串类型或任何其他内置类型，以避免使用`context`的包之间的冲突。`WithValue()`的用户应该为键定义他们自己的类型。为了避免在指派接口时分配，`context`的键通常有具体类型的结构体。或者，导出`context`键的变量的静态类型应该是指针或接口。
+提供的key必须是可比较的，不应该是字符串类型或任何其他内置类型，以避免使用`context`的包之间的冲突。`WithValue()`的用户应该为key定义他们自己的类型。为了避免在指派接口时分配，`context`的key通常有具体类型的结构体。或者，导出`context` 的key的变量的静态类型应该是指针或接口。
 
 #### WithValue示例
 

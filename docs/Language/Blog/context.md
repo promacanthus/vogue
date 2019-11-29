@@ -11,16 +11,16 @@
 Context包的核心是Context类型：
 
 ```go
-// 上下文在API边界上包含截止日期，取消信息和请求范围值，
+// Context在API边界上包含截止时间，取消信息和请求范围值，
 // 它的方法可以安全地被多个goroutine同时使用。
 type Context interface {
-    // Done返回一个通道，当上下文取消或超时，该通道会被关闭
+    // Done返回一个通道，当context取消或超时，该通道会被关闭
     Done() <-chan struct{}
 
-    //  Err说明在Done通道被关闭后，为何取消此上下文
+    // Err说明在Done通道被关闭后，为何取消此context
     Err() error
 
-    // Deadline 返回一个时间，表示该上下文将在何时被取消（如果有）。
+    // Deadline 返回一个时间，表示该context将在何时被取消（如果有）。
     Deadline() (deadline time.Time, ok bool)
 
     //  Value 返回与key相关的值，如果没有则返回nil。
@@ -28,15 +28,15 @@ type Context interface {
 }
 ```
 
-Done方法将一个通道作为取消信号返回给代表上下文运行的函数：当该通道被关闭后，这些函数应放弃工作并返回。 Err方法返回一个错误，说明为何取消此上下文。 [管道与取消](https://blog.golang.org/pipelines)一文更详细地讨论了Done 通道的用法。
+Done方法将一个通道作为取消信号返回给代表context运行的函数：当该通道被关闭后，这些函数应放弃工作并返回。 Err方法返回一个错误，说明为何取消此context。 [管道与取消](https://blog.golang.org/pipelines)一文更详细地讨论了Done 通道的用法。
 
-Context没有Cancel方法，因为Done通道是唯一的接收通道，接收取消信号的功能通常不是发送信号的功能。特别是，当父操作为子操作启动goroutine时，这些子操作应该不能取消父操作。相反，WithCancel函数（如下所述）提供了一种取消新的上下文值的方法。
+Context没有Cancel方法，因为Done通道是唯一的接收通道，接收取消信号的功能通常不是发送信号的功能。特别是，当父操作为子操作启动goroutine时，这些子操作应该不能取消父操作。相反，WithCancel函数（如下所述）提供了一种取消新的context值的方法。
 
-由多个goroutine同时使用上下文也是安全的。代码可以将单个上下文传递给任意数量的goroutine，并可以取消该上下文来通知所有持有该上下文的goroutine。
+由多个goroutine同时使用context也是安全的。代码可以将单个context传递给任意数量的goroutine，并可以取消该context来通知所有持有该context的goroutine。
 
 Deadline方法允许函数确定它们是否应该开始工作，如果剩余时间过少，那可能是不值得的。代码还可以使用deadline来设置I/O操作的超时时间。
 
-Value允许上下文携带请求范围的数据。该数据必须安全的被多个goroutine同时使用。
+Value允许context携带请求范围的数据。该数据必须安全的被多个goroutine同时使用。
 
 ## Derived（派生） context
 
@@ -50,35 +50,29 @@ Background是任何context树的根；它永远不会被取消：
 func Background() Context
 ```
 
-WithCancel和WithTimeout返回派生的Context值，该Context可以比先于父Context被取消。请求处理程序返回时，通常会取消与传入请求关联的context。使用多个副本时，WithCancel对于取消冗余请求很有用。 WithTimeout用于设置对后端服务器请求的截止时间：
+WithCancel和WithTimeout返回派生的Context值，该Context可以先于父Context被取消。请求处理程序返回时，通常会取消与传入请求关联的context。使用多个副本时，WithCancel对于取消冗余请求很有用。 WithTimeout用于设置对后端服务器请求的截止时间：
 
 ```go
-// WithCancel返回 parent的副本，该副本的通道会在parent.Done关闭或取消后立即关闭。
+// WithCancel返回parent的副本，该副本的通道会在parent.Done关闭或取消后立即关闭。
 func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
 
 // CancelFunc 取消 Context
 type CancelFunc func()
 
-// WithTimeout returns a copy of parent whose Done channel is closed as soon as
-// parent.Done is closed, cancel is called, or timeout elapses. The new
-// Context's Deadline is the sooner of now+timeout and the parent's deadline, if
-// any. If the timer is still running, the cancel function releases its
-// resources.
-
-// WithTimeout返回 parent 的副本，该副本的通道会在parent.Done关闭、取消或超时后立即关闭。
-// 新 context的截止时间是 now + timeout 与 父级截止时间（如果有）中的较早者。 
-// 如果计时器仍在运行，那么cancel 函数将释放其资源。
+// WithTimeout返回parent的副本，该副本的通道会在parent.Done关闭、取消或超时后立即关闭。
+// 新context的截止时间是 ow+timeout与 父级截止时间（如果有）中的较早者。 
+// 如果计时器仍在运行，那么cancel函数将释放其资源。
 func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)
 ```
 
 WithValue提供了一种将请求范围的值与Context相关联的方法：
 
 ```go
-// WithValue返回父项的副本，该副本的 Value方法返回key 的 val。
+// WithValue返回父项的副本，该副本的Value方法返回key的val。
 func WithValue(parent Context, key interface{}, val interface{}) Context
 ```
 
-查看如何使用上下文包的最佳方法是通过一个有效的示例。
+查看如何使用context包的最佳方法是通过一个有效的示例。
 
 ## 示例：Google Web Search
 
@@ -87,12 +81,12 @@ func WithValue(parent Context, key interface{}, val interface{}) Context
 代码被拆分为三个包：
 
 - [server](https://blog.golang.org/context/server/server.go)提供`/search`的主要功能和处理程序。
-- [userip](https://blog.golang.org/context/userip/userip.go)提供用于从请求中提取用户IP地址并将其与上下文关联的功能。
+- [userip](https://blog.golang.org/context/userip/userip.go)提供用于从请求中提取用户IP地址并将其与context关联的功能。
 - [google](https://blog.golang.org/context/google/google.go)提供用于向Google发送查询的搜索功能。
 
 ### server
 
-server程序通过为golang提供前几个Google搜索结果来处理`/search?q=golang`之类的请求。 它注册handleSearch来处理`/ search` 端点（Endpoint）。 处理程序将创建一个称为ctx的初始Context，并安排在处理程序返回时将其取消。 如果请求中包含超时URL参数，则在超时后会自动取消Context：
+server程序通过为golang提供前几个Google搜索结果来处理`/search?q=golang`之类的请求。 它注册handleSearch来处理`/search` 端点（Endpoint）。 处理程序将创建一个称为ctx的初始Context，并安排在处理程序返回时将其取消。 如果请求中包含超时URL参数，则在超时后会自动取消Context：
 
 ```go
 func handleSearch(w http.ResponseWriter, req *http.Request) {
@@ -161,7 +155,7 @@ func handleSearch(w http.ResponseWriter, req *http.Request) {
 
 ### userip
 
-userip包提供用于从请求中提取用户IP地址并将其与Context相关联的功能。Context提供了键值映射，其中键和值均为`interface {}`类型。 键类型必须可以判等，并且值必须是安全的，以便多个goroutine同时使用。 像userip这样的软件包隐藏了此映射的详细信息，并提供了对特定Context值的强类型访问。
+userip包提供用于从请求中提取用户IP地址并将其与Context相关联的功能。Context提供了键值映射，其中键和值均为`interface{}`类型。 键类型必须可以判等，并且值必须是安全的，以便多个goroutine同时使用。 像userip这样的软件包隐藏了此映射的详细信息，并提供了对特定Context值的强类型访问。
 
 为了避免键冲突，userip定义了一个未导出的类型key，并将此类型的值作为Context的key：
 
@@ -295,4 +289,4 @@ func httpDo(ctx context.Context, req *http.Request, f func(*http.Response, error
 
 在Google，我们要求Go程序员将Context参数作为传入和传出请求之间的调用路径上每个函数的第一个参数传递。 这使许多不同团队开发的Go代码可以很好地进行互操作。 它提供了对超时和取消的简单控制，并确保安全凭证之类的关键值正确地传递Go程序。
 
-希望基于Context构建的服务器框架应提供Context的实现，以在其程序包和需要Context参数的程序包之间架起桥梁。 然后，他们的客户端库将从调用代码中接受上下文。 通过为请求范围的数据和取消建立通用接口，Context使程序包开发人员更容易共享用于创建可伸缩服务的代码。
+希望基于Context构建的服务器框架应提供Context的实现，以在其程序包和需要Context参数的程序包之间架起桥梁。 然后，他们的客户端库将从调用代码中接受context。 通过为请求范围的数据和取消建立通用接口，Context使程序包开发人员更容易共享用于创建可伸缩服务的代码。

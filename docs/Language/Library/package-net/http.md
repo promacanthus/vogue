@@ -570,7 +570,7 @@ func Redirect(w ResponseWriter, r *Request, url string, code int)
 
 返回的状态码应在3xx范围内，通常为`StatusMovedPermanently`（301），`StatusFound`（302）或`StatusSeeOther`(303）。
 
-如果尚未设置`Content-Type`标头，`Redirect`会将其设置为 `"text / html; charset = utf-8"` 并编写一个小的HTML。将`Content-Type`标头设置为任何值（包括nil）将禁用该行为。
+如果尚未设置`Content-Type`标头，`Redirect`会将其设置为 `"text/html; charset = utf-8"` 并编写一个小的HTML。将`Content-Type`标头设置为任何值（包括nil）将禁用该行为。
 
 ## func Serve
 
@@ -599,3 +599,249 @@ func ServeContent(w ResponseWriter, req *Request, name string, modtime time.Time
 如果调用方设置了按照[RFC 7232第2.3节](http://tools.ietf.org/html/rfc7232#section-2.3)格式化的w的ETag标头，则ServeContent使用它来处理使用If-Match，If-None-Match或If-Range的请求。
 
 请注意，`*os.File`实现了`io.ReadSeeker`接口。
+
+## func ServeFile
+
+```go
+func ServeFile(w ResponseWriter, r *Request, name string)
+```
+
+ServeFile使用命名文件或目录的内容答复请求。
+
+如果提供的文件或目录名称是相对路径，则会相对于当前目录进行解释，并且可能会升至父目录。 如果提供的名称是根据用户输入构造的，则应在调用ServeFile之前对其进行清理。
+
+作为预防措施，ServeFile将拒绝`r.URL.Path`包含“..”路径元素的请求； 这样可以防止调用者可能不安全地使用`filepath.Join`而不清理它，然后使用该`filepath.Join`结果作为name参数。
+
+作为另一种特殊情况，ServeFile将`r.URL.Path`以“/index.html”结尾的任何请求重定向到同一路径，而没有最终的“index.html”。 为避免此类重定向，请修改路径或使用ServeContent。
+
+除了这两种特殊情况外，ServeFile不使用`r.URL.Path`来选择要提供的文件或目录。 仅使用name参数中提供的文件或目录。
+
+## func ServeTLS
+
+```go
+func ServeTLS(l net.Listener, handler Handler, certFile, keyFile string) error
+```
+
+ServeTLS在侦听器`l`上接受传入的HTTPS连接，从而为每个侦听器创建一个新的服务goroutine。 服务goroutine读取请求，然后调用处理程序以回复请求。 
+
+该处理程序通常为nil，在这种情况下，将使用DefaultServeMux。
+
+此外，必须提供包含服务器证书和匹配私钥的文件。 如果证书是由证书颁发机构签名的，则certFile应该是服务器证书，任何中间件和CA证书的串联。 
+
+ServeTLS始终返回非nil错误。
+
+## func SetCookie
+
+```go
+func SetCookie(w ResponseWriter, cookie *Cookie)
+```
+
+SetCookie将Set-Cookie标头添加到提供的ResponseWriter的标头中。提供的cookie必须具有有效的名称。无效的cookie可能会被静默删除。
+
+## func StatusText
+
+```go
+func StatusText(code int) string
+```
+
+StatusText返回HTTP状态代码的文本。如果状态码未知，它将返回空字符串。
+
+## type Client
+
+```go
+type Client struct {
+    // Transport 指定发出单个HTTP请求的机制。
+    // 如果为nil，则使用DefaultTransport。
+    Transport RoundTripper
+
+    // CheckRedirect指定用于处理重定向的策略。 如果CheckRedirect不为nil，则客户端将在执行 HTTP重定向之前调用它。
+    // 参数req和via是即将到来的请求和已发出的请求，先到达的先发出。
+    // 如果CheckRedirect返回错误，则客户端的Get方法将返回先前的Response（关闭该响应体）和CheckRedirect的错误（包装在url.Error中），而不是发出Request请求。
+    // 作为一种特殊情况，如果CheckRedirect返回ErrUseLastResponse，则返回最近的响应，且其响应体未关闭，并返回nil错误。 
+    // 如果CheckRedirect为nil，则客户端使用其默认策略，该策略将在连续10个请求后停止。
+    CheckRedirect func(req *Request, via []*Request) error
+
+    // Jar 指定cookie jar。Jar用于将相关cookie插入每个出站请求，并使用每个入站Response的cookie值进行更新。
+    // 客户端遵循的每个重定向都会咨询Jar。 如果Jar为nil，则仅当在Request上显式设置cookie时，才发送cookie。
+    Jar CookieJar
+
+    // Timeout 指定此客户端发出的请求的时间限制。 超时包括连接时间，任何重定向和读取响应正文。
+    // 在Get，Head，Post或Do返回之后，计时器保持运行状态，并且将中断Response.Body的读取。
+    // Timeout为零表示没有超时。 客户端取消对基础传输的请求，就像请求的context结束一样。
+    // 为了兼容性，如果找到，客户端还将在Transport上使用已经弃用的CancelRequest方法。
+    // 新的RoundTripper实现应使用请求的context进行取消，而不是实现CancelRequest。
+    Timeout time.Duration
+}
+```
+
+Client是HTTP客户端。它的零值（DefaultClient）是使用DefaultTransport的可用客户端。
+
+客户端的传输通常具有内部状态（缓存的TCP连接），因此应重用客户端，而不是根据需要创建客户端。客户端可以安全地被多个goroutine并发使用。
+
+客户端比RoundTripper（例如Transport）更高级别，并且还处理HTTP详细信息，例如cookie和重定向。
+
+执行重定向时，客户端将转发在初始请求上设置的所有标头，但以下情况除外：
+
+- 将诸如“Authorization”，“ WWW-Authenticate”和“ Cookie”之类的敏感标头转发到不受信任的目标时。当重定向到与子域不匹配或与初始域不完全匹配的域时，将忽略这些标头。例如，从“ foo.com”重定向到“ foo.com”或“ sub.foo.com”将转发敏感标头，但重定向到“ bar.com”则不会。
+- 用非零值的Cookie Jar转发“ Cookie”标头时。由于每个重定向可能会更改Cookie Jar的状态，因此重定向可能会更改初始请求中设置的Cookie。当转发“ Cookie”标头时，任何突变的cookie都将被省略，并期望Jar将插入具有更新值的那些突变的cookie（假设原点匹配）。如果Jar为零，则将转发原始cookie，而不进行任何更改。
+
+## func (*Client) CloseIdleConnections
+
+```go
+func (c *Client) CloseIdleConnections()
+```
+
+CloseIdleConnections关闭其Transport上先前请求建的现在处于“keep-alive”状态的所有连接。 它不会中断当前正在使用的任何连接。
+
+如果客户端的Transport没有CloseIdleConnections方法，则此方法不执行任何操作。
+
+## func (*Client) Do
+
+```go
+func (c *Client) Do(req *Request) (*Response, error)
+```
+
+Do 按照客户端上配置的策略（例如重定向，Cookie，身份验证）发送HTTP请求并返回HTTP响应。
+
+如果是由客户端策略（例如CheckRedirect）或无法连接HTTP（例如网络连接问题）引起的，则返回错误。非2xx状态代码不会引起错误。
+
+如果返回的错误为nil，则响应将包含一个非nil的响应体，用户希望将其关闭。如果未同时将主体读入EOF并关闭，则客户端的底层RoundTripper（通常是Transport）可能无法将与服务器的持久TCP连接重新用于后续的“keep-alive”请求。
+
+请求主体（如果非nil）将被底层Transport关闭，即使发生错误也是如此。
+
+出错时，任何响应都可以忽略。仅当CheckRedirect失败并且返回的`Response.Body`已关闭时，才会出现具有非nil错误的非nil响应。
+
+通常，将使用Get，Post或PostForm代替Do。
+
+如果服务器回复重定向，则客户端首先使用CheckRedirect函数来确定是否应遵循重定向。如果允许，则301、302或303重定向会导致后续请求使用HTTP方法GET（如果原始请求为HEAD，则为HEAD），而没有请求体。如果定义了`Request.GetBody`函数，则307或308重定向将保留原始的HTTP方法和主体。 NewRequest函数自动为常见的标准库主体类型设置GetBody。
+
+返回的任何错误均为`*url.Error`类型。如果请求超时或被取消，则`url.Error`值的Timeout方法将报告true。
+
+## func (*Client) Get
+
+```go
+func (c *Client) Get(url string) (resp *Response, err error)
+```
+
+Get将GET发送到指定的URL。如果响应是以下重定向代码之一，则Get在调用客户端的CheckRedirect函数后执行重定向：
+
+```go
+301 (Moved Permanently)
+302 (Found)
+303 (See Other)
+307 (Temporary Redirect)
+308 (Permanent Redirect)
+```
+
+如果客户端的CheckRedirect函数失败或存在HTTP协议错误，则返回错误。 非2xx响应不会导致错误。 返回的任何错误均为`*url.Error`类型。 如果请求超时或被取消，则`url.Error`值的Timeout方法将报告true。
+
+当err为nil时，resp始终包含非nil的 `resp.Body` 。调用者完成读取后，应关闭`resp.Body`。
+
+要使用自定义标头发出请求，请使用NewRequest和`Client.Do`。
+
+## func (*Client) Head
+
+```go
+func (c *Client) Head(url string) (resp *Response, err error)
+```
+
+Head向指定的URL发出HEAD。如果响应是以下重定向代码之一，则Head在调用客户端的CheckRedirect函数后执行重定向：
+
+```go
+301 (Moved Permanently)
+302 (Found)
+303 (See Other)
+307 (Temporary Redirect)
+308 (Permanent Redirect)
+```
+
+## func (*Client) Post
+
+```go
+func (c *Client) Post(url, contentType string, body io.Reader) (resp *Response, err error)
+```
+
+Post发布POST到指定的URL。 调用者完成读取后，应关闭`resp.Body`。 如果提供的body是`io.Closer`，则在请求后将其关闭。 若要设置自定义标头，请使用NewRequest和`Client.Do`。 有关如何处理重定向的详细信息，请参阅`Client.Do`方法文档。
+
+## func (*Client) PostForm
+
+```go
+func (c *Client) PostForm(url string, data url.Values) (resp *Response, err error)
+```
+
+PostForm向指定的URL发出POST，并将数据的键和值URL编码为请求正文。 Content-Type标头设置为`application/x-www-form-urlencoded`。 若要设置其他标头，请使用NewRequest和`Client.Do`。 当err为nil时，resp始终包含非nil `resp.Body`，调用者完成读取后，应关闭`resp.Body`。 有关如何处理重定向的详细信息，请参阅`Client.Do`方法文档。
+
+## type CloseNotifier
+
+```go
+type CloseNotifier interface {
+    // 当客户端连接断开时，CloseNotify返回一个通道，该通道最多接收单个值（true）。
+    // 在完全读取Request.Body之前，CloseNotify可能会等待通知。
+    // 处理程序返回后，不能保证该通道会收到一个值。
+    // 如果协议是HTTP/1.1，并且在使用HTTP/1.1管道处理幂等请求（例如GET）时调用了CloseNotify，则后续管道请求的到来可能会导致在返回的通道上发送值。
+    // 实际上，HTTP/1.1管道未在浏览器中启用，并且很不常见。 如果这是一个问题，请使用HTTP/2或仅对诸如POST之类的方法使用CloseNotify。
+    CloseNotify() <-chan bool
+}
+```
+
+## type ConnState
+
+```go
+type ConnState int
+```
+
+ConnState表示客户端与服务器的连接状态。由可选的`Server.ConnState`挂钩使用。
+
+```go
+const (
+    // StateNew表示一个新连接，该连接应立即发送请求。 连接从此状态开始，然后过渡到StateActive或StateClosed。
+    StateNew ConnState = iota
+
+    // StateActive表示已读取一个或多个请求字节的连接。 StateActive的Server.ConnState钩子在请求进入处理程序之前触发，直到请求被处理后才再次触发。
+    // 处理请求后，状态将转换为StateClosed，StateHijacked或StateIdle。 对于HTTP / 2，StateActive在从零到一个活动请求的转换上触发，并且仅在所有活动请求完成后才转换。 
+    // 这意味着ConnState不能用于执行每个请求的预处理工作； ConnState仅记录连接的整体状态。
+    StateActive
+
+    // StateIdle表示已完成处理请求并处于keep-alive状态的连接，正在等待新请求。 连接从StateIdle转换为StateActive或StateClosed。
+    StateIdle
+
+    // StateHijacked 表示被劫持的连接， 这是状态的终态，它不会过渡到StateClosed。
+    StateHijacked
+
+    // StateClosed表示已关闭的连接。 这是状态的终态， 被劫持的连接不会过渡到StateClosed。
+    StateClosed
+)
+```
+
+## func (ConnState) String
+
+```go
+func (c ConnState) String() string
+```
+
+## type Cookie
+
+```go
+type Cookie struct {
+    Name  string
+    Value string
+
+    Path       string    // optional
+    Domain     string    // optional
+    Expires    time.Time // optional
+    RawExpires string    // for reading cookies only
+
+    // MaxAge=0 means no 'Max-Age' attribute specified.
+    // MaxAge<0 means delete cookie now, equivalently 'Max-Age: 0'
+    // MaxAge>0 means Max-Age attribute present and given in seconds
+    MaxAge   int
+    Secure   bool
+    HttpOnly bool
+    SameSite SameSite
+    Raw      string
+    Unparsed []string // Raw text of unparsed attribute-value pairs
+}
+```
+
+Cookie代表在HTTP响应的Set-Cookie标头或HTTP请求的Cookie标头中发送的HTTP Cookie，更多详情看[这里](https://tools.ietf.org/html/rfc6265)。
+
