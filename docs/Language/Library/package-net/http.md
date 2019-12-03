@@ -71,7 +71,7 @@ http.HandleFunc("/bar",func(w http.ResponseWriter, r *http.Request){
 log.Fatal(http.ListenAndServe(":8080", nil))
 ```
 
-创建一个自定义的Server来更好的控制server的行为：
+创建一个自定义的Server来更好的控制服务端的行为：
 
 ```go
 s := &http.Server{
@@ -85,34 +85,34 @@ s := &http.Server{
 log.Fatal(s.ListenAndServe())
 ```
 
-从Go 1.6开始，使用HTTPS时，http包对HTTP/2协议具有透明支持。
+从Go 1.6开始，使用HTTPS时，http包对`HTTP/2`协议具有透明支持。
 
-必须禁用HTTP/2的程序可以通过设置`Transport.TLSNextProto`(客户端设置)或者`Server.TLSNextProto`(服务端设置)的值为非nil的空map。或者，当前支持如下的`GODEBUG`环境变量：
+必须禁用`HTTP/2`的程序可以通过设置`Transport.TLSNextProto`(客户端设置)或者`Server.TLSNextProto`(服务端设置)的值为非nil的空map。或者，当前支持如下的`GODEBUG`环境变量：
 
 ```go
 GODEBUG=http2client=0 // 禁用HTTP/2客户端支持
 GODEBUG=http2server=0 // 禁用HTTP/2服务端支持
-GODEBUG=http2debug=1 // 启动详细的HTTP/2 调试日志
+GODEBUG=http2debug=1 // 启动详细的HTTP/2调试日志
 GODEBUG=http2debug=2 // 更详细的日志，包含 frame dumps
 ```
 
-Go的API兼容性保证不涵盖GODEBUG变量。在禁用HTTP/2支持之前，请报告所有问题：`https://golang.org/s/http2bug`
+Go的API兼容性保证不涵盖GODEBUG变量。在禁用`HTTP/2`支持之前，请报告所有问题：`https://golang.org/s/http2bug`
 
-为了简化配置， http 包中的`Transport`和`Server`都自动启动HTTP/2支持。要为更复杂的配置启用HTTP/2，以使用低级别HTTP/2功能或使用Go的http2软件包的新版本，请直接导入 `golang.org/x/net/http2` 并使用其`ConfigureTransport`或`ConfigureServer`功能。通过`golang.org/x/net/http2`包手动配置HTTP/2优先于`net/http`包的内置HTTP/2支持。
+为了简化配置， http 包中的`Transport`和`Server`都自动启动`HTTP/2`支持。要为更复杂的配置启用`HTTP/2`，以使用低级别`HTTP/2`功能或使用Go的http2软件包的新版本，请直接导入 `golang.org/x/net/http2` 并使用其`ConfigureTransport`或`ConfigureServer`功能。通过`golang.org/x/net/http2`包手动配置`HTTP/2`优先于`net/http`包的内置`HTTP/2`支持。
 
 ## Constants
 
 ```go
-const(
-    MethodGet       =       "GET"
-    MethodHead     =       "HEAD"
-    MethodPost      =       "POST"
-    MethodPut       =        "PUT"
-    MethodPath      =       "PATCH"     // RFC 5789
-    MethodDelete    =       "DELETE"
-    MethodConnect   =       "CONNECT"
-    MethodOptions   =       "OPTIONS"
-    MethodTrace        =        "TRACE"
+const (
+    MethodGet     = "GET"
+    MethodHead    = "HEAD"
+    MethodPost    = "POST"
+    MethodPut     = "PUT"
+    MethodPath    = "PATCH" // RFC 5789
+    MethodDelete  = "DELETE"
+    MethodConnect = "CONNECT"
+    MethodOptions = "OPTIONS"
+    MethodTrace   = "TRACE"
 )
 ```
 
@@ -210,7 +210,7 @@ const DefaultMaxIdleConnsPerHost = 2
 const TimeFormat = "Mon, 02 Jan 2006 15:04:05 GMT"
 ```
 
-`TimeFormat`是在HTTP标头中生成时间时要使用的时间格式。就像`time.RFC1123`一样，但是将GMT硬编码为时区。格式化时间必须采用UTC格式才能生成正确的格式。
+`TimeFormat`是在HTTPHeader中生成时间时要使用的时间格式。就像`time.RFC1123`一样，但是将GMT硬编码为时区。格式化时间必须采用UTC格式才能生成正确的格式。
 
 有关解析此时间格式的信息，请参见`ParseTime`。
 
@@ -220,7 +220,7 @@ const TrailerPrefix = "Trailer:"
 
 `TrailerPrefix`是`ResponseWriter.Header`的map的键的前缀（如果存在的话），表示map条目实际上是用于响应尾部的，而不是响应头的。`ServeHTTP`调用完成后，前缀将被删除，并且值将在尾部中发送。
 
-此机制仅适用于在写入标头之前未知的尾部。如果在写标头之前固定的或已知的尾部组，则首选普通的Go尾部机制：
+此机制仅适用于在写入Header之前未知的Trailer。如果在写Header之前固定的或已知的尾Trailer，则首选普通的Go Trailer机制：
 
 [<https://golang.org/pkg/net/http/#ResponseWriter>](https://golang.org/pkg/net/http/#ResponseWriter)
 
@@ -317,7 +317,7 @@ var ErrAbortHandler = errors.New("net/http: abort Handler")
 var ErrBodyReadAfterClose = errors.New("http: invalid Read on closed Body")
 ```
 
-在关闭请求或响应主体后，读取请求或响应主体时，将返回`ErrBodyReadAfterClose`。通常在HTTPhandler在其`ResponseWriter`上调用`WriteHeader`或`Write`后读取正文时，会发生这种情况。
+在关闭请求或响应体后，读取请求或响应体时，将返回`ErrBodyReadAfterClose`。通常在HTTPhandler在其`ResponseWriter`上调用`WriteHeader`或`Write`后读取Body时，会发生这种情况。
 
 ```go
 var ErrHandlerTimeout = errors.New("http: Handler timeout")s
@@ -347,7 +347,7 @@ var ErrNoCookie = errors.New("http: named cookie not present")
 var ErrNoLocation = errors.New("http: no Location header in response")
 ```
 
-如果不存在Location标头，则由Response的Location方法返回`ErrNoLocation`。
+如果不存在LocationHeader，则由Response的Location方法返回`ErrNoLocation`。
 
 ```go
 var ErrServerClosed = errors.New("http: Server closed")
@@ -365,7 +365,7 @@ var ErrSkipAltProtocol = errors.New("net/http: skip alternate protocol")
 var ErrUseLastResponse = errors.New("net/http: use last response")
 ```
 
-`Client.CheckRedirect` hooks 可以返回`ErrUseLastResponse`，以控制如何处理重定向。如果返回，则不发送下一个请求，并且返回最近的响应，且其主体未关闭。
+`Client.CheckRedirect` hooks 可以返回`ErrUseLastResponse`，以控制如何处理重定向。如果返回，则不发送下一个请求，并且返回最近的响应，且其Body未关闭。
 
 ```go
 var NoBody = noBody{}
@@ -530,13 +530,13 @@ func ParseHTTPVersion(vers string) (major, minor int, ok bool)
 
 `ParseHTTPVersion`解析HTTP版本字符串。 `"HTTP/1.0"`返回`(1,0,true)`。
 
-## funcParseTime
+## func ParseTime
 
 ```go
 func ParseTime(text string) (t time.Time, err error)
 ```
 
-`ParseTime`解析时间标头（例如`Date: header`），尝试使用HTTP/1.1允许的三种格式：`TimeFormat`，`time.RFC850`和`time.ANSIC`。
+`ParseTime`解析时间header（例如`Date: header`），尝试使用`HTTP/1.1`允许的三种格式：`TimeFormat`，`time.RFC850`和`time.ANSIC`。
 
 ## func ProxyFromEnvironment
 
@@ -546,7 +546,7 @@ func ProxyFromEnvironment(req *Request) (*url.URL, error)
 
 `ProxyFromEnvironment`返回用于给定请求的代理的URL，如环境变量`HTTP_PROXY`，`HTTPS_PROXY`和`NO_PROXY`（或其小写版本）所指示。**对于HTTPS请求，HTTPS_PROXY优先于HTTP_PROXY**。
 
-环境值可以是完整的URL或`"host [:port]"`，在这种情况下，假定使用"http"协议。如果值的格式不同，则返回错误。
+环境值可以是完整的URL或`"host[:port]"`，在这种情况下，假定使用"http"协议。如果值的格式不同，则返回错误。
 
 如果环境中未定义任何代理，则返回nil URL和nil错误，或者不应将代理用于这样的请求（如`NO_PROXY`所定义）。
 
@@ -570,7 +570,7 @@ func Redirect(w ResponseWriter, r *Request, url string, code int)
 
 返回的状态码应在3xx范围内，通常为`StatusMovedPermanently`（301），`StatusFound`（302）或`StatusSeeOther`(303）。
 
-如果尚未设置`Content-Type`标头，`Redirect`会将其设置为 `"text/html; charset = utf-8"` 并编写一个小的HTML。将`Content-Type`标头设置为任何值（包括nil）将禁用该行为。
+如果尚未设置`Content-Type` Header，`Redirect`会将其设置为 `"text/html; charset=utf-8"` 并编写一个小的HTML。将`Content-Type` Header设置为任何值（包括nil）将禁用该行为。
 
 ## func Serve
 
@@ -580,7 +580,7 @@ func Serve(l net.Listener, handler Handler) error
 
 `Serve`接受侦听器`l`上传入的HTTP连接，从而为每个侦听器创建一个新的服务`goroutine`。服务`goroutine`读取请求，然后调用handler以回复请求。该handler通常为nil，在这种情况下，将使用`DefaultServeMux`。
 
-仅当侦听器返回`* tls.Conn`连接并且在`TLS Config.NextProtos`中将它们配置为`"h2"`时，才启用HTTP/2支持。`Serve`始终返回非nil错误。
+仅当侦听器返回`*tls.Conn`连接并且在`TLSConfig.NextProtos`中将它们配置为`"h2"`时，才启用`HTTP/2`支持。`Serve`始终返回非nil错误。
 
 ## func ServeContent
 
@@ -590,13 +590,13 @@ func ServeContent(w ResponseWriter, req *Request, name string, modtime time.Time
 
 `ServeContent`使用提供的`ReadSeeker`中的内容回复请求。`ServeContent`优于`io.Copy`的主要好处是它可以正确处理`Range`请求，设置`MIME`类型并处理`If-Match`，`If-Unmodified-Since`，`If-None-Match`，`If-Modified-Since`和`If-Range` 请求。
 
-如果未设置响应的`Content-Type`标头，则`ServeContent`首先尝试从名称的文件扩展名中推断出类型，如果失败，则退回到读取内容的第一块并将其传递给`DetectContentType`。否则该名称未使用。特别是它可以为空，并且永远不会在响应中发送。
+如果未设置响应的`Content-Type`Header，则`ServeContent`首先尝试从名称的文件扩展名中推断出类型，如果失败，则退回到读取内容的第一块并将其传递给`DetectContentType`。否则该名称未使用。特别是它可以为空，并且永远不会在响应中发送。
 
-如果`modtime`不是零时间或Unix时期，则`ServeContent`会将其包含在响应的`Last-Modified`头中。如果请求中包含`If-Modified-Since`标头，则`ServeContent`使用`modtime`来决定是否需要发送内容。
+如果`modtime`不是零时间或Unix时期，则`ServeContent`会将其包含在响应的`Last-Modified` Header中。如果请求中包含`If-Modified-Since` Header，则`ServeContent`使用`modtime`来决定是否需要发送内容。
 
 内容的Seek方法必须起作用：ServeContent使用对内容结尾的查找来确定其大小。
 
-如果调用方设置了按照[RFC 7232第2.3节](http://tools.ietf.org/html/rfc7232#section-2.3)格式化的w的ETag标头，则ServeContent使用它来处理使用If-Match，If-None-Match或If-Range的请求。
+如果调用方设置了按照[RFC 7232第2.3节](http://tools.ietf.org/html/rfc7232#section-2.3)格式化的w的ETagHeader，则ServeContent使用它来处理使用If-Match，If-None-Match或If-Range的请求。
 
 请注意，`*os.File`实现了`io.ReadSeeker`接口。
 
@@ -636,7 +636,7 @@ ServeTLS始终返回非nil错误。
 func SetCookie(w ResponseWriter, cookie *Cookie)
 ```
 
-SetCookie将Set-Cookie标头添加到提供的ResponseWriter的标头中。提供的cookie必须具有有效的名称。无效的cookie可能会被静默删除。
+SetCookie将Set-Cookie Header添加到提供的ResponseWriter的Header中。提供的cookie必须具有有效的名称。无效的cookie可能会被静默删除。
 
 ## func StatusText
 
@@ -665,7 +665,7 @@ type Client struct {
     // 客户端遵循的每个重定向都会咨询Jar。 如果Jar为nil，则仅当在Request上显式设置cookie时，才发送cookie。
     Jar CookieJar
 
-    // Timeout 指定此客户端发出的请求的时间限制。 超时包括连接时间，任何重定向和读取响应正文。
+    // Timeout 指定此客户端发出的请求的时间限制。 超时包括连接时间，任何重定向和读取响应Body。
     // 在Get，Head，Post或Do返回之后，计时器保持运行状态，并且将中断Response.Body的读取。
     // Timeout为零表示没有超时。 客户端取消对基础传输的请求，就像请求的context结束一样。
     // 为了兼容性，如果找到，客户端还将在Transport上使用已经弃用的CancelRequest方法。
@@ -680,10 +680,10 @@ Client是HTTP客户端。它的零值（DefaultClient）是使用DefaultTranspor
 
 客户端比RoundTripper（例如Transport）更高级别，并且还处理HTTP详细信息，例如cookie和重定向。
 
-执行重定向时，客户端将转发在初始请求上设置的所有标头，但以下情况除外：
+执行重定向时，客户端将转发在初始请求上设置的所有Header，但以下情况除外：
 
-- 将诸如“Authorization”，“ WWW-Authenticate”和“ Cookie”之类的敏感标头转发到不受信任的目标时。当重定向到与子域不匹配或与初始域不完全匹配的域时，将忽略这些标头。例如，从“ foo.com”重定向到“ foo.com”或“ sub.foo.com”将转发敏感标头，但重定向到“ bar.com”则不会。
-- 用非零值的Cookie Jar转发“ Cookie”标头时。由于每个重定向可能会更改Cookie Jar的状态，因此重定向可能会更改初始请求中设置的Cookie。当转发“ Cookie”标头时，任何突变的cookie都将被省略，并期望Jar将插入具有更新值的那些突变的cookie（假设原点匹配）。如果Jar为零，则将转发原始cookie，而不进行任何更改。
+- 将诸如“Authorization”，“ WWW-Authenticate”和“ Cookie”之类的敏感Header转发到不受信任的目标时。当重定向到与子域不匹配或与初始域不完全匹配的域时，将忽略这些Header。例如，从“ foo.com”重定向到“ foo.com”或“ sub.foo.com”将转发敏感Header，但重定向到“ bar.com”则不会。
+- 用非零值的Cookie Jar转发“ Cookie”Header时。由于每个重定向可能会更改Cookie Jar的状态，因此重定向可能会更改初始请求中设置的Cookie。当转发“ Cookie”Header时，任何突变的cookie都将被省略，并期望Jar将插入具有更新值的那些突变的cookie（假设原点匹配）。如果Jar为零，则将转发原始cookie，而不进行任何更改。
 
 ## func (*Client) CloseIdleConnections
 
@@ -705,15 +705,15 @@ Do 按照客户端上配置的策略（例如重定向，Cookie，身份验证�
 
 如果是由客户端策略（例如CheckRedirect）或无法连接HTTP（例如网络连接问题）引起的，则返回错误。非2xx状态代码不会引起错误。
 
-如果返回的错误为nil，则响应将包含一个非nil的响应体，用户希望将其关闭。如果未同时将主体读入EOF并关闭，则客户端的底层RoundTripper（通常是Transport）可能无法将与服务器的持久TCP连接重新用于后续的“keep-alive”请求。
+如果返回的错误为nil，则响应将包含一个非nil的响应体，用户希望将其关闭。如果未同时将Body读入EOF并关闭，则客户端的底层RoundTripper（通常是Transport）可能无法将与服务器的持久TCP连接重新用于后续的“keep-alive”请求。
 
-请求主体（如果非nil）将被底层Transport关闭，即使发生错误也是如此。
+请求体（如果非nil）将被底层Transport关闭，即使发生错误也是如此。
 
 出错时，任何响应都可以忽略。仅当CheckRedirect失败并且返回的`Response.Body`已关闭时，才会出现具有非nil错误的非nil响应。
 
 通常，将使用Get，Post或PostForm代替Do。
 
-如果服务器回复重定向，则客户端首先使用CheckRedirect函数来确定是否应遵循重定向。如果允许，则301、302或303重定向会导致后续请求使用HTTP方法GET（如果原始请求为HEAD，则为HEAD），而没有请求体。如果定义了`Request.GetBody`函数，则307或308重定向将保留原始的HTTP方法和主体。 NewRequest函数自动为常见的标准库主体类型设置GetBody。
+如果服务器回复重定向，则客户端首先使用CheckRedirect函数来确定是否应遵循重定向。如果允许，则301、302或303重定向会导致后续请求使用HTTP方法GET（如果原始请求为HEAD，则为HEAD），而没有请求体。如果定义了`Request.GetBody`函数，则307或308重定向将保留原始的HTTP方法和Body。 NewRequest函数自动为常见的标准库Body类型设置GetBody。
 
 返回的任何错误均为`*url.Error`类型。如果请求超时或被取消，则`url.Error`值的Timeout方法将报告true。
 
@@ -737,7 +737,7 @@ Get将GET发送到指定的URL。如果响应是以下重定向代码之一，�
 
 当err为nil时，resp始终包含非nil的 `resp.Body` 。调用者完成读取后，应关闭`resp.Body`。
 
-要使用自定义标头发出请求，请使用NewRequest和`Client.Do`。
+要使用自定义Header发出请求，请使用NewRequest和`Client.Do`。
 
 ## func (*Client) Head
 
@@ -761,7 +761,7 @@ Head向指定的URL发出HEAD。如果响应是以下重定向代码之一，则
 func (c *Client) Post(url, contentType string, body io.Reader) (resp *Response, err error)
 ```
 
-Post发布POST到指定的URL。 调用者完成读取后，应关闭`resp.Body`。 如果提供的body是`io.Closer`，则在请求后将其关闭。 若要设置自定义标头，请使用NewRequest和`Client.Do`。 有关如何处理重定向的详细信息，请参阅`Client.Do`方法文档。
+Post发布POST到指定的URL。 调用者完成读取后，应关闭`resp.Body`。 如果提供的body是`io.Closer`，则在请求后将其关闭。 若要设置自定义Header，请使用NewRequest和`Client.Do`。 有关如何处理重定向的详细信息，请参阅`Client.Do`方法文档。
 
 ## func (*Client) PostForm
 
@@ -769,7 +769,7 @@ Post发布POST到指定的URL。 调用者完成读取后，应关闭`resp.Body`
 func (c *Client) PostForm(url string, data url.Values) (resp *Response, err error)
 ```
 
-PostForm向指定的URL发出POST，并将数据的键和值URL编码为请求正文。 Content-Type标头设置为`application/x-www-form-urlencoded`。 若要设置其他标头，请使用NewRequest和`Client.Do`。 当err为nil时，resp始终包含非nil `resp.Body`，调用者完成读取后，应关闭`resp.Body`。 有关如何处理重定向的详细信息，请参阅`Client.Do`方法文档。
+PostForm向指定的URL发出POST，并将数据的键和值URL编码为请求体。 Content-TypeHeader设置为`application/x-www-form-urlencoded`。 若要设置其他Header，请使用NewRequest和`Client.Do`。 当err为nil时，resp始终包含非nil `resp.Body`，调用者完成读取后，应关闭`resp.Body`。 有关如何处理重定向的详细信息，请参阅`Client.Do`方法文档。
 
 ## type CloseNotifier
 
@@ -843,7 +843,7 @@ type Cookie struct {
 }
 ```
 
-Cookie代表在HTTP响应的Set-Cookie标头或HTTP请求的Cookie标头中发送的HTTP Cookie，更多详情看[这里](https://tools.ietf.org/html/rfc6265)。
+Cookie代表在HTTP响应的Set-CookieHeader或HTTP请求的CookieHeader中发送的HTTP Cookie，更多详情看[这里](https://tools.ietf.org/html/rfc6265)。
 
 ## func (*Cookie) String
 
@@ -942,11 +942,11 @@ type Handler interface {
 
 Handler响应HTTP请求。
 
-ServeHTTP应将响应标头和数据写入ResponseWriter，然后返回。返回信号表明请求已完成；在ServeHTTP调用完成后或与之同时使用ResponseWriter或从`Request.Body`中读取是无效的。
+ServeHTTP应将响应Header和数据写入ResponseWriter，然后返回。返回信号表明请求已完成；在ServeHTTP调用完成后或与之同时使用ResponseWriter或从`Request.Body`中读取是无效的。
 
 根据HTTP客户端软件，HTTP协议版本以及客户端和Go服务器之间的任何中介，可能无法在写入ResponseWriter之后从`Request.Body`中读取。谨慎的handler应先读取`Request.Body`，然后再进行回复。
 
-除读取正文外，handler不应修改提供的请求。
+除读取Body外，handler不应修改提供的请求。
 
 如果出现ServeHTTP出现运行时恐慌（painc），则服务端（ServeHTTP的调用方）将假定panic的影响与处于活跃状态的请求无关。它将会恢复panic，将堆栈跟踪记录到服务器错误日志中，然后关闭网络连接或发送`HTTP/2 RST_STREAM`，具体取决于HTTP协议。要中止handler，以便客户端看到中断的响应，而服务器不会记录错误，那么panic应该带有ErrAbortHandler值。
 
@@ -964,7 +964,7 @@ FileServer返回一个handler，该handler以根目录为根文件系统内容�
 http.Handle("/", http.FileServer(http.Dir("/tmp")))
 ```
 
-作为一种特殊情况，返回的文件服务器会将以`“/index.html”`结尾的所有请求重定向到同一路径，而没有最终的`“ index.html”`。
+作为一种特殊情况，返回的文件服务器会将以`“/index.html”`结尾的所有请求重定向到同一路径，而没有最终的`“index.html”`。
 
 ### Example
 
@@ -1046,7 +1046,7 @@ func ExampleFileServer_dotFileHiding() {
 func NotFoundHandler() Handler
 ```
 
-NotFoundHandler返回一个简单的handler，该handler以``404页面未找到''答复来回复每个请求。
+NotFoundHandler返回一个简单的handler，该handler以“404页面未找到”答复来回复每个请求。
 
 ### Example（NotFoundHandler）
 
@@ -1121,7 +1121,7 @@ ServeHTTP 调用 f(w, r)。
 type Header map[string][]string
 ```
 
-Header代表HTTP标头中的键/值对。 key应采用CanonicalHeaderKey返回的规范形式。
+Header代表HTTPHeader中的键/值对。 key应采用CanonicalHeaderKey返回的规范形式。
 
 ## func (Header) Add
 
@@ -1239,8 +1239,8 @@ type PushOptions struct {
     // 如果设置，则必须为“ GET”或“ HEAD”。空表示“ GET”。
     Method string
 
-    // Header指定其他承诺的请求标头。
-    // 这不能包括HTTP/2伪标头字段，例如“:path”和“:scheme”，它们会自动添加。
+    // Header指定其他承诺的请求Header。
+    // 这不能包括HTTP/2伪Header字段，例如“:path”和“:scheme”，它们会自动添加。
     Header Header
 }
 ```
@@ -1289,7 +1289,7 @@ type Request struct {
     // 对于大多数请求，Path和RawQuery以外的其他字段将为空。 （请参阅RFC 7230，第5.3节）
 
     // 对于客户端请求，URL的host指定要连接的服务器，
-    // 而请求的host字段则可选地指定要在HTTP请求中发送的host标头值。
+    // 而请求的host字段则可选地指定要在HTTP请求中发送的hostHeader值。
     URL *url.URL
 
     // 传入服务器请求的协议版本。
@@ -1299,9 +1299,9 @@ type Request struct {
     ProtoMajor int    // 1
     ProtoMinor int    // 0
 
-    // Header包含服务端接收或客户端发送的请求标头字段。
+    // Header包含服务端接收或客户端发送的请求Header字段。
 
-    // 如果服务端收到带有标头行的请求：
+    // 如果服务端收到带有Header行的请求：
     // Host: example.com
     // accept-encoding: gzip, deflate
     // Accept-Language: en-us
@@ -1320,7 +1320,7 @@ type Request struct {
     // 使第一个字符以及连字符后的所有字符都变为大写，其余的都变为小写。
 
     // 对于客户端请求，某些header（例如Content-Length和Connection）会在需要时自动写入，
-    // 并且标头中的值可能会被忽略。 请参阅文档中的Request.Write方法。
+    // 并且Header中的值可能会被忽略。 请参阅文档中的Request.Write方法。
     Header Header
 
     // Body 是请求体。
@@ -1333,7 +1333,7 @@ type Request struct {
     Body io.ReadCloser
 
     // GetBody定义了一个可选的func来返回Body的新副本。
-    // 它用于当客户端请求重定向需要多次读取正文时。使用GetBody仍然需要设置Body。 
+    // 它用于当客户端请求重定向需要多次读取Body时。使用GetBody仍然需要设置Body。 
 
     // 对于服务端请求，它是不使用的。
 
@@ -1359,11 +1359,11 @@ type Request struct {
     Close bool
 
     // 对于服务器请求，Host指定在其上搜索URL的host。
-    //  根据RFC 7230，第5.4节，这是“host”标头的值或URL本身中提供的主机名。
+    //  根据RFC 7230，第5.4节，这是“host”Header的值或URL本身中提供的主机名。
     // 它的形式可能是“ host:port”。 对于国际域名，Host可以采用Punycode或Unicode形式。
     // 如果需要，请使用golang.org/x/net/idna将其转换为两种格式。
 
-    // 为了防止DNS重新绑定攻击，服务器handler应验证主机标头是否具有其认为自己具有权威性的值。
+    // 为了防止DNS重新绑定攻击，服务器handler应验证主机Header是否具有其认为自己具有权威性的值。
     // 随附的ServeMux支持注册到特定host名的模式，从而保护其注册的handler。
     // 对于客户端请求，host可以选择覆盖要发送的主机头。 如果为空，则Request.Write方法使用URL.Host的值。 
     // 主机可能包含国际域名。
@@ -1373,7 +1373,7 @@ type Request struct {
     // 该字段仅在调用ParseForm之后可用。 HTTP客户端会忽略Form，而使用Body。
     Form url.Values
 
-    // PostForm包含从PATCH，POST或PUT正文参数解析的表单数据。
+    // PostForm包含从PATCH，POST或PUT Body参数解析的表单数据。
     // 该字段仅在调用ParseForm之后可用。 HTTP客户端会忽略PostForm并改用Body。
     PostForm url.Values
 
@@ -1381,13 +1381,13 @@ type Request struct {
     // 仅在调用ParseMultipartForm之后，此字段才可用。 HTTP客户端会忽略MultipartForm并改用Body。
     MultipartForm *multipart.Form
 
-    // Trailer指定在请求正文之后发送的其他标头。
+    // Trailer指定在请求体之后发送的其他Header。
     // 对于服务器请求，Trailer map 最初仅包含 Trailer 键，其值为nil。
     // （客户端声明它将稍后发送的Trailer。）handler从Body读取时，它不得引用 Trailer。
     // 从Body读取返回EOF后，Trailer可以再次读取，并且包含非null值（如果它们是由客户端发送的）。
     //  对于客户端请求，必须将Trailer初始化为包含Trailer key 的 map，以便以后发送。
     // 这些值可以为nil或它们的最终值。 ContentLength必须为0或-1，才能发送分块的请求。
-    // 发送HTTP请求后，可以在读取请求正文的同时更新map值。 一旦正文返回EOF，调用方就不得使Trailer发生改变。 
+    // 发送HTTP请求后，可以在读取请求体的同时更新map值。 一旦Body返回EOF，调用方就不得使Trailer发生改变。 
     // 很少有HTTP客户端，服务器或代理支持HTTP Trailer。
     Trailer Header
 
@@ -1439,7 +1439,7 @@ func NewRequestWithContext(ctx context.Context, method, url string, body io.Read
 
 如果提供的body同时也是`io.Closer`，则返回的`Request.Body`设置为body，并且将通过客户端方法Do，Post和PostForm以及`Transport.RoundTrip`关闭。
 
-NewRequestWithContext返回适合与`Client.Do`或`Transport.RoundTrip`一起使用的请求。若要创建用于测试服务器handler的请求，请使用`net/http/httptest`程序包中的NewRequest函数，使用ReadRequest，或手动更新Request字段。对于传出的客户端请求，context控制请求的整个生命周期及其响应：获取连接，发送请求以及读取响应标头和正文。有关入站和出站请求字段之间的区别，请参见Request type的文档。
+NewRequestWithContext返回适合与`Client.Do`或`Transport.RoundTrip`一起使用的请求。若要创建用于测试服务器handler的请求，请使用`net/http/httptest`程序包中的NewRequest函数，使用ReadRequest，或手动更新Request字段。对于传出的客户端请求，context控制请求的整个生命周期及其响应：获取连接，发送请求以及读取响应Header和Body。有关入站和出站请求字段之间的区别，请参见Request type的文档。
 
 如果body的类型为`*bytes.Buffer`，`*bytes.Reader`或`*strings.Reader`，则返回的请求的ContentLength设置为其确切值（而不是-1），将填充GetBody（因此307和308重定向可以重播body），如果ContentLength为0，则将Body设置为NoBody。
 
@@ -1791,7 +1791,7 @@ ReadResponse从`r`读取并返回HTTP响应。 req参数可选地指定与此响
 
 读取完`resp.Body`后，客户端必须调用`resp.Body.Close`。 调用之后，客户端可以检查trailer，以查找响应tailer中包含的键/值对。
 
-## func (*Response) Cookies`
+## func (*Response) Cookies
 
 ```go
 func (r *Response) Cookies() []*Cookie
@@ -1916,7 +1916,7 @@ type RoundTripper interface {
     // 即使在RoundTrip返回之后，也可能在单独的goroutine中关闭它。
     // 这意味着希望重用响应体以用于后续请求的调用者必须安排在等待Close调用之后再这样做。
 
-    // 请求的URL和标头字段必须初始化。
+    // 请求的URL和Header字段必须初始化。
     RoundTrip(*Request) (*Response, error)
 }
 ```
@@ -2077,7 +2077,7 @@ type Server struct {
     ReadTimeout time.Duration
 
     // ReadHeaderTimeout是允许读取请求头的时间量。
-    // 读取请求体后，将重置连接的读取截止时间，并且Handler可以确定对主体而言太慢的速度。
+    // 读取请求体后，将重置连接的读取截止时间，并且Handler可以确定对Body而言太慢的速度。
     // 如果ReadHeaderTimeout为零，则使用ReadTimeout的值。 如果两者均为零，则没有超时。
     ReadHeaderTimeout time.Duration
 
@@ -2251,9 +2251,10 @@ if err := srv.ListenAndServe(); err != http.ErrServerClosed {
 <-idleConnsClosed
 ```
 
-## type Transport struct {
+## type Transport
 
 ```go
+type Transport struct {
     // Proxy指定一个函数来返回给定请求的代理。
     // 如果函数返回非零错误，则请求将中止并提供所提供的错误。
     // Proxy类型由URL scheme确定。 支持“http”，“ https”和“socks5”。
@@ -2290,7 +2291,7 @@ if err := srv.ListenAndServe(); err != http.ErrServerClosed {
     DisableKeepAlives bool
 
     // DisableCompression如果为true，则当请求不包含现有的Accept-Encoding值时，
-    // 阻止Transport使用“Accept-Encoding:gzip”请求标头请求压缩。
+    // 阻止Transport使用“Accept-Encoding:gzip”请求Header请求压缩。
     // 如果Transport请求gzip并获得gzip压缩的响应，则会在Response.Body中对其进行透明解码。
     // 但是，如果用户明确请求gzip，则不会自动将其解压缩。
     DisableCompression bool
@@ -2310,7 +2311,7 @@ if err := srv.ListenAndServe(); err != http.ErrServerClosed {
     // 零表示无限制。
     IdleConnTimeout time.Duration
 
-    // ResponseHeaderTimeout（如果非零）指定在完全写入请求（包括其主体（如果有））
+    // ResponseHeaderTimeout（如果非零）指定在完全写入请求（包括其Body（如果有））
     // 之后等待服务器的响应头的时间。 该时间不包括读取响应体的时间。
     ResponseHeaderTimeout time.Duration
 
@@ -2399,7 +2400,7 @@ RegisterProtocol使用scheme注册新协议。 Transport将使用给定scheme将
 
 其他包可以使用RegisterProtocol提供协议scheme的实现，例如“ftp”或“file”。 如果`rt.RoundTrip`返回ErrSkipAltProtocol，则Tramsport将为该请求处理RoundTrip本身，就像未注册协议一样。
 
-## func (*Transport) RoundTrip`
+## func (*Transport) RoundTrip
 
 ```go
 func (t *Transport) RoundTrip(req *Request) (*Response, error)
