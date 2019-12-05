@@ -1347,7 +1347,7 @@ type Request struct {
     ContentLength int64
 
     // TransferEncoding列出从最外层到最内层的传输编码。
-    // 空列表表示“身份”编码。 通常可以忽略TransferEncoding。
+    // 空列表表示“identity”编码。 通常可以忽略TransferEncoding。
     // 发送和接收请求时，将根据需要自动添加和删除分块编码。
     TransferEncoding []string
 
@@ -1681,7 +1681,7 @@ type Response struct {
     // 除非Request.Method为“HEAD”，否则值>=0表示可以从Body中读取给定的字节数。
     ContentLength int64
 
-    // 包含从最外部到最内部的传输编码。 值为nil，表示使用“identity”编码。
+    // 包含从最外部到最内部的传输编码。 值为nil，表示使用“identity”编码，即不进行编码。
     TransferEncoding []string
 
     // Close记录在读取响应体后，header是否指示关闭连接。 该值是给客户的建议：ReadResponse和Response.Write都不会关闭连接。
