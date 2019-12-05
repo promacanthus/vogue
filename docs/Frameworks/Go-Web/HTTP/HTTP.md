@@ -1,5 +1,43 @@
 # HTTP
 
+## HTTP/1.1 首部字段
+
+HTTP首部字段类型：
+
+1. 通用首部字段（General Header Fields）
+2. 请求首部字段（Request Header Fields）
+3. 响应首部字段（Response Header Fields）
+4. 实体首部字段（Entity Header Fields）
+
+### 通用首部字段
+
+|首部字段|作用描述|
+|---|---|
+|Cache-Control|控制缓存行为|
+|Connection|逐跳首部、连接的管理|
+|Date|创建报文的日期时间|
+|Pragma|报文指令|
+|Trailer|报文末端的首部一览|
+|Transfer-Encoding|指定报文主体的传输编码方式|
+|Upgrade|升级为其他协议|
+|Via|代理服务器的相关信息|
+|Warning|错误通知|
+
+### 实体首部字段
+
+|首部字段|作用描述|
+|---|---|
+|Allow|资源可支持的HTTP方法
+|Content-Encoding|实体主体适用的编码方式
+|Content-Language|实体主体的自然语言
+|Content-Length|实体主体的大小（单位：字节）
+|Content-Location|替代对应资源的URI
+|Content-MD5|实体主体的报文摘要
+|Content-Range|实体主体的位置范围
+|Content-Type|实体主体的媒体类型
+|Expires|实体主体的过期时间
+|Last-Modified|资源的最后修改时间
+
 ## HTTP请求
 
 HTTP是一种请求-相应协议，协议涉及的所有事情都是以一个请求开始。HTTP请求跟其他所有HTTP报文一样，都是由一系列文本行组成，这些文本行会按照以下顺序进行排列：
@@ -78,12 +116,25 @@ HTTP请求方法定义了发送请求的客户端想要执行的动作，而HTTP
 |---|---|---|
 |Accept|客户端在HTTP响应中能够接收的内容类型|比如，客户端可以通过`Accept:text/html`这个首部，告知服务器自己希望在相应的主体中收到HTML类型的内容
 |Accept-Charset|客户端要求服务器使用的字符集编码|比如，客户端可以通过`Accept-Charset:utf-8`这个首部来告知服务器自己希望响应的主体使用UTF-8字符集
+|Accept-Encoding|优先的内容编码
+|Accept-Language|优先的语言（自然语言）
 |Authorization|这个首部用于向服务器发送基本的身份验证证书
 |Cookie|客户端应该在这个首部中把服务器之前设置的所以Cookie回传给服务器|比如，如果服务器之前在浏览器上设置了3个Cookie，那么Cookie首部字段将在一个字符串里面包含这3个Cookie，并使用分号对这些Cookie进行分隔，如`Cookie:my_first_cookie=hello;my_second_cookie=world`
 |Content-Length|请求主体的字节长度
 |Content-Type|当请求包含主体的时候，这个首部用于记录主体内容的类型|在发送POST或PUT请求时，内容的类型默认为`x-www-form-urlen-coded`，在上传文件时，内容的类型应该设置为`multipart/form-data`（上传文件这一操作可以通过将input标签的类型设置为file来实现）
+|Expect|期待服务器的特定行为
+|From|用户的电子邮箱地址
 |Host|服务器的名字以及端口号|如果这个首部没有记录服务器的端口号，就表示服务器使用的是80端口
+|if-Match|比较实体标记（ETag）|
+|if-None-Match|比较实体标记（与if-Match相反）|
+|if-Modified-Since|比较资源的更新时间|
+|if-Unmodified-Since|比较资源的更新时间（与if-Modified-Since相反）|
+|if-Range|资源未更新时发送实体Bytes的范围请求|
+|Max-Forwards|最大传输逐跳数|
+|Proxy-Authorization|代理服务器要求客户端的认证信息|
+|Range|实体的字节范围请求|
 |Referrer|发起请求的页面所在地址
+|TE|传输编码的优先级|
 |User-Agent|对发起请求的客户端进行描述
 
 ## HTTP响应
@@ -135,13 +186,19 @@ HTTP响应中的状态码表明了响应的类型，HTTP响应状态码共有5�
 
 |首部字段|作用描述|
 |---|---|
+|Accept-Ranges|是否接收字节范围请求
+|Age|推算资源创建经过时间
 |Allow|告知客户端，服务器支持那些请求方法
 |Content-Length|响应主体的字节长度
 |Content-Type|如果响应包含可选的主体，那么这个首部记录的就是主体的内容的类型
 Date|以格林尼治标准时间（GMT）格式记录的当前时间
-|Location|这个首部仅在重定向的时候使用，它会高柱客户端接下来应该向哪个URL发送请求
+|ETag|资源的匹配信息|
+|Location|这个首部仅在重定向的时候使用，它会告诉客户端接下来应该向哪个URL发送请求
+|Proxy-Authenticate|代理服务器对客户端的认证信息
+|Retry-After|对再次发起请求的时机要求
 |Server|响应的服务器的域名
 |Set-Cookie|在客户端里设置一个Cookie，一个响应里面可以包含多个Set-Cookie首部
+|Vary|代理服务器缓存的管理信息|
 |WWW-Authenticate|服务器通过这个首部来告诉客户端，在Authorization请求首部中应该提供哪种类型的身份验证信息。服务器异常会把这个首部与“401 Unauthorized”状态行一同发送。除此之外，这个首部还会向服务器许可的认证授权模式（scheme）提供验证信息（challenge information）
 
 ## URI
@@ -174,3 +231,5 @@ URI的另一个可选部分为片段（fragment）,片段使用井号（#）作�
 > 所有保留字符需要进行百分号编码，把保留字符转换成该字符在ASCII编码中对应的字节值（byte value）,接着把这个字节值表示为一个两位长的十六进制数组，最后再在这个十六进制数字的前面加上一个百分号（%）。
 
 例如，空格在ASCII编码中的字节值为32，即十六进制中的20。因此，经过百分号编码处理的空格就成了%20，URI中所有空格都会被替换成这个值，如下所示：`http://www.example.com/docs/file? name=sau%20sheong&location=singapore`。
+
+
