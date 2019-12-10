@@ -23,11 +23,11 @@ JetBrains 有专门的 educational licenses，供高校学生和教职工免费�
 
 前置工作了解完成之后，就可以点进官方提供的 [Open Source License Request](https://www.jetbrains.com/shop/eform/opensource)去提交申请了。
 
-关于这个申请表的填写：
+#### 申请表
 
-1.Tell us about your project：提供的开源项目里面的项目名、描述、开发语言、年龄和证书等等如实填写即可；
-2.No. of required licenses：申请的 license 数量，这个的意思是你要申请多少个 license，根据下面的说明，JetBrains 只会给该开源项目活跃的贡献者颁发证书，但是具体评判一个贡献者是否活跃的标准却没有提及。
-3.Tell us about yourself：如实填写即可，一般来说需要提供 Github/GitLab 等的用户个人主页和注册邮箱供官方审校。
+1. Tell us about your project：提供的开源项目里面的项目名、描述、开发语言、年龄和证书等等如实填写即可；
+2. No. of required licenses：申请的 license 数量，这个的意思是你要申请多少个 license，根据下面的说明，JetBrains 只会给该开源项目活跃的贡献者颁发证书，但是具体评判一个贡献者是否活跃的标准却没有提及。
+3. Tell us about yourself：如实填写即可，一般来说需要提供 Github/GitLab 等的用户个人主页和注册邮箱供官方审校。
 
 申请信息填写完成之后，勾选同意页面最下方的三个协议，最后点击 APPLY FOR FREE LICENSES 按钮提交申请，整个流程就完成了。
 
