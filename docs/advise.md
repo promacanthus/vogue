@@ -10,6 +10,8 @@
 
 [仓库地址](https://github.com/cristaloleg/go-advices/blob/master/README_ZH.md)在这里。
 
+[Uber Golang Guide](https://github.com/xxjwxc/uber_go_guide_cn)这个是中文版的。
+
 ## 自己整理的问题
 
 ### Golang Modules 
