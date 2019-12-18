@@ -1,4 +1,4 @@
-# YAML简介
+# 17-YAML简介
 
 YAML具有一些有用的特性，可以使我们的模板更少出错并更易于阅读。
 
@@ -116,6 +116,7 @@ coffee: |-
 ```
 
 ## 缩进和模板
+
 在编写模板时，希望将文件内容注入模板。有两种方法可以做到这一点：
 
 1. 使用`{{ .Files.Get "FILENAME" }}`得到chart中的文件的内容
@@ -127,11 +128,13 @@ coffee: |-
 myfile: |
 {{ .Files.Get "myfile.txt" | indent 2 }}
 ```
+
 使用indent 2告诉模板引擎使用两个空格缩进“myfile.txt”中的**每一行**。
 
 请注意，不缩进该模板行。那是因为如果缩进了，第一行的文件内容会缩进两次。
 
 ## 折叠多行字符串
+
 有时候想在YAML中用多行代表一个字符串，但是当它被解释时，要把它当作一个长行。这被称为“折叠”。
 
 要声明一个折叠块，使用`>`代替`|`，除最后一个换行符之外的所有内容都将转换为空格。
@@ -177,6 +180,7 @@ document: 2
 **建议每个文件在绝对必要时才使用多个文档。在一个文件中有多个文件可能很难调试。**
 
 ## YAML是JSON的Superset
+
 因为YAML是JSON的超集，所以任何有效的JSON文档都应该是有效的YAML。
 
 ```yaml
@@ -204,6 +208,7 @@ coffees: [ "Latte", "Cappuccino", "Espresso"]
 虽然这意味着诸如values.yaml可能包含JSON数据的文件，但Helm不会将文件扩展名.json视为有效的后缀。
 
 ## YAML锚
+
 YAML规范提供了一种方法来存储对某个值的引用，并稍后通过引用来引用该值。YAML将此称为“锚定”：
 
 ```yaml
@@ -215,6 +220,7 @@ coffees:
   - Espresso
 
 ```
+
 1. 在上面，&favoriteCoffee设置一个引用到Cappuccino。
 2. 之后，该引用被用作*favoriteCoffee。
 3. 所以coffees变成了 Latte, Cappuccino, Espresso。
@@ -223,7 +229,7 @@ coffees:
 
 所以如果我们要解码然后重新编码上面的例子，那么产生的YAML将是：
 
-```
+```yaml
 coffee: yes, please
 favorite: Cappucino
 coffees:
@@ -232,5 +238,5 @@ coffees:
 - Espresso
 
 ```
-因为Helm和Kubernetes经常读取，修改并重写YAML文件，锚将会丢失。
 
+因为Helm和Kubernetes经常读取，修改并重写YAML文件，锚将会丢失。

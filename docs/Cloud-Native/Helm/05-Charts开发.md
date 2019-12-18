@@ -1,8 +1,13 @@
-# 前置条件
-在编写chart的环境下安装一个Helm客户端，具体步骤参照[Helm安装](/02-Helm安装.md)部分。
+# 05-Chars开发
 
-# 自定义chart
-Helm相关的命令查看[Helm命令](/03-Helm命令.md)部分。
+## 前置条件
+
+在编写chart的环境下安装一个Helm客户端，具体步骤参照[Helm安装](../Helm/02-Helm安装.md)部分。
+
+## 自定义chart
+
+Helm相关的命令查看[Helm命令](../Helm/03-Helm命令.md)部分。
+
 ```bash
 helm create portal  # portal为chart的名字
 
@@ -25,10 +30,11 @@ portal/
 
 # .helmignore文件，构建包时要忽略的模式，每行一个模式，支持shell全局匹配，相对路径匹配和否定（前缀为！）
 # 所有需要的kubernetes对象都可以在templates文件夹中创建
+```
 
-```
 **.helmignore例子：**
-```
+
+```bash
 # comment
 .git
 */temp*
@@ -47,13 +53,16 @@ Your release is named {{ .Release.Name }}.
 
 To learn more about the release, try:
 
-  $ helm status {{ .Release.Name }}
-  $ helm get {{ .Release.Name }}
+helm status {{ .Release.Name }}
+helm get {{ .Release.Name }}
 ```
+
 ## 模板
+
 templates目录下是yaml文件的模板，遵循[Go template](https://golang.org/pkg/text/template/)语法。
 
 **deployment.yaml** 文件的内容如下：
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -113,6 +122,7 @@ spec:
 其中，双大括号括起来的部分是Go template，其中的Values是`values.yaml`文件中定义的。
 
 **values.yaml**文件的内容如下所示：
+
 ```yaml
 # Default values for portal.
 # This is a YAML-formatted file.
@@ -164,9 +174,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
 ```
+
 举个例子，比如deployment的镜像：
+
 ```yaml
 # deployment.yaml
 image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -178,6 +189,7 @@ image:
   tag: stable
   pullPolicy: IfNotPresent
 ```
+
 都是一一对应的关系，根据实际的应用需要进行修改对应的values.yaml中的值。
 
 其中`.Values.image.repository`表示从顶层命名空间开始，先找到Values，然后在里面找到image对象，在image中找到repository对象。用dot（`.`）来分隔每一个namespace。
@@ -185,12 +197,14 @@ image:
 Helm中除了有Values.yaml文件，还有[内置的对象](/04-Charts简介.md)。
 
 ## 验证chart
+
 使用helm部署kubernetes的应用的时候，实际上是将`templates`渲染成最终的kubernetes能够识别的`yaml`格式。
 
 在部署之前可以使用`helm install --dry-run --debug <chart-dir>`命令来验证chart配置，该输出中包含了模板的变量配置和最终渲染的yaml文件。
 > 该命令还是会向Tiller服务器请求一个round-trip。
 
 输出内容如下：
+
 ```yaml
 [debug] Created tunnel using local port: '44431'
 
@@ -323,6 +337,7 @@ spec:
 可以看到Deployment和Service的名字的前半部分是两个随机单词，后半部分是values.yaml中配置的值。
 
 ## 安装chart
+
 有5种不同的方式来表达要安装chart到kubernetes集群中：
 
 1. 通过chart的引用: `helm install stable/mariadb`
@@ -331,12 +346,14 @@ spec:
 4. 通过绝对的URL: `helm install https://example.com/charts/nginx-1.2.3.tgz`
 5. 通过chart引用和repo的url: `helm install --repo https://example.com/charts/ nginx`
 
-
 # 打包chart
+
 修改chart.yaml中的helm chart配置信息，然后使用如下命令将chart打成压缩文件：
+
 ```bash
 helm package .    # 打包出portal-0.1.0.tgz
 ```
 
 ## 依赖
+
 新版已经没有requirement.yaml文件，所有的依赖都在charts文件夹中，使用`helm lint` 命令可以和检查依赖和模板配置是否正确。

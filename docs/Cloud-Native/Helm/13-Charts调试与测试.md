@@ -1,12 +1,17 @@
-# 调试模板
+# 13-Chats调试与测试
+
+## 调试模板
+
 调试模板比较麻烦，因为模板在Tiller服务器而不是Helm客户端上渲染。然后渲染的模板被发送到KubernetesAPI服务器，可能由于格式以外的原因，服务器可能会拒绝接收这些YAML文件。
 
 有几个命令可以帮助您进行调试：
+
 1. `helm lint`是验证 chart 是否遵循最佳实践的首选工具
 2. `helm install --dry-run --debug`：让服务器渲染模板，然后返回结果清单文件的方法
 3. `helm get manifest`：查看服务器上安装的模板的方法
 
-# 测试chart
+## 测试chart
+
 一个chart包含许多一起工作的Kubernetes资源和组件。在开发charts时，需要编写一些测试来验证charts在安装时是否按预期工作。这些测试也有助于使用者了解charts应该做什么。
 
 测试在Helm chart中的`templates/tests/test-connection.yaml`中是一个pod定义，指定一个给定的命令来运行容器，如下所示。
@@ -35,6 +40,7 @@ spec:
 - test-failure 是一种断言测试容器不能成功完成的方式。Pod中的容器未`exit 0`，则表示成功。
 
 主要测试如下内容：
+
 1. 验证来自values.yaml文件的配置是否正确注入
 2. 确保用户名和密码正常工作
 3. 确保不正确的用户名和密码不起作用

@@ -1,5 +1,7 @@
-# Hooks
+# 06-Hooks
+
 Helm 提供了一个 hook 机制，允许在 release 的生命周期中的某些点进行干预。例如，可以使用 hooks 来|
+
 1. 在加载任何其他 chart 之前加载 ConfigMap 或 Secret。
 2. 在安装新 chart 之前执行job1以备份数据库，在升级完成后执行job2以恢复数据。
 3. 在删除 release 之前执行job，以便在删除 release 之前优雅地停止服务。
@@ -7,6 +9,7 @@ Helm 提供了一个 hook 机制，允许在 release 的生命周期中的某些
 Hooks 像常规模板一样工作，但它们具有**特殊的注释**，可以使 Helm 以不同的方式使用它们。
 
 ## 可用的Hooks
+
 |功能|参数|描述|
 ---|---|---
 安装前| pre-install|在模板渲染后，资源加载到Kubernetes前，执行
@@ -19,9 +22,11 @@ Hooks 像常规模板一样工作，但它们具有**特殊的注释**，可以�
 回滚后| post-rollback|在所有资源加载到Kubernetes后，执行
 
 ## Hooks与release生命周期
+
 Hooks 让 chart 开发人员有机会在 release 的生命周期中的**关键点**执行操作。
 
 默认情况下，`release-a`的生命周期如下：
+
 1. 用户运行`helm install chart-a`
 2. chart-a被加载到Tiller中
 3. 经过验证后，Tiller渲染chart-a中的模板
@@ -30,6 +35,7 @@ Hooks 让 chart 开发人员有机会在 release 的生命周期中的**关键�
 6. 客户端接收数据并退出
 
 假设在上述release-a的生命周期中定义两个hook：`pre-install`和`post-install`，新的生命周期如下:
+
 1. 用户运行`helm install chart-a`
 2. chart-a被加载到Tiller中
 3. 经过验证后，Tiller渲染chart-a中的模板
@@ -48,18 +54,22 @@ Hooks 让 chart 开发人员有机会在 release 的生命周期中的**关键�
 > 加粗的步骤为执行hook操作的步骤。添加Hook权重是比较好的做法，如果权重不重要则设置为0，默认也为0。
 
 等到 hook 准备就绪取决于在 hook 中声明的资源：
+
 1. 如果资源是 **Job**，Tiller 将等到作业成功完成。如果作业失败，则发布失败。这是一个阻塞操作，所以 Helm 客户端会在 Job 运行时暂停。
 2. 对于**其他类型**，只要 Kubernetes 将资源标记为加载（添加或更新），资源就被视为 “就绪”。当一个 hook 声明了很多资源时，这些资源将被串行执行。如果有 hook 权重，按照加权顺序执行。否则，顺序不被保证（在 Helm 2.3.0 及之后的版本中，按字母顺序排列）。
 
 ## 注意
+
 Hook创建的资源不作为release的一部分进行跟踪或管理。一旦Tiller验证Hook已经达到其就绪状态，它将Hook资源放在一边。
 
 这意味着在 Hook 中创建资源，则不能依赖于 `helm delete` 删除资源。要销毁这些资源，需要编写代码在 `pre-delete` 或 `post-delete` Hook中执行此操作，或者将 `"helm.sh/hook-delete-policy"` 注释添加到 Hook 模板文件。
 
 ## 例子
+
 Hook也是Kubernetes的manifest文件，只是在metadata部分有**特殊注释** 。Hook也是模板文件，可以使用模板的所有功能，包括读取 `.Values`，`.Release` 和 `.Template`。
 
 创建一个Hook文件存放在 `templates/post-install-job.yaml`文件中，将其声明为在`post-install`阶段运行：
+
 ```yaml
 apiVersion: batch/v1
 kind: Job

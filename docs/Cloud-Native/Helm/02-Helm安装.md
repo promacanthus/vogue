@@ -1,9 +1,12 @@
-# Helm架构
+# 02-Helm安装
+
 - 客户端：helm
 - 服务端：Tiller
 
 ## 安装
-1. 下载helm客户端 
+
+### 1. 下载helm客户端
+
 https://github.com/helm/helm/releases
 
 选择对应版本的二进制安装包，并执行如下命令：
@@ -13,15 +16,15 @@ tar -zxvf helm-v2.0.0-linux-amd64.tgz
 mv linux-amd64/helm /usr/local/bin/helm
 ```
 
-2. 创建ServiceAccount和ClusterRoleBinding
+### 2. 创建ServiceAccount和ClusterRoleBinding
 
-使用集群预创建的ClusterRole <cluster-admin>
+使用集群预创建的ClusterRole `<cluster-admin>`
 
 ```bash
 kubectl apply -f rabc-config.yaml
 ```
 
-3. 安装Tiller
+### 3. 安装Tiller
 
 ```bash
 # 初始化

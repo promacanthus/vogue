@@ -1,23 +1,24 @@
+# 03-Helm命令
+
 Kubernetes 包管理工具。
-
-
 
 ```bash
 # 要开始使用Helm，请运行`helm init`命令
-
-$ helm init
-
-# 这将把Tiller安装到正在运行的Kubernetes集群中。它还将设置任何必要的本地配置。
+# 这将把Tiller安装到正在运行的Kubernetes集群中，它还将设置任何必要的本地配置
+helm init
 ```
 
 共用的命令操作包括：
+
 ```bash
 - helm search:    搜索charts
 - helm fetch:     下载一个chart到本地来查看
 - helm install:   安装一个chart到kubernetes集群中
 - helm list:      列出安装的Release
 ```
+
 环境变量:
+
 ```bash
 - $HELM_HOME:           为Helm文件设置备用位置。 默认情况下，它们存储在"~/.helm"中
 - $HELM_HOST:           设置另一个Tiller主机，格式是 host:port
@@ -31,9 +32,10 @@ $ helm init
 - $HELM_TLS_VERIFY:     启用Helm和Tiller之间的TLS连接并验证Tiller服务器证书 (默认是 "false")
 - $HELM_TLS_HOSTNAME:   用于验证Tiller服务器证书的主机名或IP地址 (默认是 "127.0.0.1")
 - $HELM_KEY_PASSPHRASE: 设置为PGP私钥的密码。 如果设置，则在签署helm charts时不会提示输入密码
-
 ```
+
 用法:
+
 ```bash
   helm [command]
 
