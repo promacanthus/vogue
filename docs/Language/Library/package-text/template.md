@@ -52,68 +52,373 @@ if err != nil { panic(err) }
 
 对于此修剪操作，空格字符的定义与Go中的相同：空格，水平制表符，回车符和换行符。
 
-## 动作
+### 注释
 
-这是动作列表，“参数”和“管道”是对数据的评估，将在随后的相应部分中详细定义。
+注释的语法和 Go 语言程序代码中的块注释语法相同，即使用` /* `和 `*/` 将注释内容包括起来，例如：
 
 ```go
-{{/* a comment */}}
-{{- /* a comment with white space trimmed from preceding and following text */ -}}
-一条注释可能包含换行符。注释不嵌套，但是必须像这里一样以界定符开头和结尾。
+{{/* 这是注释内容 */}}
 
-{{pipeline}}
-管道值的默认的文字表示形式（和fmt.Print输出的一样）被复制到输出中。
-
-{{if pipeline}} T1 {{end}}
-如果管道的值为空，则不生成任何输出，否则执行T1。
-空值是false，0，任何为nil的指针或者接口，任何长度为0的数组、切片、字典或字符串。
-点不受影响。
-
-{{if pipeline}} T1 {{else}} T0 {{end}}
-如果管道的值为空，则执行T0，否则执行T1。点不受影响。
-
-{{if pipeline}} T1 {{else if pipeline}} T0 {{end}}
-为了简化if-else链的外观，上面的例子和下面写的效果是一样的。
-        {{if pipeline}} T1 {{else}}{{if pipeline}} T0 {{end}}{{end}}
-
-{{range pipeline}} T1 {{end}}
-管道的值必须是数组，切片，字典或通道。 如果管道的值的长度为零，则不输出任何内容。
-否则，将点设置为数组，切片或字典的连续元素，然后执行T1。
-如果值是字典，并且键是具有定义顺序（“可比较”）的基本类型，则将按排序的键顺序访问元素。
-
-{{range pipeline}} T1 {{else}} T0 {{end}}
-管道的值必须是数组，切片，字典或通道。 如果管道的长度为零，则点不受影响并执行T0；
-否则，将点设置为数组，切片或字典的连续元素，然后执行T1。
-
-{{template "name"}}
-指定名称的模板将使用nil数据执行。
-
-{{template "name" pipeline}}
-指定名称的模板通过点设置执行管道的值。
-
-{{block "name" pipeline}} T1 {{end}}
-块是定义模板的简写
-        {{define "name"}} T1 {{end}}
-然后执行它
-        {{template "name" pipeline}}
-通常的用途是定义一组根模板， 然后通过重新定义其中的块模板进行自定义。
-
-{{with pipeline}} T1 {{end}}
-如果管道的值为空，则不生成任何输出。 否则，将点设置为管道的值，并且T1被执行。
-
-{{with pipeline}} T1 {{else}} T0 {{end}}
-如果管道的值为空，则点不受影响并且T0 被执行;否则，将点设置为管道的值然后执行T1。
 ```
 
-## 参数
+模板中的注释会在模板的解析阶段被剔除，输出时会多出一个空行，就是模板文本中的注释所在的那一行。
 
-参数是一个简单值，由以下之一表示。
+## 根对象
 
-- Go语法中的布尔值，字符串，字符，整数，浮点数，虚数或复数常量。 它们的行为就像Go的未类型化常量。 请注意，与Go中一样，大整数常量在赋值或传递给函数时是否溢出取决于主机的int是32位还是64位。
-- 关键字nil，代表无类型的Go nil。
-- 字符`'.'`，结果是点的值。
-- 变量名称，它是一个字母数字字符串（可能为空），前面加一个美元符号，例如`$piOver2`或者`$`结果是变量的值。
-- 数据字段的名称（必须是结构体），例如：`.Field`，结果是该字段的值，字段的调用可能是链式的：` .Field1.Field2`，还可以对变量进行评估包括链接：`$x.Field1.Field2`
+在Go语言的标准库模板中引擎中，点操作符默认指向的是根对象，即`Execute`函数中的第二个参数，该参数是一个`interface{}`类型，`test/template`包提供的文本模板引擎会根据提供的根对象进行底层分析，自动判断以什么形式去理解模板中的语法。
+
+## 复杂对象
+
+### struct
+
+渲染struct对象，如上面的Inventory。使用分隔符包裹起来的内容和Inventory类型中的字段名称要一一对应，且大小写保持一致（Go语言对大小写敏感）。
+
+使用同样的方法调用对象所具有的方法。
+
+### map
+
+利用`map[string]interface{}`类型的根对象，可以实现灵活地向模板添加需要被渲染的子对象。这种方案可行的根本原因在于Go语言中，当`interface{}`类型作为参数时，调用者可以传入任意类型的值。
+
+## 定义变量
+
+文本模板引擎支持使用字母数字作为变量的名称，并使用美元符号`($)`作为前缀，例如`$name`，在模板中变量的定义语法和程序代码中类似，使用`:=`连接变量名和赋值语句。
+
+```go
+{{$name := "Alice"}}
+{{$age := 18}}
+{{$round2 := true}}
+Name: {{$name}}
+Age: {{$age}}
+Round2: {{$round2}}
+
+// 输出
+Name: Alice
+Age: 18
+Round2: true
+```
+
+### 注意点
+
+1. 变量定义（或首次获得赋值）必须使用`:=`的语法
+2. 获取变量值时，直接在相应位置使用美元符号加上变量名称即可
+3. 所有有关变量的操作都属于模板语法的一部分，因此需要使用双层大括号将其包裹起来
+
+在变量定以后，修改变量的值，直接使用等号即可。
+
+## 动作
+
+### if
+
+```go
+{{if .yIsZero}}
+        除数不能为 0
+{{else}}
+        {{.result}}
+{{end}}
+```
+
+在模板使用中，将条件语句（条件语句必须返回一个bool值）放置在if关键字之后，使用空格将它们分隔，并将整个语句使用分隔符`{{和}}`进行包裹。
+
+```go
+{{if pipeline}} T1 {{end}}
+{{if pipeline}} T1 {{else}} T0 {{end}}
+{{if pipeline}} T1 {{else if pipeline}} T0 {{end}}
+```
+
+### range
+
+除了可以在模板中进行条件判断，还可以通过range语句进行迭代操作，直接在模板中对集合类型的数据进行处理和渲染。
+
+Go语言中一般来说有三种类型可以进行迭代操作，数组（Array）、切片（Slice）、字典（Map）。
+
+```go
+{{range $name := .Names}}
+        {{$name}}
+{{end}}
+
+// 输出
+Alice
+Bob
+Carol
+David
+
+{{range $i, $name := .Names}}
+        {{$i}}. {{$name}}
+{{end}}
+
+// 输出
+0. Alice
+1. Bob
+2. Carol
+3. David
+```
+
+通过使用语法结构`range$index,$value := .Names`，可以获得变量的索引和值。就模板语法而言，迭代不同的集合类型没有区别。
+
+```go
+{{range pipeline}} T1 {{end}}
+{{range pipeline}} T1 {{else}} T0 {{end}}
+```
+
+### with
+
+使用with语句来限定模板渲染的对象范围，对比以下：
+
+```go
+// 不带with
+SKU: {{.Inventory.SKU}}
+Name: {{.Inventory.Name}}
+UnitPrice: {{.Inventory.UnitPrice}}
+Quantity: {{.Inventory.Quantity}}
+
+// 带with
+{{with .Inventory}}
+        SKU: {{.SKU}}
+        Name: {{.Name}}
+        UnitPrice: {{.UnitPrice}}
+        Quantity: {{.Quantity}}
+{{end}}
+```
+
+```go
+{{with pipeline}} T1 {{end}}
+{{with pipeline}} T1 {{else}} T0 {{end}}
+```
+
+### 作用域
+
+和程序代码中的作用域相似，文本密保引擎中也有作用域的概念，with语句是作用域最直接的体现。
+
+```go
+{{$name1 := "alice"}}
+name1: {{$name1}}
+{{with true}}
+        {{$name1 = "alice2"}}
+        {{$name2 := "bob"}}
+        name2: {{$name2}}
+{{end}}
+name1 after with: {{$name1}}
+
+
+// 输出
+name1: alice
+name2: bob
+name1 after with: alice2
+```
+
+在进入with代码库之前，name1的值为alice，但在with代码块中被修改成了alice2，这个赋值操作直接修改了在模板中全局作用域中定义的模板变量name1的值。
+
+如果在模板末尾增加`name2 after with: {{$name2}}`，那么运行会报错`Parse: template: test:10: undefined variable "$name2"`，模板引擎在解析阶段就发现名为 `$name2` 的模板变量在 with 代码块之外是属于未定义的，这和在程序代码中操作一个超出作用域的变量是一致的。
+
+**注意点：**
+
+1. 模板变量`name1`是在模板的全局作用域中定义的
+2. 模板变量`name1`是在with代码块中进行单纯的赋值操作，即`=`不是`:=`
+3. 模板变量`name2`是在with代码的作用域中定义的
+
+```go
+{$name1 := "alice"}}
+name1: {{$name1}}
+{{with true}}
+        {{$name1 := "alice2"}}
+        {{$name2 := "bob"}}
+        name1 in with: {{$name1}}
+        name2: {{$name2}}
+{{end}}
+name1 after with: {{$name1}}
+
+// 输出
+name1: alice
+name1 in with: alice2
+name2: bob
+name1 after with: alice
+```
+
+在模板中使用 `:=` 的时候，模板引擎会在当前作用域内新建一个同名的模板变量（等同于程序代码中本地变量和全局变量的区别），在同个作用域内对这个模板变量的操作都不会影响到其它作用域。
+
+> 除了with语句，if语句和range语句都会在各自的代码块中形成一个局部的作用域。
+
+## 函数
+
+在执行期间会在两个函数Map中查找函数：
+
+1. 在模板中
+2. 在全局函数Map中
+
+默认情况下，模板中未定义任何函数，但可以使用Funcs方法添加它们。
+
+### 自定义函数
+
+```go
+tmpl := template.New("test").Funcs(template.FuncMap{
+        "add": func(a, b int) int {
+        return a + b
+        },
+})
+
+_, err := tmpl.Parse(`
+result: {{add 1 2}}
+`)
+
+// 输出
+result: 3
+```
+
+`Funcs`方法接受一个`template.FuncMap`类型的参数，其用法和map类型作为根对象一样，底层也是`map[string]interface{}`，通过这种方法，就可以向模板中添加更多的函数与满足需求。
+
+标准库中的内置函数参见下面的预定义函数。
+
+### 预定义函数
+
+预定义的全局函数命名如下。
+
+```go
+and
+// 通过返回第一个空的参数或最后一个参数，来返回参数的逻辑与的结果
+// 即，“and x y”的行为类似于“ if x then y else x”。 对所有参数进行求值。
+
+call
+// 返回调用第一个参数的结果，该参数必须是一个函数，其余参数作为它的参数。
+// 因此，“call X.Y 1 2”在Go表示法中是 .X.Y(1,2)，其中Y是函数值字段，map条目等。
+// 第一个参数必须是产生函数类型值的评估结果（不同于诸如print之类的预定义函数）。
+// 该函数必须返回一个或两个结果值，其中第二个是error类型。
+// 如果参数不匹配该函数，或者返回的错误值为非nil，则执行停止。
+
+html
+// 返回与其参数的文本表示形式等效的转义HTML。
+// 此功能在html/template中不可用，但有一些例外。
+index
+// 返回通过后续参数索引其第一个参数的结果。
+//  因此，按照Go语法中：
+// “index x 1 2 3”是x [1] [2] [3]
+//  每个索引项目必须是map，切片或数组
+
+slice
+// slice返回将其第一个参数与其余参数相切片的结果。
+// 因此，按照Go语法：
+// “ slice x 1 2”是x [1:2]
+// “ slice x”是x [:]
+// “ slice x 1”是x [1:]
+// “ slice x 1 2 3” “是x [1:2:3]
+// 第一个参数必须是字符串，切片或数组。
+
+js      // 返回等效于其参数的文本表示形式的转义JavaScript。
+
+len     // 返回其参数的整数长度。
+
+not     // 返回其单个参数的逻辑反。
+
+or
+// 通过返回第一个非空参数或最后一个参数，来返回其参数的逻辑或的结果，
+// 即“or x y”的行为类似于“if x then x else y”。 对所有参数进行求值。
+
+print   // fmt.Sprint的别名
+
+printf  // fmt.Sprintf的别名
+
+println //  fmt.Sprintln的别名
+
+urlquery
+// 以适合嵌入URL查询的形式返回其参数的文本表示形式的转义值。
+// 此功能在html/template中不可用，但有一些例外。
+```
+
+用于等式与不等式判断的函数主要有以下6个，都接收两个分别名为`arg1`和`arg2`的参数：
+
+- eq(equal)：当等式 `arg1 == arg2` 成立时，返回 true，否则返回 false
+- ne(not equal)：当不等式 `arg1 != arg2` 成立时，返回 true，否则返回 false
+- lt(less than)：当不等式 `arg1 < arg2` 成立时，返回 true，否则返回 false
+- le(less than or equal)：当不等式 `arg1 <= arg2` 成立时，返回 true，否则返回 false
+- gt(greater than)：当不等式 `arg1 > arg2` 成立时，返回 true，否则返回 false
+- ge(greater than or equal)：当不等式 `arg1 >= arg2` 成立时，返回 true，否则返回 false
+
+在Go语言中，函数的调用都是以 **函数名称(参数1，参数2，...)** 的形式，在模板引擎中可以在语法上省略括号。
+
+```go
+{{$name1 := "alice"}}
+{{$name2 := "bob"}}
+{{$age1 := 18}}
+{{$age2 := 23}}
+
+{{if eq $age1 $age2}}
+        年龄相同
+{{else}}
+        年龄不相同
+{{end}}
+
+{{if ne $name1 $name2}}
+        名字不相同
+{{end}}
+
+{{if gt $age1 $age2}}
+        alice 年龄比较大
+{{else}}
+        bob 年龄比较大
+{{end}}
+
+// 输出
+
+年龄不相同
+名字不相同
+bob 年龄比较大
+```
+
+## 管道
+
+文本模板引擎中也实现了和Unix操作系统一样的管道操作，使用上述add函数进行展示：
+
+```go
+result: {{add 1 3 | add 2 | add 2}}
+
+// 输出
+result: 8
+```
+
+## 模板复用
+
+```go
+tmpl := template.New("test").Funcs(template.FuncMap{
+        "join": strings.Join,
+})
+
+{{define "list"}}
+    {{join . ", "}}
+{{end}}
+Names: {{template "list" .names}}
+
+// 输出
+Names: Alice, Bob, Cindy, David
+```
+
+**注意点：**
+
+1. 通过`Funcs`方法添加了名为join模板函数，实际上是调用`string.join`
+2. 通过`define”<名称>“`的语法定义一个局部模板，以根对象`.`作为参数调用`join`模板函数
+3. 通过`template"<名称>"<参数>`的语法，调用名为`list`的局部模板，并将`,names`作为参数传递进去（传递的参数会成为局部模板的根对象）
+
+## 从本地文件中加载模板
+
+模板内容都硬编码在程序代码中，每次修改都需要重新编译和运行程序，很麻烦也不利于管理，可以将模板内容报错在本地文件中，然后在程序中加载对应的模板后进行渲染。
+
+```go
+tmpl, err := template.ParseFiles("template_local.tmpl")
+```
+
+在同个目录创建一个名为`template_local.tmpl`的模板文件，文件后缀名为`.tpl`或`.tmpl`，文件内容如下：
+
+```tpl
+{{range .names}}
+    - {{.}}
+{{end}}
+```
+
+`template.ParseFiles`接收变长的参数，可以同时指定多个模板文件，需要渲染指定的文件时，使用`.ExecuteTemplate`函数，如下：
+
+```go
+err = tmpl.ExecuteTemplate(w, "template_local.tmpl", map[string]interface{}{
+        "names": []string{"Alice", "Bob", "Cindy", "David"},
+})
+```
 
 ## func HTMLEscape
 
