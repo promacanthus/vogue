@@ -33,8 +33,8 @@ env:
 
 使用特殊字符修饰模板声明的大括号语法，以告诉模板引擎填充空格。
 
-   1. `{{- ` 添加破折号和空格，表示应该将格左移，
-   2. ` -}}` 添加空格和破折号，表示应该删除右空格
+   1. `{{-` 添加破折号和空格，表示应该将格左移，
+   2. `-}}` 添加空格和破折号，表示应该删除右空格
 
 > 确保`-`和其他指令之间有空格
 
@@ -43,7 +43,7 @@ env:
 
 **第二种：**
 
-告诉模板系统如何缩进比师徒掌握模板指令的间距更容易，可以使用indent函数：`{{ indent 2 value: "true" }}`。
+告诉模板系统如何缩进比掌握模板指令的间距更容易，可以使用indent函数：`{{ indent 2 value: "true" }}`。
 
 ## 小心随机值生成
 
@@ -73,7 +73,7 @@ oauth2-proxy
 
 ### 版本号
 
-Helm 使用 [SemVer](https://semver.org/)2 来表示版本号。当 SemVer 版本存储在 Kubernetes 标签中时，通常会将该 + 字符更改为一个 _ 字符，因为标签不允许 + 标志作为值。
+Helm 使用 [SemVer](https://semver.org/)2 来表示版本号。当 SemVer 版本存储在 Kubernetes 标签中时，通常会将 + 字符更改为一个 _ 字符，因为标签不允许 + 标志作为值。
 
 ### 格式化YAML
 
@@ -144,7 +144,7 @@ serverPort: 80
 YAML 的类型强制规则有时是违反直觉的。
 例如：
 
-- foo: false 
+- foo: false
 - foo: "false"
 - foo: 12345678 ：在某些情况下，大整数将被转换为科学记数法
 
@@ -212,7 +212,7 @@ serverPort = 9191
 
 ## templates 目录结构
 
-templates 目目录的结构应如下所示：
+templates 目录的结构应如下所示：
 
 - 如果产生 YAML 输出，模板文件应该有扩展名 `.yaml`。扩展名`.tpl`可用于产生不需要格式化内容的模板文件。
 - 模板文件名应该使用横线符号（my-example-configmap.yaml），而不是 camelcase。
@@ -221,7 +221,7 @@ templates 目目录的结构应如下所示：
 
 ### 定义模板的名称
 
-定义的模板（在 `{{define}}` 指令内创建的模板）可以全局访问。这意味着 chart 及其所有子 chart 都可以访问所有使用 `{{ define }} `创建的模板。出于这个原因，所有定义的模板名称应该是带有某个 namespace。
+定义的模板（在 `{{define}}` 指令内创建的模板）可以全局访问。这意味着 chart 及其所有子 chart 都可以访问所有使用 `{{ define }}`创建的模板。出于这个原因，所有定义的模板名称应该是带有某个 namespace。
 
 ```yaml
 # 正确
@@ -347,10 +347,10 @@ memory: {{.Values.maxMem | quote}}
 
 名称|状态|描述
 ---|---|---
-app.kubernetes.io/name|	REC|这应该是应用程序名称，反映整个应用程序。 通常使用`{{template“name” .}}`来实现此目的。 许多Kubernetes清单都使用它，而不是Helm特有的。
-helm.sh/chart	|REC|	这应该是chart名字和版本: `{{.Chart.Name}}-{{ .Chart.Version \	replace "+" "_" }}`.
-app.kubernetes.io/managed-by|	REC	|这里总是被设置为 `{{.Release.Service}}`. 这是为了找到由Tiller管理的所有东西。
-app.kubernetes.io/instance|	REC|	这里应该是 `{{.Release.Name}}`. 它有助于区分同一应用程序的不同实例。
-app.kubernetes.io/version	|OPT|	应用程序的版本可以被设置为 `{{.Chart.AppVersion}}`.
-app.kubernetes.io/component	|OPT|	这是用于标记应用可能在应用程序中扮演的不同角色的通用标签。 例如 `app.kubernetes.io/component: frontend`
-app.kubernetes.io/part-of	|OPT|	当多个chartsor软件一起构成一个应用时. 例如，应用软件和数据库来构成网站。 这可以设置为支持的顶级应用程序。
+app.kubernetes.io/name|REC|这应该是应用程序名称，反映整个应用程序。 通常使用`{{template“name” .}}`来实现此目的。 许多Kubernetes清单都使用它，而不是Helm特有的。
+helm.sh/chart|REC|这应该是chart名字和版本: `{{.Chart.Name}}-{{ .Chart.Version \replace "+" "_" }}`.
+app.kubernetes.io/managed-by|REC|这里总是被设置为 `{{.Release.Service}}`. 这是为了找到由Tiller管理的所有东西。
+app.kubernetes.io/instance|REC|这里应该是 `{{.Release.Name}}`. 它有助于区分同一应用程序的不同实例。
+app.kubernetes.io/version|OPT|应用程序的版本可以被设置为 `{{.Chart.AppVersion}}`.
+app.kubernetes.io/component|OPT|这是用于标记应用可能在应用程序中扮演的不同角色的通用标签。 例如 `app.kubernetes.io/component: frontend`
+app.kubernetes.io/part-of|OPT|当多个chartsor软件一起构成一个应用时. 例如，应用软件和数据库来构成网站。 这可以设置为支持的顶级应用程序。

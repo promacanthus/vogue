@@ -36,7 +36,7 @@ spec:
 
 在 Helm 中，有两个测试 hook：`helm.sh/hook:test-success`和`helm.sh/hook:test-failure`。
 
-- test-success 表示测试pod应该成功完成。Pod中的容器应该`exit 0`. 
+- test-success 表示测试pod应该成功完成。Pod中的容器应该`exit 0`.
 - test-failure 是一种断言测试容器不能成功完成的方式。Pod中的容器未`exit 0`，则表示成功。
 
 主要测试如下内容：

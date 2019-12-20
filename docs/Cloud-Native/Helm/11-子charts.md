@@ -1,6 +1,6 @@
 # 11-子charts
 
-chart可以有称为子chart的依赖关系，它们也有自己的值和模板。关于子chart的注意点：
+chart有称为子chart的依赖关系，它们也有自己的值和模板。关于子chart的注意点：
 
 1. 子chart被认为是“独立的”，子chart不能明确依赖于其父chart
 2. 子chart无法访问其父项的值
