@@ -56,7 +56,7 @@ helm init
   list        列出所有的release
   package     将chart目录打包成chart压缩包
   plugin      增加、列出、或删除Helm的插件
-  repo        增加、列出、删除、更新和索引chart 仓库 
+  repo        增加、列出、删除、更新和索引chart 仓库
   reset       从集群中卸载Tiller
   rollback    回滚release到前一个版本
   search      在charts中根据关键字搜索

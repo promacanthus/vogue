@@ -4,7 +4,7 @@ Helm使用称为chart的包装格式。chart是描述相关的一组Kubernetes�
 
 > 单个chart可能用于部署简单pod，或者一些复杂的应用程序堆栈。
 
-chart通过创建为[特定目录树文件](/05-自定义chart.yaml)，将它们打包到版本化的压缩包，然后进行部署。
+chart通过创建为[特定目录树文件](05-Charts开发.md)，将它们打包到版本化的压缩包，然后进行部署。
 
 ## Chart.yaml
 
@@ -57,7 +57,7 @@ wordpress:
 
 指定chart依赖关系后，如何影响使用`helm intall`和`helm upgrade`的chart安装？
 
-假设，名为“A”的chart创建一下kubernetes对象：
+假设，名为“A”的chart创建以下kubernetes对象：
 
 - namespace：A-Namespace
 - StatefulSet：A-StatefulSet
@@ -86,7 +86,47 @@ wordpress:
 
 **按上述顺序创建/更新**。
 
-单个release是使用chart及其依赖关系创建的所有对象。（kubernetes类型的安装顺序有kind_sorter.go中InstallOrder给出）
+单个release是使用chart及其依赖关系创建的所有对象。（kubernetes类型的安装顺序由kind_sorter.go中InstallOrder给出）
+
+```go
+// InstallOrder是清单的安装顺序（按种类）
+// 列表中较早出现的那些对象将在列表中较晚出现的那些对象之前安装
+var InstallOrder KindSortOrder = []string{
+  "Namespace",
+  "NetworkPolicy",
+  "ResourceQuota",
+  "LimitRange",
+  "PodSecurityPolicy",
+  "PodDisruptionBudget",
+  "Secret",
+  "ConfigMap",
+  "StorageClass",
+  "PersistentVolume",
+  "PersistentVolumeClaim",
+  "ServiceAccount",
+  "CustomResourceDefinition",
+  "ClusterRole",
+  "ClusterRoleList",
+  "ClusterRoleBinding",
+  "ClusterRoleBindingList",
+  "Role",
+  "RoleList",
+  "RoleBinding",
+  "RoleBindingList",
+  "Service",
+  "DaemonSet",
+  "Pod",
+  "ReplicationController",
+  "ReplicaSet",
+  "Deployment",
+  "HorizontalPodAutoscaler",
+  "StatefulSet",
+  "Job",
+  "CronJob",
+  "Ingress",
+  "APIService",
+}
+```
 
 ## 模板Template和值Values
 
@@ -232,7 +272,7 @@ apache:
 
 #### 全局值
 
-从` 2.0.0-Alpha.2` 开始，Helm 支持特殊的 “全局” 值：
+从`2.0.0-Alpha.2` 开始，Helm 支持特殊的 “全局” 值：
 
 ```yaml
 title: "My WordPress Site" # Sent to the WordPress template
@@ -252,9 +292,9 @@ apache:
 
 > 如果子chart声明了一个全局变量，则该全局将向下传递（到子chart的子chart），但不向上传递到父chart（子chart无法影响到父chart的值）。
 
-**父chart的全局变量优先与子chart中的全局变量**。
+**父chart的全局变量优先于子chart中的全局变量**。
 
-当涉及到编写模板和values文件时，可以参考一下几个标准：
+当涉及到编写模板和values文件时，可以参考以下几个标准：
 
 - [Go templates](https://godoc.org/text/template)
 - [The YAML format](https://yaml.org/spec/)
@@ -263,9 +303,9 @@ apache:
 
 `helm create`命令采用可选`--starter`选项，可以指定起始chart。
 
-起始chart只是普通的chart，位于`$HELM_HOME/starters`。作为chart开发人员，可以创作专门设计用作起始chart。记住这些chart时应考虑以下因素：
+起始chart只是普通的chart，位于`$HELM_HOME/starters`。作为chart开发人员，可以创作专门设计用作起始chart。设计这些chart时应考虑以下因素：
 
 - chart.yaml将被生成器覆盖
 - 用户将期望修改这样的chart内容，因此文档应该指出用户如何做到这一点
 - 所有templates目录下的匹配项`<CHARTNAME>`将被替换为指定的chart名称，以便起始chart可用作模板，另外，values.yaml的`<CHARTNAME>`也会被替换
-- 目前添加chart的唯一方法是手动将其复制到`$HELM_HOME/starters`,在chart文档中，需要解释该过程
+- 目前添加chart的唯一方法是手动将其复制到`$HELM_HOME/starters`，在chart文档中，需要解释该过程

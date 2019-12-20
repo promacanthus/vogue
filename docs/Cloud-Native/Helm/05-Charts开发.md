@@ -17,11 +17,11 @@ portal/
 ├── charts                          # 依赖目录，此chart依赖的任何其他charts
 ├── Chart.yaml                      # 此chart的YAML文件
 ├── templates                       # 模板目录，当与值组合时，将生成有效的kubernetes manifest文件
-│   ├── deployment.yaml             # kubernetes Deployment 
+│   ├── deployment.yaml             # kubernetes Deployment
 │   ├── _helpers.tpl                # 用于修改要生成的kubernetes对象配置的模板，可被被整个chart复用，模板partials默认位置
-│   ├── ingress.yaml                # kubernetes Ingress 
+│   ├── ingress.yaml                # kubernetes Ingress
 │   ├── NOTES.txt                   # 包含使用说明的纯文本文件，也可用模板生成其中的内容
-│   ├── service.yaml                # kubernetes Service 
+│   ├── service.yaml                # kubernetes Service
 │   └── tests                       # 测试chart是否如预期运行
 │       └── test-connection.yaml    # 可编写多个测试文件，或在一个文件中编写多个测试pod
 └── values.yaml                     # 此chart的默认配置值的YAML文件,声明的变量会被传递到templates中
@@ -88,7 +88,7 @@ spec:
     {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -180,7 +180,7 @@ affinity: {}
 
 ```yaml
 # deployment.yaml
-image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
 imagePullPolicy: {{ .Values.image.pullPolicy }}
 
 # values.yaml
@@ -194,7 +194,7 @@ image:
 
 其中`.Values.image.repository`表示从顶层命名空间开始，先找到Values，然后在里面找到image对象，在image中找到repository对象。用dot（`.`）来分隔每一个namespace。
 
-Helm中除了有Values.yaml文件，还有[内置的对象](/04-Charts简介.md)。
+Helm中除了有Values.yaml文件，还有[内置的对象](04-Charts简介.md)。
 
 ## 验证chart
 
@@ -344,9 +344,9 @@ spec:
 2. 通过chart包的路径: `helm install ./nginx-1.2.3.tgz`
 3. 通过一个解压后的chart包的路径: `helm install ./nginx`
 4. 通过绝对的URL: `helm install https://example.com/charts/nginx-1.2.3.tgz`
-5. 通过chart引用和repo的url: `helm install --repo https://example.com/charts/ nginx`
+5. 通过chart引用和repo的url: `helm install --repo https://example.com/charts/nginx`
 
-# 打包chart
+## 打包chart
 
 修改chart.yaml中的helm chart配置信息，然后使用如下命令将chart打成压缩文件：
 

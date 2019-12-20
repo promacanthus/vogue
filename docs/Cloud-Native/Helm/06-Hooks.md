@@ -1,6 +1,6 @@
 # 06-Hooks
 
-Helm 提供了一个 hook 机制，允许在 release 的生命周期中的某些点进行干预。例如，可以使用 hooks 来|
+Helm 提供了一个 hook 机制，允许在 release 的生命周期中的某些点进行干预。例如，可以使用 hooks 进行如下操作：
 
 1. 在加载任何其他 chart 之前加载 ConfigMap 或 Secret。
 2. 在安装新 chart 之前执行job1以备份数据库，在升级完成后执行job2以恢复数据。
@@ -74,14 +74,13 @@ Hook也是Kubernetes的manifest文件，只是在metadata部分有**特殊注释
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{.Release.Name}}"
+  name: {{.Release.Name}}
   labels:
     app.kubernetes.io/managed-by: {{.Release.Service | quote}}
     app.kubernetes.io/instance: {{.Release.Name | quote}}
-    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    helm.sh/chart: {{.Chart.Name}}-{{.Chart.Version}}
   annotations:
-    # 在这里添加注释，将资源定义为Hook，没有这些注释，这个资源将被任务是release的一部分
-
+    # 在这里添加注释，将资源定义为Hook，没有这些注释，这个资源将被认为是release的一部分
     "helm.sh/hook": post-install，post-upgrade      # 部署为多个Hook
 
     "helm.sh/hook-weight": "-5"                     # 设置Hook的权重，确定执行顺序，
@@ -105,8 +104,8 @@ spec:
       containers:
       - name: post-install-job
         image: "alpine:3.3"
-        command: ["/bin/sleep","{{default"10".Values.sleepyTime}}"]
+        command: ["/bin/sleep","{{default 10 .Values.sleepyTime}}"]
 ```
 
-- 实现一个给定的Hook的不同种类资源数量没有限制。例如，可以将secret和config map声明为`per-install` Hook。
+- 实现一个给定的Hook的不同种类资源数量没有限制。例如，可以将secret和configmap声明为`per-install` Hook。
 - 子chart声明Hook时，Tiller也会渲染这些Hook。顶级chart无法禁用子chart所声明的Hook。

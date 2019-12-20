@@ -7,7 +7,7 @@
 
 ### 1. 下载helm客户端
 
-https://github.com/helm/helm/releases
+点击[这里](https://github.com/helm/helm/releases)下载。
 
 选择对应版本的二进制安装包，并执行如下命令：
 
@@ -28,14 +28,14 @@ kubectl apply -f rabc-config.yaml
 
 ```bash
 # 初始化
-helm init --service-account tiller --history-max 200 --tiller-image tdh524-01:5000/transwarp/tiller:v2.14.0 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+helm init --service-account tiller --history-max 200 --tiller-image localhost:5000/tiller:v2.14.0 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
 # 更换国内的源
 
 # 修改镜像
-kubectl --namespace=kube-system set image deployments/tiller-deploy tiller=tdh524-01:5000/transwarp/tiller:v2.14.0
+kubectl set image deployments/tiller-deploy tiller=localhost:5000/tiller:v2.14.0 -n kube-system
 
 # 卸载
-kubectl delete deployment tiller-deploy --namespace kube-system
+kubectl delete deployment tiller-deploy -n kube-system
 # 或者
 helm reset
 ```

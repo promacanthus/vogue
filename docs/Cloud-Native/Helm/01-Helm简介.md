@@ -79,7 +79,7 @@ Tiller服务器负责：
 
 **简单来说，Helm客户端负责管理chart，Tiller服务器负责管理release。**
 
-[Helm官方文档](https://docs.helm.sh/)：链接如下 https://docs.helm.sh/
+[Helm官方文档](https://docs.helm.sh/)
 
 Helm安装时已经默认配置好了两个仓库:
 
