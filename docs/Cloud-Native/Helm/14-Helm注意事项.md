@@ -25,7 +25,7 @@ image:
 ## 解决本地chart依赖
 
 ```bash
-# 1. 在本地当期配置的目录下启动helm server，不指定参数，直接使用默认端口
+# 1. 在本地当前配置的目录下启动helm server，不指定参数，直接使用默认端口
 helm server
 
 # 2. 将该repo加入到repo list中

@@ -20,7 +20,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "mysql.fullname" . }}-test-connection"
+  name: {{ include "mysql.fullname" . }}-test-connection
   labels:
 {{ include "mysql.labels" . | indent 4 }}
   annotations:
@@ -41,7 +41,7 @@ spec:
 
 主要测试如下内容：
 
-1. 验证来自values.yaml文件的配置是否正确注入
+1. 验证来自`values.yaml`文件的配置是否正确注入
 2. 确保用户名和密码正常工作
 3. 确保不正确的用户名和密码不起作用
 4. 断言服务已启动并正确进行负载平衡
