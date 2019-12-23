@@ -31,12 +31,8 @@ git show <tagname> |查看tag的说明文字
 git push origin <tagname> |推送某个标签到远程
 git push origin ：refs/tags/<tagname> |删除远程的某个标签
 
+## 分支管理的基本策略
 
-## 分支管理的基本策略：
 - master分支仅用于发布新版本，不在上面干活
-
-
 - 干活的时候都单独创建一个分支dev，开发完成将分支合并到master上发布
-
-
 - 团队的每个人在dev上创建分支进行开发，开发完成后合并到dev上
