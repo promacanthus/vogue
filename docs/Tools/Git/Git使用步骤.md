@@ -190,87 +190,14 @@ git checkout其实是用版本库里的版本替换工作区的版本，无论�
 
 Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上。最早，肯定只有一台机器有一个原始版本库，此后，别的机器可以“*克隆*”这个原始版本库，而且每台机器的版本库其实都是一样的，并没有主次之分。
 
-## Github
-
-### 第一步：创建SSH Key
-
-在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
-
-```
- ssh-keygen -t rsa -C "youremail@example.com"
-```
-在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
-
-### 第二步：登陆GitHub
-1. 打开“Account settings”，“SSH Keys”页面
-2. 点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容
-3. 点“Add Key”，就应该看到已经添加的Key
-
-为什么GitHub需要SSH Key呢？因为GitHub需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。
-
-当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。
-
-### 第三步：添加远程仓库
-在本地创建了一个Git仓库后，想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步，这样，GitHub上的仓库既可以作为备份，又可以让其他人通过该仓库来协作。
-
-1. 登陆GitHub，
-2. 在右上角找到“Create a new repo”按钮，创建一个新的仓库
-3. 在Repository name填入仓库的名字(如 my_repo)，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库
-> 在GitHub上的这个my_repo仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
-
-4. 根据GitHub的提示，在本地的my_repo仓库下运行命令：
-
-```
-git remote add origin git@github.com:<your Github name>/my_repo.git     //根据github页面给的提示输入命令即可
-```
-添加后，远程库的名字就是origin（这是Git默认的叫法，也可以改成别的)，但是origin这个名字一看就知道是远程库。
-
-5. 最后，就可以把本地库的所有内容推送到远程库上：
-
-```
-git push -u origin master
-```
-把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
-
-由于远程库是空的，第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送到远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
-
-6. 推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样。
-
-从现在起，只要本地作了提交，就可以通过命令：
-
-```
-git push origin master
-```
-把本地master分支的最新修改推送至GitHub，现在，你就拥有了真正的分布式版本库！
-
-### 第四步：从远程库克隆
-假设我们从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆。
-
-1. 登陆GitHub，创建一个新的仓库，名字叫zero
-2. 勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个README.md文件。创建完毕后，可以看到README.md文件
-3. 远程库已经准备好了，下一步是用命令git clone克隆一个本地库：
-
-```
-git clone git@github.com:<your github name>/zero.git        //在页面的右上角可以直接复制该链接
-```
-4. 进入本地的目录就可以看到初始化创建的README.md文件
-
-
-++如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。++
-
-GitHub给出的地址不止一个，还可以用 https://github.com/yourgithubname/zero.git 这样的地址。
-
-实际上，Git支持多种协议，**默认的git://使用ssh**，但也可以使用https等其他协议。
-
-使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
-
-
 # 7.分支管理
+
 创建一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。
 
 ## 创建与合并分支
 
 ### 原理
+
 每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即**master**分支。**HEAD**严格来说不是指向提交，而是指向master，master才是指向提交的，所以，**HEAD指向的就是当前分支**。
 
 一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点：
@@ -298,6 +225,7 @@ GitHub给出的地址不止一个，还可以用 https://github.com/yourgithubna
 ![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384908867187c83ca970bf0f46efa19badad99c40235000/0)
 
 ### 命令
+
 创建分支的命令：
 
 ```
@@ -306,6 +234,7 @@ git checkout -b dev     //参数表示创建并切换，相当于以下两条命
 git branch dev          //创建分支
 git checkout dev        //切换分支
 ```
+
 查看分支的命令：
 
 ```
@@ -319,9 +248,11 @@ git checkout master         //切换到master分支
 git merge dev               //合并指定分支到当前分支，即将dev分支合并到master分支
 git branch -d dev           //合并完成后，可以删除dev分支
 ```
+
 此时的合并是快进模式Fast-forward，也就是直接把master指向dev的当前提交，所以合并速度非常快。
 
 ## 解决冲突
+
 当同时在新的分支如feature1和master上进行修改时，情况如下：
 
 ![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384909115478645b93e2b5ae4dc78da049a0d1704a41000/0)
@@ -341,6 +272,7 @@ Creating a new branch is quick & simple.
 Creating a new branch is quick AND simple.
 >>>>>>> feature1
 ```
+
 手动解决冲突（打开文件后修改为我们需要的结果）后再次提交，现在，master分支和feature1分支变成了下图所示：
 
 ![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/00138490913052149c4b2cd9702422aa387ac024943921b000/0)
@@ -363,14 +295,17 @@ Creating a new branch is quick AND simple.
 * e475afc add distributed
 * eaadf4e wrote a readme file
 ```
+
 最后，删除feature1分支。
 
 ## 分支管理策略
+
 通常，合并分支时，如果可能，Git会用**Fast forward**模式，++但这种模式下，删除分支后，会丢掉分支信息++。
 
 **如果要强制++禁用++Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。**
 
 ### 举个例子
+
 禁用 Fast forward 需要带上 --no-ff参数方式的git merge。
 
 1. 首先，仍然创建并切换dev分支：
@@ -408,7 +343,9 @@ git merge --no-ff -m "merge with no-ff" dev     //因为本次合并要创建一
 ![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384909222841acf964ec9e6a4629a35a7a30588281bb000/0)
 
 ### 分支策略
+
 在实际开发中，我们应该按照几个基本原则进行分支管理：
+
 1. master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
 2. 干活都在dev分支上，即dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；
 3. 每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
@@ -480,7 +417,9 @@ git stash pop       //恢复并删除临时存储起来的工作区
 ```
 git stash apply stash@{0}
 ```
+
 ### 新需求开发
+
 每添加一个新功能，最好新建一个feature分支，在上面开发，完成后，合并，最后，删除该feature分支。现在，你终于接到了一个新任务：开发代号为Vulcan的新功能，该功能计划用于下一代星际飞船。
 
 ```
@@ -490,22 +429,27 @@ git status                          //查看当前状态
 git checkout dev                    //切换主分支
 git branch -d feature-vulcan        //功能被砍，删除分支，-D强制删除（此时未合并，删除后丢失）
 ```
+
 ### 多人协作
+
 **从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。**
 
 查看远程库的信息：
 ```
 git remote      //-v参数，显示更详细信息，包括可以抓取和推送的origin的地址，如果没有推送权限，就看不到push的地址。
 ```
-#### 推送分支
-推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：
 
+#### 推送分支
+
+推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：
 
 ```
 git push origin master      //推送到master分支
 git push origin dev         //推送到dev分支
 ```
+
 **哪些分支需要推送，哪些不需要呢？**
+
 - master分支是主分支，因此要时刻与远程同步；
 - dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
 - bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
@@ -514,21 +458,25 @@ git push origin dev         //推送到dev分支
 ++**总之，就是在Git中，分支完全可以在本地自己藏着玩，是否推送，视你的心情而定！**++
 
 #### 抓取分支
+
 多人协作时，大家都会往master和dev分支上推送各自的修改。
+
 ```
 git clone git@github.com:<github name>/repo name.git       //从远程库clone时，默认情况下，只能看到本地的master分支。
 
 git branch      //查看本地分支情况
 ```
+
 要在dev分支上开发，就必须创建远程origin的dev分支到本地，用命令创建本地dev分支：
+
 ```
 git checkout -b dev origin/dev      //可以在dev上继续修改
-git add env.txt                     
+git add env.txt
 git commit -m "add env"
 git push origin dev                 //时不时地把dev分支push到远程
 ```
-小伙伴已经向origin/dev分支推送了他的提交，而碰巧你也对同样的文件作了修改，并试图推送：
 
+小伙伴已经向origin/dev分支推送了他的提交，而碰巧你也对同样的文件作了修改，并试图推送：
 
 ```
 git add env.txt
@@ -546,7 +494,6 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 推送失败，因为你的小伙伴的最新提交和你试图推送的提交有冲突，解决办法也很简单，Git已经提示我们，先用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送：
 
-
 ```
 git pull
 There is no tracking information for the current branch.
@@ -562,7 +509,6 @@ If you wish to set tracking information for this branch you can do so with:
 
 git pull也失败了，原因是没有指定本地dev分支与远程origin/dev分支的链接，根据提示，设置dev和origin/dev的链接：
 
-
 ```
 branch --set-upstream-to=origin/dev dev
 Branch 'dev' set up to track remote branch 'dev' from 'origin'.
@@ -574,7 +520,6 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 
 这回git pull成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的解决冲突完全一样。解决后，提交，再push：
-
 
 ```
 git commit -m "fix env conflict"
@@ -588,6 +533,7 @@ git push origin dev
 3. 如果合并有冲突，则解决冲突，并在本地提交；
 4. 没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！
 5. 如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用如下命令：
+
 ```
 git branch --set-upstream-to <branch-name> origin/<branch-name>
 ```
@@ -595,6 +541,7 @@ git branch --set-upstream-to <branch-name> origin/<branch-name>
 这就是多人协作的工作模式，一旦熟悉了，就非常简单。
 
 # 标签管理
+
 发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，**标签也是版本库的一个快照**。
 
 Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针，所以，创建和删除标签都是瞬间完成的。
@@ -602,8 +549,8 @@ Git的标签虽然是版本库的快照，但其实它就是指向某个commit�
 tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。
 
 ## 创建标签
-在Git中打标签非常简单，首先，切换到需要打标签的分支上：
 
+在Git中打标签非常简单，首先，切换到需要打标签的分支上：
 
 ```
 git branch                  //查看所有分支
@@ -611,9 +558,11 @@ git checkout master         //切换分支
 git tag v1.0                //打标签
 git tag                     //查看所有标签
 ```
+
 默认标签是打在最新提交的commit上的。
 
 给历史版本打标签，方找到历史提交的commit id，然后打上就可以了：
+
 ```
 git log --pretty=oneline --abbrev-commit        //查看提交历史
 12a631b (HEAD -> master, tag: v1.0, origin/master) merged bug fix 101
@@ -647,20 +596,25 @@ git tag -d v0.1             //删除标签，创建的标签不会自动推送�
 git push origin v1.0        //推送某个标签到远程
 git push origin --tags      //一次性推送全部尚未推送到远程的本地标签
 ```
+
 如果标签已经推送到远程，要删除远程标签需要先从本地删除：
+
 ```
 git tag -d v0.9         //删除本地标签
 git push origin :refs/tags/v0.9     //删除远程标签
 ```
+
 登陆GitHub查看远程库中的标签情况。
 
 # 使用Github
+
 1. 点“Fork”就在自己的账号下克隆了一个开源项目的仓库
 2. 从自己的账号下clone：
 
 ```
 git clone git@github.com:promacanthus/repo-name.git
 ```
+
 **一定要从自己的账号下clone仓库，这样你才能推送修改。如果从开源项目的作者的仓库地址克隆，因为没有权限，你将不能推送修改。**
 
 3. 如果你希望开源项目的的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。
