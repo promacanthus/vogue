@@ -3,46 +3,49 @@ Git分布式版本控制系统
 # 1. 安装Git
 
 ## Linux
-```
+
+```bash
 sudo apt-get install git    //Debain or Ubunt
 sudo yum install git        //Redhat or Centos
 ```
+
 老版本可能叫 git-core。
 
 ## Mac OS X
-1. 安装homebrew，然后通过homebrew安装Git，具体方法请参考homebrew的文档：http://brew.sh/。
 
+1. 安装homebrew，然后通过homebrew安装Git，具体方法请参考homebrew的文档：http://brew.sh/。
 2. 直接从AppStore安装Xcode，Xcode集成了Git，不过默认没有安装，你需要运行Xcode，选择菜单“**Xcode**”->“**Preferences**”，在弹出窗口中找到“**Downloads**”，选择“**Command** **Line** **Tools**”，点“**Install**”就可以完成安装了。
 
-
 ## Windows
+
 在Windows上使用Git，可以从[Git官网](https://git-scm.com/downloads)直接下载安装程序，然后按默认选项安装即可。
 
 安装完成后，在开始菜单里找到“**Git**”->“**Git** **Bash**”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！
 
 安装完成后，还需要最后一步设置，在命令行输入：
 
-```
-$ git config --global user.name "Your Name"
-$ git config --global user.email "email@example.com"
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
 ```
 
 # 2.创建或导入仓库
+
 初始化一个Git仓库:
 
-```
+```bash
 git init
 ```
 
 从github 克隆仓库到本地：
 
-```
+```bash
 git clone  <github上的仓库地址>     //通过ssh或者https协议进行clone
 ```
 
 添加文件或者提交文件修改到Git仓库，分两步：
 
-```
+```bash
 git add <file>      //注意，可反复多次使用，添加多个文件
 
 git add .           //将当前仓库的所有文件提交到git本地仓库中
@@ -50,6 +53,7 @@ git commit -m <message>
 ```
 
 ## 注意
+
 所有的版本控制系统，只能跟踪文本文件的改动，比如**TXT文件**，**网页**，所有的**程序代码**等。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。
 
 而**图片**、**视频**这些二进制文件，虽然也能由版本控制系统管理，++但没法跟踪文件的变化++，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。
@@ -59,27 +63,31 @@ git commit -m <message>
 因为文本是有编码的，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。
 
 # 3.版本控制
+
 查看仓库当前状态：
 
-```
+```bash
 git status
 ```
 
 查看具体文件的修改内容：
 
-```
+```bash
 git diff <file>     //显示的格式是Unix通用的diff格式
 ```
 
 查看历史修改版本：
 
-```
+```bash
 git log   --pretty=oneline   //显示从最近到最远的提交日志,查看的是提交历史
 ```
+
 git log 返回的一大串字符串是commit id（版本号），每提交一个新版本，实际上Git就会把它们自动串成一条时间线。如果使用可视化工具查看Git历史，就可以更清楚地看到提交历史的时间线。
 
 ## 切换到历史版本
+
 首先，Git必须知道当前版本是哪个版本，在Git中：
+
 - 用 **HEAD** 表示当前版本
 - 上一个版本就是 **HEAD^**
 - 上上一个版本就是** HEAD^^**
@@ -87,11 +95,11 @@ git log 返回的一大串字符串是commit id（版本号），每提交一个
 
 输入如下执行，回退到上一个版本：
 
-```
+```bash
 git reset --hard HEAD^      //会退到当前版本之前的一个版本
-```
-或者
-```
+
+# 或者
+
 git reset --hard <commit id>    //回退到指定的版本
 ```
 
@@ -99,17 +107,20 @@ git reset --hard <commit id>    //回退到指定的版本
 
 当回退之后，通过git log无法查看到最新的版本号，可以使用如下命令：
 
-```
+```bash
 git reflog      //记录每一次命令，查看的是命令历史
 ```
 
 # 4.工作区和暂存区
+
 Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。
 
-### 工作区（Working Directory）
+## 工作区（Working Directory）
+
 在电脑中能看到的 **git init**或者 **git clone** 的那个目录就是工作区。
 
-### 版本库（Repository）
+## 版本库（Repository）
+
 工作区有一个隐藏目录**.git**，这个不算工作区，而是Git的版本库。
 
 Git的版本库里存了很多东西，其中最重要的就是称为**stage**（或者叫**index**）的**暂存区**，还有Git为我们自动创建的第一个分支**master**，以及指向master的一个指针叫**HEAD**。
@@ -117,12 +128,14 @@ Git的版本库里存了很多东西，其中最重要的就是称为**stage**�
 ![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0)
 
 我们在向Git仓库中添加文件的时候：
+
 1. 用**git add**把文件添加进去，实际上就是把文件修改添加到**暂存区**；
 2. 用**git commit**提交更改，实际上就是把暂存区的所有内容提交到**当前分支**。
 
 > 创建Git仓库时，Git自动创建唯一一个master分支，所以，git commit就是往master分支上提交更改。
 
 # 5.管理修改
+
 为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是**修改**，**而非文件**。
 
 Git管理的是修改，当你用git add命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，git commit只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。
@@ -130,45 +143,57 @@ Git管理的是修改，当你用git add命令后，在工作区的第一次修�
 每次修改，如果不用git add到暂存区，那就不会加入到commit中。
 
 ## 丢弃工作区修改
+
 撤销工作区修改的命令，如果没有 -- 表示切换分支：
-```
+
+```bash
 git checkout -- file        //让这个文件回到最近一次git commit或git add时的状态
 ```
+
 这里有两种情况：
+
 1. file自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
 2. file已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
 
 另一个命令：
-```
+
+```bash
 git reset HEAD file         //把暂存区的修改撤销
 ```
+
 git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
 
 ## 删除文件
+
 在Git中，删除也是一个修改操作。
 
 1. 一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了
 2. 这个时候，Git知道删除了文件，因此，工作区和版本库就不一致了，git status命令会立刻告诉你哪些文件被删除了
 3. 现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
 
-```
+```bash
 git rm file
 git commit -m "delete  file"
 ```
+
 4. 另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：
 
-```
+```bash
 git checkout -- file
 ```
+
 git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
 
 **命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。**
 
 # 6.远程仓库
+
 Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上。最早，肯定只有一台机器有一个原始版本库，此后，别的机器可以“*克隆*”这个原始版本库，而且每台机器的版本库其实都是一样的，并没有主次之分。
 
 ## Github
+
 ### 第一步：创建SSH Key
+
 在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
 
 ```
