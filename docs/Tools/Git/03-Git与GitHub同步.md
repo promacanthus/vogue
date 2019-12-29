@@ -81,7 +81,7 @@ git merge --allow-unrelated-histories <remote name>/<branch name>   # 将历史�
 # :wq!
 ```
 
-注意： 
+注意：
 
 ```bash
 git pull = git fetch + git merge
