@@ -293,4 +293,4 @@ Docker容器全景图
 
 1. 这些rootfs层的最下层，是来自Docker镜像的只读层
 2. 在只读层上，Docker自己添加的Init层，用来存放被临时修改过的`/etc/hosts`等文件
-3. rootfs的最上层是一个可读写层，以Copy-on-Write的方式存放任何对只读层的修改，容器生命的Volume的挂载点，也在这一层
+3. rootfs的最上层是一个可读写层，以Copy-on-Write的方式存放任何对只读层的修改，容器声明的Volume的挂载点，也在这一层
