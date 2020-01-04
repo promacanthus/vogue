@@ -5,6 +5,7 @@
 **使用StatefulSet将MySQL集群搭建过程“容器化”**。
 
 ## 部署过程
+
 1. 部署一个“主从复制（Master-Slave Replication）”的MySQL集群
 2. 部署一个主节点（Master）
 3. 部署多个从节点（Slave）
@@ -19,6 +20,7 @@
 > 在常规环境中，部署这样一个主从模式的MySQL集群的主要**难点**在于：如何让从节点能拥有主节点的数据，即：如何配置主（Master）从（Slave）节点的复制与同步。
 
 ### 第一步：备份主节点
+
 所以在安装好MySQL的Master节点后，需要做的第一步工作：**通过XtraBackup将Master节点的数据备份到指定目录**。
 
 > XtraBackup是业界主要使用的开源MySQL备份和恢复工具。
