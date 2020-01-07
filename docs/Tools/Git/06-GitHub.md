@@ -2,7 +2,20 @@
 
 ## GitHub为什么这么火
 
+共享和搜索开源项目
+
+- 让Git更容易使用
+- 使协作和编写软件更容易
+
 ## GitHub的核心功能
+
+- code review
+- project management
+- integrarion
+- team management
+- social coding
+- document
+- code hosting
 
 ## 快速搜索感兴趣的开源项目
 
@@ -39,5 +52,10 @@ location：shanghai  language:java
 
 ## 开源项目怎样保证代码质量
 
+GItHub使用PR进管理。
+
 ## 为何需要组织类型的仓库
 
+- 仓库
+- 成员
+- 团队
