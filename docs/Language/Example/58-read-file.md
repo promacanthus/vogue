@@ -72,9 +72,4 @@ func main() {
 	f.Close()
 }
 
-
-// read-file内容
-hello
-go
 ```
-
