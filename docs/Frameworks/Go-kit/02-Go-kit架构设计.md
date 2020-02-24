@@ -143,7 +143,7 @@ Go kit主要与服务中的良好软件工程有关； 它试图与任何类型�
 
 > 两种方法都可以起作用。 但是端点直接返回的错误会被检查故障的中间件识别，例如断路器。 服务中的业务域错误不太可能导致断路器在客户端跳闸。 因此，可能应该在响应结构中编码错误。
 
-[ addsvc](https://github.com/go-kit/kit/tree/master/examples/addsvc)包含这两种方法的示例。
+[addsvc](https://github.com/go-kit/kit/tree/master/examples/addsvc)包含这两种方法的示例。
 
 ## 服务发现
 
@@ -172,7 +172,7 @@ Go kit附带了对现代监控系统（如[Prometheus](https://prometheus.io/)�
 有了明确定义的核心规约，就可以使用熟悉的修饰器模式轻松地解决诸如日志等级、彩色输出和同步之类的辅助问题。 刚开始时可能会感到有些陌生，但是我们认为`log`包在可用性，可维护性和性能之间取得了理想的平衡。
 
 有关`log`包演变的更多详细信息，请参阅问题和PR [63](https://github.com/go-kit/kit/issues/63)、[76](https://github.com/go-kit/kit/pull/76)、[131](https://github.com/go-kit/kit/issues/131)、[157](https://github.com/go-kit/kit/pull/157)和[252](https://github.com/go-kit/kit/pull/252)。
-有关日志记录原理的更多信息，请参见 [The Hunt for a Logger Interface](https://go-talks.appspot.com/github.com/ChrisHines/talks/structured-logging/structured-logging.slide),[ Let’s talk about logging](http://dave.cheney.net/2015/11/05/lets-talk-about-logging)和[Logging v. instrumentation.](https://peter.bourgon.org/blog/2016/02/07/logging-v-instrumentation.html)
+有关日志记录原理的更多信息，请参见 [The Hunt for a Logger Interface](https://go-talks.appspot.com/github.com/ChrisHines/talks/structured-logging/structured-logging.slide),[Let’s talk about logging](http://dave.cheney.net/2015/11/05/lets-talk-about-logging)和[Logging v. instrumentation.](https://peter.bourgon.org/blog/2016/02/07/logging-v-instrumentation.html)
 
 ### 如何聚合日志
 
