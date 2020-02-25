@@ -1,3 +1,6 @@
+
+![k8s-api组](../images/k8s-api组.jpg)
+
 # 工作原理
 
 在kubernetes项目中，一个API对象在Etcd里的完整资源路径，由：
@@ -559,17 +562,3 @@ func (c *Controller) syncHandler(key string) error {
 > 自定义控制器拿到的API对象，就是APIServer中保存的期望状态。
 
 实际状态直接从集群中获取，通过对比两者的状态来完成一次调谐过程。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
