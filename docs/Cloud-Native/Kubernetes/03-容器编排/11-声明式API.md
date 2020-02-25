@@ -1,5 +1,5 @@
 
-![k8s-api组](../images/k8s-api组.jpg)
+![k8s-api组](../../../images/k8s-api组.jpg)
 
 # 工作原理
 
