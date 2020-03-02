@@ -77,7 +77,7 @@ Docker 在 build 镜像的时候，如果某个命令相关的内容没有变化
 
 | 效果 | 命令 | 命令|　命令
 |---|---|---|---|
-|不用安装建议性（非必须）的依赖|apt-get install -y -no-install-recommends| apk add --no-cache|
+|不用安装建议性（非必须）的依赖|apt-get install -y -no-install-recommends| apk add --update --no-cache|
 |组件的安装和清理要串联在一条指令里面|rm -rf /var/cache/apk/* |rm -rf /var/lib/apt/lists/*  |yum clean all
 
 > 清理缓存文件的效果相当显著。除此以外，包管理器缓存文件、Ruby gem 的临时文件、nodejs 缓存文件，甚至是下载的源码 tarball 最好都全部清理掉。
@@ -423,7 +423,7 @@ node-distroless   7b4db3b7f1e5   76.7MB
 只有 76.7MB！
 
 比之前的镜像小了 600MB！
-
+ 
 但在使用 distroless 时有一些事项需要注意。
 
 当容器在运行时，如果你想要检查它，可以使用以下命令 attach 到正在运行的容器上：
