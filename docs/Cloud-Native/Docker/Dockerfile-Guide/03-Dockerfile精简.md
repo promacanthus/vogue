@@ -454,7 +454,21 @@ docker exec -ti <insert_docker_id> node
 
 ## 小体积的 Alpine 基础镜像
 
-你可以使用 Alpine 基础镜像替换 distroless 基础镜像。
+Alpine 中软件安装包的名字可能会与其他发行版有所不同，可以在 `https://pkgs.alpinelinux.org/packages` 网站搜索并确定安装包名称。如果需要的安装包不在主索引内，但是在测试或社区索引中。那么可以按照以下方法使用这些安装包。
+
+```bash
+echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+apk --update add --no-cache <package>
+```
+
+由于在国内访问 apk 仓库较缓慢，建议在使用 apk 之前先替换仓库地址为国内镜像。
+
+```dockerfile
+RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories \
+      && apk add --no-cache <package>
+```
+
+可以使用 Alpine 基础镜像替换 distroless 基础镜像。
 
 Alpine Linux 是：一个基于 musl libc 和 busybox 的面向安全的轻量级 Linux 发行版。换句话说，它是一个体积更小也更安全的 Linux 发行版。不过你不应该理所当然地认为他们声称的就一定是事实，让我们来看看它的镜像是否更小。
 
