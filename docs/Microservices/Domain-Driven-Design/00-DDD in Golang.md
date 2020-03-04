@@ -70,9 +70,9 @@ REDIS_HOST=127.0.0.1
 ```bash
 food-app/domain$ tree -a
 .
-├── aggregation
-│   ├── food_aggregation.go
-│   └── user_aggregation.go
+├── repository
+│   ├── food_repository.go
+│   └── user_repository.go
 └── entity
     ├── food.go
     └── user.go
@@ -88,4 +88,18 @@ food-app/domain$ tree -a
 使用`[Gorm](http://gorm.io/)`来实现ORM。在定义food实体是也用了同样的方法。
 
 ### 聚合
+
+在代码中，聚合使用仓储模式实现，该存储库定义了基础结构实现的方法的集合。这描述了与给定数据库或第三方API交互的方法的数量。
+
+方法都定义在一个接口中，并将在基础层实现。
+
+## 基础层
+
+这一层实现在repository中定义的方法。这些方法与数据库或者第三方API交互。在本文中只有和数据库的交互。
+
+在这里使用`UserRepo`结构体来实现`UserRepository`接口。
+
+然后创建`db.go`文件来配置数据库。在这个文件中定义`Repositories`结构体，用于保存应用中全部的repositories。在这里我们有user和food两个repository。
+
+repository有一个数据库实例，用于传递给user和food的构造函数，即`NewUserRepository`和`NewFoodRepository`。
 
