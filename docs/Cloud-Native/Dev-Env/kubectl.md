@@ -68,3 +68,46 @@ kubectl completion bash >/etc/bash_completion.d/kubectl
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
 ```
+
+## 手动创建 kubeconfig
+kubeconfig 由 kube-up 生成，但是，也可以使用下面命令生成自己想要的配置（可以使用任何想要的子集）
+
+```bash
+# create kubeconfig entry
+kubectl config set-cluster $CLUSTER_NICK \
+    --server=https://1.1.1.1 \
+    --certificate-authority=/path/to/apiserver/ca_file \
+    --embed-certs=true \
+# Or if tls not needed, replace --certificate-authority and --embed-certs with
+    --insecure-skip-tls-verify=true \
+    --kubeconfig=/path/to/standalone/.kube/config
+
+# create user entry
+kubectl config set-credentials $USER_NICK \
+# bearer token credentials, generated on kube master
+    --token=$token \
+# use either username|password or token, not both
+    --username=$username \
+    --password=$password \
+    --client-certificate=/path/to/crt_file \
+    --client-key=/path/to/key_file \
+    --embed-certs=true \
+    --kubeconfig=/path/to/standalone/.kube/config
+
+# create context entry
+kubectl config set-context $CONTEXT_NAME \
+    --cluster=$CLUSTER_NICK \
+    --user=$USER_NICK \
+    --kubeconfig=/path/to/standalone/.kube/config
+```
+注：
+生成独立的 kubeconfig 时，标识 `--embed-certs` 是必选的，这样才能远程访问主机上的集群。
+
+`--kubeconfig`既是加载配置的首选文件，也是保存配置的文件。如果您是第一次运行上面命令，那么 `--kubeconfig` 文件的内容将会被忽略。
+
+```bash
+export KUBECONFIG=/path/to/standalone/.kube/config
+```
+
+上面提到的 `ca_file`，`key_file` 和 `cert_file` 都是集群创建时在 master 上产生的文件，可以在文件夹 `/srv/kubernetes` 下面找到。持有的 token 或者 基本认证也在 master 上产生。
+如果您想了解更多关于 kubeconfig 的详细信息，运行帮助命令 `kubectl config -h`。
