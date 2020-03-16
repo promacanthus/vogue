@@ -227,7 +227,7 @@ DDD 分层架构在用户接口层引入了 DTO，给前端提供了更多的可
 
 BFF 微服务可以承担应用层和用户接口层的主要职能，完成各个中台微服务的服务组合和编排，可以适配不同前端和渠道的要求。
 
-![image](../../images/example-project-1.png)
+![image](../../images/example-project.png)
 
 #### 应用与资源的解耦与适配
 
