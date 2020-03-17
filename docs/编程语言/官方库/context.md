@@ -31,7 +31,7 @@ func DoSomething(ctx context.Context, arg Arg) error {
 
 可以将相同的`Context`传递给在不同`goroutine`中运行的函数；`Context`对于多个`goroutine`同时使用是安全的。
 
-有关使用`Context`的服务示例代码，请参阅[示例](../Blog/context.md)
+有关使用`Context`的服务示例代码，请参阅[示例](../官方博客/context.md)
 
 ## 变量
 
