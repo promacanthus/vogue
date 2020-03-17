@@ -1,22 +1,6 @@
-# Advise
+# 02-Module的坑
 
-![images](images/Go-BB_cover.jpg)
-
-## 手动置顶
-
-这个[仓库](https://awesome-go.com/)必须知道，精选的Go框架，库和软件。
-
-## Github大佬的建议
-
-[仓库地址](https://github.com/cristaloleg/go-advices/blob/master/README_ZH.md)在这里。
-
-[Uber Golang Guide](https://github.com/xxjwxc/uber_go_guide_cn)这个是中文版的。
-
-## 自己整理的问题
-
-### Golang Modules 
-
-#### 1. 多版本依赖冲突问题
+## 1. 多版本依赖冲突问题
 
 修改项目中的`go.mod`文件，将冲突的版本进行指定替换，如下所示：
 
@@ -35,7 +19,7 @@ replace (
 )
 ```
 
-#### 2. 导入本地模块问题
+## 2. 导入本地模块问题
 
 本地项目目录结构如下，在一个项目中有两个modules，根据两个`go.mod`文件的位置即可确定，分别是mod-a和mod-b。
 

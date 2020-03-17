@@ -1,4 +1,4 @@
-# About
+# 关于
 
 从零开始学习Go语言的学习记录。
 
@@ -30,8 +30,15 @@
 
 [golang-design-pattern](https://github.com/senghoo/golang-design-pattern)
 
+## Github大佬的建议
+
+[仓库地址](https://github.com/cristaloleg/go-advices/blob/master/README_ZH.md)在这里。
+
+[Uber Golang Guide](https://github.com/xxjwxc/uber_go_guide_cn)这个是中文版的。
+
 ## 关于这个仓库
 
 这个仓库是使用`mkdocs`和对应的主题`mkdocs-material`。
 
 使用指南在这里：[mkdocs](https://markdown-docs-zh.readthedocs.io/zh_CN/latest/)，[mkdocs-materia](https://squidfunk.github.io/mkdocs-material/)。
+
