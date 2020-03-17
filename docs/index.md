@@ -1,4 +1,4 @@
-# Welcome
+# 简介
 
 ![images](images/IB-BB-Golang-Guide.png)
 
