@@ -22,7 +22,7 @@ egrep -q 'vmx|svm' /proc/cpuinfo && echo yes || echo no
 
 ## 安装kubectl
 
-参考这里安装[kubectl](../Dev-Env/kubectl.md)。
+参考这里安装[kubectl](../开发环境/kubectl.md)。
 
 ## 安装Hypervisor
 
