@@ -4,7 +4,7 @@
 
 对于Golang来说，实现一个简单的http server非常容易，只需要短短几行代码。同时有了协程的加持，Go实现的http server能够取得非常优秀的性能。
 
-## HTTP服务
+## HTTP服务器
 
 基于HTTP构建的网络应用包括两个端，即客户端(Client)和服务端(Server)。
 
