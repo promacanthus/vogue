@@ -34,6 +34,26 @@ Chrome 80 默认将没有设置SameSite设置为SameSite=Lax。
 |Lax|稍稍放宽，大多数情况也是不发送第三方Cookie，但是导航到目标网址的 `Get` 请求除外|
 |None|网站可以选择显式关闭SameSite属性，将其设为None。前提是必须同时设置Secure属性（Cookie 只能通过 HTTPS 协议发送），否则无效|
 
+## HTTP 响应首部字段
+
+更多内容点击[这里](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)。
+
+响应首部中可以携带一个 `Access-Control-Allow-Origin` 字段，其语法如下:
+
+```http
+Access-Control-Allow-Origin: <origin> | *
+```
+
+其中，origin 参数的值指定了允许访问该资源的外域 URI。对于不需要携带身份凭证的请求，服务器可以指定该字段的值为通配符，表示允许来自所有域的请求。
+
+例如，下面的字段值将允许来自 `http://mozilla.com` 的请求：
+
+```http
+Access-Control-Allow-Origin: http://mozilla.com
+```
+
+如果服务端指定了具体的域名而非“`*`”，那么响应首部中的 `Vary` 字段的值必须包含 `Origin`。这将告诉客户端：服务器对不同的源站返回不同的内容。
+
 ### 导航到目标网站的Get请求
 
 导航到目标网址的 GET 请求，只包括三种情况：链接，预加载请求，GET 表单。详见下表。
