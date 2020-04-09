@@ -30,40 +30,37 @@
 5. 支持离线操作
 6. 容易定制工作流程
 
-## 命令
+### 注意
 
-命令| 描述
----|---
-git add <filename> |添加修改后的文件
-git commit -m "describe" |提交修改
-git status |查看仓库当前状态
-git diff  |查看文件的区别
-git log [--pretty = oneline] |查看历史版本
-git reset --hard <hash值> |回退到上一个版本
-git reflog |记录每一次执行的命令
-git checkout -- <filename> |把工作区的修改撤掉（让文件回到最近一次git add或git commit之前那一刻的状态）
-git reset HEAD <filename> |把暂存区的修改撤销掉 （HEAD 表示最新版 HEAD^b表示上一版本，HEAD为一个指针）
-git rm <filename> |删除文件
-git push origin master |把本地内容推送到远程（第一次推送分支时，用-u参数）
-git clone |克隆一个远程仓库到本地（Git支持多种协议）
-git branch | 查看当前仓库中的所有分支（当前分支用*标记出）
-git branch <branchname> |创建分支
-git checkout <branchname> |切换到分支
-git merge <branchname> |合并指定分支到当前分支
-git log --graph |查看分支合并图
-git stash |保存当前工作现场（暂存区）
-git stash list |显示保存的所有工作现场
-git stash pop |恢复之前保存的工作现场并把保存在stash列表中的内容删除
-git stash apply |恢复之前保存的工作现场保留保存在stash列表中的内容
-git stash drop| 把保存在stash列表中的内容删除
-git remote |查看远程仓库信息
-git push origin <分支名称> |把该分支上的所有本地文件推送到远程仓库
-git clone| 克隆一个远程仓库到本地
-git pull |从远程拉取最新的分支
-git tag <name><commit ID> |打一个新标签或者查看所有标签
-git show <tagname> |查看tag的说明文字
-git push origin <tagname> |推送某个标签到远程
-git push origin ：refs/tags/<tagname> |删除远程的某个标签
+所有的版本控制系统，只能跟踪文本文件的改动，比如**TXT文件**，**网页**，所有的**程序代码**等。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。
+
+而**图片**、**视频**这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。
+
+> Microsoft的Word格式是二进制格式，版本控制系统是没法跟踪Word文件的改动的，如果要真正使用版本控制系统，就要以纯文本方式编写文件。
+
+因为文本是有编码的，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。
+
+## 安装git
+
+### Linux
+
+```bash
+sudo apt-get install git    //Debain or Ubunt
+sudo yum install git        //Redhat or Centos
+```
+
+老版本可能叫 git-core。
+
+### Mac OS X
+
+1. 安装homebrew，然后通过homebrew安装Git，具体方法请参考[homebrew文档](http://brew.sh/)。
+2. 直接从AppStore安装Xcode，Xcode集成了Git，不过默认没有安装，你需要运行Xcode，选择菜单“**Xcode**”->“**Preferences**”，在弹出窗口中找到“**Downloads**”，选择“**Command** **Line** **Tools**”，点“**Install**”就可以完成安装了。
+
+### Windows
+
+在Windows上使用Git，可以从[Git官网](https://git-scm.com/downloads)直接下载安装程序，然后按默认选项安装即可。
+
+安装完成后，在开始菜单里找到“**Git**”->“**Git** **Bash**”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！
 
 ## Git最小化配置
 

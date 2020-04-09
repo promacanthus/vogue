@@ -1,4 +1,4 @@
-# 06-Github
+# 06-Github使用指南
 
 ## GitHub为什么这么火
 
