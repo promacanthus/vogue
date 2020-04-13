@@ -4,14 +4,20 @@ date: 2020-04-13T14:11:34+08:00
 type: about
 author: promacanthus
 image: images/jetbrains.svg
-
+draft: false
+hideLastModified: true
+# summaryImage: "images/system.jpg" 
+keepImageRatio: true
+tags: ["Tag1", "tag2", "tag 3"]
+summary: "This is a custom summary for my article"
+showInMenu: true
 ---
 
 ## JetBrains 开源证书支持
 
 Golang-Guide 项目一直以来都是在 JetBrains 公司旗下的 GoLand 集成开发环境中进行开发，基于 free JetBrains Open Source license(s) 正版免费授权，在此表达我的谢意。
 
-<!-- ![image](images/jetbrains.svg) -->
+![image](images/jetbrains.svg)
 
 从零开始学习Go语言的学习记录。
 
@@ -19,7 +25,7 @@ Golang-Guide 项目一直以来都是在 JetBrains 公司旗下的 GoLand 集成
 
 > 该路线图由 [Alikhll (Ali Khalili)](https://github.com/Alikhll) 制作，由 [BON](https://github.com/Quorafind) 翻译为中文。原仓库链接为： Alikhll/golang-developer-roadmap 。
 
-<!-- ![image](images/golang-developer-roadmap.png) -->
+![image](images/golang-developer-roadmap.png)
 
 ## 电子书
 
