@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/proxy/%E4%BB%A3%E7%90%86/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="代理" /><meta property="og:description" content="代理" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/css/style.6fd7fa42c7b7fe49cfeceeed650d33cb8d1cdbfe842e514a22e57a6b712729aa.css" integrity="sha256-b9f6Qse3/knP7O7tZQ0zy40c2/6ELlFKIuV6a3EnKao=">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">代理</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <h2 id="背景">背景</h2>
+<p>如果您向客户提供银行服务，则可能必须与第三方（例如其他银行和支付提供商）集成。为了保证高级别的安全性，参与方通常要求：</p>
+<ol>
+<li>对通信通道进行加密</li>
+<li>限制目的地和来源</li>
+</ol>
+<p>对于Web服务：</p>
+<ol>
+<li>可通过使用具有传输层安全性（TLS）或虚拟专用网络（VPN）连接的HTTPS来解决加密问题。</li>
+<li>目的地限制是由防火墙和负载平衡器通过端口和数据包筛选来强制实施的。</li>
+<li>来源限制是由静态IP地址（例如，亚马逊网络服务（AWS）提供的弹性IP（EIP）或Google Cloud Platform（GCP）提供的静态外部IP地址）实施的。如果您的服务已经在这些云提供商的范围内运行，则只需将集成服务连接到这些静态IP。</li>
+</ol>
+<blockquote>
+<p>但是，如果您的服务托管在平台即服务（PaaS）提供程序（例如Heroku）上，则必须考虑其他集成工作，以满足起源限制。这是HTTPS代理用来提供封装的。</p>
+</blockquote>
+<h2 id="https-代理是什么">HTTP/S 代理是什么</h2>
+<p>代理是一种服务器或应用程序，可充当从客户端到目的地请求的中介。HTTP/S代理是支持HTTP请求转发（forwarding）和HTTP隧道（tunneling）的代理。它通常在开放系统互连（OSI）第7层上运行，这与通常在OSI第3层上运行的网络地址转换（NAT）应用程序区分开来。像HTTP隧道这种代理，有很多备用名称，例如网关（gateway）或透明代理（transparent proxy）。要代理HTTP/S请求，可以在两种类型之间进行广泛选择：转发代理（Forwarding Proxy）和反向代理（Reverse Proxy）。</p>
+<h3 id="转发代理">转发代理</h3>
+<p>转发代理可以有两种变体。</p>
+<h4 id="复制">复制</h4>
+<p>一种变体称为复制（replication），其中代理端终止传入的客户端请求，创建自己的到目的地的传出请求，然后以目的地回复来响应客户端。这适用于HTTP，但不适用于HTTPS，因为它会附带一个重要的副作用，即能够检查（和修改）客户端的请求，这会破坏TLS完整性。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/forwarding-proxy.png" alt="image"></p>
+<h4 id="隧道">隧道</h4>
+<p>另一个变种称为隧道（tunneling），其中代理端通过HTTP CONNECT方法使用HTTP隧道功能。这样，代理端就接受了一个初始CONNECT请求，该请求将整个URL当作HOST值，而不仅仅是主机地址。然后，代理端打开到目的地的TCP连接，并透明地将原始通信从客户端转发到目的地。这允许代理端仅检查和评估来自客户端的初始CONNECT请求，例如授权。但是，任何进一步的通信都不会被拦截，因此代理端无法读取TLS通信。这允许初始的连接代理端的CONNECT方法是HTTP或HTTPS，然后是通过代理端的HTTPS到目的地。</p>
+<p>HTTP会话示例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-h" data-lang="h"><span style="color:#f92672">&gt;</span> CONNECT example.host.com:<span style="color:#ae81ff">443</span> HTTP<span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+<span style="color:#f92672">&gt;</span> Host: example.host.com:<span style="color:#ae81ff">443</span>
+<span style="color:#f92672">&gt;</span> Proxy<span style="color:#f92672">-</span>Authorization: Basic base64<span style="color:#f92672">-</span>encoded<span style="color:#f92672">-</span>proxy<span style="color:#f92672">-</span>credentials
+<span style="color:#f92672">&gt;</span> Proxy<span style="color:#f92672">-</span>Connection: Keep<span style="color:#f92672">-</span>Alive
+<span style="color:#f92672">&lt;</span> HTTP<span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">200</span> OK
+
+<span style="color:#f92672">&gt;</span> GET <span style="color:#f92672">/</span>foo<span style="color:#f92672">/</span>bar<span style="color:#f92672">?</span>baz<span style="color:#960050;background-color:#1e0010">#</span>qux HTTP<span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+<span style="color:#f92672">&gt;</span> Host: example.host.com
+<span style="color:#f92672">&gt;</span> Authorization: Basic base64<span style="color:#f92672">-</span>encoded<span style="color:#f92672">-</span>destination<span style="color:#f92672">-</span>credentials
+<span style="color:#f92672">&lt;</span> HTTP<span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">200</span> OK
+<span style="color:#f92672">&lt;</span> Connection: close
+</code></pre></div><p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/tunneling-proxy.png" alt="image"></p>
+<p>在这两种变体中，客户端都会直接影响目的地的选择，因为涉及两个不同的URL：代理端的URL和目的地的URL。</p>
+<h3 id="反向代理">反向代理</h3>
+<p>在计算机网络中，反向代理是一种代理服务器，它代表一个客户端从一个或多个服务器检索资源。然后，将这些资源返回给客户端，就好像它们源自Web服务器本身一样。</p>
+<p>反向代理接受来自客户端的传入请求，并根据该请求将它们路由到特定的目的地。目的地选择的区分因素可能是请求的主机，路径，查询参数，任何标头，甚至是请求体的有效负载。无论如何，反向代理都会拦截并终止HTTP和HTTPS连接，并向目的地创建新请求。因此，在使用反向代理时，客户端不会直接影响目的地选择。</p>
+<h2 id="小结">小结</h2>
+<p>现在我们知道了不同的​​HTTP/S代理类型和变体，可以评估我们的要求并选择适当的代理实现：如果希望完全控制目的地的选择，那么选择转发代理，并且要保证高度的隐私和完整性，因此选择HTTP隧道。</p>
+<h2 id="示例">示例</h2>
+<p>Golang的<code>net/http</code> 包中有客户端-服务器通信所需的大多数实现。您需要做的就是了解功能，并在需要时使用它。</p>
+<h3 id="转发代理示例">转发代理示例</h3>
+<h4 id="生成证书">生成证书</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">case</span> <span style="color:#e6db74">`</span>uname -s<span style="color:#e6db74">`</span> in
+    Linux*<span style="color:#f92672">)</span>     sslConfig<span style="color:#f92672">=</span>/etc/ssl/openssl.cnf;;
+    Darwin*<span style="color:#f92672">)</span>    sslConfig<span style="color:#f92672">=</span>/System/Library/OpenSSL/openssl.cnf;;
+<span style="color:#66d9ef">esac</span>
+openssl req <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -newkey rsa:2048 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -x509 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -nodes <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -keyout server.key <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -new <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -out server.pem <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -subj /CN<span style="color:#f92672">=</span>localhost <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -reqexts SAN <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -extensions SAN <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -config &lt;<span style="color:#f92672">(</span>cat $sslConfig <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        &lt;<span style="color:#f92672">(</span>printf <span style="color:#e6db74">&#39;[SAN]\nsubjectAltName=DNS:localhost&#39;</span><span style="color:#f92672">))</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -sha256 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -days <span style="color:#ae81ff">3650</span>
+</code></pre></div><h4 id="代理程序">代理程序</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<span style="color:#f92672">import</span> (
+    <span style="color:#e6db74">&#34;crypto/tls&#34;</span>
+    <span style="color:#e6db74">&#34;flag&#34;</span>
+    <span style="color:#e6db74">&#34;io&#34;</span>
+    <span style="color:#e6db74">&#34;log&#34;</span>
+    <span style="color:#e6db74">&#34;net&#34;</span>
+    <span style="color:#e6db74">&#34;net/http&#34;</span>
+    <span style="color:#e6db74">&#34;time&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">handleTunneling</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+    <span style="color:#a6e22e">dest_conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">DialTimeout</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Host</span>, <span style="color:#ae81ff">10</span><span style="color:#f92672">*</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Error</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>(), <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusServiceUnavailable</span>)
+        <span style="color:#66d9ef">return</span>
+    }
+    <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">WriteHeader</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusOK</span>)
+    <span style="color:#a6e22e">hijacker</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">w</span>.(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Hijacker</span>)
+    <span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">ok</span> {
+        <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Error</span>(<span style="color:#a6e22e">w</span>, <span style="color:#e6db74">&#34;Hijacking not supported&#34;</span>, <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusInternalServerError</span>)
+        <span style="color:#66d9ef">return</span>
+    }
+    <span style="color:#a6e22e">client_conn</span>, <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">hijacker</span>.<span style="color:#a6e22e">Hijack</span>()
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Error</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>(), <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusServiceUnavailable</span>)
+    }
+
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">dest_conn</span>, <span style="color:#a6e22e">client_conn</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">client_conn</span>, <span style="color:#a6e22e">dest_conn</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">destination</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">WriteCloser</span>, <span style="color:#a6e22e">source</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">ReadCloser</span>) {
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">destination</span>.<span style="color:#a6e22e">Close</span>()
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">Close</span>()
+    <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Copy</span>(<span style="color:#a6e22e">destination</span>, <span style="color:#a6e22e">source</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">handleHTTP</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">req</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+    <span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">DefaultTransport</span>.<span style="color:#a6e22e">RoundTrip</span>(<span style="color:#a6e22e">req</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Error</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>(), <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusServiceUnavailable</span>)
+        <span style="color:#66d9ef">return</span>
+    }
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
+    <span style="color:#a6e22e">copyHeader</span>(<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Header</span>(), <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Header</span>)
+    <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">WriteHeader</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">StatusCode</span>)
+    <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Copy</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">copyHeader</span>(<span style="color:#a6e22e">dst</span>, <span style="color:#a6e22e">src</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Header</span>) {
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">vv</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">src</span> {
+        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">vv</span> {
+            <span style="color:#a6e22e">dst</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span>)
+        }
+    }
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pemPath</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">flag</span>.<span style="color:#a6e22e">StringVar</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">pemPath</span>, <span style="color:#e6db74">&#34;pem&#34;</span>, <span style="color:#e6db74">&#34;server.pem&#34;</span>, <span style="color:#e6db74">&#34;path to pem file&#34;</span>)
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">keyPath</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">flag</span>.<span style="color:#a6e22e">StringVar</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">keyPath</span>, <span style="color:#e6db74">&#34;key&#34;</span>, <span style="color:#e6db74">&#34;server.key&#34;</span>, <span style="color:#e6db74">&#34;path to key file&#34;</span>)
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">proto</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">flag</span>.<span style="color:#a6e22e">StringVar</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">proto</span>, <span style="color:#e6db74">&#34;proto&#34;</span>, <span style="color:#e6db74">&#34;https&#34;</span>, <span style="color:#e6db74">&#34;Proxy protocol (http or https)&#34;</span>)
+    <span style="color:#a6e22e">flag</span>.<span style="color:#a6e22e">Parse</span>()
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">proto</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;http&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">proto</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;https&#34;</span> {
+        <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#e6db74">&#34;Protocol must be either http or https&#34;</span>)
+    }
+
+    <span style="color:#a6e22e">server</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Server</span>{
+        <span style="color:#a6e22e">Addr</span>: <span style="color:#e6db74">&#34;:8888&#34;</span>,
+        <span style="color:#a6e22e">Handler</span>: <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">HandlerFunc</span>(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Method</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">MethodConnect</span> {
+                <span style="color:#a6e22e">handleTunneling</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">r</span>)
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#a6e22e">handleHTTP</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">r</span>)
+            }
+        }),
+        <span style="color:#75715e">// Disable HTTP/2.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">TLSNextProto</span>: make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">func</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Server</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Conn</span>, <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handler</span>)),
+    }
+
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">proto</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;http&#34;</span> {
+        <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">ListenAndServe</span>())
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">ListenAndServeTLS</span>(<span style="color:#a6e22e">pemPath</span>, <span style="color:#a6e22e">keyPath</span>))
+    }
+}
+
+<span style="color:#75715e">//  升级版
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<span style="color:#f92672">import</span> (
+    <span style="color:#e6db74">&#34;crypto/tls&#34;</span>
+    <span style="color:#e6db74">&#34;fmt&#34;</span>
+    <span style="color:#e6db74">&#34;net/http&#34;</span>
+    <span style="color:#e6db74">&#34;net/http/httputil&#34;</span>
+    <span style="color:#e6db74">&#34;net/url&#34;</span>
+)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;https://localhost:8888&#34;</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        panic(<span style="color:#a6e22e">err</span>)
+    }
+    <span style="color:#a6e22e">tr</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Transport</span>{
+        <span style="color:#a6e22e">Proxy</span>: <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ProxyURL</span>(<span style="color:#a6e22e">u</span>),
+        <span style="color:#75715e">// Disable HTTP/2.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">TLSNextProto</span>: make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">authority</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Conn</span>) <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">RoundTripper</span>),
+    }
+    <span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>{<span style="color:#a6e22e">Transport</span>: <span style="color:#a6e22e">tr</span>}
+    <span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;https://google.com&#34;</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        panic(<span style="color:#a6e22e">err</span>)
+    }
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
+    <span style="color:#a6e22e">dump</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">httputil</span>.<span style="color:#a6e22e">DumpResponse</span>(<span style="color:#a6e22e">resp</span>, <span style="color:#66d9ef">true</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        panic(<span style="color:#a6e22e">err</span>)
+    }
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%q&#34;</span>, <span style="color:#a6e22e">dump</span>)
+}
+</code></pre></div><h4 id="测试">测试</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Chrome --proxy-server<span style="color:#f92672">=</span>https://localhost:8888
+
+curl -Lv --proxy https://localhost:8888 --proxy-cacert server.pem https://google.com
+</code></pre></div><h3 id="反向代理示例一">反向代理示例一</h3>
+<p>已经有singleHostReverseProxy函数，在<a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E5%BA%93/package-net/httputil.md">httputil包</a>中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewSingleHostReverseProxy</span>(<span style="color:#a6e22e">target</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">URL</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ReverseProxy</span>
+</code></pre></div><p>我们只需要发送一个URL到返回reverseProxy的函数即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ReverseProxy</span>) <span style="color:#a6e22e">ServeHTTP</span>(<span style="color:#a6e22e">rw</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">req</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>)
+</code></pre></div><p>然后，如果我们调用ServeHTTP函数，它将http请求发送到适当的服务。</p>
+<h4 id="用例">用例</h4>
+<p>假设有一个可通过某个端口的http访问的服务，但是不希望公开该服务，或者想要添加一些自定义规则，或者想要在界面上进行一些性能分析，则可以使用反向代理。</p>
+<p>在此示例中，我们将通过将所有Web请求从一台服务器（运行在任意的9090端口上）转发到某处的另一台服务器来演示反向代理的作用，例如 <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a> ：</p>
+<ul>
+<li>反向代理golang服务器将在9090端口上运行。</li>
+<li>对服务器的所有请求将透明地转发到目标Web服务器，并将响应发送到第一台服务器。</li>
+<li>在转发请求之前，将捕获请求正文。借助<code>ioutil</code>包的ReadAll和NopCloser函数，该函数有助于在不修改请求缓冲区的情况下复制请求正文。</li>
+<li>还捕获了原始Web服务器为每个路径提供请求所花费的时间。</li>
+</ul>
+<h4 id="路由流量">路由流量</h4>
+<p>创建一个称为Prox的简单结构，它将处理反向代理的业务逻辑。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Prox</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">target</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">URL</span>
+    <span style="color:#a6e22e">proxy</span>  <span style="color:#f92672">*</span><span style="color:#a6e22e">httputil</span>.<span style="color:#a6e22e">ReverseProxy</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewProxy</span>(<span style="color:#a6e22e">target</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Prox</span> {
+    <span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">target</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Prox</span>{
+        <span style="color:#a6e22e">target</span>: <span style="color:#a6e22e">url</span>,
+        <span style="color:#a6e22e">proxy</span>: <span style="color:#a6e22e">httputil</span>.<span style="color:#a6e22e">NewSingleHostReverseProxy</span>(<span style="color:#a6e22e">url</span>)
+        }
+}
+</code></pre></div><p>如您所见，没有太多代码。我们只需要发送目标url，NewProxy函数将返回Prox结构对象。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Prox</span>) <span style="color:#a6e22e">handle</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+    <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Header</span>().<span style="color:#a6e22e">Set</span>(<span style="color:#e6db74">&#34;X-GoProxy&#34;</span>, <span style="color:#e6db74">&#34;GoProxy&#34;</span>)
+    <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">proxy</span>.<span style="color:#a6e22e">Transport</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">myTransport</span>{}
+    <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">proxy</span>.<span style="color:#a6e22e">ServeHTTP</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">r</span>)
+}
+</code></pre></div><p>由于我们要捕获请求/响应主体或为每个请求添加一些自定义规则，因此我们不得不更改传输接口。因此，我们为Transport创建了自己的RoundTrip函数并将其分配给我们之前创建的<code>proxy.Transport</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">myTransport</span> <span style="color:#66d9ef">struct</span> {
+}
+
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">myTransport</span>) <span style="color:#a6e22e">RoundTrip</span>(<span style="color:#a6e22e">request</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Response</span>, <span style="color:#66d9ef">error</span>) {
+    <span style="color:#a6e22e">buf</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">Body</span>)
+    <span style="color:#a6e22e">rdr1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">NopCloser</span>(<span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">NewBuffer</span>(<span style="color:#a6e22e">buf</span>))
+    <span style="color:#a6e22e">rdr2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">NopCloser</span>(<span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">NewBuffer</span>(<span style="color:#a6e22e">buf</span>))
+
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Request body : &#34;</span>, <span style="color:#a6e22e">rdr1</span>)
+    <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">Body</span> = <span style="color:#a6e22e">rdr2</span>
+
+    <span style="color:#a6e22e">response</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">DefaultTransport</span>.<span style="color:#a6e22e">RoundTrip</span>(<span style="color:#a6e22e">request</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        print(<span style="color:#e6db74">&#34;\n\ncame in error resp here&#34;</span>, <span style="color:#a6e22e">err</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">err</span> <span style="color:#75715e">//Server is not reachable. Server not working
+</span><span style="color:#75715e"></span>    }
+
+    <span style="color:#a6e22e">body</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">httputil</span>.<span style="color:#a6e22e">DumpResponse</span>(<span style="color:#a6e22e">response</span>, <span style="color:#66d9ef">true</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        print(<span style="color:#e6db74">&#34;\n\nerror in dumb response&#34;</span>)
+        <span style="color:#75715e">// copying the response body did not work
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">err</span>
+    }
+
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Response Body : &#34;</span>, string(<span style="color:#a6e22e">body</span>))
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>, <span style="color:#a6e22e">err</span>
+}
+</code></pre></div><p>借助Go的time包，我们可以测量函数所花费的时间，在这种情况下，我们可以测量原始服务器的响应时间。我们修改了RoundTrip函数，以测量每个路径所花费的时间。我们添加了代码，以便对于特定路径，我们可以得到进行http调用的次数，所有调用花费的时间，平均时间等。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">globalMap</span> = make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#a6e22e">Montioringpath</span>)
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">myTransport</span>) <span style="color:#a6e22e">RoundTrip</span>(<span style="color:#a6e22e">request</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Response</span>, <span style="color:#66d9ef">error</span>) {
+    <span style="color:#a6e22e">start</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+    <span style="color:#a6e22e">response</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">DefaultTransport</span>.<span style="color:#a6e22e">RoundTrip</span>(<span style="color:#a6e22e">request</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        print(<span style="color:#e6db74">&#34;\n\ncame in error resp here&#34;</span>, <span style="color:#a6e22e">err</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">err</span> <span style="color:#75715e">//Server is not reachable. Server not working
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#a6e22e">elapsed</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Since</span>(<span style="color:#a6e22e">start</span>)
+
+    <span style="color:#a6e22e">key</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">Method</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">Path</span>
+    <span style="color:#75715e">// for example for POST Method with /path1 as url path key=POST-/path1
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">val</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">globalMap</span>[<span style="color:#a6e22e">key</span>]; <span style="color:#a6e22e">ok</span> {
+        <span style="color:#a6e22e">val</span>.<span style="color:#a6e22e">Count</span> = <span style="color:#a6e22e">val</span>.<span style="color:#a6e22e">Count</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#a6e22e">val</span>.<span style="color:#a6e22e">Duration</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">elapsed</span>.<span style="color:#a6e22e">Nanoseconds</span>()
+        <span style="color:#a6e22e">val</span>.<span style="color:#a6e22e">AverageTime</span> = <span style="color:#a6e22e">val</span>.<span style="color:#a6e22e">Duration</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">val</span>.<span style="color:#a6e22e">Count</span>
+        <span style="color:#a6e22e">globalMap</span>[<span style="color:#a6e22e">key</span>] = <span style="color:#a6e22e">val</span>
+        <span style="color:#75715e">//do something here
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#a6e22e">Montioringpath</span>
+        <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Path</span> = <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">Path</span>
+        <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Count</span> = <span style="color:#ae81ff">1</span>
+        <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Duration</span> = <span style="color:#a6e22e">elapsed</span>.<span style="color:#a6e22e">Nanoseconds</span>()
+        <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">AverageTime</span> = <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Duration</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Count</span>
+        <span style="color:#a6e22e">globalMap</span>[<span style="color:#a6e22e">key</span>] = <span style="color:#a6e22e">m</span>
+    }
+
+    <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">MarshalIndent</span>(<span style="color:#a6e22e">globalMap</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;  &#34;</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;error:&#34;</span>, <span style="color:#a6e22e">err</span>)
+    }
+
+    <span style="color:#a6e22e">body</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">httputil</span>.<span style="color:#a6e22e">DumpResponse</span>(<span style="color:#a6e22e">response</span>, <span style="color:#66d9ef">true</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        print(<span style="color:#e6db74">&#34;\n\nerror in dumb response&#34;</span>)
+        <span style="color:#75715e">// copying the response body did not work
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">err</span>
+    }
+
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Response Body : &#34;</span>, string(<span style="color:#a6e22e">body</span>))
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Response Time:&#34;</span>, <span style="color:#a6e22e">elapsed</span>.<span style="color:#a6e22e">Nanoseconds</span>())
+}
+</code></pre></div><p>Go的Flag 包使得在运行程序时接受命令行参数。我们可以通过命令行参数设置http端口（将在其中运行代理服务器的位置）和重定向url（需要将http请求路由到的位置）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">const</span> (
+        <span style="color:#a6e22e">defaultPort</span>        = <span style="color:#e6db74">&#34;:9090&#34;</span>
+        <span style="color:#a6e22e">defaultPortUsage</span>   = <span style="color:#e6db74">&#34;default server port, &#39;:9090&#39;&#34;</span>
+        <span style="color:#a6e22e">defaultTarget</span>      = <span style="color:#e6db74">&#34;http://127.0.0.1:8080&#34;</span>
+        <span style="color:#a6e22e">defaultTargetUsage</span> = <span style="color:#e6db74">&#34;default redirect url, &#39;http://127.0.0.1:8080&#39;&#34;</span>
+    )
+
+    <span style="color:#75715e">// flags
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">port</span> = <span style="color:#a6e22e">flag</span>.<span style="color:#a6e22e">String</span>(<span style="color:#e6db74">&#34;port&#34;</span>, <span style="color:#a6e22e">defaultPort</span>, <span style="color:#a6e22e">defaultPortUsage</span>)
+    <span style="color:#a6e22e">redirecturl</span> = <span style="color:#a6e22e">flag</span>.<span style="color:#a6e22e">String</span>(<span style="color:#e6db74">&#34;url&#34;</span>, <span style="color:#a6e22e">defaultTarget</span>, <span style="color:#a6e22e">defaultTargetUsage</span>)
+
+    <span style="color:#a6e22e">flag</span>.<span style="color:#a6e22e">Parse</span>()
+
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;server will run on :&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">port</span>)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;redirecting to :&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">redirecturl</span>)
+
+    <span style="color:#75715e">// proxy
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">proxy</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">NewProxy</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">redirecturl</span>)
+
+    <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">HandleFunc</span>(<span style="color:#e6db74">&#34;/proxyServer&#34;</span>, <span style="color:#a6e22e">ProxyServer</span>)
+
+    <span style="color:#75715e">// server redirection
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">HandleFunc</span>(<span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#a6e22e">proxy</span>.<span style="color:#a6e22e">handle</span>)
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ListenAndServe</span>(<span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+*</span><span style="color:#a6e22e">port</span>, <span style="color:#66d9ef">nil</span>))
+}
+</code></pre></div><p>果在运行程序时未设置参数，则默认端口设置为9090，并且请求将路由到http://127.0.0.1:8080。</p>
+<h3 id="反向代理示例二">反向代理示例二</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">//New functionality written in Go
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">HandleFunc</span>(<span style="color:#e6db74">&#34;/new&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span>   <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>){
+      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprint</span>(<span style="color:#a6e22e">w</span>, <span style="color:#e6db74">&#34;New function&#34;</span>)
+})
+
+<span style="color:#75715e">//gospot.mchampaneri.in ===&gt; localhost:8085
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">u1</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;http://localhost:8085/&#34;</span>)
+<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handle</span>(<span style="color:#e6db74">&#34;gospot.mchampaneri.in/&#34;</span>, <span style="color:#a6e22e">httputil</span>.<span style="color:#a6e22e">NewSingleHostReverseProxy</span>(<span style="color:#a6e22e">u1</span>))
+
+<span style="color:#75715e">// www.mchampaneri.in ===&gt; localhost:8081  
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">u2</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;http://localhost:8081/&#34;</span>)
+<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handle</span>(<span style="color:#e6db74">&#34;www.mchampaneri.in/&#34;</span>, <span style="color:#a6e22e">httputil</span>.<span style="color:#a6e22e">NewSingleHostReverseProxy</span>(<span style="color:#a6e22e">u2</span>))
+
+ <span style="color:#75715e">// Start the server
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ListenAndServe</span>(<span style="color:#e6db74">&#34;:80&#34;</span>, <span style="color:#66d9ef">nil</span>)
+}
+</code></pre></div>
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>

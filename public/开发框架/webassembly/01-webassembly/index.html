@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/01-webassembly/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="01-WebAssembly" /><meta property="og:description" content="01-WebAssembly" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/css/style.6fd7fa42c7b7fe49cfeceeed650d33cb8d1cdbfe842e514a22e57a6b712729aa.css" integrity="sha256-b9f6Qse3/knP7O7tZQ0zy40c2/6ELlFKIuV6a3EnKao=">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">01-WebAssembly</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <h2 id="简介">简介</h2>
+<p>Go 1.11向WebAssembly添加了一个实验端口。 Go 1.12对它的某些部分进行了改进，并有望在Go 1.13中进行进一步的改进。</p>
+<p>WebAssembly在其<a href="https://webassembly.org/">主页</a>上描述为：</p>
+<blockquote>
+<p>WebAssembly（缩写为Wasm）是基于堆栈的虚拟机的二进制指令格式。 Wasm被设计为可移植目标，用于编译高级语言（如C/C ++ / Rust），从而可以在Web上为客户端和服务器应用程序进行部署。</p>
+</blockquote>
+<p>如果不熟悉WebAssembly，请阅读下面的“<a href="##%E5%85%A5%E9%97%A8">入门</a>”部分，观看下面的一些“<a href="##GoWebAssembly%E8%AE%B2%E5%BA%A7">Go WebAssembly讲座</a>”，然后查看下面的更多“<a href="##%E7%A4%BA%E4%BE%8B">示例</a>”。</p>
+<h2 id="入门">入门</h2>
+<p>此页面假定Go 1.11或更高版本可以正常运行。有关故障排除，请参阅“<a href="https://github.com/golang/go/wiki/InstallTroubleshooting">安装故障排除</a>”页面。</p>
+<p>为Web编译一个基本的Go语言包：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Hello, WebAssembly!&#34;</span>)
+}
+</code></pre></div><p>设置环境变量<code>GOOS=js</code>和<code>GOARCH=wasm</code>来针对WebAssembly进行编译：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">GOOS<span style="color:#f92672">=</span>js GOARCH<span style="color:#f92672">=</span>wasm go build -o main.wasm
+</code></pre></div><p>这将生成程序包并生成一个名为<code>main.wasm</code>的可执行WebAssembly模块文件。<code>.wasm</code>文件扩展名将使以后通过带有正确的<code>Content-Type</code>标头的HTTP服务更加容易。</p>
+<p>请注意，只能编译主软件包。否则，将获得无法在WebAssembly中运行的目标文件。如果具有要与WebAssembly一起使用的软件包，请将其转换为主软件包并生成二进制文件。</p>
+<p>要在浏览器中执行<code>main.wasm</code>，我们还需要一个<code>JavaScript</code>支持文件和一个<code>HTML</code>页面来将所有内容连接在一起。</p>
+<p>复制JavaScript支持文件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>go env GOROOT<span style="color:#66d9ef">)</span><span style="color:#e6db74">/misc/wasm/wasm_exec.js&#34;</span> .
+</code></pre></div><p>新建一个<code>index.html</code>文件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span>&gt;
+    &lt;<span style="color:#f92672">head</span>&gt;
+        &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>/&gt;
+        &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;wasm_exec.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+        &lt;<span style="color:#f92672">script</span>&gt;
+            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">go</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Go</span>();
+            <span style="color:#a6e22e">WebAssembly</span>.<span style="color:#a6e22e">instantiateStreaming</span>(<span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;main.wasm&#34;</span>), <span style="color:#a6e22e">go</span>.<span style="color:#a6e22e">importObject</span>).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">result</span>) =&gt; {
+                <span style="color:#a6e22e">go</span>.<span style="color:#a6e22e">run</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">instance</span>);
+            });
+        &lt;/<span style="color:#f92672">script</span>&gt;
+    &lt;/<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">body</span>&gt;&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>如果浏览器尚不支持<code>WebAssembly.instantiateStreaming</code>，则可以使用<a href="https://github.com/golang/go/blob/b2fcfc1a50fbd46556f7075f7f1fbf600b5c9e5d/misc/wasm/wasm_exec.html#L17-L22">polyfill</a>。</p>
+<p>然后从Web服务器提供三个文件（<code>index.html</code>、<code>wasm_exec.js</code>、<code>main.wasm</code>）。例如使用goexec：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">goexec</span>: <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">get</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">u</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">shurcooL</span><span style="color:#f92672">/</span><span style="color:#a6e22e">goexec</span>
+<span style="color:#a6e22e">goexec</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ListenAndServe</span>(<span style="color:#e6db74">`:8080`</span>, <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">FileServer</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Dir</span>(<span style="color:#e6db74">`.`</span>)))<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</code></pre></div><p>或者使用<a href="https://play.golang.org/p/pZ1f5pICVbV">基本的HTTP服务器命令</a>。</p>
+<p>将<code>/usr/local/go/bin</code>添加到PATH环境变量中。可以通过将以下行添加到<code>/etc/profile</code>（用于系统范围的安装）或<code>$HOME/ .profile</code>中来完成此操作：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export PATH<span style="color:#f92672">=</span>$PATH:/usr/local/go/bin
+</code></pre></div><p>注意：对配置文件的更改可能要等到下一次登录计算机后才能应用，或者执行source命令。</p>
+<p>最后，浏览至<code>http//localhost:8080/index.html</code>，打开JavaScript调试控制台，应该会看到输出。可以修改程序，重建<code>main.wasm</code>，然后刷新以查看新的输出。</p>
+<h2 id="使用nodejs执行webassembly">使用Node.js执行WebAssembly</h2>
+<p>可以使用<code>Node.js</code>而非浏览器执行已编译的WebAssembly模块，这对于测试和自动化非常有用。</p>
+<p>安装<code>Node.js</code>并在PATH中设置好，在执行<code>go run</code>或<code>go test</code>时，将<code>-exec</code>标志设置为<code>go_js_wasm_exec</code>所在的目录。默认情况下，<code>go_js_wasm_exec</code>位于Go安装的<code>misc/wasm</code>目录中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">GOOS<span style="color:#f92672">=</span>js GOARCH<span style="color:#f92672">=</span>wasm go run -exec<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>go env GOROOT<span style="color:#66d9ef">)</span><span style="color:#e6db74">/misc/wasm/go_js_wasm_exec&#34;</span> .
+Hello, WebAssembly!
+GOOS<span style="color:#f92672">=</span>js GOARCH<span style="color:#f92672">=</span>wasm go test -exec<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>go env GOROOT<span style="color:#66d9ef">)</span><span style="color:#e6db74">/misc/wasm/go_js_wasm_exec&#34;</span>
+PASS
+ok      example.org/my/pkg      0.800s
+</code></pre></div><p>在PATH中添加<code>go_js_wasm_exec</code>，可以在执行时不必每次都手动设置<code>-exec</code>标志，<code>go run</code>和<code>go test</code>能直接对<code>js/wasm</code>生效。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">export PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$PATH<span style="color:#e6db74">:</span><span style="color:#66d9ef">$(</span>go env GOROOT<span style="color:#66d9ef">)</span><span style="color:#e6db74">/misc/wasm&#34;</span>
+GOOS<span style="color:#f92672">=</span>js GOARCH<span style="color:#f92672">=</span>wasm go run .
+Hello, WebAssembly!
+GOOS<span style="color:#f92672">=</span>js GOARCH<span style="color:#f92672">=</span>wasm go test
+PASS
+ok      example.org/my/pkg  0.800s
+</code></pre></div><h2 id="在浏览器中运行测试">在浏览器中运行测试</h2>
+<p>也可以使用<a href="https://github.com/agnivade/wasmbrowsertest">wasmbrowsertest</a>在浏览器中运行测试。它可以自动完成网络服务器的工作，并使用无头的Chrome浏览器在其中运行测试，并将日志中继到控制台。</p>
+<p>就像上一节那样，只需执行<code>go get github.com/agnivade/wasmbrowsertest</code>即可获取二进制文件。将其重命名为<code>go_js_wasm_exec</code>并将其放置到PATH中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mv $GOPATH/bin/wasmbrowsertest $GOPATH/bin/go_js_wasm_exec
+export PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$PATH<span style="color:#e6db74">:</span>$GOPATH<span style="color:#e6db74">/bin&#34;</span>
+GOOS<span style="color:#f92672">=</span>js GOARCH<span style="color:#f92672">=</span>wasm go test
+PASS
+ok      example.org/my/pkg  0.800s
+</code></pre></div><p>或者，使用<code>-exec</code>测试标志：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">GOOS<span style="color:#f92672">=</span>js GOARCH<span style="color:#f92672">=</span>wasm go test -exec<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$GOPATH<span style="color:#e6db74">/bin/wasmbrowsertest&#34;</span>
+</code></pre></div><h2 id="gowebassembly讲座">GoWebAssembly讲座</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=4kBvvk2Bzis">Building a Calculator with Go and WebAssembly</a> <a href="https://tutorialedge.net/golang/go-webassembly-tutorial/">源码地址</a></li>
+<li><a href="https://www.youtube.com/watch?v=iTrx0BbUXI4">Get Going with WebAssembly</a></li>
+<li><a href="https://talks.godoc.org/github.com/chai2010/awesome-go-zh/chai2010/chai2010-golang-wasm.slide">Go&amp;WebAssembly简介 - by chai2010</a></li>
+</ul>
+<h2 id="与dom交互">与DOM交互</h2>
+<p>详细查阅<a href="https://godoc.org/syscall/js"><code>syscall/js</code></a>包。</p>
+<p>其他项目：</p>
+<ul>
+<li><a href="https://github.com/gascore/gas">gas</a>-WebAssembly应用程序的基于组件的框架</li>
+<li><a href="https://github.com/maxence-charriere/app">app</a>-基于React兼容PWA的自定义工具框架</li>
+<li><a href="https://github.com/vugu/vugu">Vugu</a>-wasm Web UI库，具有HTML布局，带有Go格式的应用程序逻辑，单个文件组件，快速开发和原型工作流程</li>
+<li><a href="https://github.com/norunners/vue">vue</a> -WebAssembly应用程序的渐进框架</li>
+<li><a href="https://github.com/dennwc/dom">dom</a>-用于简化DOM操作的库</li>
+<li><a href="https://gowebapi.github.io/">webapi</a>-绑定生成器</li>
+<li><a href="https://github.com/norunners/vert">vert</a>-Go和JS值之间的WebAssembly互操作</li>
+<li><a href="https://github.com/bgokden/gowebian">GoWebian</a>-用于纯粹地构建页面并添加WebAssembly绑定的库</li>
+</ul>
+<h2 id="canvas">Canvas</h2>
+<ul>
+<li><a href="https://github.com/markfarnan/go-canvas">go-canvas</a>-Canvas绘图库，<a href="https://markfarnan.github.io/go-canvas/">Simple demo</a></li>
+</ul>
+<h2 id="使用nethttp时配置fetch-options">使用net/http时配置fetch options</h2>
+<p>可以使用<code>net/http</code>库从Go发出HTTP请求，这些请求将转换为<a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a>调用。 但是，fetch <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters">options</a> 和 http <a href="https://golang.org/pkg/net/http/#Client">客户端</a>选项之间没有直接映射。 为此，我们有一些特殊的标头值，这些标头值被认为是fetch options。如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+<th>默认有效值</th>
+<th>其他有效值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>js.fetch.mode</code></td>
+<td>设置Fetch API 模式</td>
+<td><code>same-origin</code></td>
+<td><code>cors</code>、<code>no-cors</code>、<code>navigation</code></td>
+</tr>
+<tr>
+<td><code>js.fetch.credentials</code></td>
+<td>设置Fetch API 证书</td>
+<td><code>same-origin</code></td>
+<td><code>omit</code>、<code>include</code></td>
+</tr>
+<tr>
+<td><code>js.fetch.redirect</code></td>
+<td>设置Fetch API重定向</td>
+<td><code>follow</code></td>
+<td><code>error</code>、<code>manual</code></td>
+</tr>
+</tbody>
+</table>
+<p>因此，如果想在发出请求时将模式设置为<code>cors</code>，则将类似于：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">NewRequest</span>(<span style="color:#e6db74">&#34;GET&#34;</span>, <span style="color:#e6db74">&#34;http://localhost:8080&#34;</span>, <span style="color:#66d9ef">nil</span>)
+<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#e6db74">&#34;js.fetch:mode&#34;</span>, <span style="color:#e6db74">&#34;cors&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+  <span style="color:#66d9ef">return</span>
+}
+<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">DefaultClient</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">req</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+  <span style="color:#66d9ef">return</span>
+}
+<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
+<span style="color:#75715e">// handle the response
+</span></code></pre></div><p>请随时订阅<a href="https://github.com/golang/go/issues/26769">＃26769</a>，以获取更多信息和可能的更新。</p>
+<h2 id="编辑器配置">编辑器配置</h2>
+<p>在Goland和Intellij Ultimate中设置WebAssembly的具体步骤，参考<a href="https://github.com/golang/go/wiki/Configuring-GoLand-for-WebAssembly">这里</a>。</p>
+<h2 id="chrome中的webassembly">Chrome中的WebAssembly</h2>
+<p>如果运行较新版本的Chrome，则会有一个标志（<code>chrome://flags＃enable-webassembly-baseline</code>）启用新编译器<code>Liftoff</code>，这将大大缩短加载时间，更多信息在<a href="https://chinagdg.org/2018/08/liftoff-a-new-baseline-compiler-for-webassembly-in-v8/">这里</a>。</p>
+<h2 id="调试">调试</h2>
+<p>WebAssembly尚不支持调试器，因此，现在需要使用良好的 <code>println()</code>方法在JavaScript控制台上显示输出。</p>
+<p>已经创建了一个官方的<a href="https://github.com/WebAssembly/debugging">WebAssembly调试子组</a>来解决此问题，并且正在进行一些初步调查和提议：</p>
+<ul>
+<li><a href="https://fitzgen.github.io/wasm-debugging-capabilities/">WebAssembly Debugging Capabilities Living Standard</a><a href="https://github.com/fitzgen/wasm-debugging-capabilities">源代码</a></li>
+<li><a href="https://yurydelendik.github.io/webassembly-dwarf/">DWARF for WebAssembly Target</a><a href="https://github.com/yurydelendik/webassembly-dwarf/">源代码</a></li>
+</ul>
+<p>如果对调试器方面有兴趣，请参与并帮助实现这一目标。</p>
+<h3 id="分析webassembly文件的结构">分析WebAssembly文件的结构</h3>
+<p><a href="https://wasdk.github.io/wasmcodeexplorer/">WebAssembly代码资源管理器</a>对于可视化WebAssembly文件的结构很有用。</p>
+<ul>
+<li>单击左侧的十六进制值将突出显示其所属的部分，并在右侧显示相应的文本表示形式</li>
+<li>单击右侧的一行将在左侧突出显示它的十六进制字节表示</li>
+</ul>
+<h2 id="已知错误">已知错误</h2>
+<p>1.11.2之前的Go版本存在一个<a href="https://github.com/golang/go/issues/27961">错误</a>，该错误可能在某些（罕见）情况下生成错误的wasm代码。</p>
+<p>如果您的Go代码可以毫无问题地编译为wasm，但是在浏览器中运行时会产生如下错误：<code>CompileError: wasm validation error: at offset 1269295: type mismatch: expression has type i64 but expected f64</code>，那么可能会遇到此错误。</p>
+<p><strong>解决方案是升级到Go 1.11.2或更高版本</strong>。</p>
+<h2 id="示例">示例</h2>
+<p>更多示例点击<a href="https://github.com/golang/go/wiki/WebAssembly#further-examples">这里</a>。</p>
+<h2 id="减少wasm文件的大小">减少Wasm文件的大小</h2>
+<p>目前，Go会生成大型的Wasm文件，可能的最小大小约为2MB。如果您的Go代码导入了库，则此文件的大小可能会急剧增加。 10MB +是常见的。</p>
+<p>目前有两种主要方法来减小此文件的大小：</p>
+<h3 id="1-手动压缩wasm文件">1. 手动压缩<code>.wasm</code>文件</h3>
+<ol>
+<li>使用gz压缩将示例WASM文件的2MB（最小文件大小）减小到大约500kB。使用<a href="https://github.com/google/zopfli">Zopfli</a>进行gzip压缩可能会更好，因为它提供的结果比<code>gzip --best</code>更好，但是运行时间要长得多。</li>
+<li>使用<a href="https://github.com/google/brotli">Brotli</a>进行压缩，文件大小明显优于Zopfli和<code>gzip --best</code>，并且压缩时间也在两者之间。这种<a href="https://github.com/andybalholm/brotli">（新的）Brotli压缩工具</a>看起来很合理。</li>
+</ol>
+<h4 id="压缩对比">压缩对比</h4>
+<p>例子1</p>
+<table>
+<thead>
+<tr>
+<th>大小</th>
+<th>命令</th>
+<th>压缩时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16M</td>
+<td>未压缩大小</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>2.4M</td>
+<td>brotli -o test.wasm.br test.wasm</td>
+<td>53.6s</td>
+</tr>
+<tr>
+<td>3.3M</td>
+<td>go-zopfli test.wasm</td>
+<td>3m 2.6s</td>
+</tr>
+<tr>
+<td>3.4M</td>
+<td>gzip &ndash;best test.wasm</td>
+<td>2.5s</td>
+</tr>
+<tr>
+<td>3.4M</td>
+<td>gzip test.wasm</td>
+<td>0.8s</td>
+</tr>
+</tbody>
+</table>
+<p>例子2</p>
+<table>
+<thead>
+<tr>
+<th>大小</th>
+<th>命令</th>
+<th>压缩时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.3M</td>
+<td>未压缩大小</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>496K</td>
+<td>brotli -o main.wasm.br main.wasm</td>
+<td>5.7s</td>
+</tr>
+<tr>
+<td>640K</td>
+<td>go-zopfli main.wasm</td>
+<td>16.2s</td>
+</tr>
+<tr>
+<td>660K</td>
+<td>gzip &ndash;best main.wasm</td>
+<td>0.2s</td>
+</tr>
+<tr>
+<td>668K</td>
+<td>gzip main.wasm</td>
+<td>0.2s</td>
+</tr>
+</tbody>
+</table>
+<p>使用 <code>https://github.com/lpar/gzipped</code> 之类的东西来自动提供带有正确标题的压缩文件（如果可用）。</p>
+<h3 id="2-使用tinygohttpsgithubcomtinygo-orgtinygo生成wasm文件">2. 使用<a href="https://github.com/tinygo-org/tinygo">TinyGo</a>生成Wasm文件</h3>
+<p>TinyGo支持面向嵌入式设备的Go语言的子集，并具有WebAssembly输出目标。</p>
+<p>尽管确实有局限性（尚无完整的Go实现），但它仍然相当强大，并且生成的Wasm文件很小。 10kB并不罕见。 “ Hello world”示例为575字节。如果您将<code>gz -6</code>设为gz，它会下降到408个字节。</p>
+<p>该项目也非常积极地开发，因此其功能正在迅速扩展。有关将WebAssembly与TinyGo结合使用的更多信息，请参见<a href="https://tinygo.org/webassembly/webassembly/">这里</a>。</p>
+<h2 id="其他关于webassembly的资源">其他关于WebAssembly的资源</h2>
+<ul>
+<li><a href="https://github.com/mbasso/awesome-wasm">Awesome-Wasm</a>-大量其他Wasm资源的清单。不是具体针对Go语言的。</li>
+</ul>
+
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>

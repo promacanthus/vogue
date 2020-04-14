@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/log/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="log.md" /><meta property="og:description" content="log.md" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/css/style.6fd7fa42c7b7fe49cfeceeed650d33cb8d1cdbfe842e514a22e57a6b712729aa.css" integrity="sha256-b9f6Qse3/knP7O7tZQ0zy40c2/6ELlFKIuV6a3EnKao=">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">log.md</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <h1 id="packages-log">packages log</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;log&#34;</span>
+</code></pre></div><p>log包实现了一个简单的日志包，它定义了一种类型<code>Logger</code>，其中包含格式化输出的方法。</p>
+<p>它还有一个预定义的“标准”Logger，可以通过辅助函数<code>Print[f|ln]</code>，<code>Fatal[f|ln]</code>和<code>Panic[f|ln]</code>访问，使用这些辅助函数比手动创建Logger更容易使用。Logger写入标准错误输出并打印每个日志记录的时间和日期。</p>
+<p>每条日志记录都在单独的行中输出：如果正在打印的消息未以换行符结尾，则Logger将会在行尾添加一个换行符。</p>
+<ul>
+<li>Fatal函数在写入日志消息后调用<code>os.Exit(1)</code>。</li>
+<li>Panic函数在写入日志消息后调用运行时恐慌（panic）。</li>
+</ul>
+<h2 id="常量">常量</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> (
+    <span style="color:#a6e22e">Ldate</span>         = <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">iota</span>     <span style="color:#75715e">// 当地时区的日期: 2009/01/23
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Ltime</span>                         <span style="color:#75715e">// 当地时区的时间: 01:23:23
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Lmicroseconds</span>                 <span style="color:#75715e">// 微秒精度: 01:23:23.123123.  假设是Ltime
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Llongfile</span>                     <span style="color:#75715e">// 完整的文件名和行号: /a/b/c/d.go:23
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Lshortfile</span>                    <span style="color:#75715e">// 最终文件名元素和行号: d.go:23. 覆盖Llongfile
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">LUTC</span>                          <span style="color:#75715e">// 如果设置了Ldate或者Ltime，那么使用UTC而不是本地时区
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">LstdFlags</span>     = <span style="color:#a6e22e">Ldate</span> | <span style="color:#a6e22e">Ltime</span> <span style="color:#75715e">// 标准Logger的初始值
+</span><span style="color:#75715e"></span>)
+</code></pre></div><p>这些标志定义了Logger生成的每个日志条目的<strong>前缀</strong>，（<code>|</code>） 或运算来控制哪些需要输出。无法控制它们出现的顺序（如，此处列出的顺序）或它们呈现的格式（如，注释中所述）。仅当指定<code>Llongfile</code>或<code>Lshortfile</code>时，前缀后跟冒号。查看如下示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 设置Ldate | Ltime（或LstdFlags）则产生如下效果
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">2009</span><span style="color:#f92672">/</span><span style="color:#ae81ff">01</span><span style="color:#f92672">/</span><span style="color:#ae81ff">23</span> <span style="color:#ae81ff">01</span>:<span style="color:#ae81ff">23</span>:<span style="color:#ae81ff">23</span> <span style="color:#a6e22e">message</span>
+
+<span style="color:#75715e">// 设置Ldate | Ltime | Lmicroseconds | Llongfile 则产生如下效果
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">2009</span><span style="color:#f92672">/</span><span style="color:#ae81ff">01</span><span style="color:#f92672">/</span><span style="color:#ae81ff">23</span> <span style="color:#ae81ff">01</span>:<span style="color:#ae81ff">23</span>:<span style="color:#ae81ff">23.123123</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">a</span><span style="color:#f92672">/</span><span style="color:#a6e22e">b</span><span style="color:#f92672">/</span><span style="color:#a6e22e">c</span><span style="color:#f92672">/</span><span style="color:#a6e22e">d</span>.<span style="color:#66d9ef">go</span>:<span style="color:#ae81ff">23</span>: <span style="color:#a6e22e">message</span>
+</code></pre></div><h2 id="函数fatal">函数Fatal</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Fatal()</code>等效于<code>Print()</code>,然后调用<code>os.Exit(1)</code>。</p>
+<h2 id="函数fatalf">函数Fatalf</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Fatalf</span>(<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Fatal()</code>等效于<code>Printf()</code>,然后调用<code>os.Exit(1)</code>。</p>
+<h2 id="函数fatalln">函数Fatalln</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Fatalln</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Fatal()</code>等效于<code>Println()</code>,然后调用<code>os.Exit(1)</code>。</p>
+<h2 id="函数flags">函数Flags</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Flags</span>() <span style="color:#66d9ef">int</span>
+</code></pre></div><p><code>Flags()</code>返回标准<code>Logger</code>的输出标志。</p>
+<h2 id="函数output">函数Output</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Output</span>(<span style="color:#a6e22e">calldepth</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p><code>Output()</code>将记录事件的输出写出来。</p>
+<ul>
+<li>字符串<code>s</code>包含要在<code>Logger</code>的<code>flags</code>中指定的前缀之后打印的文本内容。如果<code>s</code>的最后一个字符不是换行符，则会附加换行符。</li>
+<li><code>Calldepth</code>是设置了<code>Llongfile</code>或<code>Lshortfile</code>后，计算文件名和行号时要跳过的帧数; 如果<code>Calldepth</code>的值为1将打印<code>Output()</code>调用者的详细信息。</li>
+</ul>
+<h2 id="函数panic">函数Panic</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Panic</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Panic()</code>等效于<code>Print()</code>，然后调用<code>panic()</code>。</p>
+<h2 id="函数panicf">函数Panicf</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Panicf</span>(<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Panic()</code>等效于<code>Printf()</code>，然后调用<code>panic()</code>。</p>
+<h2 id="函数panicln">函数Panicln</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Panicln</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Panic()</code>等效于<code>Println()</code>，然后调用<code>panic()</code>。</p>
+<h2 id="函数prefix">函数Prefix</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Prefix</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><p><code>Prefix()</code>返回标准<code>Logger</code>的输出前缀。</p>
+<h2 id="函数print">函数Print</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Print</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Print()</code>调用<code>Output()</code>来打印到标准<code>Logger</code>，参数以<code>fmt.Print()</code>的方式处理。</p>
+<h2 id="函数printf">函数Printf</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Print()</code>调用<code>Output()</code>来打印到标准<code>Logger</code>，参数以<code>fmt.Printf()</code>的方式处理。</p>
+<h2 id="函数println">函数Println</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Print()</code>调用<code>Output()</code>来打印到标准<code>Logger</code>，参数以<code>fmt.Println()</code>的方式处理。</p>
+<h2 id="总结几个方法">总结几个方法</h2>
+<p><img src="/%E6%A0%87%E5%87%86%E5%BA%93../images/log.png" alt="image"></p>
+<h2 id="函数setflags">函数SetFlags</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">SetFlags</span>(<span style="color:#a6e22e">flag</span> <span style="color:#66d9ef">int</span>)
+</code></pre></div><p><code>SetFlags()</code>为标准<code>Logger</code>设置输出标识。</p>
+<h2 id="函数setoutput">函数SetOutput</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">SetOutput</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>)
+</code></pre></div><p><code>SetOutput()</code>设置标准<code>longer</code>的输出目的地。</p>
+<h2 id="函数setprefix">函数SetPrefix</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">SetPrefix</span>(<span style="color:#a6e22e">prefix</span> <span style="color:#66d9ef">string</span>)
+</code></pre></div><p><code>SetPrefix()</code>设置标准<code>Logger</code>的输出前缀。</p>
+<h2 id="函数new">函数New</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">out</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>, <span style="color:#a6e22e">prefix</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">flag</span> <span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>
+</code></pre></div><p><code>New()</code>创建了一个新的<code>Logger</code>。</p>
+<ul>
+<li><code>out</code>设置日志数据的目的地</li>
+<li><code>prefix</code>每行日志记录的前缀</li>
+<li><code>flag</code>定义日志记录操作的属性</li>
+</ul>
+<h2 id="类型logger">类型Logger</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Logger</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#75715e">// contains filtered or unexported fields
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Logger表示一个活跃的日志记录对象，它向<code>io.Writer</code>生成输出。每个日志记录操作只对<code>Writer</code>的<code>Write()</code>方法进行一次调用。Logger可以同时被多个goroutine使用; 它保证对Writer的序列化访问。</p>
+<h3 id="例子">例子</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> (
+    <span style="color:#a6e22e">buf</span>    <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+    <span style="color:#a6e22e">logger</span> = <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">New</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">buf</span>, <span style="color:#e6db74">&#34;logger: &#34;</span>, <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Lshortfile</span>)
+)
+
+<span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#e6db74">&#34;Hello, log file!&#34;</span>)
+
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">buf</span>)
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">logger</span>: <span style="color:#a6e22e">example_test</span>.<span style="color:#66d9ef">go</span>:<span style="color:#ae81ff">19</span>: <span style="color:#a6e22e">Hello</span>, <span style="color:#a6e22e">log</span> <span style="color:#a6e22e">file</span>!
+</code></pre></div><h3 id="方法-loggerfatal">方法 (*Logger)Fatal</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Fatal()</code>等效于<code>l.Print()</code>，然后调用<code>os.Exit(1)</code>。</p>
+<h3 id="方法-loggerfatalf">方法 (*Logger)Fatalf</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Fatalf</span>(<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Fatalf()</code>等效于<code>l.Printf()</code>，然后调用<code>os.Exit(1)</code>。</p>
+<h3 id="方法-loggerfatalln">方法 (*Logger)Fatalln</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Fatalln</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Fatalln()</code>等效于<code>l.Println()</code>，然后调用<code>os.Exit(1)</code>。</p>
+<h3 id="方法-loggerflags">方法 (*Logger)Flags</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Flags</span>() <span style="color:#66d9ef">int</span>
+</code></pre></div><p>Flags返回Logger的输出标志。</p>
+<h3 id="方法-loggeroutput">方法 (*Logger)Output</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Output</span>(<span style="color:#a6e22e">calldepth</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>Output写入记录事件的输出。</p>
+<ul>
+<li>字符串<code>s</code>包含要在<code>Logger</code>中<code>flags</code>指定的前缀之后打印的文本。如果<code>s</code>的最后一个字符不是换行符，则会附加换行符</li>
+<li><code>Calldepth</code>提供通用的用于恢复PC(程序计数器)，当前所有预定义路径上它都是2</li>
+</ul>
+<h4 id="样例">样例</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> (
+    <span style="color:#a6e22e">buf</span>    <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+    <span style="color:#a6e22e">logger</span> = <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">New</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">buf</span>, <span style="color:#e6db74">&#34;INFO: &#34;</span>, <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Lshortfile</span>)
+
+    <span style="color:#a6e22e">infof</span> = <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">info</span> <span style="color:#66d9ef">string</span>) {
+        <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Output</span>(<span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">info</span>)
+    }
+)
+
+<span style="color:#a6e22e">infof</span>(<span style="color:#e6db74">&#34;Hello world&#34;</span>)
+
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">buf</span>)
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">INFO</span>: <span style="color:#a6e22e">example_test</span>.<span style="color:#66d9ef">go</span>:<span style="color:#ae81ff">36</span>: <span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">world</span>
+</code></pre></div><h3 id="方法logger-panic">方法(*Logger) Panic</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Panic</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Panic()</code>等效于<code>l.Print()</code>，然后调用<code>panic()</code>。</p>
+<h3 id="方法logger-panicf">方法(*Logger) Panicf</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Panicf</span>(<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Panicf()</code>等效于<code>l.Printf()</code>，然后调用<code>panic()</code>。</p>
+<h3 id="方法logger-panicln">方法(*Logger) Panicln</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Panicln</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Panicln()</code>等效于<code>l.Println()</code>，然后调用<code>panic()</code>。</p>
+<h3 id="方法logger-prefix">方法(*Logger) Prefix</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Prefix</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><p><code>Prefix()</code>返回<code>Logger</code>的输出前缀。</p>
+<h3 id="方法logger-print">方法(*Logger) Print</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Print</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Print()</code>调用<code>l.Output()</code>来输出到<code>Logger</code>。参数以<code>fmt.Println()</code>的方式处理。</p>
+<h3 id="方法logger-printf">方法(*Logger) Printf</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Printf()</code>调用<code>l.Output()</code>来输出到<code>Logger</code>。参数以<code>fmt.Printf()</code>的方式处理。</p>
+<h3 id="方法logger-println">方法(*Logger) Println</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">v</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})
+</code></pre></div><p><code>Println()</code>调用<code>l.Output()</code>来输出到<code>Logger</code>。参数以<code>fmt.Println()</code>方式处理。</p>
+<h3 id="方法logger-setflags">方法(*Logger) SetFlags</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">SetFlags</span>(<span style="color:#a6e22e">flag</span> <span style="color:#66d9ef">int</span>)
+</code></pre></div><p><code>SetFlags()</code>设置<code>Logger</code>的输出<code>flags</code>。</p>
+<h3 id="方法logger-setoutput">方法(*Logger) SetOutput</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">SetOutput</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>)
+</code></pre></div><p><code>SetOutput()</code>设置Logger的输出目的地。</p>
+<h3 id="方法logger-setprefix">方法(*Logger) SetPrefix</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">SetPrefix</span>(<span style="color:#a6e22e">prefix</span> <span style="color:#66d9ef">string</span>)
+</code></pre></div><p><code>SetPrefix()</code>设置Logger的输出前缀。</p>
+<h3 id="方法logger-writer">方法(*Logger) Writer</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">Writer</span>() <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>
+</code></pre></div><p><code>Writer()</code>返回Logger的输出目的地。</p>
+
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/02-pod-2/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="02-Pod-2.md" /><meta property="og:description" content="02-Pod-2.md" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/css/style.6fd7fa42c7b7fe49cfeceeed650d33cb8d1cdbfe842e514a22e57a6b712729aa.css" integrity="sha256-b9f6Qse3/knP7O7tZQ0zy40c2/6ELlFKIuV6a3EnKao=">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">02-Pod-2.md</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <h1 id="02-pod-2">02-Pod-2</h1>
+<p>Pod，而不是容器，才是 Kubernetes 项目中的最小编排单位。将这个设计落实到 API 对象上，容器（Container）就成了 Pod 属性里的一个普通的字段。</p>
+<p>那么问题来了：</p>
+<ul>
+<li>到底哪些属性属于 Pod 对象，</li>
+<li>而又有哪些属性属于 Container 呢？</li>
+</ul>
+<blockquote>
+<p><strong>Pod 扮演的是传统部署环境里“虚拟机”的角色</strong>。这样的设计，是为了使用户从传统环境（虚拟机环境）向 Kubernetes（容器环境）的迁移，更加平滑。</p>
+</blockquote>
+<p>如果把 <strong>Pod</strong> 看成传统环境里的“<strong>机器</strong>”、把<strong>容器</strong>看作是运行在这个“机器”里的“<strong>用户程序</strong>”，那么很多关于 Pod 对象的设计就非常容易理解了。</p>
+<p>比如，凡是<strong>调度</strong>、<strong>网络</strong>、<strong>存储</strong>，以及<strong>安全</strong>相关的属性，基本上是 <strong>Pod 级别的</strong>。</p>
+<p>**这些属性的共同特征是，它们描述的是“机器”这个整体，而不是里面运行的“程序”。**比如:</p>
+<ol>
+<li>配置这个“机器”的网卡（即：Pod 的网络定义），</li>
+<li>配置这个“机器”的磁盘（即：Pod 的存储定义），</li>
+<li>配置这个“机器”的防火墙（即：Pod 的安全定义），</li>
+<li>这台“机器”运行在哪个服务器之上（即：Pod 的调度）。</li>
+</ol>
+<h2 id="pod-中几个重要字段">Pod 中几个重要字段</h2>
+<h3 id="nodeselector">NodeSelector</h3>
+<p>是一个供用户将 Pod 与 Node 进行绑定的字段，用法如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+...
+<span style="color:#66d9ef">spec</span>:
+ <span style="color:#66d9ef">nodeSelector</span>:
+ <span style="color:#66d9ef">disktype</span>: ssd
+</code></pre></div><p>这样的一个配置，意味着这个 Pod 永远只能运行在携带了“disktype:ssd”标签（Label）的节点上；否则，它将调度失败。</p>
+<h3 id="nodename">NodeName</h3>
+<p>一旦 Pod 的这个字段被赋值，Kubernetes项目就会被认为这个Pod已经经过了调度，<strong>调度的结果就是赋值的节点名字</strong>。</p>
+<p>所以，<strong>这个字段一般由调度器负责设置</strong>，但用户也可以设置它来“骗过”调度器，当然这个做法一般是在<strong>测试</strong>或者<strong>调试</strong>的时候才会用到。</p>
+<h3 id="hostaliases">HostAliases</h3>
+<p>定义了 Pod 的 hosts 文件（比如 /etc/hosts）里的内容，用法如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+...
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">hostAliases</span>:
+  - <span style="color:#66d9ef">ip</span>: <span style="color:#e6db74">&#34;10.1.2.3&#34;</span>
+    <span style="color:#66d9ef">hostnames</span>:
+    - <span style="color:#e6db74">&#34;foo.remote&#34;</span>
+    - <span style="color:#e6db74">&#34;bar.remote&#34;</span>
+...
+</code></pre></div><p>在这个 Pod 的 YAML 文件中，设置了一组 IP 和 hostname 的数据。这样，这个 Pod 启动
+后，/etc/hosts 文件的内容将如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/hosts
+<span style="color:#75715e"># Kubernetes-managed hosts file.</span>
+127.0.0.1 localhost
+...
+10.244.135.10 hostaliases-pod
+10.1.2.3 foo.remote
+10.1.2.3 bar.remote
+</code></pre></div><p>其中，最下面两行记录，就是通过 HostAliases 字段为 Pod 设置的。</p>
+<p><strong>需要指出的是</strong>：</p>
+<ul>
+<li>在Kubernetes 项目中，如果要设置hosts文件里的内容，一定要通过这种方法。</li>
+<li>如果直接修改了 hosts 文件的话，在 Pod 被删除重建之后，kubelet会自动覆盖掉被修改的内容。</li>
+</ul>
+<p>除了上述跟“机器”相关的配置外，<strong>凡是跟容器的 Linux Namespace 相关的属性，也一定是 Pod级别的</strong>。</p>
+<blockquote>
+<p><strong>Pod的设计，就是要让它里面的容器尽可能多地共享 Linux Namespace，仅保留必要的隔离和限制能力</strong>。这样，Pod模拟出的效果，就跟虚拟机里程序间的关系非常类似了。</p>
+</blockquote>
+<p>举个例子，在下面这个 Pod 的 YAML 文件中，定义 shareProcessNamespace=true：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: nginx
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">shareProcessNamespace</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#66d9ef">containers</span>:
+  - <span style="color:#66d9ef">name</span>: nginx
+    <span style="color:#66d9ef">image</span>: nginx
+  - <span style="color:#66d9ef">name</span>: shell
+    <span style="color:#66d9ef">image</span>: busybox
+    <span style="color:#66d9ef">stdin</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">tty</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><p>这就意味着这个 Pod 里的容器要共享 PID Namespace。</p>
+<p>而在这个 YAML 文件中，还定义了两个容器：一个是 nginx 容器，一个是开启了 tty 和 stdin 的shell 容器。在 Pod 的 YAML 文件里声明开启它们俩，其实等同于设置了 docker run 里的 -it（-i 即 stdin，-t 即 tty）参数。</p>
+<blockquote>
+<p>可以直接认为 <strong>tty</strong> 就是Linux给用户提供的一个常驻小程序，<strong>用于接收用户的标准输入</strong>，<strong>返回操作系统的标准输出</strong>。当然，为了能够在 tty 中输入信息，你还需要同时开启 stdin（标准输入流）。</p>
+</blockquote>
+<p>这个 Pod 被创建后，就可以使用shell容器的tty跟这个容器进行交互了。</p>
+<h4 id="例子">例子</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f nginx.yaml      //上一节创建的yaml文件
+
+kubectl attach -it nginx -c shell     //使用kubectl attach 命令，连接到shell容器的tty上
+
+kubectl attach -it nginx -c shell
+<span style="color:#75715e"># ps ax</span>
+PID   USER     TIME  COMMAND
+    <span style="color:#ae81ff">1</span> root      0:00 /pause
+    <span style="color:#ae81ff">8</span> root      0:00 nginx: master process nginx -g daemon off;
+   <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">101</span>       0:00 nginx: worker process
+   <span style="color:#ae81ff">15</span> root      0:00 sh
+   <span style="color:#ae81ff">21</span> root      0:00 ps ax
+</code></pre></div><p>在这个容器里，我们不仅可以看到它本身的 <code>ps ax</code> 指令，还可以看到 <strong>nginx 容器的进程</strong>，以及 <strong>Infra容器的 /pause 进程</strong>。这就意味着，整个 Pod 里的每个容器的进程，对于所有容器来说都是可见的：<strong>它们共享了同一个 PID Namespace</strong>。</p>
+<p>类似地，<strong>凡是 Pod 中的容器要共享宿主机的 Namespace，也一定是Pod级别的定义</strong>，比如:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: nginx
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">hostNetwork</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#66d9ef">hostIPC</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#66d9ef">hostPID</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#66d9ef">containers</span>:
+  - <span style="color:#66d9ef">name</span>: nginx
+    <span style="color:#66d9ef">image</span>: nginx
+  - <span style="color:#66d9ef">name</span>: shell
+    <span style="color:#66d9ef">image</span>: busybox
+    <span style="color:#66d9ef">stdin</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">tty</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><p>在这个 Pod 中，定义了共享宿主机的 <strong>Network</strong>、<strong>IPC</strong> 和 <strong>PID</strong> <strong>Namespace</strong>。这就意味着，这个Pod 里的所有容器:</p>
+<ol>
+<li>会直接使用宿主机的网络、</li>
+<li>直接与宿主机进行IPC通信、</li>
+<li>看到宿主机里正在运行的所有进程。</li>
+</ol>
+<p>当然，除了这些属性，Pod 里最重要的字段当属“<strong>Containers</strong>”了。</p>
+<blockquote>
+<p>&ldquo;container&quot;与“Init Containers”。其实，这两个字段都属于Pod对容器的定义，内容也完全相同，只是 Init Containers 的生命周期，会先于所有的Containers，并且严格按照定义的顺序执行。</p>
+</blockquote>
+<p>Kubernetes 项目中对 Container 的定义，和 Docker 相比并没有什么太大区别。</p>
+<p>容器技术概念中：</p>
+<ul>
+<li>Image（镜像）</li>
+<li>Command（启动命令）</li>
+<li>workingDir（容器的工作目录）</li>
+<li>Ports（容器要开发的端口）</li>
+<li>以及 volume Mounts（容器要挂载的 Volume）</li>
+</ul>
+<p>都是构成 Kubernetes 项目中 Container 的主要字段。</p>
+<p>不过在这里，还有这么几个属性值得额外关注。</p>
+<ol>
+<li>
+<p>首先，是 <strong>ImagePullPolicy</strong> 字段。它<strong>定义了镜像拉取的策略</strong>。而它之所以是一个 Container 级别的属性，是因为容器镜像本来就是 Container 定义中的一部分。
+ImagePullPolicy 的值默认是<strong>Always</strong>，即每次创建Pod都<strong>重新拉取</strong>一次镜像。另外，当容器的镜像是类似于 nginx 或者 nginx:latest 这样的名字时，ImagePullPolicy 也会被认为 Always。而如果它的值被定义为 <strong>Never</strong> 或者 <strong>IfNotPresent</strong>，则意味着 Pod 永远不会主动拉取这个镜像，或者只在宿主机上不存在这个镜像时才拉取。</p>
+</li>
+<li>
+<p>其次，是 <strong>Lifecycle</strong> 字段。它定义的是 Container Lifecycle Hooks。顾名思义，Container
+Lifecycle Hooks 的作用，是<strong>在容器状态发生变化时触发一系列“钩子”</strong>。</p>
+</li>
+</ol>
+<p>我们来看这样一个例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: lifecycle-demo
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">containers</span>:
+  - <span style="color:#66d9ef">name</span>: lifecycle-demo-container
+    <span style="color:#66d9ef">image</span>: nginx
+    <span style="color:#66d9ef">lifecycle</span>:
+      <span style="color:#66d9ef">postStart</span>:
+        <span style="color:#66d9ef">exec</span>:
+          <span style="color:#66d9ef">command</span>: [<span style="color:#e6db74">&#34;/bin/sh&#34;</span>, <span style="color:#e6db74">&#34;-c&#34;</span>, <span style="color:#e6db74">&#34;echo Hello from the postStart handler &gt; /usr/share/message&#34;</span>]
+      <span style="color:#66d9ef">preStop</span>:
+        <span style="color:#66d9ef">exec</span>:
+          <span style="color:#66d9ef">command</span>: [<span style="color:#e6db74">&#34;/usr/sbin/nginx&#34;</span>,<span style="color:#e6db74">&#34;-s&#34;</span>,<span style="color:#e6db74">&#34;quit&#34;</span>]
+</code></pre></div><p>这是一个来自 Kubernetes 官方文档的 Pod 的 YAML 文件。它其实非常简单，只是定义了一个
+nginx 镜像的容器。不过，在这个 YAML 文件的容器（Containers）部分，你会看到这个容器分别设置了一个 <strong>postStart</strong> 和 <strong>preStop</strong> 参数。</p>
+<ul>
+<li><strong>postStart</strong> ，它指的是，在容器启动后，立刻执行一个指定的操作。需要明确的是，
+postStart 定义的操作，<strong>虽然是在 Docker 容器 ENTRYPOINT 执行之后，但它并不严格保证顺序</strong>。</li>
+</ul>
+<blockquote>
+<p>也就是说，在 postStart 启动时，ENTRYPOINT 有可能还没有结束。
+当然，如果 postStart 执行超时或者错误，Kubernetes 会在该 Pod 的 Events 中报出该容器启动失败的错误信息，导致 Pod 也处于失败的状态。</p>
+</blockquote>
+<ul>
+<li><strong>preStop</strong> 发生的时机，则是容器被杀死之前（比如，收到了 SIGKILL 信号）。preStop操作的执行，<strong>是同步的</strong>。所以，它会阻塞当前的容器杀死流程，直到这个 Hook定义操作完成之后，才允许容器被杀死，<strong>这跟 postStart 不一样</strong>。</li>
+</ul>
+<p>所以，在这个例子中，我们在容器成功启动之后，在 /usr/share/message 里写入了一句“欢迎信息”（即postStart定义的操作）。而在这个容器被删除之前，我们则先调用了 nginx 的退出指令（即 preStop 定义的操作），从而实现了容器的“优雅退出”。</p>
+<h2 id="pod-生命周期">Pod 生命周期</h2>
+<p>Pod 对象在 Kubernetes 中的生命周期。Pod 生命周期的变化，主要体现在 Pod API 对象的<strong>Status</strong> 部分，这是它除了 Metadata 和 Spec
+之外的<strong>第三个重要字段</strong>。其中，<strong>pod.status.phase</strong>，就是 Pod的<strong>当前状态</strong>，它有如下几种可能的情况：</p>
+<ol>
+<li><strong>Pending</strong>。这个状态意味着，Pod 的 YAML 文件已经提交给了 Kubernetes，API 对象已经被创建并保存在 Etcd 当中。但是，<strong>这个 Pod 里有些容器因为某种原因而不能被顺利创建</strong>。比如，调度不成功。</li>
+<li><strong>Running</strong>。这个状态下，Pod已经调度成功，跟一个具体的节点绑定。它包含的容器都已经创建成功，并且<strong>至少有一个正在运行中</strong>。</li>
+<li><strong>Succeeded</strong>。这个状态意味着，Pod 里的所有容器都正常运行完毕，并且<strong>已经退出了</strong>。<strong>这种情况在运行一次性任务时最为常见</strong>。</li>
+<li><strong>Failed</strong>。这个状态下,<strong>Pod 里至少有一个容器以不正常的状态</strong>（非 0 的返回码）<strong>退出</strong>。这个状态的出现，意味着得想办法 Debug 这个容器的应用，比如查看 Pod 的 Events 和日志。</li>
+<li><strong>Unknown</strong>。这是一个异常状态，意味着 Pod 的状态不能持续地被 kubelet 汇报给 kubeapiserver，<strong>这很有可能是主从节点（Master和 Kubelet）间的通信出现了问题</strong>。</li>
+</ol>
+<p>Pod 对象的 Status 字段，还可以再细分出一组 Conditions。这些细分状态的值包括：</p>
+<ul>
+<li>PodScheduled</li>
+<li>Ready</li>
+<li>Initialized</li>
+<li>Unschedulable</li>
+</ul>
+<p>它们主要用于描述造成当前Status 的具体原因是什么。</p>
+<blockquote>
+<p>比如，Pod 当前的 Status 是 Pending，对应的 Condition 是Unschedulable，这就意味着它的调度出现了问题。</p>
+</blockquote>
+<p>而其中，Ready 这个细分状态非常值得我们关注：它意味着 Pod 不仅已经正常启动（Running 状态），而且已经可以对外提供服务了。<strong>Running和Ready是有区别的</strong>。</p>
+<p>Pod 的这些状态信息，是我们判断应用运行情况的重要标准，尤其是 Pod 进入了非“Running”状态后，一定要能迅速做出反应，根据它所代表的异常情况开始跟踪和定位，而不是去手忙脚乱地查阅文档。</p>
+<hr>
+<p>对于 Pod 状态是 Ready，实际上不能提供服务的情况能想到几个例子：</p>
+<ol>
+<li>程序本身有 bug，本来应该返回 200，但因为代码问题，返回的是500；</li>
+<li>程序因为内存问题，已经僵死，但进程还在，但无响应；</li>
+<li>Dockerfile 写的不规范，应用程序不是主进程，那么主进程出了什么问题都无法发现；</li>
+<li>程序出现死循环。</li>
+</ol>
+
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>

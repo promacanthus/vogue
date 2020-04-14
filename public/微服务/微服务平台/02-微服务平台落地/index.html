@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/02-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%90%BD%E5%9C%B0/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="02-微服务平台落地" /><meta property="og:description" content="02-微服务平台落地" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/css/style.6fd7fa42c7b7fe49cfeceeed650d33cb8d1cdbfe842e514a22e57a6b712729aa.css" integrity="sha256-b9f6Qse3/knP7O7tZQ0zy40c2/6ELlFKIuV6a3EnKao=">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">02-微服务平台落地</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <h2 id="服务发布与引用">服务发布与引用</h2>
+<p>以XML配置方式发布和引用服务。</p>
+<h3 id="一号坑">一号坑</h3>
+<p>一个服务包含了多个接口，可能有上行接口也可能有下行接口，每个接口都有超时控制以及是否重试等配置，如果有多个服务消费者引用这个服务，是不是每个服务消费者都必须在服务引用配置文件中定义？</p>
+<p>解决方案：服务发布预定义配置，即使服务消费者没有在服务引用配置文件中定义，也能继承服务提供者的定义。</p>
+<h3 id="二号坑">二号坑</h3>
+<p>一个服务提供者发布的服务有上百个方法，并且每个方法都有各自的超时时间、重试次数等信息。服务消费者引用服务时，完全继承了服务发布预定义的各项配置。这种情况下，服务提供者所发布服务的详细配置信息都需要存储在注册中心中，这样服务消费者才能在实际引用时从服务发布预定义配置中继承各种配置。</p>
+<p>当服务提供者发生节点变更，尤其是在网络频繁抖动的情况下，所有的服务消费者都会从注册中心拉取最新的服务节点信息，就包括了服务发布配置中预定的各项接口信息，这个信息不加限制的话可能达到 1M 以上，如果同时有上百个服务消费者从注册中心拉取服务节点信息，在注册中心机器部署为百兆带宽的情况下，很有可能会导致网络带宽打满的情况发生。</p>
+<p>解决方案：服务引用定义配置。</p>
+<h3 id="三号坑">三号坑</h3>
+<p>服务配置升级的过程。由于引用服务的服务消费者众多，并且涉及多个部门，升级步骤就显得异常重要，通常可以按照下面步骤操作。</p>
+<ol>
+<li>各个服务消费者在服务引用配置文件中添加服务详细信息。</li>
+<li>服务提供者升级两台服务器，在服务发布配置文件中删除服务详细信息，并观察是否所有的服务消费者引用时都包含服务详细信息。</li>
+<li>如果都包含，说明所有服务消费者均完成升级，那么服务提供者就可以删除服务发布配置中的服务详细信息。</li>
+<li>如果有不包含服务详细信息的服务消费者，排查出相应的业务方进行升级，直至所有业务方完成升级。</li>
+</ol>
+<h2 id="注册中心">注册中心</h2>
+<p>落地注册中心的过程中，需要解决一些列问题，包括：</p>
+<ul>
+<li>如何存储服务信息</li>
+<li>如何注册节点</li>
+<li>如何反注册</li>
+<li>如何查询节点信息</li>
+<li>如何订阅服务变更</li>
+</ul>
+<h3 id="存储的服务信息">存储的服务信息</h3>
+<p>服务信息，通常用JSON字符串来存储，包括：</p>
+<ul>
+<li>节点信息（IP和端口）</li>
+<li>请求失败时重试的次数</li>
+<li>请求结果是否压缩</li>
+</ul>
+<p>服务一般会分成多个不同的分组，每个分组的目的不同。一般来说有下面几种分组方式：</p>
+<ul>
+<li>核心与非核心，从业务的核心程度来分</li>
+<li>机房，从机房的维度来分</li>
+<li>线上环境与测试环境，从业务场景维度来区分</li>
+</ul>
+<p>所以注册中心存储的服务信息一般包含三部分内容：分组、服务名以及节点信息，节点信息又包括节点地址和节点其他信息。</p>
+<p>具体存储的时候，一般是按照“服务 - 分组 - 节点信息”三层结构来存储，可以用下图来描述。Service 代表服务的具体分组，Cluster 代表服务的接口名，节点信息用 KV 存储。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/sckv.jpg" alt="image"></p>
+<h3 id="注册中心工作流程">注册中心工作流程</h3>
+<p>注册中心具体是工作的，包括四个流程:</p>
+<ul>
+<li>服务提供者注册流程</li>
+<li>服务提供者反注册流程</li>
+<li>服务消费者查询流程</li>
+<li>服务消费者订阅变更流程</li>
+</ul>
+<h4 id="注册节点">注册节点</h4>
+<ol>
+<li>首先查看要注册的节点是否在白名单内？如果不在就抛出异常，在的话继续下一步</li>
+<li>其次要查看注册的 Cluster（服务的接口名）是否存在？如果不存在就抛出异常，存在的话继续下一步</li>
+<li>然后要检查 Service（服务的分组）是否存在？如果不存在则抛出异常，存在的话继续下一步</li>
+<li>最后将节点信息添加到对应的 Service 和 Cluster 下面的存储中</li>
+</ol>
+<h4 id="反注册">反注册</h4>
+<ol>
+<li>查看 Service（服务的分组）是否存在，不存在就抛出异常，存在就继续下一步</li>
+<li>查看 Cluster（服务的接口名）是否存在，不存在就抛出异常，存在就继续下一步</li>
+<li>删除存储中 Service 和 Cluster 下对应的节点信息</li>
+<li>更新 Cluster 的 sign 值</li>
+</ol>
+<h4 id="查询节点信息">查询节点信息</h4>
+<ol>
+<li>首先从 localcache（本机内存）中查找，如果没有就继续下一步。</li>
+<li>接着从 snapshot（本地快照）中查找，如果没有就继续下一步。</li>
+</ol>
+<p>这里为什么服务消费者要把服务信息存在本机内存呢？</p>
+<blockquote>
+<p>主要是因为服务节点信息并不总是时刻变化的，并不需要每一次服务调用都要调用注册中心获取最新的节点信息，只需要在本机内存中保留最新的服务提供者的节点列表就可以。</p>
+</blockquote>
+<p>这里为什么服务消费者要在本地磁盘存储一份服务提供者的节点信息的快照呢？</p>
+<blockquote>
+<p>这是因为服务消费者同注册中心之间的网络不一定总是可靠的，服务消费者重启时，本机内存中还不存在服务提供者的节点信息，如果此时调用注册中心失败，那么服务消费者就拿不到服务节点信息了，也就没法调用了。本地快照就是为了防止这种情况的发生，即使服务消费者重启后请求注册中心失败，依然可以读取本地快照，获取到服务节点信息。</p>
+</blockquote>
+<h4 id="订阅服务变更">订阅服务变更</h4>
+<ol>
+<li>服务消费者从注册中心获取了服务的信息后，就订阅了服务的变化，会在本地保留 Cluster 的 sign 值</li>
+<li>服务消费者每隔一段时间，调用 <code>getSign()</code> 函数，从注册中心获取服务端该 Cluster 的 sign 值，并与本地保留的 sign 值做对比，如果不一致，就从服务端拉取新的节点信息，并更新 localcache 和 snapshot</li>
+</ol>
+<h3 id="注册中心的坑">注册中心的坑</h3>
+<h4 id="多注册中心">多注册中心</h4>
+<p>服务消费者同一个注册中心交互是最简单的。但是不可避免的是，服务消费者可能订阅了多个服务，多个服务只在不同的注册中心里有记录。这样的话，就要求服务消费者要具备在启动时，能够从多个注册中心订阅服务的能力。</p>
+<ul>
+<li>对于服务消费者来说，要能够同时从多个注册中心订阅服务</li>
+<li>对于服务提供者来说，要能够同时向多个注册中心注册服务</li>
+</ul>
+<h4 id="并行订阅服务">并行订阅服务</h4>
+<p>通常一个服务消费者订阅了不止一个服务，一个服务消费者订阅了几十个不同的服务，每个服务都有自己的方法列表以及节点列表。</p>
+<p>服务消费者在服务启动时，会加载订阅的服务配置，调用注册中心的订阅接口，获取每个服务的节点列表并初始化连接。</p>
+<ul>
+<li>
+<p>采用串行订阅的方式，每订阅一个服务，服务消费者调用一次注册中心的订阅接口，获取这个服务的节点列表并初始化连接，总共需要执行几十次这样的过程。</p>
+<blockquote>
+<p>在某些服务节点的初始化连接过程中，出现连接超时的情况，后续所有的服务节点的初始化连接都需要等待它完成，导致服务消费者启动变慢，最后耗费了将近五分钟时间来完成所有服务节点的初始化连接过程。</p>
+</blockquote>
+</li>
+<li>
+<p>采用并行订阅的方式，每订阅一个服务就单独用一个线程来处理，这样的话即使遇到个别服务节点连接超时，其他服务节点的初始化连接也不受影响，最慢也就是这个服务节点的初始化连接耗费的时间，最终所有服务节点的初始化连接耗时控制在了 30 秒以内。</p>
+</li>
+</ul>
+<h4 id="批量反注册服务">批量反注册服务</h4>
+<p>通常一个服务提供者节点提供不止一个服务，所以注册和反注册都需要多次调用注册中心。在与注册中心的多次交互中，可能由于网络抖动、注册中心集群异常等原因，导致个别调用失败。</p>
+<p>对于注册中心来说:</p>
+<ul>
+<li>偶发的注册调用失败对服务调用基本没有影响，其结果顶多就是某一个服务少了一个可用的节点</li>
+<li>偶发的反注册调用失败会导致不可用的节点残留在注册中心中，变成“僵尸节点”，但服务消费者端还会把它当成“活节点”，继续发起调用，最终导致调用失败</li>
+</ul>
+<blockquote>
+<p>定时去清理注册中心中的“僵尸节点”。</p>
+<p>通过优化反注册逻辑，对于下线机器、节点销毁的场景，调用注册中心提供的批量反注册接口，一次调用就可以把该节点上提供的所有服务同时反注册掉，从而避免了“僵尸节点”的出现。</p>
+</blockquote>
+<h4 id="服务变更信息增量更新">服务变更信息增量更新</h4>
+<p>服务消费者端启动时:</p>
+<ol>
+<li>查询订阅服务的可用节点列表做初始化连接</li>
+<li>订阅服务的变更，每隔一段时间从注册中心获取最新的服务节点信息标记 sign，并与本地保存的 sign 值作比对，如果不一样，就会调用注册中心获取最新的服务节点信息</li>
+</ol>
+<blockquote>
+<p>一般情况下，这个过程是没问题的，但是在网络频繁抖动时，服务提供者上报给注册中心的心跳可能会一会儿失败一会儿成功，注册中心就会频繁更新服务的可用节点信息，导致服务消费者频繁从注册中心拉取最新的服务可用节点信息，严重时可能产生网络风暴，导致注册中心带宽被打满。</p>
+</blockquote>
+<p>为了减少服务消费者从注册中心中拉取的服务可用节点信息的数据量，这个时候可以通过增量更新（即版本号）的方式，<strong>注册中心只返回变化的那部分节点信息</strong>，尤其在只有少数节点信息变更时，可以大大减少服务消费者从注册中心拉取的数据量，从而最大程度避免产生网络风暴。</p>
+<h3 id="注册中心选型">注册中心选型</h3>
+<p>当下主流的服务注册与发现的解决方案，主要有两种：</p>
+<ul>
+<li>应用内注册与发现：注册中心提供服务端和客户端的 SDK，业务应用通过引入注册中心提供的 SDK，通过 SDK 与注册中心交互，来实现服务的注册和发现</li>
+<li>应用外注册与发现：业务应用本身不需要通过 SDK 与注册中心打交道，而是通过其他方式与注册中心交互，间接完成服务注册与发现</li>
+</ul>
+<h4 id="应用内">应用内</h4>
+<p>采用应用内注册与发现的方式，最典型的案例要属 Netflix 开源的 Eureka，官方架构图如下。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/eureka.jpg" alt="image"></p>
+<p>主要由三个重要的组件组成：</p>
+<ul>
+<li>Eureka Server：注册中心的服务端，实现了服务信息注册、存储以及查询等功能</li>
+<li>服务端的 Eureka Client：集成在服务端的注册中心 SDK，服务提供者通过调用 SDK，实现服务注册、反注册等功能</li>
+<li>客户端的 Eureka Client：集成在客户端的注册中心 SDK，服务消费者通过调用 SDK，实现服务订阅、服务更新等功能</li>
+</ul>
+<h4 id="应用外">应用外</h4>
+<p>采用应用外方式实现服务注册和发现，最典型的案例是开源注册中心 Consul，它的架构图如下。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/consul.png" alt="image"></p>
+<p>Consul 实现应用外服务注册和发现主要依靠三个重要的组件：</p>
+<ul>
+<li>Consul：注册中心的服务端，实现服务注册信息的存储，并提供注册和发现服务</li>
+<li><a href="https://github.com/gliderlabs/registrator">Registrator</a>：一个开源的第三方服务管理器项目，它通过监听服务部署的 Docker 实例是否存活，来负责服务提供者的注册和销毁</li>
+<li><a href="https://github.com/hashicorp/consul-template">Consul Template</a>：定时从注册中心服务端获取最新的服务提供者节点列表并刷新 LB 配置（比如 Nginx 的 upstream），这样服务消费者就通过访问 Nginx 就可以获取最新的服务提供者信息</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>解决方案</th>
+<th>开源项目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用内</td>
+<td>eureka</td>
+<td>适用于服务提供者和服务消费者同属于一个技术体系</td>
+</tr>
+<tr>
+<td>应用外</td>
+<td>consul</td>
+<td>适合服务提供者和服务消费者采用了不同技术体系的业务场景</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>比如服务提供者提供的是 C++ 服务，而服务消费者是一个 Java 应用，这时候采用应用外的解决方案就不依赖于具体一个技术体系。</p>
+</blockquote>
+<p>对于容器化后的云应用来说，一般不适合采用应用内 SDK 的解决方案，因为这样会侵入业务，而应用外的解决方案正好能够解决这个问题。</p>
+<h4 id="选型考虑的问题">选型考虑的问题</h4>
+<p>除了要考虑是采用应用内注册还是应用外注册的方式以外，还有两个最值得关注的问题，一个是高可用性，一个是数据一致性。</p>
+<h5 id="高可用">高可用</h5>
+<p>注册中心作为服务提供者和服务消费者之间沟通的纽带，它的高可用性十分重要。实现高可用性的方法主要有两种：</p>
+<ul>
+<li>集群部署，通过部署多个实例组成集群来保证高可用性，这样的话即使有部分机器宕机，将访问迁移到正常的机器上就可以保证服务的正常访问。</li>
+<li>多 IDC 部署，就是部署在不止一个机房，这样能保证即使一个机房因为断电或者光缆被挖断等不可抗力因素不可用时，仍然可以通过把请求迁移到其他机房来保证服务的正常访问。</li>
+</ul>
+<p>Consul 为例，通过这两种方法来保证注册中心的高可用性：</p>
+<ul>
+<li>一方面，在每个数据中心内都有多个注册中心 Server 节点可供访问</li>
+<li>另一方面，还可以部署在多个数据中心来保证多机房高可用性</li>
+</ul>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/consul-HA.png" alt="image"></p>
+<h5 id="数据一致性">数据一致性</h5>
+<p>为了保证注册中心的高可用性，注册中心的部署都采用集群部署，并且还通常部署在不止一个数据中心，这样的话就会引出另一个问题，多个数据中心之间如何保证数据一致？</p>
+<p>这里就涉及分布式系统中著名的 CAP 理论，即同时满足一致性、可用性、分区容错性这三者是不可能的，其中:</p>
+<ul>
+<li>C（Consistency）代表一致性</li>
+<li>A（Availability）代表可用性</li>
+<li>P（Partition Tolerance）代表分区容错性</li>
+</ul>
+<p>在一个分布式系统里面，包含了多个节点，节点之间通过网络连通在一起。正常情况下，通过网络，从一个节点可以访问任何别的节点上的数据。</p>
+<ul>
+<li>
+<p>分区：出现网络故障，导致整个网络被分成了互不连通的区域。</p>
+</li>
+<li>
+<p>分区容错性：一旦出现分区，那么一个区域内的节点就没法访问其他节点上的数据了，最好的办法是把数据复制到其他区域内的节点，这样即使出现分区，也能访问任意区域内节点上的数据。</p>
+</li>
+<li>
+<p>一致性：把数据复制到多个节点就可能出现数据不一致的情况。</p>
+</li>
+<li>
+<p>可用性：要保证一致性，就必须等待所有节点上的数据都更新成功才可用。</p>
+</li>
+</ul>
+<blockquote>
+<p>总的来说，就是数据节点越多，分区容错性越高，但数据一致性越难保证。为了保证数据一致性，又会带来可用性的问题。</p>
+</blockquote>
+<p>注册中心采用分布式集群部署，也面临着 CAP 的问题，所以注册中心大致可分为两种：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CP 型</td>
+<td>牺牲可用性来保证数据强一致性</td>
+<td>ZooKeeper，etcd，Consul</td>
+</tr>
+<tr>
+<td>AP 型</td>
+<td>牺牲一致性来保证可用性</td>
+<td>Eureka</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ZooKeeper 集群内只有一个 Leader，而且在 Leader 无法使用的时候通过 <strong>Paxos 算法</strong>选举出一个新的 Leader。这个 Leader 的目的就是保证写信息的时候只向这个 Leader 写入，Leader 会同步信息到 Followers，这个过程就可以保证数据的强一致性。但如果多个 ZooKeeper 之间网络出现问题，造成出现多个 Leader，发生脑裂的话，注册中心就不可用了。</li>
+<li>etcd 和 Consul 集群内都是通过 <strong>raft 协议</strong>来保证强一致性，如果出现脑裂的话， 注册中心也不可用。</li>
+<li>Eureka 不用选举一个 Leader，每个 Eureka 服务器单独保存服务注册地址，因此有可能出现数据信息不一致的情况。但是当网络出现问题的时候，每台服务器都可以完成独立的服务。</li>
+</ul>
+<p>对于注册中心来说，<strong>最主要的功能是服务的注册和发现</strong>，在网络出现问题的时候，可用性的需求要远远高于数据一致性。即使因为数据不一致，注册中心内引入了不可用的服务节点，也可以通过其他措施来避免，比如客户端的快速失败机制等，只要实现最终一致性，对于注册中心来说就足够了。因此，选择 <strong>AP 型注册中心</strong>，一般更加合适。</p>
+<h3 id="总结">总结</h3>
+<p>在选择开源注册中心解决方案的时候，要看业务的具体场景。</p>
+<ol>
+<li>如果业务体系都采用 Java 语言的话，Netflix 开源的 Eureka 是一个不错的选择，并且它作为服务注册与发现解决方案，能够最大程度的保证可用性，即使出现了网络问题导致不同节点间数据不一致，你仍然能够访问 Eureka 获取数据。</li>
+<li>如果你的业务体系语言比较复杂，Eureka 也提供了 Sidecar 的解决方案；也可以考虑使用 Consul，它支持了多种语言接入，包括 Go、Python、PHP、Scala、Java，Erlang、Ruby、Node.js、.NET、Perl 等。</li>
+<li>如果你的业务已经是云原生的应用，可以考虑使用 Consul，搭配 Registrator 和 Consul Template 来实现应用外的服务注册与发现。</li>
+</ol>
+<h2 id="rpc框架">RPC框架</h2>
+<p>一个完整的 RPC 框架主要有三部分组成：</p>
+<ul>
+<li>通信框架</li>
+<li>通信协议</li>
+<li>序列化和反序列化格式</li>
+</ul>
+<p>业界应用比较广泛的开源 RPC 框架主要分为两类：</p>
+<ul>
+<li>限定语言平台绑定的开源 RPC 框架：
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>公司</th>
+<th>年代</th>
+<th>语言</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dubbo</td>
+<td>阿里巴巴</td>
+<td>2011</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>Motan</td>
+<td>微博</td>
+<td>2016</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>Tars</td>
+<td>腾讯</td>
+<td>2017</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>Spring Cloud</td>
+<td>Pivotal</td>
+<td>2014</td>
+<td>Java</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p>从长远来看，支持多语言是 RPC 框架未来的发展趋势。正是基于此判断，各个 RPC 框架都提供了 Sidecar 组件来支持多语言平台之间的 RPC 调用。</p>
+<ol>
+<li><a href="https://yq.aliyun.com/articles/604030">Dubbo Mesh</a>提供多语言支持</li>
+<li><a href="https://github.com/weibocom/motan-go">Motan-go</a>，目前支持 PHP、Java 语言之间的相互调用</li>
+<li><a href="https://cloud.spring.io/spring-cloud-netflix/reference/html/#polyglot-support-with-sidecar">spring-cloud-netflix-sidecar</a>，可以让其他语言也可以使用 Spring Cloud 的组件</li>
+</ol>
+<hr>
+<ul>
+<li>跨语言平台的开源 RPC 框架：
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>公司</th>
+<th>年代</th>
+<th>支持语言</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gRPC</td>
+<td>Google</td>
+<td>2015</td>
+<td>C++、Java、Python、Go、Ruby、PHP、Android Java、Objective-C</td>
+</tr>
+<tr>
+<td>Thrift</td>
+<td>Facebook</td>
+<td>2007 年贡献给 Apache 基金</td>
+<td>C++、Java、PHP、Python、Ruby、Erlang</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="限定语言平台的开源rpc框架">限定语言平台的开源RPC框架</h3>
+<h4 id="dubbo">Dubbo</h4>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/dubbo.jpg" alt="image"></p>
+<p>Dubbo 的架构主要包含四个角色：</p>
+<ul>
+<li>Consumer 是服务消费者</li>
+<li>Provider 是服务提供者</li>
+<li>Registry 是注册中心</li>
+<li>Monitor 是监控系统</li>
+</ul>
+<p>具体的交互流程：</p>
+<ol>
+<li>Consumer 一端通过注册中心获取到 Provider 节点后，通过 Dubbo 的客户端 SDK 与 Provider 建立连接，并发起调用。</li>
+<li>Provider 一端通过 Dubbo 的服务端 SDK 接收到 Consumer 的请求，处理后再把结果返回给 Consumer。</li>
+</ol>
+<p>服务消费者和服务提供者都需要引入 Dubbo 的 SDK 才来完成 RPC 调用，因为 Dubbo 本身是采用 Java 语言实现的，所以要求服务消费者和服务提供者也都必须采用 Java 语言实现才可以应用。</p>
+<p>Dubbo 调用框架的实现：</p>
+<ul>
+<li>通信框架方面，Dubbo 默认采用了 Netty 作为通信框架</li>
+<li>通信协议方面，Dubbo 除了支持私有的 Dubbo 协议外，还支持 RMI 协议、Hession 协议、HTTP 协议、Thrift 协议等</li>
+<li>序列化格式方面，Dubbo 支持多种序列化格式，比如 Dubbo、Hession、JSON、Kryo、FST 等</li>
+</ul>
+<h4 id="motan">Motan</h4>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/motan.jpg" alt="image"></p>
+<p>Motan 与 Dubbo 的架构类似，都需要在 Client 端（服务消费者）和 Server 端（服务提供者）引入 SDK，其中 Motan 框架主要包含:</p>
+<ul>
+<li>register：用来和注册中心交互，包括注册服务、订阅服务、服务变更通知、服务心跳发送等功能。Server 端会在系统初始化时通过 register 模块注册服务，Client 端会在系统初始化时通过 register 模块订阅到具体提供服务的 Server 列表，当 Server 列表发生变更时也由 register 模块通知 Client。</li>
+<li>protocol：用来进行 RPC 服务的描述和 RPC 服务的配置管理，这一层还可以添加不同功能的 filter 用来完成统计、并发限制等功能。</li>
+<li>serialize：将 RPC 请求中的参数、结果等对象进行序列化与反序列化，即进行对象与字节流的互相转换，默认使用对 Java 更友好的 Hessian  2 进行序列化。</li>
+<li>transport：用来进行远程通信，默认使用 Netty NIO 的 TCP 长链接方式。</li>
+<li>cluster：Client 端使用的模块，cluster 是一组可用的 Server 在逻辑上的封装，包含若干可以提供 RPC 服务的 Server，实际请求时会根据不同的高可用与负载均衡策略选择一个可用的 Server 发起远程调用。</li>
+</ul>
+<h4 id="tars">Tars</h4>
+<p>目前支持的开发语言如下：C++、Java、Nodejs、PHP、Go</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/tars.png" alt="image"></p>
+<p>Tars 的架构交互主要包括以下几个流程：</p>
+<ul>
+<li>服务发布流程：在 web 系统上传 server 的发布包到 patch，上传成功后，在 web 上提交发布 server 请求，由 registry 服务传达到 node，然后 node 拉取 server 的发布包到本地，拉起 server 服务。</li>
+<li>管理命令流程：web 系统上可以提交管理 server 服务命令请求，由 registry 服务传达到 node 服务，然后由 node 向 server 发送管理命令。</li>
+<li>心跳上报流程：server 服务运行后，会定期上报心跳到 node，node 然后把服务心跳信息上报到 registry 服务，由 registry 进行统一管理。</li>
+<li>信息上报流程：server 服务运行后，会定期上报统计信息到 stat，打印远程日志到 log，定期上报属性信息到 prop、上报异常信息到 notify、从 config 拉取服务配置信息。client 访问 server 流程：client 可以通过 server 的对象名 Obj 间接访问 server，client 会从 registry 上拉取 server 的路由信息（如 IP、Port 信息），然后根据具体的业务特性（同步或者异步，TCP 或者 UDP 方式）访问 server（当然 client 也可以通过 IP/Port 直接访问 server）。</li>
+</ul>
+<h4 id="spring-cloud">Spring Cloud</h4>
+<p>为了解决微服务架构中服务治理而提供的一系列功能的开发框架，它是完全基于 Spring Boot 进行开发的，Spring Cloud 利用 Spring Boot 特性整合了开源行业中优秀的组件，整体对外提供了一套在微服务架构中服务治理的解决方案。因为 Spring Boot 是用 Java 语言编写的，所以目前 Spring Cloud 也只支持 Java 语言平台，它的架构图可以用下面这张图来描述。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/spring-cloud.png" alt="image"></p>
+<p>Spring Cloud 微服务架构是由多个组件一起组成的，各个组件的交互流程如下：</p>
+<ul>
+<li>请求统一通过 API 网关 Zuul 来访问内部服务，先经过 Token 进行安全认证。</li>
+<li>通过安全认证后，网关 Zuul 从注册中心 Eureka 获取可用服务节点列表。</li>
+<li>从可用服务节点中选取一个可用节点，然后把请求分发到这个节点。</li>
+<li>整个请求过程中，Hystrix 组件负责处理服务超时熔断，Turbine 组件负责监控服务间的调用和熔断相关指标，Sleuth 组件负责调用链监控，ELK 负责日志分析。</li>
+</ul>
+<h4 id="对比选型">对比选型</h4>
+<ul>
+<li>如果语言平台是 C++，那么只能选择 Tars；</li>
+<li>如果是 Java 的话，可以选择 Dubbo、Motan 或者 Spring Cloud</li>
+</ul>
+<p>Spring Cloud 不仅提供了基本的 RPC 框架功能，还提供了服务注册组件、配置中心组件、负载均衡组件、断路器组件、分布式消息追踪组件等一系列组件，被技术圈的人称之为“Spring Cloud 全家桶”。如果不想自己实现以上这些功能，那么 Spring Cloud 基本可以满足你的全部需求。</p>
+<p>而 Dubbo、Motan 基本上只提供了最基础的 RPC 框架的功能，其他微服务组件都需要自己去实现。由于 Spring Cloud 的 RPC 通信采用了 HTTP 协议，相比 Dubbo 和 Motan 所采用的私有协议来说，在高并发的通信场景下，性能相对要差一些，所以对性能有苛刻要求的情况下，可以考虑 Dubbo 和 Motan。</p>
+<h3 id="跨语言平台的开源-rpc-框架">跨语言平台的开源 RPC 框架</h3>
+<h4 id="grpc">gRPC</h4>
+<p>gRPC框架详解，出门右转<a href="../../%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/gRPC/01-gRPC%E7%AE%80%E4%BB%8B/">看这里</a>。</p>
+<p>原理是通过 IDL（Interface Definition Language）文件定义服务接口的参数和返回值类型，然后通过代码生成程序生成服务端和客户端的具体实现代码，这样在 gRPC 里，客户端应用可以像调用本地对象一样调用另一台服务器上对应的方法。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/grpc.png" alt="image"></p>
+<p>它的主要特性包括三个方面。</p>
+<ul>
+<li>通信协议采用了<code>HTTP/2</code>，因为 <code>HTTP/2</code> 提供了连接复用、双向流、服务器推送、请求优先级、首部压缩等机制，所以在通信过程中可以节省带宽、降低 TCP 连接次数、节省 CPU，尤其对于移动端应用来说，可以帮助延长电池寿命。</li>
+<li>IDL 使用了<a href="../../%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/Protocol-Buffers/01-Protocol-Buffers%E7%AE%80%E4%BB%8B/">ProtoBuf</a>，ProtoBuf 是由 Google 开发的一种数据序列化协议，它的压缩和传输效率极高，语法也简单，所以被广泛应用在数据存储和通信协议上。</li>
+<li>多语言支持，能够基于多种语言自动生成对应语言的客户端和服务端的代码。</li>
+</ul>
+<h4 id="thrift">Thrift</h4>
+<p>Thrift 是一种轻量级的跨语言 RPC 通信方案，支持多达 25 种编程语言。Thrift 有一套自己的接口定义语言 IDL，可以通过代码生成器，生成各种编程语言的 Client 端和 Server 端的 SDK 代码，这样就保证了不同语言之间可以相互通信。</p>
+<p>它的架构图可以用下图来描述。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/thrift.png" alt="image"></p>
+<p>Thrift RPC 框架的特性：</p>
+<ul>
+<li>支持多种序列化格式：如 Binary、Compact、JSON、Multiplexed 等</li>
+<li>支持多种通信方式：如 Socket、Framed、File、Memory、zlib 等</li>
+<li>服务端支持多种处理方式：如 Simple 、Thread Pool、Non-Blocking 等</li>
+</ul>
+<h4 id="跨语言框架对比选型">跨语言框架对比选型</h4>
+<p>从成熟度上来讲，Thrift 因为诞生的时间要早于 gRPC，所以使用的范围要高于 gRPC，在 HBase、Hadoop、Scribe、Cassandra 等许多开源组件中都得到了广泛地应用。</p>
+<p>而且 Thrift 支持多达 25 种语言，这要比 gRPC 支持的语言更多，所以如果遇到 gRPC 不支持的语言场景下，选择 Thrift 更合适。</p>
+<p>但 gRPC 作为后起之秀，因为采用了 <code>HTTP/2</code>作为通信协议、ProtoBuf 作为数据序列化格式，在移动端设备的应用以及对传输带宽比较敏感的场景下具有很大的优势，而且开发文档丰富，根据 ProtoBuf 文件生成的代码要比 Thrift 更简洁一些，从使用难易程度上更占优势，所以如果使用的语言平台 gRPC 支持的话，建议还是采用 gRPC 比较好。</p>
+<p>gRPC 和 Thrift 虽然支持跨语言的 RPC 调用，但是因为只提供了最基本的 RPC 框架功能，缺乏一系列配套的服务化组件和服务治理功能的支撑，所以使用它们作为跨语言调用的 RPC 框架，就需要自己考虑注册中心、熔断、限流、监控、分布式追踪等功能的实现，不过好在大多数功能都有开源实现，可以直接采用。</p>
+<h2 id="监控系统">监控系统</h2>
+<p>一个监控系统的组成主要涉及四个环节：</p>
+<ul>
+<li>数据收集</li>
+<li>数据传输</li>
+<li>数据处理</li>
+<li>数据展示</li>
+</ul>
+<p>不同的监控系统实现方案，在这四个环节所使用的技术方案不同，适合的业务场景也不一样。</p>
+<p>比较流行的开源监控系统实现方案主要有两种：</p>
+<ul>
+<li>以ELK为代表的<strong>集中式日志</strong>解决方案</li>
+<li>以Graphite、TICK和Prometheus等为代表的<strong>时序数据库</strong>解决方案</li>
+</ul>
+<h3 id="elk">ELK</h3>
+<p>ELK 是 Elasticsearch、Logstash、Kibana 三个开源软件产品首字母的缩写，通常配合使用，所以被称为 ELK Stack，架构如下图所示。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/elk.png" alt="image"></p>
+<ul>
+<li>Logstash 负责数据收集和传输，它支持动态地从各种数据源收集数据，并对数据进行过滤、分析、格式化等，然后存储到指定的位置。</li>
+<li>Elasticsearch 负责数据处理，它是一个开源分布式搜索和分析引擎，具有可伸缩、高可靠和易管理等特点，基于 Apache Lucene 构建，能对大容量的数据进行接近实时的存储、搜索和分析操作，通常被用作基础搜索引擎。</li>
+<li>Kibana 负责数据展示，通常和 Elasticsearch 搭配使用，对其中的数据进行搜索、分析并且以图表的方式展示。</li>
+</ul>
+<blockquote>
+<p>这种架构需要在各个服务器上部署 Logstash 来从不同的数据源收集数据，所以比较消耗 CPU 和内存资源，容易造成服务器性能下降，因此后来又在 Elasticsearch、Logstash、Kibana 之外引入了 Beats 作为数据收集器。</p>
+</blockquote>
+<p>相比于 Logstash，Beats 所占系统的 CPU 和内存几乎可以忽略不计，可以安装在每台服务器上做轻量型代理，从成百上千或成千上万台机器向 Logstash 或者直接向 Elasticsearch 发送数据。</p>
+<p>Beats 支持多种数据源，主要包括：</p>
+<ul>
+<li>Packetbeat，用来收集网络流量数据</li>
+<li>Topbeat，用来收集系统、进程的 CPU 和内存使用情况等数据</li>
+<li>Filebeat，用来收集文件数据</li>
+<li>Winlogbeat，用来收集 Windows 事件日志收据</li>
+</ul>
+<p>Beats 将收集到的数据发送到 Logstash，经过 Logstash 解析、过滤后，再将数据发送到 Elasticsearch，最后由 Kibana 展示，架构如下图所示。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/beats.png" alt="image"></p>
+<h3 id="graphite">Graphite</h3>
+<p>Graphite 的组成主要包括三部分：</p>
+<ul>
+<li>Carbon：负责数据处理</li>
+<li>Whisper：负责数据存储</li>
+<li>Graphite-Web：负责数据展示</li>
+</ul>
+<p>架构如下图。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/graphite.png" alt="image"></p>
+<ul>
+<li>Carbon：主要作用是接收被监控节点的连接，收集各个指标的数据，将这些数据写入 carbon-cache 并最终持久化到 Whisper 存储文件中去。</li>
+<li>Whisper：一个简单的时序数据库，主要作用是存储时间序列数据，可以按照不同的时间粒度来存储数据，比如 1 分钟 1 个点、5 分钟 1 个点、15 分钟 1 个点三个精度来存储监控数据。</li>
+<li>Graphite-Web：一个 Web App，其主要功能绘制报表与展示，即数据展示。为了保证 Graphite-Web 能及时绘制出图形，Carbon 在将数据写入 Whisper 存储的同时，会在 carbon-cache 中同时写入一份数据，Graphite-Web 会先查询 carbon-cache，如果没有再查询 Whisper 存储。</li>
+</ul>
+<p>Graphite 自身并不包含数据采集组件，可以接入<a href="https://github.com/statsd/statsd">StatsD</a>等开源数据采集组件来采集数据，再传送给 Carbon。</p>
+<p>Carbon 对写入的数据格式有一定的要求，比如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// key”  +  空格分隔符  +  “value  +  时间戳”的数据格式
+</span><span style="color:#75715e">// “.”分割的 key,代表具体的路径信息
+</span><span style="color:#75715e">// Unix 时间戳
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">servers</span>.<span style="color:#a6e22e">www01</span>.<span style="color:#a6e22e">cpuUsage</span> <span style="color:#ae81ff">42</span> <span style="color:#ae81ff">1286269200</span>
+<span style="color:#a6e22e">products</span>.<span style="color:#a6e22e">snake</span><span style="color:#f92672">-</span><span style="color:#a6e22e">oil</span>.<span style="color:#a6e22e">salesPerMinute</span> <span style="color:#ae81ff">123</span> <span style="color:#ae81ff">1286269200</span>
+[<span style="color:#a6e22e">one</span> <span style="color:#a6e22e">minute</span> <span style="color:#a6e22e">passes</span>]
+<span style="color:#a6e22e">servers</span>.<span style="color:#a6e22e">www01</span>.<span style="color:#a6e22e">cpuUsageUser</span> <span style="color:#ae81ff">44</span> <span style="color:#ae81ff">1286269260</span>
+<span style="color:#a6e22e">products</span>.<span style="color:#a6e22e">snake</span><span style="color:#f92672">-</span><span style="color:#a6e22e">oil</span>.<span style="color:#a6e22e">salesPerMinute</span> <span style="color:#ae81ff">119</span> <span style="color:#ae81ff">1286269260</span>
+</code></pre></div><p>Graphite-Web 对外提供了 HTTP API 可以查询某个 key 的数据以绘图展示，查询方式如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 查询 key“servers.www01.cpuUsage
+</span><span style="color:#75715e">// 在过去 24 小时的数据
+</span><span style="color:#75715e">// 要求返回 500*300 大小的数据图
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">http</span>:<span style="color:#75715e">//graphite.example.com/render?target=servers.www01.cpuUsage&amp;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">width</span>=<span style="color:#ae81ff">500</span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">height</span>=<span style="color:#ae81ff">300</span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">from</span>=<span style="color:#f92672">-</span><span style="color:#ae81ff">24</span><span style="color:#a6e22e">h</span>
+
+<span style="color:#75715e">// Graphite-Web 还支持丰富的函数
+</span><span style="color:#75715e">// 代表了查询匹配规则“products.*.salesPerMinute”的所有 key 的数据之和
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">target</span>=<span style="color:#a6e22e">sumSeries</span>(<span style="color:#a6e22e">products</span>.<span style="color:#f92672">*</span>.<span style="color:#a6e22e">salesPerMinute</span>)
+</code></pre></div><h3 id="tick">TICK</h3>
+<p>TICK 是 Telegraf、InfluxDB、Chronograf、Kapacitor 四个软件首字母的缩写，是由 InfluxData 开发的一套开源监控工具栈，因此也叫作 TICK Stack，架构如下图所示。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/tick.png" alt="image"></p>
+<ul>
+<li>Telegraf 负责数据收集</li>
+<li>InfluxDB 负责数据存储</li>
+<li>Chronograf 负责数据展示</li>
+<li>Kapacitor 负责数据告警</li>
+</ul>
+<p>InfluxDB 对写入的数据格式要求如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// &lt;measurement&gt;[,&lt;tag-key&gt;=&lt;tag-value&gt;...] &lt;field-key&gt;=&lt;field-value&gt;[,&lt;field2-key&gt;=&lt;field2-value&gt;...] [unix-nano-timestamp]
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// host为serverA，region为us_west，cpu的值为0.64，时间戳为1434067467100293230，精确到nano
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">cpu</span>,<span style="color:#a6e22e">host</span>=<span style="color:#a6e22e">serverA</span>,<span style="color:#a6e22e">region</span>=<span style="color:#a6e22e">us_west</span> <span style="color:#a6e22e">value</span>=<span style="color:#ae81ff">0.64</span> <span style="color:#ae81ff">1434067467100293230</span>
+</code></pre></div><h3 id="prometheus">Prometheus</h3>
+<p>时间序数据库解决方案 Prometheus，它是一套开源的系统监控报警框架，受 Google 的集群监控系统 Borgmon 启发，2016 年正式加入 CNCF（Cloud Native Computing Foundation），成为受欢迎程度仅次于 Kubernetes 的项目，架构如下图所示。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/prometheus.png" alt="image"></p>
+<p>Prometheus 主要包含下面几个组件：</p>
+<ul>
+<li>Prometheus Server：用于拉取 metrics 信息并将数据存储在时间序列数据库。</li>
+<li>Jobs/exporters：用于暴露已有的第三方服务的 metrics 给 Prometheus Server，比如 StatsD、Graphite 等，负责数据收集。</li>
+<li>Pushgateway：主要用于短期 jobs，由于这类 jobs 存在时间短，可能在 Prometheus Server 来拉取 metrics 信息之前就消失了，所以这类的 jobs 可以直接向 Prometheus Server 推送它们的 metrics 信息。</li>
+<li>Alertmanager：用于数据报警。</li>
+<li>Prometheus web UI：负责数据展示。</li>
+</ul>
+<p>工作流程：</p>
+<ul>
+<li>Prometheus Server 定期从配置好的 jobs 或者 exporters 中拉取 metrics 信息，或者接收来自 Pushgateway 发过来的 metrics 信息。</li>
+<li>Prometheus Server 把收集到的 metrics 信息存储到时间序列数据库中，并运行已经定义好的 <code>alert.rules</code>，向 Alertmanager 推送警报。</li>
+<li>Alertmanager 根据配置文件，对接收的警报进行处理，发出告警。</li>
+<li>通过 Prometheus web UI 进行可视化展示。</li>
+</ul>
+<p>Prometheus 存储数据到时间序列数据库，格式如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// &lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, …}
+</span><span style="color:#75715e">// 集群：cluster1、节点IP：1.1.1.1、端口：80、访问路径：/a、http请求总和：100
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">http_requests_total</span>{<span style="color:#a6e22e">instance</span>=<span style="color:#e6db74">&#34;1.1.1.1:80&#34;</span>,<span style="color:#a6e22e">job</span>=<span style="color:#e6db74">&#34;cluster1&#34;</span>,<span style="color:#a6e22e">location</span>=<span style="color:#e6db74">&#34;/a&#34;</span>} <span style="color:#ae81ff">100</span>
+</code></pre></div><h3 id="选型对比">选型对比</h3>
+<h4 id="数据收集">数据收集</h4>
+<ul>
+<li>ELK 是通过在每台服务器上部署 Beats 代理来采集数据</li>
+<li>Graphite 本身没有数据采集组件，需要配合使用开源收据采集组件，比如 StatsD</li>
+<li>TICK 使用了 Telegraf 作为数据采集组件</li>
+<li>Prometheus 通过 <code>jobs/exporters</code> 组件来获取 StatsD 等采集过来的 metrics 信息</li>
+</ul>
+<h4 id="数据传输">数据传输</h4>
+<ul>
+<li>ELK 是 Beats 采集的数据传输给 Logstash，经过 Logstash 清洗后再传输给 Elasticsearch</li>
+<li>Graphite 是通过第三方采集组件采集的数据，传输给 Carbon</li>
+<li>TICK 是 Telegraf 采集的数据，传输给 InfluxDB</li>
+<li>Prometheus 是 Prometheus Server 隔一段时间定期去从 <code>jobs/exporters</code> 拉取数据</li>
+</ul>
+<p>前三种都是采用“推数据”的方式，而 Prometheus 是采取“拉数据”的方式，因此 Prometheus 的解决方案对服务端的侵入最小，不需要在服务端部署数据采集代理。</p>
+<h4 id="数据处理">数据处理</h4>
+<ul>
+<li>ELK 可以对日志的任意字段索引，适合多维度的数据查询，在存储时间序列数据方面与时间序列数据库相比会有额外的性能和存储开销。</li>
+</ul>
+<p>时间序列数据库的几种解决方案都支持多种功能的数据查询处理，功能也更强大。</p>
+<ul>
+<li>Graphite 通过 Graphite-Web 支持正则表达式匹配、sumSeries 求和、alias 给监控项重新命名等函数功能，同时还支持这些功能的组合，如下所示：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 查询所有匹配路径“stats.open.profile.*.API._comments_flow”的监控项之和，并且把监控项重命名为 Total QPS
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">alias</span>(<span style="color:#a6e22e">sumSeries</span>(<span style="color:#a6e22e">stats</span>.<span style="color:#a6e22e">openapi</span>.<span style="color:#a6e22e">profile</span>.<span style="color:#f92672">*</span>.<span style="color:#a6e22e">API</span>.<span style="color:#a6e22e">_comments_flow</span>.<span style="color:#a6e22e">total_count</span>,<span style="color:#e6db74">&#34;Total QPS&#34;</span>)
+</code></pre></div><ul>
+<li>InfluxDB 通过类似 SQL 语言的 InfluxQL，能对监控数据进行复杂操作，如下所示：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 查询一分钟 CPU 的使用率
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">SELECT</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">usage_idel</span> <span style="color:#a6e22e">FROM</span> <span style="color:#e6db74">&#34;autogen&#34;</span>.<span style="color:#e6db74">&#34;cpu&#34;</span> <span style="color:#a6e22e">WHERE</span> <span style="color:#a6e22e">time</span> &gt; <span style="color:#a6e22e">now</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#a6e22e">m</span> <span style="color:#a6e22e">and</span> <span style="color:#e6db74">&#34;cpu&#34;</span>=<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">cpu0</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</code></pre></div><ul>
+<li>Prometheus 通过私有的 PromQL 查询语言，PromQL 语句如下，看起来更加简洁，如下所示：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 查询一分钟 CPU 的使用率
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> (<span style="color:#a6e22e">node_cpu</span>{<span style="color:#a6e22e">job</span>=<span style="color:#e6db74">&#34;node&#34;</span>,<span style="color:#a6e22e">mode</span>=<span style="color:#e6db74">&#34;idle&#34;</span>}[<span style="color:#ae81ff">1</span><span style="color:#a6e22e">m</span>])
+</code></pre></div><h4 id="数据展示">数据展示</h4>
+<ul>
+<li>Graphite、TICK 和 Prometheus 自带的展示功能都比较弱，界面也不好看，不过好在它们都支持Grafana来做数据展示。</li>
+</ul>
+<blockquote>
+<p>Grafana 是一个开源的仪表盘工具，它支持多种数据源比如 Graphite、InfluxDB、Prometheus 以及 Elasticsearch 等。</p>
+</blockquote>
+<ul>
+<li>ELK 采用了 Kibana 做数据展示，Kibana 包含的数据展示功能比较强大，但只支持 Elasticsearch，而且界面展示 UI 效果不如 Grafana 美观。</li>
+</ul>
+<h4 id="总体">总体</h4>
+<ul>
+<li>ELK 的技术栈比较成熟，应用范围也比较广，除了可用作监控系统外，还可以用作日志查询和分析。</li>
+<li>Graphite 是基于时间序列数据库存储的监控系统，并且提供了功能强大的各种聚合函数比如 sum、average、top5 等用于监控分析，而且对外提供了 API 也可以接入其他图形化监控系统如 Grafana。</li>
+<li>TICK 的核心在于其时间序列数据库 InfluxDB 的存储功能强大，且支持类似 SQL 语言的复杂数据处理操作。</li>
+<li>Prometheus 的独特之处在于它采用了拉数据的方式，对业务影响较小，同时也采用了时间序列数据库存储，而且支持独有的 PromQL 查询语言，功能强大而且简洁。</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>实时性要求角度考虑，时间序列数据库的实时性要好于 ELK，通常可以做到 10s 级别内的延迟，如果对实时性敏感的话，建议选择时间序列数据库解决方案。</p>
+</li>
+<li>
+<p>使用的灵活性角度考虑，几种时间序列数据库的监控处理功能都要比 ELK 更加丰富，使用更灵活也更现代化。所以如果要搭建一套新的监控系统，我建议可以考虑采用 Graphite、TICK 或者 Prometheus 其中之一。</p>
+</li>
+</ul>
+<p>Graphite 需要搭配数据采集系统比如 StatsD 或者 Collectd 使用，而且界面展示建议使用 Grafana 接入 Graphite 的数据源，它的效果要比 Graphite Web 本身提供的界面美观很多。</p>
+<p>TICK 提供了完整的监控系统框架，包括从数据采集、数据传输、数据处理再到数据展示，不过在数据展示方面同样也建议用 Grafana 替换掉 TICK 默认的数据展示组件 Chronograf，这样展示效果更好。</p>
+<p>Prometheus 因为采用拉数据的方式，所以对业务的侵入性最小，比较适合 Docker 封装好的云原生应用，比如 Kubernetes 默认就采用了 Prometheus 作为监控系统。</p>
+<h2 id="服务追踪系统">服务追踪系统</h2>
+<p>服务追踪系统的实现，主要包括三个部分：</p>
+<ul>
+<li>埋点数据收集，负责在服务端进行埋点，来收集服务调用的上下文数据</li>
+<li>实时数据处理，负责对收集到的链路信息，按照 traceId 和 spanId 进行串联和存储</li>
+<li>数据链路展示，把处理后的服务调用数据，按照调用链的形式展示出来</li>
+</ul>
+<h3 id="zipkin">Zipkin</h3>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/Zipkin.png" alt="image"></p>
+<p>Zipkin 主要由四个核心部分组成：</p>
+<ul>
+<li>Collector：负责收集探针 Transport 埋点采集的数据，经过验证处理并建立索引</li>
+<li>Storage：存储服务调用的链路数据，默认使用的是 Cassandra（Twitter内部使用），可以替换成 Elasticsearch 或者 MySQL</li>
+<li>API：将格式化和建立索引的链路数据以 API 的方式对外提供服务，比如被 UI 调用</li>
+<li>UI：以图形化的方式展示服务调用的链路数据</li>
+</ul>
+<p>工作原理：</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/Zipkin-work.png" alt="image"></p>
+<ol>
+<li>在业务的 HTTP Client 前后引入服务追踪代码，这样在 HTTP 方法<code>/foo</code>调用前，生成 trace 信息：<code>TraceId:aa、SpanId:6b、annotation:GET /foo</code>，当前时刻的<code>timestamp:1483945573944000</code>，</li>
+<li>调用结果返回后，记录下耗时 duration，</li>
+<li>再把这些 trace 信息和 duration 异步上传给 Zipkin Collector</li>
+</ol>
+<h3 id="pinpoint">Pinpoint</h3>
+<p>Pinpoint 是 Naver 开源的一款深度支持 Java 语言的服务追踪系统，架构如下图所示：</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/pinpoint.png" alt="image"></p>
+<p>四个部分组成：</p>
+<ul>
+<li>Pinpoint Agent：通过 Java 字节码注入的方式，来收集 JVM 中的调用数据，通过 UDP 协议传递给 Collector，数据采用 Thrift 协议进行编码</li>
+<li>Pinpoint Collector：收集 Agent 传过来的数据，然后写到 HBase Storage</li>
+<li>HBase Storage：采用 HBase 集群存储服务调用的链路信息</li>
+<li>Pinpoint Web UI：通过 Web UI 展示服务调用的详细链路信息</li>
+</ul>
+<h4 id="工作原理">工作原理</h4>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/pinpoint-work.png" alt="image"></p>
+<ol>
+<li>请求进入 TomcatA，然后生成 <code>TraceId:TomcatA^ TIME ^ 1、SpanId:10、pSpanId:-1（代表是根请求）</code></li>
+<li>TomatA 调用 TomcatB 的 hello 方法，TomcatB 生成 <code>TraceId:TomcatA^ TIME ^1、新的 SpanId:20、pSpanId:10（代表是 TomcatA 的请求）</code></li>
+<li>返回调用结果后将 trace 信息发给 Collector，TomcatA 收到调用结果后，将 trace 信息也发给 Collector</li>
+<li>Collector 把 trace 信息写入到 HBase 中，Rowkey 就是 traceId，SpanId 和 pSpanId 都是列。</li>
+<li>通过 UI 查询调用链路信息</li>
+</ol>
+<h3 id="选型">选型</h3>
+<h4 id="埋点探针支持平台的广泛性">埋点探针支持平台的广泛性</h4>
+<ul>
+<li>Zipkin 提供了不同语言的 Library，不同语言实现时需要引入不同版本的 Library。官方提供了 C#、Go、Java、JavaScript、Ruby、Scala、PHP 等主流语言版本的 Library，而且开源社区还提供了更丰富的不同语言版本的 Library</li>
+<li>Pinpoint 目前只支持 Java 语言。</li>
+</ul>
+<p>所以从探针支持的语言平台广泛性上来看，Zipkin 比 Pinpoint 的使用范围要广，而且开源社区很活跃，生命力更强。</p>
+<h4 id="系统集成难易程度">系统集成难易程度</h4>
+<ul>
+<li>以 Zipkin 的 Java 探针 Brave 为例，它只提供了基本的操作 API，如果系统要想集成 Brave，必须在配置里手动添加相应的配置文件并且增加 trace 业务代码。具体来讲，需要修改工程的 POM 依赖，以引入 Brave 相关的 JAR 包。收集每一次 HTTP 调用的信息，可以使用 Brave 在 Apache Httpclient 基础上封装的 httpClient，它会记录每一次 HTTP 调用的信息，并上报给 Zipkin。</li>
+<li>Pinpoint 是通过字节码注入的方式来实现拦截服务调用，从而收集 trace 信息的，所以不需要代码做任何改动。</li>
+</ul>
+<p>Java 字节码注入的大致原理如下图。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/jvm-classloader.png" alt="image"></p>
+<p>JVM 在加载 class 二进制文件时，动态地修改加载的 class 文件，在方法的前后执行拦截器的 before() 和 after() 方法，在 before() 和 after() 方法里记录 trace() 信息。</p>
+<p>应用不需要修改业务代码，只需要在 JVM 启动时，添加类似下面的启动参数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-javaagent:$AGENT_PATH/pinpoint-bootstrap-$VERSION.jar
+-Dpinpoint.agentId<span style="color:#f92672">=</span>&lt;Agent<span style="color:#960050;background-color:#1e0010">&#39;</span>s UniqueId&gt;
+-Dpinpoint.applicationName<span style="color:#f92672">=</span>&lt;The name indicating a same service <span style="color:#f92672">(</span>AgentId collection<span style="color:#f92672">)</span>
+</code></pre></div><p>从系统集成难易程度上看，Pinpoint 要比 Zipkin 简单。</p>
+<h4 id="调用链路数据的精确度">调用链路数据的精确度</h4>
+<ul>
+<li>Zipkin 收集到的数据只到接口级别</li>
+<li>Pinpoint 采用了字节码注入的方式实现 trace 信息收集，所以它能拿到的信息比 Zipkin 多得多。不仅能够查看接口级别的链路调用信息，还能深入到调用所关联的数据库信息。</li>
+</ul>
+<p>在绘制链路拓扑图时：</p>
+<ul>
+<li>Zipkin 只能绘制服务与服务之间的调用链路拓扑图</li>
+<li>Pinpoint 不仅能够绘制服务与服务之间，还能绘制与 DB 之间的调用链路拓扑图</li>
+</ul>
+<p>从调用链路数据的精确度上看，Pinpoint 要比 Zipkin 精确得多。</p>
+<blockquote>
+<p>除了 Zipkin 和 Pinpoint，业界还有其他开源追踪系统实现，比如 Uber 开源的 <a href="https://www.jaegertracing.io">Jaeger</a>，以及国内的一款开源服务追踪系统 <a href="https://github.com/apache/incubator-skywalking">SkyWalking</a>。</p>
+</blockquote>
+<h2 id="服务治理">服务治理</h2>
+<h3 id="服务节点探活">服务节点探活</h3>
+<h4 id="心跳开关保护机制">心跳开关保护机制</h4>
+<p>在网络频繁抖动的情况下，注册中心中可用的节点会不断变化，服务消费者会频繁收到服务提供者节点变更的信息，不断请求注册中心来拉取最新的可用服务节点信息。当有成百上千个服务消费者，同时请求注册中心获取最新的服务提供者的节点信息时，可能会把注册中心的带宽给占满。</p>
+<blockquote>
+<p>需要一种保护机制，即使在网络频繁抖动的时候，服务消费者也不至于同时去请求注册中心获取最新的服务节点信息。</p>
+</blockquote>
+<p>一个可行的解决方案就是给注册中心设置一个开关，当开关打开时，即使网络频繁抖动，注册中心也不会通知所有的服务消费者有服务节点信息变更，比如只给 10% 的服务消费者返回变更，这样的话就能将注册中心的请求量减少到原来的 1/10。</p>
+<p>打开开关会导致服务消费者感知最新的服务节点信息延迟到几分钟，在网络正常的情况下，开关并不适合打开；可以作为一个紧急措施，在网络频繁抖动的时候，才打开这个开关。</p>
+<p><strong>心跳开关保护机制，是为了防止服务提供者节点频繁变更导致的服务消费者同时去注册中心获取最新服务节点信息</strong>。</p>
+<h4 id="服务节点摘除保护机制">服务节点摘除保护机制</h4>
+<p>服务提供者在进程启动时，会注册服务到注册中心，并每隔一段时间，汇报心跳给注册中心，以标识自己的存活状态。如果隔了一段固定时间后，服务提供者仍然没有汇报心跳给注册中心，注册中心就会认为该节点已经处于“dead”状态，于是从服务的可用节点信息中移除出去。</p>
+<p>如果遇到网络问题，大批服务提供者节点汇报给注册中心的心跳信息都可能会传达失败，注册中心就会把它们都从可用节点列表中移除出去，造成剩下的可用节点难以承受所有的调用，引起“雪崩”。但是这种情况下，可能大部分服务提供者节点是可用的，仅仅因为网络原因无法汇报心跳给注册中心就被“无情”的摘除了。</p>
+<blockquote>
+<p>这个时候就需要根据实际业务的情况，设定一个阈值比例，即使遇到上述情况，注册中心也不能摘除超过这个阈值比例的节点。</p>
+</blockquote>
+<p>这个阈值比例可以根据实际业务的冗余度来确定，通常会把这个比例设定在 20%，就是说注册中心不能摘除超过 20% 的节点。</p>
+<p>因为大部分情况下，节点的变化不会这么频繁，只有在网络抖动或者业务明确要下线大批量节点的情况下才有可能发生。</p>
+<p>而业务明确要下线大批量节点的情况是可以预知的，这种情况下可以关闭阈值保护；而正常情况下，应该打开阈值保护，以防止网络抖动时，大批量可用的服务节点被摘除。</p>
+<p><strong>服务节点摘除保护机制，是为了防止服务提供者节点被大量摘除引起服务消费者可以调用的节点不足</strong>。</p>
+<p>上述两种情况下，因为注册中心里的节点信息是随时可能发生变化的，所以也可以把注册中心叫作动态注册中心。</p>
+<h4 id="静态注册中心">静态注册中心</h4>
+<p>服务消费者并不严格以注册中心中的服务节点信息为准，而是更多的以服务消费者实际调用信息来判断服务提供者节点是否可用。</p>
+<ol>
+<li>如果服务消费者调用某一个服务提供者节点连续失败超过一定次数，可以在本地内存中将这个节点标记为不可用。</li>
+<li>并且每隔一段固定时间，服务消费者都要向标记为不可用的节点发起保活探测，如果探测成功了，就将标记为不可用的节点再恢复为可用状态，重新发起调用。</li>
+</ol>
+<p>这样的话，服务提供者节点就不需要向注册中心汇报心跳信息，注册中心中的服务节点信息也不会动态变化，称之为静态注册中心。</p>
+<p>采用服务消费者端的保活机制，事实证明这种机制足以应对网络频繁抖动等复杂的场景。</p>
+<blockquote>
+<p>静态注册中心中的服务节点信息并不是一直不变，当在业务上线或者运维人工增加或者删除服务节点这种预先感知的情况下，还是有必要去修改注册中心中的服务节点信息。</p>
+</blockquote>
+<h3 id="负载均衡算法">负载均衡算法</h3>
+<p>为什么要引入负载均衡算法呢？</p>
+<ul>
+<li>考虑调用的均匀性，要让每个节点都接收到调用，发挥所有节点的作用</li>
+<li>考虑调用的性能，哪个节点响应最快，优先调用哪个节点</li>
+</ul>
+<h4 id="适用场景">适用场景</h4>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>描述</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>随机算法</td>
+<td>实现简单，在请求量远超可用服务节点数量的情况下，各个服务节点被访问的概率基本相同</td>
+<td>应用在各个服务节点的性能差异不大的情况下</td>
+</tr>
+<tr>
+<td>轮询算法</td>
+<td>跟随机算法类似，各个服务节点被访问的概率也基本相同</td>
+<td>应用在各个服务节点性能差异不大的情况下</td>
+</tr>
+<tr>
+<td>加权轮询算法</td>
+<td>在轮询算法基础上的改进，可以通过给每个节点设置不同的权重来控制访问的概率</td>
+<td>应用在服务节点性能差异比较大的情况</td>
+</tr>
+<tr>
+<td>最少活跃连接算法</td>
+<td>与加权轮询算法预先定义好每个节点的访问权重不同，采用最少活跃连接算法，客户端同服务端节点的连接数是在时刻变化的，理论上连接数越少代表此时服务端节点越空闲，选择最空闲的节点发起请求，能获取更快的响应速度</td>
+<td>尤其在服务端节点性能差异较大，而又不好做到预先定义权重时，采用最少活跃连接算法是比较好的选择</td>
+</tr>
+<tr>
+<td>一致性 hash 算法</td>
+<td>能够保证同一个客户端的请求始终访问同一个服务节点</td>
+<td>适合服务端节点处理不同客户端请求差异较大的场景。如服务端缓存里保存着客户端的请求结果，可以一直从缓存中获取数据</td>
+</tr>
+</tbody>
+</table>
+<h4 id="自适应最优选择算法">自适应最优选择算法</h4>
+<p>在客户端本地维护一份同每一个服务节点的性能统计快照，并且每隔一段时间去更新这个快照。在发起请求时，根据“二八原则”，把服务节点分成两部分，找出 20% 的那部分响应最慢的节点，然后降低权重。这样的话，客户端就能够实时的根据自身访问每个节点性能的快慢，动态调整访问最慢的那些节点的权重，来减少访问量，从而可以优化长尾请求。</p>
+<p>自适应最优选择算法是对加权轮询算法的改良，可以看作是一种动态加权轮询算法。它的实现关键之处就在于两点：</p>
+<ul>
+<li>第一点是每隔一段时间获取客户端同每个服务节点之间调用的平均性能统计</li>
+<li>第二点是按照这个性能统计对服务节点进行排序，对排在性能倒数 20% 的那部分节点赋予一个较低的权重，其余的节点赋予正常的权重</li>
+</ul>
+<p>在具体实现时：</p>
+<ul>
+<li>针对第一点，需要在内存中开辟一块空间记录客户端同每一个服务节点之间调用的平均性能，并每隔一段固定时间去更新。这个更新的时间间隔太短容易受瞬时的性能抖动影响，导致统计变化太快，没有参考性；太长的话时效性就会大打折扣，效果不佳，1 分钟的更新时间间隔是个比较合适的值。</li>
+<li>针对第二点，关键点是权重值的设定，即使服务节点之间的性能差异较大，也不适合把权重设置得差异太大，这样会导致性能较好的节点与性能较差的节点之间调用量相差太大，这样也不是一种合理的状态。在实际设定时，可以设置 20% 性能较差的节点权重为 3，其余节点权重为 5。</li>
+</ul>
+<h3 id="服务路由">服务路由</h3>
+<p>服务路由就是服务消费者在发起服务调用时，必须根据特定的规则来选择服务节点，从而满足某些特定的需求。</p>
+<h4 id="应用场景">应用场景</h4>
+<ul>
+<li>分组调用。为了保证服务的高可用性，实现异地多活的需求，一个服务会部署在不同的数据中心和不同的公有云环境，服务节点也会分成不同的分组，对于服务消费者来说，选择哪一个分组调用，就必须有相应的路由规则。</li>
+<li>灰度发布（金丝雀部署）。在服务上线发布前，需要先在一小部分规模的服务节点上先发布服务，然后验证功能是否正常。如果正常的话就继续扩大发布范围；如果不正常的话，就需要排查问题，解决问题后继续发布。</li>
+<li>流量切换。在业务线上运行过程中，经常会遇到一些不可抗力因素导致业务故障，服务都不可用。这个时候就需要按照某个指令，能够把原来调用异常服务的流量切换到其他正常的机房。</li>
+<li>读写分离。对于大多数互联网业务来说都是读多写少，所以在进行服务部署的时候，可以把读写分开部署，所有写接口可以部署在一起，而读接口部署在另外的节点上。</li>
+</ul>
+<h4 id="服务路由的规则">服务路由的规则</h4>
+<h5 id="条件路由">条件路由</h5>
+<p>条件路由是基于条件表达式的路由规则。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// condition://”代表了这是一段用条件表达式编写的路由规则
+</span><span style="color:#75715e">// 具体的规则是host = 10.20.153.10 =&gt; host = 10.20.153.11
+</span><span style="color:#75715e">// 分隔符“=&gt;”前面是服务消费者的匹配条件，后面是服务提供者的过滤条件
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">condition</span>:<span style="color:#75715e">//0.0.0.0/dubbo.test.interfaces.TestService?category=routers&amp;dynamic=true&amp;priority=2&amp;enabled=true&amp;rule=&#34; + URL.encode(&#34; host = 10.20.153.10=&gt; host = 10.20.153.11&#34;)
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 如果服务消费者的匹配条件为空，就表示对所有的服务消费者应用  =&gt; host  != 10.20.153.11
+</span><span style="color:#75715e">// 如果服务提供者的过滤条件为空，就表示禁止服务消费者访问  host = 10.20.153.10 =&gt;
+</span></code></pre></div><p>具体例子</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>路由条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>排除某个服务节点</td>
+<td><code>=&gt; host != 172.22.3.91</code></td>
+<td>所有的服务消费者都不会访问 IP 为 <code>172.22.3.91</code> 的服务节点</td>
+</tr>
+<tr>
+<td>白名单</td>
+<td><code>host != 10.20.153.10,10.20.153.11 =&gt;</code></td>
+<td>除了 IP 为 <code>10.20.153.10</code> 和 <code>10.20.153.11</code> 的服务消费者可以发起服务调用以外，其他服务消费者都不可以</td>
+</tr>
+<tr>
+<td>黑名单</td>
+<td><code>host = 10.20.153.10,10.20.153.11 =&gt;</code></td>
+<td>除了 IP 为 <code>10.20.153.10</code> 和 <code>10.20.153.11</code> 的服务消费者不能发起服务调用以外，其他服务消费者都可以</td>
+</tr>
+<tr>
+<td>机房隔离</td>
+<td><code>host = 172.22.3.* =&gt; host = 172.22.3.*</code></td>
+<td>IP 网段为 <code>172.22.3.*</code> 的服务消费者，才可以访问同网段的服务节点</td>
+</tr>
+<tr>
+<td>读写分离</td>
+<td><code>method = find*,list*,get*,is* =&gt; host =172.22.3.94,172.22.3.95</code>；<code>method != find*,list*,get*,is* =&gt; host = 172.22.3.97,172.22.3.98</code></td>
+<td>find*、get*、is* 等读方法调用 IP 为 <code>172.22.3.94</code> 和 <code>172.22.3.95</code> 的节点，除此以外的写方法调用 IP 为 <code>172.22.3.97</code> 和 <code>172.22.3.98</code> 的节点</td>
+</tr>
+</tbody>
+</table>
+<h5 id="脚本路由">脚本路由</h5>
+<p>脚本路由是基于脚本语言的路由规则，常用的脚本语言比如 JavaScript、Groovy、JRuby 等。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// “script://”就代表了这是一段脚本语言编写的路由规则
+</span><span style="color:#75715e">// 具体规则定义在脚本语言的 route 方法实现里,只有 IP 为 10.20.153.10 的服务消费者可以发起服务调用
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;script://0.0.0.0/com.foo.BarService?category=routers&amp;dynamic=false&amp;rule=&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">encode</span>(<span style="color:#e6db74">&#34;（function route(invokers) { ... } (invokers)）&#34;</span>)
+
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">route</span>(<span style="color:#a6e22e">invokers</span>){
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">java</span>.<span style="color:#a6e22e">util</span>.<span style="color:#a6e22e">ArrayList</span>(<span style="color:#a6e22e">invokers</span>.<span style="color:#a6e22e">size</span>());
+  <span style="color:#66d9ef">for</span>(<span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">invokers</span>.<span style="color:#a6e22e">size</span>(); <span style="color:#a6e22e">i</span> <span style="color:#f92672">++</span>){
+    <span style="color:#66d9ef">if</span>(<span style="color:#e6db74">&#34;10.20.153.10&#34;</span>.<span style="color:#a6e22e">equals</span>(<span style="color:#a6e22e">invokers</span>.<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">i</span>).<span style="color:#a6e22e">getUrl</span>().<span style="color:#a6e22e">getHost</span>())){
+       <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">invokers</span>.<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">i</span>));
+    }
+  }
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
+ } (<span style="color:#a6e22e">invokers</span>)<span style="color:#960050;background-color:#1e0010">）</span>;
+</code></pre></div><h4 id="服务路由的获取方式">服务路由的获取方式</h4>
+<ul>
+<li>本地配置：路由规则存储在服务消费者本地。服务消费者发起调用时，从本地固定位置读取路由规则，然后按照路由规则选取一个服务节点发起调用</li>
+<li>配置中心管理：所有的服务消费者都从配置中心获取路由规则，由配置中心来统一管理</li>
+<li>动态下发：运维人员或者开发人员，通过服务治理平台修改路由规则，服务治理平台调用配置中心接口，把修改后的路由规则持久化到配置中心。服务消费者订阅了路由规则的变更，会从配置中心获取最新的路由规则，按照最新的路由规则来执行</li>
+</ul>
+<p>一般来讲，<strong>服务路由最好是存储在配置中心中，由配置中心来统一管理</strong>。这样的话，所有的服务消费者就不需要在本地管理服务路由，因为大部分的服务消费者并不关心服务路由的问题，或者说也不需要去了解其中的细节。通过配置中心，统一给各个服务消费者下发统一的服务路由，节省了沟通和管理成本。动态下发能够动态地修改路由规则，在某些业务场景下十分有用。</p>
+<p>三种方式一起使用，服务消费者的判断优先级是<strong>本地配置 &gt; 动态下发 &gt; 配置中心管理</strong>。</p>
+<h2 id="服务端故障处理">服务端故障处理</h2>
+<p>单体应用改造成微服务的一个好处是可以<strong>减少故障影响范围</strong>，故障被局限在一个微服务系统本身，而不是整个单体应用都崩溃。</p>
+<p>微服务系统可能出现故障的种类：</p>
+<ul>
+<li>集群故障：一旦代码出现 bug，可能整个集群都会发生故障，不能提供对外提供服务</li>
+<li>单 IDC 故障：业务部署在不止一个 IDC，某些不可抗力导致整个 IDC 脱网</li>
+<li>单机故障：集群中的个别机器出现故障，导致调用到故障机器上的请求都失败，影响整个系统的成功率</li>
+</ul>
+<h3 id="集群故障">集群故障</h3>
+<p>集群故障的产生原因：</p>
+<ul>
+<li>代码 bug 所导致，比如说某一段 Java 代码不断地分配大对象，但没有及时回收导致 JVM OOM 退出</li>
+<li>突发的流量冲击，超出了系统的最大承载能力，比如“双 11”，超出系统的最大承载能力，把整个系统给压垮</li>
+</ul>
+<p>应付集群故障的思路，主要有两种：限流和降级。</p>
+<h4 id="限流">限流</h4>
+<p>系统能够承载的流量根据集群规模的大小是固定的，称之为系统的最大容量。</p>
+<blockquote>
+<p>当真实流量超过了系统的最大容量后，就会导致系统响应变慢，服务调用出现大量超时，用户的感觉就是卡顿、无响应。</p>
+</blockquote>
+<p>应该根据系统的最大容量，给系统设置一个阈值，超过这个阈值的请求会被自动抛弃，这样的话可以最大限度地保证系统提供的服务正常。</p>
+<p>通常微服务系统会同时提供多个服务，每个服务在同一时刻的请求量也是不同的，可能出现系统中某个服务的请求量突增，占用了系统中大部分资源，导致其他服务没有资源可用。</p>
+<p>因此，要针对系统中每个服务的请求量也设置一个阈值，超过这个阈值的请求也要被自动抛弃。</p>
+<p>用两个指标来衡量服务的请求量：</p>
+<ul>
+<li>QPS 即每秒请求量</li>
+<li>工作线程数</li>
+</ul>
+<p>不过 QPS 因为不同服务的响应快慢不同，所以系统能够承载的 QPS 相差很大，因此一般选择<strong>工作线程数</strong>来作为限流的指标，给系统设置一个总的最大工作线程数以及单个服务的最大工作线程数。</p>
+<h4 id="降级">降级</h4>
+<p>降级是通过停止系统中的某些功能，来保证系统整体的可用性，是一种被动防御措施，一般是系统已经出现故障后所采取的一种止损措施。</p>
+<p>降级的实现方式：通过开关来实现。</p>
+<blockquote>
+<p>在系统运行的内存中开辟一块区域，专门用于存储开关的状态，也就是开启还是关闭。并且需要监听某个端口，通过这个端口可以向系统下发命令，来改变内存中开关的状态。当开关开启时，业务的某一段逻辑就不再执行，而正常情况下，开关是关闭的状态。</p>
+</blockquote>
+<p>开关一般用在两种地方：</p>
+<ul>
+<li>新增的业务逻辑，因为新增的业务逻辑相对来说不成熟，往往具备一定的风险，所以需要加开关来控制新业务逻辑是否执行；</li>
+<li>依赖的服务或资源，因为依赖的服务或者资源不总是可靠的，所以最好是有开关能够控制是否对依赖服务或资源发起调用，来保证即使依赖出现问题，也能通过降级来避免影响。</li>
+</ul>
+<p>降级要按照对业务的影响程度分为三级：</p>
+<ul>
+<li>一级降级：对业务影响最小的降级，在故障的情况下，首先执行一级降级，所以一级降级也可以设置成自动降级，不需要人为干预</li>
+<li>二级降级：对业务有一定影响的降级，在故障的情况下，如果一级降级起不到多大作用的时候，可以人为采取措施，执行二级降级</li>
+<li>三级降级：对业务有较大影响的降级，这种降级要么是对商业收入有重大影响，要么是对用户体验有重大影响，所以操作起来要非常谨慎，不在最后时刻一般不予采用</li>
+</ul>
+<h3 id="单-idc-故障">单 IDC 故障</h3>
+<ul>
+<li>同城双活，在一个城市的两个 IDC 内部署</li>
+<li>异地多活，在两个城市的两个 IDC 内部署</li>
+<li>金融级别的应用“三地五中心”部署，部署成本高，但可用性的保障要更高</li>
+</ul>
+<p>采用多 IDC 部署的最大好处就是当有一个 IDC 发生故障时，可以把原来访问故障 IDC 的流量切换到正常的 IDC，来保证业务的正常访问。</p>
+<p>流量切换的方式一般有两种：</p>
+<ul>
+<li>基于 DNS 解析：通过把请求访问域名解析的 VIP 从一个 IDC 切换到另外一个 IDC</li>
+<li>基于 RPC 分组：多IDC部署服务，每个 IDC 就是一个分组。假如一个 IDC 故障，通过向配置中心下发命令，把原先路由到这个分组的流量全部切换到别的分组</li>
+</ul>
+<blockquote>
+<p>比如访问“www.weibo.com”，正常情况下北方用户会解析到联通机房的 VIP，南方用户会解析到电信机房的 VIP，如果联通机房发生故障的话，会把北方用户访问也解析到电信机房的 VIP，只不过此时网络延迟可能会变长。</p>
+</blockquote>
+<h3 id="单机故障">单机故障</h3>
+<p>单机故障是发生概率最高的一种故障，只靠运维人肉处理不可行，要有某种手段来自动处理单机故障。</p>
+<p><strong>处理单机故障一个有效的办法就是自动重启</strong>。</p>
+<blockquote>
+<p>通过设置阈值完成，如以某个接口的平均耗时为准，当监控单机上某个接口的平均耗时超过一定阈值时，就认为这台机器有问题，就需要把有问题的机器从线上集群中摘除掉，然后在重启服务后，重新加入到集群中。</p>
+</blockquote>
+<p>要注意防止<strong>网络抖动</strong>造成的接口超时从而触发自动重启：</p>
+<ul>
+<li>在收集单机接口耗时数据时，多采集几个点，比如每 10s 采集一个点，采集 5 个点，当 5 个点中有超过 3 个点的数据都超过设定的阈值范围，才认为是真正的单机问题，这时会触发自动重启策略。</li>
+<li>为了防止某些特殊情况下，短时间内被重启的单机过多，造成整个服务池可用节点数太少，最好是设置一个可重启的单机数量占整个集群的最大比例，一般这个比例不要超过 10%，正常情况下，不大可能有超过 10% 的单机都出现故障。</li>
+</ul>
+<h2 id="服务调用失败处理手段">服务调用失败处理手段</h2>
+<p>微服务相比于单体应用最大的不同之处在于，<strong>服务的调用从机器内部的本地调用变成了机器之间的远程方法调用</strong>，这个过程引入了两个不确定的因素：</p>
+<ul>
+<li>调用的执行是在服务提供者一端，即使服务消费者本身是正常的，服务提供者也可能由于诸如 CPU、网络 I/O、磁盘、内存、网卡等硬件原因导致调用失败，还有可能由于本身程序执行问题比如 GC 暂停导致调用失败。</li>
+<li>调用发生在两台机器之间，要经过网络传输，网络的复杂性是不可控的，网络丢包、延迟以及随时可能发生的瞬间抖动都有可能造成调用失败。</li>
+</ul>
+<h3 id="超时">超时</h3>
+<p>一次用户调用可能会被拆分成多个系统之间的服务调用，任何一次服务调用如果发生问题都可能会导致最后用户调用失败。</p>
+<blockquote>
+<p>在微服务架构下，一个系统的问题会影响所有调用这个系统的服务消费者，不加以控制会引起整个系统雪崩。</p>
+</blockquote>
+<p>针对服务调用都要设置超时时间，以避免依赖的服务迟迟没有返回调用结果，把服务消费者拖死。</p>
+<p>超时时间的设定：</p>
+<ul>
+<li>时间太短，可能会导致有些服务调用还没有来得及执行完就被丢弃</li>
+<li>时间太长，可能导致服务消费者被拖垮</li>
+</ul>
+<p>根据正常情况下，服务提供者的服务水平来找到合适的超时时间。按照服务提供者线上真实的服务水平，取 P999（ 99.9%） 或者 P9999（99.99%） 的调用都在多少毫秒内返回为准。</p>
+<h3 id="重试">重试</h3>
+<p>设置超时时间可以起到及时止损的效果，但服务调用的结果还是失败了，大部分情况下，调用失败都是因为偶发的网络问题或者个别服务提供者节点有问题导致的，如果能换个节点再次访问说不定就能成功。</p>
+<blockquote>
+<p>从概率论的角度来讲，假如一次服务调用失败的概率为 1%，那么连续两次服务调用失败的概率就是 0.01%，失败率降低到原来的 1%。</p>
+</blockquote>
+<p>在实际服务调用时，要设置服务调用超时后的重试次数。</p>
+<blockquote>
+<p>某个服务调用的超时时间设置为 100ms，重试次数设置为 1，那么当服务调用超过 100ms 后，服务消费者就会立即发起第二次服务调用，而不会再等待第一次调用返回的结果了。</p>
+</blockquote>
+<h3 id="双发">双发</h3>
+<p>服务消费者发起服务调都同时发起两次服务调用：</p>
+<ul>
+<li>一方面可以提高调用的成功率</li>
+<li>另一方面两次服务调用哪个先返回就采用哪次的返回结果，平均响应时间也要比一次调用更快</li>
+</ul>
+<blockquote>
+<p>这样的话，一次调用会给后端服务两倍的压力，所要消耗的资源也是加倍的，所以一般情况下，这种“鲁莽”的双发是不可取的。</p>
+</blockquote>
+<p>优化的双发，即“备份请求”（Backup Requests），大致思想是服务消费者发起一次服务调用后，**在给定的时间内（这个设定的时间通常要比超时时间短得多）**如果没有返回请求结果，那么服务消费者就立刻发起另一次服务调用。</p>
+<blockquote>
+<p>比如超时时间取的是 P999，那么备份请求时间取的可能是 P99 或者 P90，这是因为如果在 P99 或者 P90 的时间内调用还没有返回结果，那么大概率可以认为这次请求属于<strong>慢请求</strong>，再次发起调用理论上返回要更快一些。</p>
+</blockquote>
+<p>注意，备份请求要设置一个最大重试比例，以避免在服务端出现问题的时，导致请求量几乎翻倍，给服务提供者造成更大的压力。最大重试比例可以设置成<strong>15%</strong>，一方面能体现备份请求的优势，另一方面不会给服务提供者额外增加太大的压力。</p>
+<h3 id="熔断">熔断</h3>
+<p>如果服务提供者出现故障，短时间内无法恢复时，无论是<strong>超时重试</strong>还是<strong>双发</strong>不但不能提高服务调用的成功率，反而会因为重试给服务提供者带来更大的压力，从而加剧故障。</p>
+<p>针对这种情况，需要服务消费者能够探测到服务提供者发生故障，并短时间内停止请求，给服务提供者故障恢复的时间，待服务提供者恢复后，再继续请求。</p>
+<blockquote>
+<p>这就好比一条电路，电流负载过高的话，保险丝就会熔断，以防止火灾的发生，所以这种手段就被叫作“熔断”。</p>
+</blockquote>
+<h4 id="熔断的工作原理">熔断的工作原理</h4>
+<ol>
+<li>把客户端的每一次服务调用用断路器封装起来，通过断路器来监控每一次服务调用。</li>
+<li>如果某一段时间内，服务调用失败的次数达到一定阈值，那么断路器就会被触发，后续的服务调用就直接返回，也就不会再向服务提供者发起请求了。</li>
+<li>根据熔断中断路器的状态来恢复服务调用。</li>
+</ol>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/breaker.png" alt="image"></p>
+<ul>
+<li>Closed 状态：正常情况下，断路器是处于关闭状态的，偶发的调用失败也不影响。</li>
+<li>Open 状态：当服务调用失败次数达到一定阈值时，断路器就会处于开启状态，后续的服务调用就直接返回，不会向服务提供者发起请求。</li>
+<li>Half Open 状态：当断路器开启后，每隔一段时间，会进入半打开状态，这时候会向服务提供者发起探测调用，以确定服务提供者是否恢复正常。如果调用成功了，断路器就关闭；如果没有成功，断路器就继续保持开启状态，并等待下一个周期重新进入半打开状态。</li>
+</ul>
+<p>断路器实现的关键就在于计算一段时间内服务调用的失败率， Hystrix 使用滑动窗口算法，如下图所示。</p>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/slide-window.png" alt="image"></p>
+<p>默认情况下，滑动窗口包含 10 个桶，每个桶时间宽度为 1 秒，每个桶内记录了这 1 秒内所有服务调用中成功的、失败的、超时的以及被线程拒绝的次数。</p>
+<p>当新的 1 秒到来时，滑动窗口就会往前滑动，丢弃掉最旧的 1 个桶，把最新 1 个桶包含进来。</p>
+<p>任意时刻，Hystrix 都会取滑动窗口内所有服务调用的失败率作为断路器开关状态的判断依据，这 10 个桶内记录的所有失败的、超时的、被线程拒绝的调用次数之和除以总的调用次数就是滑动窗口内所有服务的调用的失败率。</p>
+<h2 id="管理服务配置">管理服务配置</h2>
+<ul>
+<li>单体应用只需要管理一套配置</li>
+<li>微服务每个系统都有自己的配置，并且各不相同，因为服务治理的需要，有些配置还需要动态改变，以达到动态降级、切流量、扩缩容等目的</li>
+</ul>
+<h3 id="本地配置">本地配置</h3>
+<p>服务配置管理方案：</p>
+<ul>
+<li>把配置当作代码看待，随着应用程序代码一起发布。</li>
+<li>把配置都抽离到单独的配置文件当中，使配置与代码分离。</li>
+</ul>
+<p>无论是把配置定义在代码里，还是把配置从代码中抽离出来，都相当于把配置存在了应用程序的本地。</p>
+<blockquote>
+<p>如果需要修改配置，就要重新走一遍代码或者配置的发布流程，在线上业务中这是一个很重的操作，相当于一次上线发布过程，甚至更繁琐，需要更谨慎。</p>
+</blockquote>
+<p>如果能有一个集中管理配置的地方，如果需要修改配置，只需要在这个地方修改一下，线上服务就自动从这个地方同步过去，不需要走代码或者配置的发布流程，这就是下面的配置中心。</p>
+<h3 id="配置中心">配置中心</h3>
+<p>配置中心的思路：把服务的各种配置（如代码里配置的各种参数、服务降级的开关甚至依赖的资源等）都在一个地方统一进行管理。服务启动时，可以自动从配置中心中拉取所需的配置，并且如果有配置变更的情况，同样可以自动从配置中心拉取最新的配置信息，服务无须重新发布。</p>
+<p>一般来讲，配置中心存储配置是按照 Group 来存储的，同一类配置放在一个 Group 下，以 K, V 键值对存储。</p>
+<p>配置中心一般包含下面几个功能：</p>
+<ul>
+<li>配置注册功能：配置中心对外提供接口 <code>/config/service?action=register</code> 来完成配置注册功能，需要传递的参数包括配置对应的分组 Group，以及对应的 Key、Value 值。</li>
+<li>配置反注册功能：配置中心对外提供接口 <code>config/service?action=unregister</code> 来完成配置反注册功能，需要传递的参数包括配置对象的分组 Group，以及对应的 Key。</li>
+<li>配置查看功能：配置中心对外提供接口 <code>config/service?action=lookup</code> 来完成配置查看功能，需要传递的参数包括配置对象的分组 Group，以及对应的 Key。</li>
+<li>配置变更订阅功能：配置中心对外提供接口 <code>config/service?action=getSign</code> 来完成配置变更订阅接口，客户端本地会保存一个配置对象的分组 Group 的 sign 值，同时每隔一段时间去配置中心拉取该 Group 的 sign 值，与本地保存的 sign 值做对比。一旦配置中心中的 sign 值与本地的 sign 值不同，客户端就会从配置中心拉取最新的配置信息。</li>
+</ul>
+<p>配置中心可以便于管理服务的配置信息，如果要修改配置信息，只需同配置中心交互，应用程序会通过订阅配置中心的配置，自动完成配置更新。</p>
+<h4 id="典型场景">典型场景</h4>
+<ul>
+<li>资源服务化。在应用规模不大的时候，所依赖的资源对应的 IP 可以直接写在配置里。但当业务规模发展到一定程度后，所依赖的这些资源的数量也开始急剧膨胀，这个时候如果采用的是本地配置的话，就需要去更改本地配置，把不可用的 IP 改成可用的 IP，然后发布新的配置，这样的过程十分不便。</li>
+<li>业务动态降级。微服务架构下，拆分的服务越多，出现故障的概率就越大，因此需要有对应的服务治理手段，比如要具备动态降级能力，在依赖的服务出现故障的情况下，可以快速降级对这个服务的调用，从而保证不受影响。为此，服务消费者可以通过订阅依赖服务是否降级的配置，当依赖服务出现故障的时候，通过向配置中心下达指令，修改服务的配置为降级状态，这样服务消费者就可以订阅到配置的变更，从而降级对该服务的调用。</li>
+<li>分组流量切换。为了保证异地多活以及本地机房调用，一般服务提供者的部署会按照 IDC 维度进行部署，每个 IDC 划分为一个分组，这样的话，如果一个 IDC 出现故障，可以把故障 IDC 机房的调用切换到其他正常 IDC。为此，服务消费者可以通过订阅依赖服务的分组配置，当依赖服务的分组配置发生变更时，服务消费者就对应的把调用切换到新的分组，从而实现分组流量切换。</li>
+</ul>
+<h3 id="技术选型">技术选型</h3>
+<ul>
+<li><a href="https://github.com/spring-cloud/spring-cloud-config">Spring Cloud Config</a>。Spring Cloud 中使用的配置中心组件，只支持 Java 语言，配置存储在 git 中，变更配置也需要通过 git 操作，如果配置中心有配置变更，需要手动刷新。</li>
+<li><a href="https://github.com/knightliao/disconf">Disconf</a>。百度开源的分布式配置管理平台，只支持 Java 语言，基于 Zookeeper 来实现配置变更实时推送给订阅的客户端，并且可以通过统一的管理界面来修改配置中心的配置。</li>
+<li><a href="https://github.com/ctripcorp/apollo">Apollo</a>。携程开源的分布式配置中心，支持 Java 和.Net 语言，客户端和配置中心通过 HTTP 长连接实现实时推送，并且有统一的管理界面来实现配置管理。</li>
+</ul>
+<p>Spring Cloud Config 作为配置中心的功能比较弱，只能通过 git 命令操作，而且变更配置的话还需要手动刷新，如果不是采用 Spring Cloud 框架的话不建议选择。
+而 Disconf 和 Apollo 的功能都比较强大，其中 Apollo 对 Spring Boot 的支持比较好，如果应用本身采用的是 Spring Boot 开发的话，集成 Apollo 会更容易一些。</p>
+<h2 id="微服务治理平台">微服务治理平台</h2>
+<p>单体应用改造为微服务架构后，服务调用从本地调用变成了远程方法调用后，面临的各种不确定因素变多：</p>
+<ul>
+<li>需要能够监控各个服务的实时运行状态、服务调用的链路和拓扑图</li>
+<li>需要在出现故障时，能够快速定位故障的原因并可以通过诸如降级、限流、切流量、扩容等手段快速干预止损</li>
+</ul>
+<p>微服务治理平台就是与服务打交道的统一入口，无论是开发人员还是运维人员，都能通过这个平台对服务进行各种操作：</p>
+<ul>
+<li>开发人员可以通过这个平台对服务进行降级操作</li>
+<li>运维人员可以通过这个平台对服务进行上下线操作，而不需要关心这个操作背后的具体实现</li>
+</ul>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/micoservice-zhili.png" alt="image"></p>
+<h3 id="服务管理">服务管理</h3>
+<p>通过微服务治理平台，可以调用注册中心提供的各种管理接口来实现服务的管理。</p>
+<p>服务管理一般包括以下几种操作：</p>
+<ul>
+<li>服务上下线。</li>
+<li>节点添加 / 删除</li>
+<li>服务查询</li>
+<li>服务节点查询</li>
+</ul>
+<h3 id="服务治理-1">服务治理</h3>
+<p>通过微服务治理平台，可以调用配置中心提供的接口，动态地修改各种配置来实现服务的治理。</p>
+<p>服务治理手段包括以下几种：</p>
+<ul>
+<li>限流</li>
+<li>降级</li>
+<li>切流量</li>
+</ul>
+<h3 id="服务监控">服务监控</h3>
+<p>微服务治理平台一般包括两个层面的监控：</p>
+<ul>
+<li>整体监控，比如服务依赖拓扑图，将整个系统内服务间的调用关系和依赖关系进行可视化的展示，可以使用服务追踪系统提供的服务依赖拓扑图</li>
+<li>具体服务监控，比如服务的 QPS、AvgTime、P999 等监控指标，可以通过 Grafana 等监控系统 UI 来展示</li>
+</ul>
+<h3 id="问题定位">问题定位</h3>
+<p>微服务治理平台实现问题定位，可以从两个方面来进行：</p>
+<ul>
+<li>宏观层面，即通过服务监控来发觉异常，比如某个服务的平均耗时异常导致调用失败</li>
+<li>微观层面，即通过服务追踪来具体定位一次用户请求失败具体是因为服务调用全链路的哪一层导致的</li>
+</ul>
+<h3 id="日志查询">日志查询</h3>
+<p>微服务治理平台可以通过接入类似 ELK 的日志系统，能够实时地查询某个用户的请求的详细信息或者某一类用户请求的数据统计。</p>
+<h3 id="服务运维">服务运维</h3>
+<p>微服务治理平台可以调用容器管理平台，来实现常见的运维操作。</p>
+<p>服务运维主要包括下面几种操作：</p>
+<ul>
+<li>发布部署。当服务有功能变更，需要重新发布部署的时候，可以调用容器管理平台分批按比例进行重新部署，然后发布到线上。</li>
+<li>扩缩容。在流量增加或者减少的时候，需要相应地增加或者缩减服务在线上部署的实例，这时候可以调用容器管理平台来扩容或者缩容。</li>
+</ul>
+<h3 id="搭建微服务治理平台">搭建微服务治理平台</h3>
+<p>微服务治理平台关键在于：</p>
+<ul>
+<li>封装对微服务架构内的各个基础设施组件的调用，对外提供统一的服务操作 API</li>
+<li>提供可视化的界面，以方便开发人员和运维人员操作</li>
+</ul>
+<p>一个微服务治理平台的组成主要包括三部分：</p>
+<ul>
+<li>Web Portal 层</li>
+<li>API 层</li>
+<li>数据存储 DB 层</li>
+</ul>
+<p><img src="https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/platform.png" alt="image"></p>
+<p>第一层：Web Portal。也就是微服务治理平台的<strong>前端展示层</strong>，包含以下功能界面：</p>
+<ul>
+<li>服务管理界面，进行节点的操作，比如查询节点、删除节点</li>
+<li>服务治理界面，进行服务治理操作，比如切流量、降级等，可查看操作记录</li>
+<li>服务监控界面，查看服务的详细信息，比如 QPS、AvgTime、耗时分布区间以及 P999 等</li>
+<li>服务运维界面，执行服务的扩缩容操作，可查看操作记录</li>
+</ul>
+<p>第二层，API。也就是微服务治理平台的<strong>后端服务层</strong>，这一层提供接口给 Web Portal 调用，包含以下接口功能：</p>
+<ul>
+<li>添加服务接口，这个接口会调用注册中心提供的服务添加接口来新发布一个服务</li>
+<li>删除服务接口，这个接口会调用注册中心提供的服务注销接口来下线一个服务</li>
+<li>服务降级 / 限流 / 切流量接口，这几个接口会调用配置中心提供的配置修改接口，来修改对应服务的配置，然后订阅这个服务的消费者就会从配置中心拉取最新的配置，从而实现降级、限流以及流量切换</li>
+<li>服务扩缩容接口，这个接口会调用容器平台提供的扩缩容接口，来实现服务的实例添加和删除</li>
+<li>服务部署接口，这个接口会调用容器平台提供的上线部署接口，来实现服务的线上部署</li>
+</ul>
+<p>第三层，DB。也就是微服务治理平台的<strong>数据存储层</strong>，微服务治理平台不仅需要调用其他组件提供的接口，还需要存储一些基本信息，主要分为以下几种：</p>
+<ul>
+<li>用户权限，微服务治理平台的功能十分强大，所以要对用户权限（浏览、更改【对应到具体的服务】以及管理员）进行管理。</li>
+<li>操作记录，记录用户在平台上所进行的变更操作，比如降级记录、扩缩容记录、切流量记录等</li>
+<li>元数据，用来把服务在各个系统中对应的记录映射到微服务治理平台中，统一进行管理。比如某个服务在监控系统里可能有个特殊标识，在注册中心里又使用了另外一个标识，为了统一就需要在微服务治理平台统一进行转换，然后进行数据串联。</li>
+</ul>
+<h3 id="总结-1">总结</h3>
+<p>一个微服务框架是否成熟，除了要看它是否具备服务治理能力，还要看是否有强大的微服务治理平台。</p>
+<p>因为微服务治理平台能够将多个系统整合在一起，无论是对开发还是运维来说，都能起到事半功倍的作用，这也是当前大部分开源微服务框架所欠缺的部分，所以对于大部分团队来说，都需要自己搭建微服务治理平台。</p>
+
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>

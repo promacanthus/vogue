@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/%E5%AE%98%E6%96%B9%E5%BA%93/docker/register/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="package register" /><meta property="og:description" content="register" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/css/style.6fd7fa42c7b7fe49cfeceeed650d33cb8d1cdbfe842e514a22e57a6b712729aa.css" integrity="sha256-b9f6Qse3/knP7O7tZQ0zy40c2/6ELlFKIuV6a3EnKao=">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">package register</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">import <span style="color:#e6db74">&#34;github.com/docker/docker/registry&#34;</span>
+</code></pre></div><h2 id="constants">Constants</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> (
+    <span style="color:#75715e">// AuthClientID用于令牌服务器使用的ClientID
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">AuthClientID</span> = <span style="color:#e6db74">&#34;docker&#34;</span>
+
+       <span style="color:#75715e">// DefaultSearchLimit是返回的最大搜索结果数的默认值
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">DefaultSearchLimit</span> = <span style="color:#ae81ff">25</span>
+)
+</code></pre></div><h2 id="variables">Variables</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> (
+    <span style="color:#75715e">// DefaultNamespace是默认名称空间
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">DefaultNamespace</span> = <span style="color:#e6db74">&#34;docker.io&#34;</span>
+
+    <span style="color:#75715e">// DefaultRegistryVersionHeader是带有注册表版本信息的默认HTTP标头的名称
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">DefaultRegistryVersionHeader</span> = <span style="color:#e6db74">&#34;Docker-Distribution-Api-Version&#34;</span>
+
+    <span style="color:#75715e">// IndexHostname是索引主机名
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">IndexHostname</span> = <span style="color:#e6db74">&#34;index.docker.io&#34;</span>
+
+    <span style="color:#75715e">// IndexServer用于用户身份验证和镜像搜索
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">IndexServer</span> = <span style="color:#e6db74">&#34;https://&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">IndexHostname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/v1/&#34;</span>
+
+    <span style="color:#75715e">// IndexName是索引的名称
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">IndexName</span> = <span style="color:#e6db74">&#34;docker.io&#34;</span>
+
+    <span style="color:#75715e">// DefaultV2Registry是默认v2注册表的URI
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">DefaultV2Registry</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">URL</span>{
+        <span style="color:#a6e22e">Scheme</span>: <span style="color:#e6db74">&#34;https&#34;</span>,
+        <span style="color:#a6e22e">Host</span>:   <span style="color:#e6db74">&#34;registry-1.docker.io&#34;</span>,
+    }
+
+    <span style="color:#75715e">// CertsDir是存储证书的目录
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">CertsDir</span> = <span style="color:#e6db74">&#34;/etc/docker/certs.d&#34;</span>
+
+    <span style="color:#75715e">// 如果在远端已存在要推送的镜像，则返回ErrAlreadyExists错误
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ErrAlreadyExists</span> = <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Image already exists&#34;</span>)
+
+    <span style="color:#75715e">// 如果存储库名称格式不正确，则返回ErrInvalidRepositoryName错误
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ErrInvalidRepositoryName</span> = <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Invalid repository name (ex: \&#34;registry.domain.tld/myrepos\&#34;)&#34;</span>)
+
+    <span style="color:#75715e">// 如果存储库在远程端不存在，则返回ErrRepoNotFound
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ErrRepoNotFound</span> <span style="color:#a6e22e">notFoundError</span> = <span style="color:#e6db74">&#34;Repository not found&#34;</span>
+)
+</code></pre></div><h2 id="func-authtransport">func AuthTransport</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">AuthTransport</span>(<span style="color:#a6e22e">base</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">RoundTripper</span>, <span style="color:#a6e22e">authConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>, <span style="color:#a6e22e">alwaysSetBasicAuth</span> <span style="color:#66d9ef">bool</span>) <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">RoundTripper</span>
+</code></pre></div><p>与v1注册表（私有或官方）通信时，AuthTransport处理auth层。</p>
+<p>对于私有v1注册表，请将<code>alwaysSetBasicAuth</code>设置为true。</p>
+<p>对于官方v1注册表，如果请求中没有Authorization标头，但是<code>X-Docker-Token</code>标头设置为true，则将使用Basic Auth设置Authorization标头。 使用提供的基本<code>http.RoundTripper</code>发送请求之后，如果响应中存在表示令牌的<code>X-Docker-Token</code>标头，则将其缓存并发送到所有后续请求的Authorization标头中。</p>
+<p>如果服务器在客户端未请求的情况下发送令牌，则将其忽略。</p>
+<p>此RoundTripper还具有CancelRequest方法，对于正确处理超时很重要。</p>
+<h2 id="func-converttohostname">func ConvertToHostname</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ConvertToHostname</span>(<span style="color:#a6e22e">url</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">string</span>
+</code></pre></div><p>ConvertToHostname将前缀为<code>http|https</code>的注册表URL转换为主机名。</p>
+<h2 id="func-getauthconfigkey">func GetAuthConfigKey</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">GetAuthConfigKey</span>(<span style="color:#a6e22e">index</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">IndexInfo</span>) <span style="color:#66d9ef">string</span>
+</code></pre></div><p>GetAuthConfigKey特殊情况下使用正式索引的完整索引地址作为AuthConfig密钥，并将(host)name[:port]用于私有索引。</p>
+<h2 id="func-httpclient">func HTTPClient</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">HTTPClient</span>(<span style="color:#a6e22e">transport</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">RoundTripper</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>
+</code></pre></div><p>HTTPClient返回一个HTTP客户端结构体，该结构体使用给定的传输方式，并包含重定向请求所需的标头。</p>
+<h2 id="func-headers">func Headers</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Headers</span>(<span style="color:#a6e22e">userAgent</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">metaHeaders</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Header</span>) []<span style="color:#a6e22e">transport</span>.<span style="color:#a6e22e">RequestModifier</span>
+</code></pre></div><p>Header返回带有User-Agent和metaHeaders的请求修饰符。</p>
+<h2 id="func-newstaticcredentialstore">func NewStaticCredentialStore</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewStaticCredentialStore</span>(<span style="color:#a6e22e">auth</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>) <span style="color:#a6e22e">auth</span>.<span style="color:#a6e22e">CredentialStore</span>
+</code></pre></div><p>NewStaticCredentialStore返回一个凭证存储，该存储始终返回相同的凭证值。</p>
+<h2 id="func-newtransport">func NewTransport</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewTransport</span>(<span style="color:#a6e22e">tlsConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Config</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Transport</span>
+</code></pre></div><p>NewTransport返回新的HTTP传输。如果tlsConfig为nil，则使用默认的TLS配置。</p>
+<h2 id="func-parsesearchindexinfo">func ParseSearchIndexInfo</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ParseSearchIndexInfo</span>(<span style="color:#a6e22e">reposName</span> <span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">IndexInfo</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ParseSearchIndexInfo将使用存储库名称来获取indexInfo。</p>
+<h2 id="func-pingv2registry">func PingV2Registry</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">PingV2Registry</span>(<span style="color:#a6e22e">endpoint</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">URL</span>, <span style="color:#a6e22e">transport</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">RoundTripper</span>) (<span style="color:#a6e22e">challenge</span>.<span style="color:#a6e22e">Manager</span>, <span style="color:#66d9ef">bool</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>PingV2Registry尝试对v2注册表执行ping操作，并在成功后返回质询管理器以获取受支持的身份验证类型以及响应是否确认了v2。 如果收到响应但无法解释，则将返回PingResponseError。</p>
+<h2 id="func-readcertsdirectory">func ReadCertsDirectory</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ReadCertsDirectory</span>(<span style="color:#a6e22e">tlsConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Config</span>, <span style="color:#a6e22e">directory</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>ReadCertsDirectory读取TLS证书（包括根和证书对）的目录，并更新提供的TLS配置。</p>
+<h2 id="func-resolveauthconfig">func ResolveAuthConfig</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ResolveAuthConfig</span>(<span style="color:#a6e22e">authConfigs</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>, <span style="color:#a6e22e">index</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">IndexInfo</span>) <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>
+</code></pre></div><p>ResolveAuthConfig将身份验证配置与服务器地址或URL匹配。</p>
+<h2 id="func-validateindexname">func ValidateIndexName</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ValidateIndexName</span>(<span style="color:#a6e22e">val</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ValidateIndexName验证索引名称。</p>
+<h2 id="func-validatemirror">func ValidateMirror</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ValidateMirror</span>(<span style="color:#a6e22e">val</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ValidateMirror验证HTTP(s)注册表镜像。</p>
+<h2 id="type-apiendpoint">type APIEndpoint</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">APIEndpoint</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Mirror</span>                         <span style="color:#66d9ef">bool</span>
+    <span style="color:#a6e22e">URL</span>                            <span style="color:#f92672">*</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">URL</span>
+    <span style="color:#a6e22e">Version</span>                        <span style="color:#a6e22e">APIVersion</span>
+    <span style="color:#a6e22e">AllowNondistributableArtifacts</span> <span style="color:#66d9ef">bool</span>
+    <span style="color:#a6e22e">Official</span>                       <span style="color:#66d9ef">bool</span>
+    <span style="color:#a6e22e">TrimHostname</span>                   <span style="color:#66d9ef">bool</span>
+    <span style="color:#a6e22e">TLSConfig</span>                      <span style="color:#f92672">*</span><span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Config</span>
+}
+</code></pre></div><p>APIEndpoint代表远程API端点。</p>
+<h3 id="func-apiendpoint-tov1endpoint">func (APIEndpoint) ToV1Endpoint</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#a6e22e">APIEndpoint</span>) <span style="color:#a6e22e">ToV1Endpoint</span>(<span style="color:#a6e22e">userAgent</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">metaHeaders</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Header</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">V1Endpoint</span>
+</code></pre></div><p>ToV1Endpoint返回基于APIEndpoint的V1 API端点。</p>
+<h2 id="type-apiversion">type APIVersion</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">APIVersion</span> <span style="color:#66d9ef">int</span>
+</code></pre></div><p>APIVersion是API版本（目前为1或2）的完整表示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> (
+    <span style="color:#a6e22e">APIVersion1</span> <span style="color:#a6e22e">APIVersion</span> = <span style="color:#66d9ef">iota</span>
+    <span style="color:#a6e22e">APIVersion2</span>
+)
+</code></pre></div><p>API版本标识符。</p>
+<h3 id="func-apiversion-string">func (APIVersion) String</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">av</span> <span style="color:#a6e22e">APIVersion</span>) <span style="color:#a6e22e">String</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><h2 id="type-defaultservice">type DefaultService</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">DefaultService</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">config</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">serviceConfig</span>
+    <span style="color:#a6e22e">mu</span>     <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">Mutex</span>
+}
+</code></pre></div><p>DefaultService是一个注册表服务。它跟踪配置数据，例如镜像列表。</p>
+<h3 id="func-newservice">func NewService</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewService</span>(<span style="color:#a6e22e">options</span> <span style="color:#a6e22e">ServiceOptions</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>NewService返回一个DefaultService的新实例，该实例准备安装到引擎中。</p>
+<h3 id="func-defaultservice-auth">func (*DefaultService) Auth</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">Auth</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">authConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>, <span style="color:#a6e22e">userAgent</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">status</span>, <span style="color:#a6e22e">token</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>Auth使用提供的凭据联系公共注册表，如果身份验证成功，则返回OK。它可以用来验证客户凭证的有效性。</p>
+<h3 id="func-defaultservice-loadallownondistributableartifacts">func (*DefaultService) LoadAllowNondistributableArtifacts</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">LoadAllowNondistributableArtifacts</span>(<span style="color:#a6e22e">registries</span> []<span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>LoadAllowNondistributableArtifacts会加载<code>allow-nondistributable-artifacts</code>注册表到服务。</p>
+<h3 id="func-defaultservice-loadinsecureregistries">func (*DefaultService) LoadInsecureRegistries</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">LoadInsecureRegistries</span>(<span style="color:#a6e22e">registries</span> []<span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>LoadInsecureRegistries加载服务的不安全注册表。</p>
+<h3 id="func-defaultservice-loadmirrors">func (*DefaultService) LoadMirrors</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">LoadMirrors</span>(<span style="color:#a6e22e">mirrors</span> []<span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>LoadMirrors为服务加载注册表镜像。</p>
+<h3 id="func-defaultservice-lookuppullendpoints">func (*DefaultService) LookupPullEndpoints</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">LookupPullEndpoints</span>(<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">endpoints</span> []<span style="color:#a6e22e">APIEndpoint</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>LookupPullEndpoints按照优先级创建一个端点列表来尝试拉取镜像。优先选择V2的端点，优先使用镜像地址，优先使用HTTPS协议。</p>
+<h3 id="func-defaultservice-lookuppushendpoints">func (*DefaultService) LookupPushEndpoints</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">LookupPushEndpoints</span>(<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">endpoints</span> []<span style="color:#a6e22e">APIEndpoint</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>LookupPushEndpoints按照优先级创建端点列表来尝试推送镜像。优先选择V2的端点，优先使用HTTPS协议，镜像地址不会被使用。</p>
+<h3 id="func-defaultservice-resolverepository">func (*DefaultService) ResolveRepository</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">ResolveRepository</span>(<span style="color:#a6e22e">name</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">RepositoryInfo</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ResolveRepository将存储库名称拆分为其组件和所关联的注册表。</p>
+<h3 id="func-defaultservice-search">func (*DefaultService) Search</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">Search</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">term</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">limit</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">authConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>, <span style="color:#a6e22e">userAgent</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">headers</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>][]<span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">SearchResults</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>Search在公共注册表中查询与指定搜索词匹配的镜像，然后返回结果。</p>
+<h3 id="func-defaultservice-serviceconfig">func (*DefaultService) ServiceConfig</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">ServiceConfig</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">ServiceConfig</span>
+</code></pre></div><p>ServiceConfig返回公共注册表服务的配置。</p>
+<h2 id="func-defaultservice-tlsconfig">func (*DefaultService) TLSConfig</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">DefaultService</span>) <span style="color:#a6e22e">TLSConfig</span>(<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Config</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>TLSConfig根据服务器默认值构造客户端TLS配置。</p>
+<h2 id="type-imgdata">type ImgData</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ImgData</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#75715e">// ID是标识镜像的的opaque字符串
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ID</span>              <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;id&#34;`</span>
+    <span style="color:#a6e22e">Checksum</span>        <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;checksum,omitempty&#34;`</span>
+    <span style="color:#a6e22e">ChecksumPayload</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;-&#34;`</span>
+    <span style="color:#a6e22e">Tag</span>             <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;,omitempty&#34;`</span>
+}
+</code></pre></div><p>ImgData用于将镜像校验和与注册表进行传输（发送或获取）。</p>
+<h2 id="type-pingresponseerror">type PingResponseError</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PingResponseError</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Err</span> <span style="color:#66d9ef">error</span>
+}
+</code></pre></div><p>当收到来自ping的响应但无效时，使用PingResponseError。</p>
+<h3 id="func-pingresponseerror-error">func (PingResponseError) Error</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">err</span> <span style="color:#a6e22e">PingResponseError</span>) <span style="color:#a6e22e">Error</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><h2 id="type-pingresult">type PingResult</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PingResult</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#75715e">// 版本是注册表在HTTP标头中提供的注册表版本
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Version</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;version&#34;`</span>
+    <span style="color:#75715e">// 如果注册表在X-Docker-Registry-Standalone标头中指示它是独立注册表，则将Standalone设置为true
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Standalone</span> <span style="color:#66d9ef">bool</span> <span style="color:#e6db74">`json:&#34;standalone&#34;`</span>
+}
+</code></pre></div><p>PingResult包含ping注册表时返回的信息。它指示注册表的版本以及注册表是否声明是独立注册表。</p>
+<h2 id="type-repositorydata">type RepositoryData</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">RepositoryData</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#75715e">// ImgList 是存储库中镜像列表
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ImgList</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#f92672">*</span><span style="color:#a6e22e">ImgData</span>
+    <span style="color:#75715e">// Endpoints 是X-Docker-Endpoints中返回的端点的列表
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Endpoints</span> []<span style="color:#66d9ef">string</span>
+}
+</code></pre></div><p>RepositoryData跟踪镜像列表和存储库的端点列表。</p>
+<h2 id="type-repositoryinfo">type RepositoryInfo</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">RepositoryInfo</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Name</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>
+    <span style="color:#75715e">// 索引指向注册表信息
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Index</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">IndexInfo</span>
+    <span style="color:#75715e">// Official指示存储库是否被认为是官方的。 如果注册表是官方的，并且规范化名称中不包含&#39;/&#39;（例如“foo”），则将其视为正式的存储库。
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Official</span> <span style="color:#66d9ef">bool</span>
+    <span style="color:#75715e">// Class表示存储库的类，例如“插件”或“镜像”。
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Class</span> <span style="color:#66d9ef">string</span>
+}
+</code></pre></div><p>RepositoryInfo描述一个存储库。</p>
+<h3 id="func-parserepositoryinfo">func ParseRepositoryInfo</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ParseRepositoryInfo</span>(<span style="color:#a6e22e">reposName</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">RepositoryInfo</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ParseRepositoryInfo将存储库名称分解为RepositoryInfo，但是缺少注册表信息。</p>
+<h2 id="type-service">type Service</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Service</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#a6e22e">Auth</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">authConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>, <span style="color:#a6e22e">userAgent</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">status</span>, <span style="color:#a6e22e">token</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+    <span style="color:#a6e22e">LookupPullEndpoints</span>(<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">endpoints</span> []<span style="color:#a6e22e">APIEndpoint</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+    <span style="color:#a6e22e">LookupPushEndpoints</span>(<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">endpoints</span> []<span style="color:#a6e22e">APIEndpoint</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+    <span style="color:#a6e22e">ResolveRepository</span>(<span style="color:#a6e22e">name</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">RepositoryInfo</span>, <span style="color:#66d9ef">error</span>)
+    <span style="color:#a6e22e">Search</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">term</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">limit</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">authConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>, <span style="color:#a6e22e">userAgent</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">headers</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>][]<span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">SearchResults</span>, <span style="color:#66d9ef">error</span>)
+    <span style="color:#a6e22e">ServiceConfig</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">ServiceConfig</span>
+    <span style="color:#a6e22e">TLSConfig</span>(<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Config</span>, <span style="color:#66d9ef">error</span>)
+    <span style="color:#a6e22e">LoadAllowNondistributableArtifacts</span>([]<span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+    <span style="color:#a6e22e">LoadMirrors</span>([]<span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+    <span style="color:#a6e22e">LoadInsecureRegistries</span>([]<span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+}
+</code></pre></div><p>Service是定义注册表服务应实现的接口。</p>
+<h2 id="type-serviceoptions">type ServiceOptions</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ServiceOptions</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">AllowNondistributableArtifacts</span> []<span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;allow-nondistributable-artifacts,omitempty&#34;`</span>
+    <span style="color:#a6e22e">Mirrors</span>                        []<span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;registry-mirrors,omitempty&#34;`</span>
+    <span style="color:#a6e22e">InsecureRegistries</span>             []<span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;insecure-registries,omitempty&#34;`</span>
+}
+</code></pre></div><p>ServiceOptions保存命令行选项。</p>
+<h2 id="type-session">type Session</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Session</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">indexEndpoint</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">V1Endpoint</span>
+    <span style="color:#a6e22e">client</span>        <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>
+    <span style="color:#75715e">// TODO(tiborvass): remove authConfig
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">authConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>
+    <span style="color:#a6e22e">id</span>         <span style="color:#66d9ef">string</span>
+}
+</code></pre></div><p>Session用于与V1注册表通信。</p>
+<h3 id="func-newsession">func NewSession</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewSession</span>(<span style="color:#a6e22e">client</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>, <span style="color:#a6e22e">authConfig</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">AuthConfig</span>, <span style="color:#a6e22e">endpoint</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">V1Endpoint</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>NewSession创建一个新的会话。</p>
+<p>TODO（tiborvass）：一旦提供了注册表客户端v2，就删除authConfig参数。</p>
+<h3 id="func-session-getremotehistory">func (*Session) GetRemoteHistory</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">GetRemoteHistory</span>(<span style="color:#a6e22e">imgID</span>, <span style="color:#a6e22e">registry</span> <span style="color:#66d9ef">string</span>) ([]<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>GetRemoteHistory从注册表中检索给定镜像的历史记录。它返回父级的JSON文件列表（包括请求的镜像）。</p>
+<h3 id="func-session-getremoteimagejson">func (*Session) GetRemoteImageJSON</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">GetRemoteImageJSON</span>(<span style="color:#a6e22e">imgID</span>, <span style="color:#a6e22e">registry</span> <span style="color:#66d9ef">string</span>) ([]<span style="color:#66d9ef">byte</span>, <span style="color:#66d9ef">int64</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>GetRemoteImageJSON从注册表中检索镜像的JSON元数据。</p>
+<h3 id="func-session-getremoteimagelayer">func (*Session) GetRemoteImageLayer</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">GetRemoteImageLayer</span>(<span style="color:#a6e22e">imgID</span>, <span style="color:#a6e22e">registry</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">imgSize</span> <span style="color:#66d9ef">int64</span>) (<span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">ReadCloser</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>GetRemoteImageLayer从注册表中检索镜像层。</p>
+<h3 id="func-session-getremotetag">func (*Session) GetRemoteTag</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">GetRemoteTag</span>(<span style="color:#a6e22e">registries</span> []<span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">repositoryRef</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>, <span style="color:#a6e22e">askedTag</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>GetRemoteTag从给定的存储库中检索AskedTag参数中命名的标签。它查询registries参数中提供的每个注册表，并从第一个成功回答查询的注册表中返回数据。</p>
+<h3 id="func-session-getremotetags">func (*Session) GetRemoteTags</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">GetRemoteTags</span>(<span style="color:#a6e22e">registries</span> []<span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">repositoryRef</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>) (<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>GetRemoteTags从给定的存储库中检索所有标签。 它查询registries参数中提供的每个注册表，并从第一个成功回答查询的注册表中返回数据。 它返回一个以标签名作为键，并以镜像ID作为值的映射。</p>
+<h3 id="func-session-getrepositorydata">func (*Session) GetRepositoryData</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">GetRepositoryData</span>(<span style="color:#a6e22e">name</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">RepositoryData</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>GetRepositoryData返回该存储库的镜像和端点的列表。</p>
+<h3 id="func-session-id">func (*Session) ID</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">ID</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><p>D返回此注册表会话的ID。</p>
+<h3 id="func-session-lookupremoteimage">func (*Session) LookupRemoteImage</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">LookupRemoteImage</span>(<span style="color:#a6e22e">imgID</span>, <span style="color:#a6e22e">registry</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>LookupRemoteImage检查注册表中是否存在镜像。</p>
+<h3 id="func-session-pushimagechecksumregistry">func (*Session) PushImageChecksumRegistry</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">PushImageChecksumRegistry</span>(<span style="color:#a6e22e">imgData</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ImgData</span>, <span style="color:#a6e22e">registry</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>PushImageChecksumRegistry上传镜像的校验和。</p>
+<h3 id="func-session-pushimagejsonindex">func (*Session) PushImageJSONIndex</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">PushImageJSONIndex</span>(<span style="color:#a6e22e">remote</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>, <span style="color:#a6e22e">imgList</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">ImgData</span>, <span style="color:#a6e22e">validate</span> <span style="color:#66d9ef">bool</span>, <span style="color:#a6e22e">regs</span> []<span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">RepositoryData</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>PushImageJSONIndex将镜像列表上传到存储库。</p>
+<h3 id="func-session-pushimagejsonregistry">func (*Session) PushImageJSONRegistry</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">PushImageJSONRegistry</span>(<span style="color:#a6e22e">imgData</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ImgData</span>, <span style="color:#a6e22e">jsonRaw</span> []<span style="color:#66d9ef">byte</span>, <span style="color:#a6e22e">registry</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>PushImageJSONRegistry将本地镜像的JSON元数据推送到注册表。</p>
+<h3 id="func-session-pushimagelayerregistry">func (*Session) PushImageLayerRegistry</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">PushImageLayerRegistry</span>(<span style="color:#a6e22e">imgID</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">layer</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Reader</span>, <span style="color:#a6e22e">registry</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">jsonRaw</span> []<span style="color:#66d9ef">byte</span>) (<span style="color:#a6e22e">chec</span>
+<span style="color:#a6e22e">ksum</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">checksumPayload</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>PushImageLayerRegistry将镜像层的校验和发送到注册表。</p>
+<h3 id="func-session-pushregistrytag">func (*Session) PushRegistryTag</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">PushRegistryTag</span>(<span style="color:#a6e22e">remote</span> <span style="color:#a6e22e">reference</span>.<span style="color:#a6e22e">Named</span>, <span style="color:#a6e22e">revision</span>, <span style="color:#a6e22e">tag</span>, <span style="color:#a6e22e">registry</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>PushRegistryTag将标签推送到注册表中。远端获取到的格式为<code>&lt;user&gt;/&lt;repo&gt;</code>。</p>
+<h3 id="func-session-searchrepositories">func (*Session) SearchRepositories</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Session</span>) <span style="color:#a6e22e">SearchRepositories</span>(<span style="color:#a6e22e">term</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">limit</span> <span style="color:#66d9ef">int</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">SearchResults</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>SearchRepositories对远程存储库执行搜索。</p>
+<h2 id="type-v1endpoint">type V1Endpoint</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">V1Endpoint</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">client</span>   <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>
+    <span style="color:#a6e22e">URL</span>      <span style="color:#f92672">*</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">URL</span>
+    <span style="color:#a6e22e">IsSecure</span> <span style="color:#66d9ef">bool</span>
+}
+</code></pre></div><p>V1Endpoint存储有关V1注册表端点的基本信息。</p>
+<h3 id="func-newv1endpoint">func NewV1Endpoint</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewV1Endpoint</span>(<span style="color:#a6e22e">index</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">registrytypes</span>.<span style="color:#a6e22e">IndexInfo</span>, <span style="color:#a6e22e">userAgent</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">metaHeaders</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Header</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">V1Endpoint</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>NewV1Endpoint解析给定地址以返回注册表端点。</p>
+<h3 id="func-v1endpoint-path">func (*V1Endpoint) Path</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">V1Endpoint</span>) <span style="color:#a6e22e">Path</span>(<span style="color:#a6e22e">path</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">string</span>
+</code></pre></div><p>Path返回此端点的URL的格式化字符串，并附加给定的路径。</p>
+<h3 id="func-v1endpoint-ping">func (*V1Endpoint) Ping</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">V1Endpoint</span>) <span style="color:#a6e22e">Ping</span>() (<span style="color:#a6e22e">PingResult</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>Ping返回一个PingResult，该结果指示注册表是否独立。</p>
+<h3 id="func-v1endpoint-string">func (*V1Endpoint) String</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">V1Endpoint</span>) <span style="color:#a6e22e">String</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><p>获取此注册表端点的root的格式化URL。</p>
+
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>

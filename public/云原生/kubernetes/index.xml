@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Promacanthus</title>
+    <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/</link>
+    <description>Recent content in Kubernetes on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Apr 2020 14:39:03 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>00-开篇.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/00-%E5%BC%80%E7%AF%87/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/00-%E5%BC%80%E7%AF%87/</guid>
+      <description>00-开篇.md</description>
+    </item>
+    
+    <item>
+      <title>01-CRI.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/07-%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6/01-cri/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/07-%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6/01-cri/</guid>
+      <description>01-CRI.md</description>
+    </item>
+    
+    <item>
+      <title>01-Guide.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/01-guide/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/01-guide/</guid>
+      <description>01-Guide.md</description>
+    </item>
+    
+    <item>
+      <title>01-k8s排错工具.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/01-k8s%E6%8E%92%E9%94%99%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/01-k8s%E6%8E%92%E9%94%99%E5%B7%A5%E5%85%B7/</guid>
+      <description>01-k8s排错工具.md</description>
+    </item>
+    
+    <item>
+      <title>01-kubeadm.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/02-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/01-kubeadm/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/02-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/01-kubeadm/</guid>
+      <description>01-kubeadm.md</description>
+    </item>
+    
+    <item>
+      <title>01-Pod-1.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/01-pod-1/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/01-pod-1/</guid>
+      <description>01-Pod-1.md</description>
+    </item>
+    
+    <item>
+      <title>01-Storage.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/04-%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/01-storage/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/04-%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/01-storage/</guid>
+      <description>01-Storage.md</description>
+    </item>
+    
+    <item>
+      <title>01-容器网络.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/01-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/01-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/</guid>
+      <description>01-容器网络.md</description>
+    </item>
+    
+    <item>
+      <title>01-监控体系.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/08-%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/01-%E7%9B%91%E6%8E%A7%E4%BD%93%E7%B3%BB/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/08-%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/01-%E7%9B%91%E6%8E%A7%E4%BD%93%E7%B3%BB/</guid>
+      <description>01-监控体系.md</description>
+    </item>
+    
+    <item>
+      <title>01-资源模型与资源管理.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/06-%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E4%B8%8E%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/01-%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/06-%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E4%B8%8E%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/01-%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</guid>
+      <description>01-资源模型与资源管理.md</description>
+    </item>
+    
+    <item>
+      <title>01-隔离与限制.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/01-%E9%9A%94%E7%A6%BB%E4%B8%8E%E9%99%90%E5%88%B6/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/01-%E9%9A%94%E7%A6%BB%E4%B8%8E%E9%99%90%E5%88%B6/</guid>
+      <description>01-隔离与限制.md</description>
+    </item>
+    
+    <item>
+      <title>02-Access-Control.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/02-access-control/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/02-access-control/</guid>
+      <description>02-Access-Control.md</description>
+    </item>
+    
+    <item>
+      <title>02-k8s的pod异常.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/02-k8s%E7%9A%84pod%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/02-k8s%E7%9A%84pod%E5%BC%82%E5%B8%B8/</guid>
+      <description>02-k8s的pod异常.md</description>
+    </item>
+    
+    <item>
+      <title>02-Pod-2.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/02-pod-2/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/02-pod-2/</guid>
+      <description>02-Pod-2.md</description>
+    </item>
+    
+    <item>
+      <title>02-Scheduler.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/06-%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E4%B8%8E%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/02-scheduler/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/06-%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E4%B8%8E%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/02-scheduler/</guid>
+      <description>02-Scheduler.md</description>
+    </item>
+    
+    <item>
+      <title>02-容器化应用.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/02-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/02-%E5%AE%B9%E5%99%A8%E5%8C%96%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/02-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/02-%E5%AE%B9%E5%99%A8%E5%8C%96%E5%BA%94%E7%94%A8/</guid>
+      <description>02-容器化应用.md</description>
+    </item>
+    
+    <item>
+      <title>02-容器日志.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/08-%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/02-%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/08-%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/02-%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97/</guid>
+      <description>02-容器日志.md</description>
+    </item>
+    
+    <item>
+      <title>02-容器跨主机网络.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/02-%E5%AE%B9%E5%99%A8%E8%B7%A8%E4%B8%BB%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/02-%E5%AE%B9%E5%99%A8%E8%B7%A8%E4%B8%BB%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
+      <description>02-容器跨主机网络.md</description>
+    </item>
+    
+    <item>
+      <title>02-容器镜像.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/02-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/02-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F/</guid>
+      <description>02-容器镜像.md</description>
+    </item>
+    
+    <item>
+      <title>03-Accessing-Dashboard.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/03-accessing-dashboard/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/03-accessing-dashboard/</guid>
+      <description>03-Accessing-Dashboard.md</description>
+    </item>
+    
+    <item>
+      <title>03-DevicePlugin.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/06-%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E4%B8%8E%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/03-deviceplugin/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/06-%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E4%B8%8E%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/03-deviceplugin/</guid>
+      <description>03-DevicePlugin.md</description>
+    </item>
+    
+    <item>
+      <title>03-Docker容器本质.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/03-docker%E5%AE%B9%E5%99%A8%E6%9C%AC%E8%B4%A8/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/03-docker%E5%AE%B9%E5%99%A8%E6%9C%AC%E8%B4%A8/</guid>
+      <description>03-Docker容器本质.md</description>
+    </item>
+    
+    <item>
+      <title>03-K8S网络模型.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/03-k8s%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/03-k8s%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/</guid>
+      <description>03-K8S网络模型.md</description>
+    </item>
+    
+    <item>
+      <title>03-k8s部署失败的十大原因.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/03-k8s%E9%83%A8%E7%BD%B2%E5%A4%B1%E8%B4%A5%E7%9A%84%E5%8D%81%E5%A4%A7%E5%8E%9F%E5%9B%A0/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/03-k8s%E9%83%A8%E7%BD%B2%E5%A4%B1%E8%B4%A5%E7%9A%84%E5%8D%81%E5%A4%A7%E5%8E%9F%E5%9B%A0/</guid>
+      <description>03-k8s部署失败的十大原因.md</description>
+    </item>
+    
+    <item>
+      <title>03-Pod-3.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/03-pod-3/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/03-pod-3/</guid>
+      <description>03-Pod-3.md</description>
+    </item>
+    
+    <item>
+      <title>04-Creating-sample-user.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/04-creating-sample-user/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/04-creating-sample-user/</guid>
+      <description>04-Creating-sample-user.md</description>
+    </item>
+    
+    <item>
+      <title>04-Kubernetes本质.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/04-kubernetes%E6%9C%AC%E8%B4%A8/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/01-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/04-kubernetes%E6%9C%AC%E8%B4%A8/</guid>
+      <description>04-Kubernetes本质.md</description>
+    </item>
+    
+    <item>
+      <title>04-三层网络方案.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/04-%E4%B8%89%E5%B1%82%E7%BD%91%E7%BB%9C%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/04-%E4%B8%89%E5%B1%82%E7%BD%91%E7%BB%9C%E6%96%B9%E6%A1%88/</guid>
+      <description>04-三层网络方案.md</description>
+    </item>
+    
+    <item>
+      <title>04-控制器模型.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/04-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/04-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%A8%A1%E5%9E%8B/</guid>
+      <description>04-控制器模型.md</description>
+    </item>
+    
+    <item>
+      <title>05-Integrations.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/05-integrations/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/05-integrations/</guid>
+      <description>05-Integrations.md</description>
+    </item>
+    
+    <item>
+      <title>05-作业副本与水平扩展.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/05-%E4%BD%9C%E4%B8%9A%E5%89%AF%E6%9C%AC%E4%B8%8E%E6%B0%B4%E5%B9%B3%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/05-%E4%BD%9C%E4%B8%9A%E5%89%AF%E6%9C%AC%E4%B8%8E%E6%B0%B4%E5%B9%B3%E6%89%A9%E5%B1%95/</guid>
+      <description>05-作业副本与水平扩展.md</description>
+    </item>
+    
+    <item>
+      <title>05-多租户.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/05-%E5%A4%9A%E7%A7%9F%E6%88%B7/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/05-%E5%A4%9A%E7%A7%9F%E6%88%B7/</guid>
+      <description>05-多租户.md</description>
+    </item>
+    
+    <item>
+      <title>06-FQA.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/06-fqa/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/06-fqa/</guid>
+      <description>06-FQA.md</description>
+    </item>
+    
+    <item>
+      <title>06-Service.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/06-service/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/06-service/</guid>
+      <description>06-Service.md</description>
+    </item>
+    
+    <item>
+      <title>06-StatefulSet.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/06-statefulset/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/06-statefulset/</guid>
+      <description>06-StatefulSet.md</description>
+    </item>
+    
+    <item>
+      <title>07-Ingress.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/07-ingress/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/05-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/07-ingress/</guid>
+      <description>07-Ingress.md</description>
+    </item>
+    
+    <item>
+      <title>07-Operator.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/07-operator/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/07-operator/</guid>
+      <description>07-Operator.md</description>
+    </item>
+    
+    <item>
+      <title>08-Daemonset.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/08-daemonset/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/08-daemonset/</guid>
+      <description>08-Daemonset.md</description>
+    </item>
+    
+    <item>
+      <title>09-Job&amp;Cronjob.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/09-jobcronjob/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/09-jobcronjob/</guid>
+      <description>09-Job&amp;amp;Cronjob.md</description>
+    </item>
+    
+    <item>
+      <title>10-编程范式.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/10-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/10-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F/</guid>
+      <description>10-编程范式.md</description>
+    </item>
+    
+    <item>
+      <title>11-声明式API.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/11-%E5%A3%B0%E6%98%8E%E5%BC%8Fapi/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/11-%E5%A3%B0%E6%98%8E%E5%BC%8Fapi/</guid>
+      <description>11-声明式API.md</description>
+    </item>
+    
+    <item>
+      <title>12-RBAC.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/12-rbac/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/12-rbac/</guid>
+      <description>12-RBAC.md</description>
+    </item>
+    
+    <item>
+      <title>Centos安装K8S.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/centos%E5%AE%89%E8%A3%85k8s/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/centos%E5%AE%89%E8%A3%85k8s/</guid>
+      <description>Centos安装K8S.md</description>
+    </item>
+    
+    <item>
+      <title>Install-Manual.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/install-manual/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/install-manual/</guid>
+      <description>Install-Manual.md</description>
+    </item>
+    
+    <item>
+      <title>k8s简介.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/k8s%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/k8s%E7%AE%80%E4%BB%8B/</guid>
+      <description>k8s简介.md</description>
+    </item>
+    
+    <item>
+      <title>kubectl-proxy.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/kubectl-proxy/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/kubectl-proxy/</guid>
+      <description>kubectl-proxy.md</description>
+    </item>
+    
+    <item>
+      <title>kubectl命令.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/kubectl%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/kubectl%E5%91%BD%E4%BB%A4/</guid>
+      <description>kubectl命令.md</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes笔记.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/kubernetes%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/10-%E7%AC%94%E8%AE%B0/kubernetes%E7%AC%94%E8%AE%B0/</guid>
+      <description>Kubernetes笔记.md</description>
+    </item>
+    
+    <item>
+      <title>runtime.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%AE%98%E6%96%B9%E5%BA%93/apimachinery/pkg/runtime/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%AE%98%E6%96%B9%E5%BA%93/apimachinery/pkg/runtime/</guid>
+      <description>runtime.md</description>
+    </item>
+    
+    <item>
+      <title>schema.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%AE%98%E6%96%B9%E5%BA%93/apimachinery/pkg/runtime/schema/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%AE%98%E6%96%B9%E5%BA%93/apimachinery/pkg/runtime/schema/</guid>
+      <description>schema.md</description>
+    </item>
+    
+    <item>
+      <title>其他容器项目.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E9%A1%B9%E7%9B%AE/</guid>
+      <description>其他容器项目.md</description>
+    </item>
+    
+    <item>
+      <title>官方库汇总.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%AE%98%E6%96%B9%E5%BA%93/%E5%AE%98%E6%96%B9%E5%BA%93%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%AE%98%E6%96%B9%E5%BA%93/%E5%AE%98%E6%96%B9%E5%BA%93%E6%B1%87%E6%80%BB/</guid>
+      <description>官方库汇总.md</description>
+    </item>
+    
+  </channel>
+</rss>

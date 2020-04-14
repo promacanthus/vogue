@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Etcd on Promacanthus</title>
+    <link>http://localhost:1313/tags/etcd/</link>
+    <description>Recent content in Etcd on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 10:09:14 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/etcd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>01-应用场景.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/01-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/01-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/</guid>
+      <description>01-应用场景.md</description>
+    </item>
+    
+    <item>
+      <title>02-实现原理.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/02-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/02-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</guid>
+      <description>02-实现原理.md</description>
+    </item>
+    
+  </channel>
+</rss>

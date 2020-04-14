@@ -1,0 +1,39 @@
+---
+title: service-nodeport.yaml
+date: 2020-04-14T10:09:14.142627+08:00
+draft: false
+hideLastModified: false
+summaryImage: ""
+keepImageRatio: true
+tags:
+- ""
+- 云原生
+- Ingress
+- nginx-ingress
+summary: service-nodeport.yaml
+showInMenu: false
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GRPC on Promacanthus</title>
+    <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/</link>
+    <description>Recent content in GRPC on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Apr 2020 21:53:36 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>01-gRPC简介</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/01-grpc%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/01-grpc%E7%AE%80%E4%BB%8B/</guid>
+      <description>01-gRPC简介</description>
+    </item>
+    
+    <item>
+      <title>02-gRPC概念</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/02-grpc%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/02-grpc%E6%A6%82%E5%BF%B5/</guid>
+      <description>02-gRPC概念</description>
+    </item>
+    
+    <item>
+      <title>03-认证</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/03-%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/03-%E8%AE%A4%E8%AF%81/</guid>
+      <description>03-认证</description>
+    </item>
+    
+    <item>
+      <title>04-错误处理和调试</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/04-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%92%8C%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/04-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%92%8C%E8%B0%83%E8%AF%95/</guid>
+      <description>04-错误处理和调试</description>
+    </item>
+    
+    <item>
+      <title>05-基准化分析法</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/05-%E5%9F%BA%E5%87%86%E5%8C%96%E5%88%86%E6%9E%90%E6%B3%95/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/05-%E5%9F%BA%E5%87%86%E5%8C%96%E5%88%86%E6%9E%90%E6%B3%95/</guid>
+      <description>05-基准化分析法</description>
+    </item>
+    
+    <item>
+      <title>06-gRPC编写格式</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/06-grpc%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/06-grpc%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F/</guid>
+      <description>06-gRPC编写格式</description>
+    </item>
+    
+    <item>
+      <title>07-Golang快速入门</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/07-golang%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/07-golang%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
+      <description>07-Golang快速入门</description>
+    </item>
+    
+    <item>
+      <title>08-Golang应用</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/08-golang%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/08-golang%E5%BA%94%E7%94%A8/</guid>
+      <description>08-Golang应用</description>
+    </item>
+    
+    <item>
+      <title>09-Go生成代码指南</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/09-go%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/09-go%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81%E6%8C%87%E5%8D%97/</guid>
+      <description>09-Go生成代码指南</description>
+    </item>
+    
+    <item>
+      <title>package grpc</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/grpc/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/grpc/</guid>
+      <description>grpc</description>
+    </item>
+    
+  </channel>
+</rss>

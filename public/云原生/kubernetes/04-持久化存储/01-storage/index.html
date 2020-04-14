@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/04-%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/01-storage/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="01-Storage.md" /><meta property="og:description" content="01-Storage.md" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/css/style.6fd7fa42c7b7fe49cfeceeed650d33cb8d1cdbfe842e514a22e57a6b712729aa.css" integrity="sha256-b9f6Qse3/knP7O7tZQ0zy40c2/6ELlFKIuV6a3EnKao=">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">01-Storage.md</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <p>容器化一个应用比较复杂的地方是<strong>状态</strong>的管理，常见的状态就是<strong>存储状态</strong>。</p>
+<ul>
+<li>PV：描述持久化存储数据卷，这个API对象主要定义的是持久化存储在<strong>宿主机上的目录</strong>，比如一个NFS挂载目录。</li>
+<li>PVC：描述的Pod所希望使用的持久化存储的<strong>属性</strong>。比如Volume存储的大学、可读写权限等。</li>
+</ul>
+<p>通常情况，PV对象是由运维人员事先创建在kubernetes集群中待用，可以定义如下的PV：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: PersistentVolume
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: nfs
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">storageClassName</span>: manual
+  <span style="color:#66d9ef">capacity</span>:
+    <span style="color:#66d9ef">storage</span>: 1Gi
+  <span style="color:#66d9ef">accessModes</span>:
+    - ReadWriteMany
+  <span style="color:#66d9ef">nfs</span>:
+    <span style="color:#66d9ef">server</span>: <span style="color:#ae81ff">10.244.1.4</span>
+    <span style="color:#66d9ef">path</span>: <span style="color:#e6db74">&#34;/&#34;</span>
+</code></pre></div><p>PVC对象通常由开发人员创建，或者以PVC模板的方式成为StatefulSet的一部分，然后由StatefulSet控制器负责CHAUNGJIAN带编号的PVC，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: PersistentVolumeClaim
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: nfs
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">accessModes</span>:
+    - ReadWriteMany
+  <span style="color:#66d9ef">storageClassName</span>: manual
+  <span style="color:#66d9ef">resources</span>:
+    <span style="color:#66d9ef">requests</span>:
+      <span style="color:#66d9ef">storage</span>: 1Gi
+</code></pre></div><p>用户创建的PVC要真正被容器使用起来，就必须先和某个符合条件的PV进行绑定，这需要检查两部分：</p>
+<ol>
+<li>PV和PVC的spec字段，比如PV的存储（<code>Storage</code>）大小，必须满足PVC的要求。</li>
+<li>PV和PVC的<code>storageClassName</code>字段必须一样</li>
+</ol>
+<p>绑定成功后，Pod就能够像使用hostPath等常规类型发Volume一样，在YAML文件中声明使用这个PVC，如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">role</span>: web-frontend
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">containers</span>:
+  - <span style="color:#66d9ef">name</span>: web
+    <span style="color:#66d9ef">image</span>: nginx
+    <span style="color:#66d9ef">ports</span>:
+      - <span style="color:#66d9ef">name</span>: web
+        <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#66d9ef">volumeMounts</span>:
+        - <span style="color:#66d9ef">name</span>: nfs
+          <span style="color:#66d9ef">mountPath</span>: <span style="color:#e6db74">&#34;/usr/share/nginx/html&#34;</span>
+  <span style="color:#66d9ef">volumes</span>:
+  - <span style="color:#66d9ef">name</span>: nfs
+    <span style="color:#66d9ef">persistentVolumeClaim</span>:
+      <span style="color:#66d9ef">claimName</span>: nfs
+
+</code></pre></div><p>Pod在volumes字段中声明要使用的PV名字，等这个Pod创建后裔，kubelet就会把这个PVC所对应的PV挂载到Pod容器内的目录上。</p>
+<p><strong>PV与PVC的设计，和面向对象的思想完全一样</strong>。开发人员只需要和PVC这个接口打交道，不必关心具体的实现细节。</p>
+<ul>
+<li>PVC可以理解为持久化存储的“接口”，提供了对某种持久化存储的描述，但不提供具体的实现，</li>
+<li>PV负责持久化存储的具体实现</li>
+</ul>
+<blockquote>
+<p>创建Pod是，集群中没有适合的PV与PVC进行绑定，即容器需要的volume不存在，那么Pod的启动就会报错。当需要的PV被创建后，PVC可以再次与之绑定，从而使得Pod能够顺利启动。</p>
+</blockquote>
+<p>Volume Controller专门处理持久化存储的控制器，维护多个控制循环，其中之一就是帮助PV和PVC进行绑定，即PersistenVolumeController。它会不断的查看当前每一个PVC是否处于Bound状态，如果没有处于绑定状态，则会遍历全部可用的PV，并尝试将PVC与PV进行绑定。</p>
+<p><strong>这样kubernetes就能保证，用户提交的每一个PVC，只要有合适的PV出现，就能够很快进入绑定状态</strong>。</p>
+<p>所谓的PV与PVC的绑定，就是将这个PV对象的名字填写在PVC对象<code>spec.volumeName</code>字段，这样获取了PVC就能知道绑定的PV。</p>
+<blockquote>
+<p>所谓容器的Volume，其实就是一个将宿主机上的目录，跟一个容器里的目录绑定挂载在一起。所谓的持久化Volume，就是这个宿主机的目录具备持久性（目录中的内容不会因为容器删除而被清理掉，也不跟当前宿主机绑定）。当容器被重启或者其他节点上重建出来，它仍然可以通过挂载这个Volume访问到这些内容。</p>
+</blockquote>
+<p><strong>hostPath、emptyDir类型的volume都不具备这样的特性：既会被kubelet清理掉，也不能被迁移到其他节点上</strong>。大多数持久化volume的实现依赖于远程存储服务：</p>
+<ul>
+<li>远程文件存储（NFS、GlusterFS）</li>
+<li>远程块存储（公有云提供的远程磁盘）等。</li>
+</ul>
+<p>kubernetes的工作就是使用这些存储服务，来为容器准备一个持久化的宿主机目录，以供将来进行绑定挂载使用。所谓持久化是是容器在这个目录里写的文件，都会保存在远程存储中，从而使得这个目录具备了持久性。</p>
+<h2 id="持久化宿主机目录的过程两步走">持久化宿主机目录的过程，两步走</h2>
+<p>当pod调度到某个节点，kubelet就会负责为这个pod创建它的Volume目录，默认情况下，kubelet为volume创建的目录是如下所示的宿主机上的路径：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/var/lib/kubelet/pods/&lt;Pod 的 ID&gt;/volumes/kubernetes.io~&lt;Volume 类型 &gt;/&lt;Volume 名字 &gt;
+</code></pre></div><h3 id="gcp">GCP</h3>
+<p>kubelet根据volume的类型进行具体的操作，如果volume是远程块存储，如GCE的Persistent Disk，kubelet需要先调用GCP的API，将它所提供的Persistent Disk挂载到Pod所在的宿主机上。相当于执行如下命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gcloud compute instances attach-disk &lt; 虚拟机名字 &gt; --disk &lt; 远程磁盘名字 &gt;
+
+<span style="color:#75715e"># 为虚拟机挂载远程磁盘的操作</span>
+</code></pre></div><p>以上操作是第一个阶段，在kubernetes中称为Attach。</p>
+<p>为了能够使用这个远程磁盘，kubelet进行第二个操作，格式化这个磁盘设备，然后挂载到宿主机指定的挂载点（宿主机的volume目录）上。相当于执行如下操作：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 通过 lsblk 命令获取磁盘设备 ID</span>
+$ sudo lsblk
+<span style="color:#75715e"># 格式化成 ext4 格式</span>
+$ sudo mkfs.ext4 -m <span style="color:#ae81ff">0</span> -F -E lazy_itable_init<span style="color:#f92672">=</span>0,lazy_journal_init<span style="color:#f92672">=</span>0,discard /dev/&lt; 磁盘设备 ID&gt;
+<span style="color:#75715e"># 挂载到挂载点</span>
+$ sudo mkdir -p /var/lib/kubelet/pods/&lt;Pod 的 ID&gt;/volumes/kubernetes.io~&lt;Volume 类型 &gt;/&lt;Volume 名字 &gt;
+<span style="color:#75715e"># 将磁盘设备格式化并挂载到宿主机目录</span>
+</code></pre></div><p>以上操作是第二个节点，称为Mount。</p>
+<p>Mount阶段完成后，这个Volume的宿主机目录就是一个“持久化”目录，容器在它里面写入的内容就会被保存在GCP的远程磁盘中。</p>
+<h3 id="nfs">NFS</h3>
+<p>如果volume的类型是远程文件存储NFS，kubelet的处理过程比较简单，直接进行Mount阶段即可。因为远程文件存储一般没有存储设备需要挂载到宿主机。</p>
+<p>在Mount的过程中kubelet需要作为client，将远端NFS服务器的目录（如<code>/</code>目录）挂载到Volume的宿主机目录上，即相当于执行如下命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mount -t nfs &lt;NFS 服务器地址 &gt;:/ /var/lib/kubelet/pods/&lt;Pod 的 ID&gt;/volumes/kubernetes.io~&lt;Volume 类型 &gt;/&lt;Volume 名字 &gt; 
+
+</code></pre></div><p>通过这个操作volume的宿主机目录就成为了一个远程NFS目录的挂载点，在这个目录下写入的所有文件就会被保存在远程NFS服务上。</p>
+<p>在具体的Volume插件的实现接口上，kubernetes分别为这两个阶段提供了两种不同的参数列表：</p>
+<ol>
+<li>Attach：kubernetes提供的可用参数是nodeName，即宿主机的名字</li>
+<li>Mount：kubernetes提供的可用参数的dir，即 Volume的宿主机目录</li>
+</ol>
+<p>得到持久化的Volume宿主机目录后，kubelet只要把这个Volume目录通过CRI里的Mounts参数，传递给Docker，然后就可以为Pod里的容器挂载这个持久化的Volume，相当于执行如下操作：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -v /var/lib/kubelet/pods/&lt;Pod 的 ID&gt;/volumes/kubernetes.io~&lt;Volume 类型 &gt;/&lt;Volume 名字 &gt;:/&lt; 容器内的目标目录 &gt; 我的镜像 ...
+
+</code></pre></div><blockquote>
+<p>相应的，在删除PV的时候，kubernetes也需要umount和Dettach两个阶段。</p>
+</blockquote>
+<p>在这个PV的处理过程中，与Pod和容器的启动流程没有太多的耦合，只要kubelet在向Docker发起CRI请求之前，确保持久化的宿主机目录已经处理完毕即可。<strong>在kubernetes中，关于PV的处理过程，是独立与kubelet主控制循环（kubelet sync loop）之外的两个控制循环实现的。</strong></p>
+<ul>
+<li>Attach和Dettach操作，由Volume Controller负责维护，这个控制循环的名字叫AttachDettchController。它的作用就是不断地检查每一个Pod对应的PV，和这个Pod所在宿主机之间的挂载清理，从而决定是否需要对这个PV进行Attach或者Dettach操作。</li>
+</ul>
+<blockquote>
+<p>kubernetes内置的控制器，Volume Controller是kube-controller-manager的一部分，所有AttachDettach也是运行在Master节点，Attach操作只需要调用公有云或者具体存储项目的API，并不需要在具体宿主机上执行操作。</p>
+</blockquote>
+<ul>
+<li>Mount和Umount操作，必须发生在Pod对应的宿主机上，所以必须是kubelet组件的一部分，这个控制循环的名字，叫作VolumeManagerReconciler，运行起来之后，是一个独立于kubelet主循环goroutine。</li>
+</ul>
+<blockquote>
+<p>通过将Volume的处理同kubelet的主循环解耦，避免了耗时的远程挂载操作拖慢kubelet的主控制循环，进而导致Pod的创建效率大幅下降的问题。</p>
+</blockquote>
+<p><strong>kubelet的一个主要设计原则就是它的主控制循环绝对不能被block</strong>。</p>
+<h1 id="storageclass">StorageClass</h1>
+<p>PV的创建需要运维人员完成，在大规模的生产环境中，这个工作太麻烦，需要预先创建很多PV，随着需求的变化需要继续添加新的PV。</p>
+<p>kubernetes提供了一套可以自动创建PV的机制，Dynamic Provisioning，它的核心在于StorageClass API对象。</p>
+<p><strong>StorageClass对象的作用，就是创建PV的模板</strong>。它会定义 如下两个部分：</p>
+<ol>
+<li>PV的属性，如存储类型，Volume大小等</li>
+<li>创建这个PV所需要用到的存储插件，如Ceph等</li>
+</ol>
+<p>有了这两个信息之后，kubernetes就能够根据用户提交的PVC找到一个对应的StorageClass，然后kubernetes就会调用该StorageClass声明的存储插件，创建出需要的PV。</p>
+<p>如下所示，volume的类型是GCE的Persistent Disk：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: storage.k8s.io/v1
+<span style="color:#66d9ef">kind</span>: StorageClass
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: block-service
+<span style="color:#66d9ef">provisioner</span>: kubernetes.io/gce-pd   <span style="color:#75715e"># kubernetes内置的GCE PD存储插件的名字</span>
+<span style="color:#66d9ef">parameters</span>:     <span style="color:#75715e"># 这里就是PV的参数</span>
+  <span style="color:#66d9ef">type</span>: pd-ssd  <span style="color:#75715e"># PV的类型是SSD格式的GCE远程磁盘</span>
+</code></pre></div><p>如下所示，在本地集群使用rook存储服务：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: ceph.rook.io/v1beta1
+<span style="color:#66d9ef">kind</span>: Pool
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: replicapool
+  <span style="color:#66d9ef">namespace</span>: rook-ceph
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicated</span>:
+    <span style="color:#66d9ef">size</span>: <span style="color:#ae81ff">3</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: storage.k8s.io/v1
+<span style="color:#66d9ef">kind</span>: StorageClass
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: block-service
+<span style="color:#66d9ef">provisioner</span>: ceph.rook.io/block     <span style="color:#75715e"># 存储插件是rook</span>
+<span style="color:#66d9ef">parameters</span>:
+  <span style="color:#66d9ef">pool</span>: replicapool
+  <span style="color:#75715e">#The value of &#34;clusterNamespace&#34; MUST be the same as the one in which your rook cluster exist</span>
+  <span style="color:#66d9ef">clusterNamespace</span>: rook-ceph
+</code></pre></div><p>在StorageClass的YAML文件之后，运维人员就可以创建StorageClass了，开发人员只需要在PVC中指定storage即可：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: PersistentVolumeClaim
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: claim1
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">accessModes</span>:
+    - ReadWriteOnce
+  <span style="color:#66d9ef">storageClassName</span>: block-service  <span style="color:#75715e">#指定为storageclass的名字</span>
+  <span style="color:#66d9ef">resources</span>:
+    <span style="color:#66d9ef">requests</span>:
+      <span style="color:#66d9ef">storage</span>: 30Gi
+</code></pre></div><p><strong>kubernetes只会将storageclass相同的PVC和PV绑定起来</strong>。</p>
+<blockquote>
+<p>注意 StorageClass并不是专门为了Dynamic Provisioning而设计的。</p>
+</blockquote>
+<p>上面的例子中在 PV 和 PVC 里都声明了 storageClassName=manual。而集群里，实际上并没有一个名叫 manual 的StorageClass 对象。这完全没有问题，这个时候 Kubernetes 进行的是 Static Provisioning，但在做绑定决策的时候，它依然会考虑 PV 和PVC 的 StorageClass 定义。</p>
+<p>而这么做的好处也很明显：这个 PVC 和 PV 的绑定关系，就完全在我自己的掌控之中。</p>
+<p>如果集群已经开启了名叫 DefaultStorageClass 的 Admission Plugin，它就会为PVC 和 PV 自动添加一个默认的StorageClass；否则，PVC 的 storageClassName 的值就是“”，这也意味着它只能够跟 storageClassName 也是“”的 PV 进行绑定。</p>
+<h1 id="总结">总结</h1>
+<p>如下图：</p>
+<p><img src="https://static001.geekbang.org/resource/image/e8/d9/e8b2586e4e14eb54adf8ff95c5c18cd9.png" alt=""></p>
+<ul>
+<li>PVC 描述的是Pod想要使用的<strong>持久化存储的属性</strong>，比如存储的大小、读写权限等</li>
+<li>PV 描述的是具体的<strong>Volume的属性</strong>，比如volume的类型，挂载的目录，远程存储服务器地址等</li>
+<li>StorageClass的作用时候充当PV的模板，并且只有属于同一个StorageClass的PV和PVC才可以绑定</li>
+</ul>
+<blockquote>
+<p>StorageClass的另一个重要的作用是指定Provisioner(存储插件),这时候,如果存储插件支持Dynamic Provisioning的话,kubernetes就可以自动创建PV。</p>
+</blockquote>
+<h1 id="本地持久化存储">本地持久化存储</h1>
+<p>如何解决kubernetes内置的20种持久化数据集不能满足需求的问题？在开源项目中，“不能用、不好用、需定制开发”是开源项目落地的三大常态。</p>
+<p>在持久化存储中，本地持久化存储的需求最高，这样的好处很明显。Volume直接使用本地磁盘（SSD），读写性能相比于大多数远程存储来说，要好很多。</p>
+<blockquote>
+<p>kubernetes v1.10之后，依靠PV、PVC实现了本地持久化存储，Local Persistent Volume。</p>
+</blockquote>
+<p>Local Persistent Volume并不适用于所有应用。它的使用范围非常固定，<strong>如高优先级的系统应用，需要在多个不同节点上存储数据，并且对I/0较为敏感</strong>。典型的应用包括：</p>
+<ol>
+<li>分布式数据存储：MongoDB、Cassandra等</li>
+<li>分布式文件系统：GlusterFS、Ceph等</li>
+<li>需要在本地磁盘上进行大量数据缓存的分布式应用</li>
+</ol>
+<p>相比于正常的PV，一旦这些节点宕机且不能恢复，Local Persistent Volume的数据就可能丢失，这就要求<strong>使用Local Persistent Volume的应用必须具备数据备份和恢复能力</strong>，允许把这些数据定时备份到其他位置。</p>
+<h2 id="local-persistent-volume">Local Persistent Volume</h2>
+<p>设计的难点：</p>
+<ol>
+<li>如何把本地磁盘抽象成PV？</li>
+<li>调度如何保证Pod始终能被正确地调度到它所请求的Local Persistent Volume所在节点？</li>
+</ol>
+<h3 id="难点一">难点一</h3>
+<blockquote>
+<p>假设将一个Pod声明使用类型为Local的PV，而这个PV其实是一个hostPath类型的Volume，如果这个hostPath对应的目录在A节点上被事先创建好，那么只需要给这个Pod加上nodeAffinity=nodeA。</p>
+</blockquote>
+<p>事实上，<strong>绝不能把一个宿主机上的目录当做PV使用</strong>。因为：</p>
+<ol>
+<li>本地目录的存储行为完全不可控：它所在磁盘随时可能被应用写满，甚至造成整个宿主机宕机</li>
+<li>不同的本地目录之间也缺乏哪怕最基础的I/O隔离机制</li>
+</ol>
+<blockquote>
+<p>所以，一个Local Persistent Volume对应的存储介质，一定是一块额外（非宿主机根目录使用的主硬盘）挂载在宿主机的错或者块设备，<strong>即一个PV一块盘</strong>。</p>
+</blockquote>
+<h3 id="难点二">难点二</h3>
+<p>调度器如何保证Pod始终能被正确地调度到它所请求的Local Persistent Volume。</p>
+<ol>
+<li>对于常规的PV，kubernetes都是先调度Pod到某个节点，然后再通过Attach和Mount两个阶段来持久化这台机器上的Volume目录，进而完成Volume目录与容器的绑定挂载。</li>
+<li>对于Local PV来说，节点上可供使用的磁盘（块设备），必须是运维人员提前准备好（在不同节点上挂载情况可能完全不同，甚至有的节点上没有这种磁盘）。</li>
+</ol>
+<blockquote>
+<p>所以调度器必须知道所有节点与Local PV对应的磁盘的关联关系，然后根据这个信息来调度Pod，<strong>即调度的时候考虑Volume分布</strong>。在kubernetes的调度器中，VolumeBindingChecker过滤条件负责在调度时考虑Volume的分布情况，在v1.11中,这个过滤条件默认开启。</p>
+</blockquote>
+<p>因此在使用Local PV前，需要在集群里配置好磁盘或块设备：</p>
+<ol>
+<li>在公有云上等同于给虚拟机额外挂载一个磁盘（如GCE的Local SSD类型的磁盘）。</li>
+<li>在私有集群中，有两个方法来解决：
+<ol>
+<li>给宿主机挂载并格式化一个可用的本地磁盘</li>
+<li>对于实验环境，在宿主机上挂载几个RAM Disk来模拟本地磁盘</li>
+</ol>
+</li>
+</ol>
+<h3 id="例子">例子</h3>
+<p>以内存盘为例子进行挂载。</p>
+<ol>
+<li>在节点上CHAUNGJIAN挂载点<code>/mnt/disks</code></li>
+<li>用RAM Disk模拟本地磁盘</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 在 node-1 上执行</span>
+$ mkdir /mnt/disks
+$ <span style="color:#66d9ef">for</span> vol in vol1 vol2 vol3; <span style="color:#66d9ef">do</span>
+    mkdir /mnt/disks/$vol
+    mount -t tmpfs $vol /mnt/disks/$vol
+<span style="color:#66d9ef">done</span>
+
+<span style="color:#75715e"># 其他节点需要同样的操作来支持Local PV，需要确保这些起床的名字都不重复</span>
+</code></pre></div><p>为本地磁盘定义PV：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: PersistentVolume
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: example-pv
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">capacity</span>:
+    <span style="color:#66d9ef">storage</span>: 5Gi
+  <span style="color:#66d9ef">volumeMode</span>: Filesystem
+  <span style="color:#66d9ef">accessModes</span>:
+  - ReadWriteOnce
+  <span style="color:#66d9ef">persistentVolumeReclaimPolicy</span>: Delete
+  <span style="color:#66d9ef">storageClassName</span>: local-storage
+  <span style="color:#66d9ef">local</span>:    <span style="color:#75715e"># 表示这是一个Local PV</span>
+    <span style="color:#66d9ef">path</span>: /mnt/disks/vol1   <span style="color:#75715e"># 指定本地磁盘的路径</span>
+  <span style="color:#66d9ef">nodeAffinity</span>:  <span style="color:#75715e"># 定义节点亲和性，如果Pod要使用这个PV，就必须调度到node-1</span>
+    <span style="color:#66d9ef">required</span>:    <span style="color:#75715e"># kubernetes实现调度时考虑Volume分布的主要方法</span>
+      <span style="color:#66d9ef">nodeSelectorTerms</span>:
+      - <span style="color:#66d9ef">matchExpressions</span>:
+        - <span style="color:#66d9ef">key</span>: kubernetes.io/hostname
+          <span style="color:#66d9ef">operator</span>: In
+          <span style="color:#66d9ef">values</span>:
+          - node<span style="color:#ae81ff">-1</span>
+</code></pre></div><p>创建PV：</p>
+<pre><code>$ kubectl create -f local-pv.yaml 
+persistentvolume/example-pv created
+
+$ kubectl get pv
+NAME         CAPACITY   ACCESS MODES   RECLAIM POLICY  STATUS      CLAIM             STORAGECLASS    REASON    AGE
+example-pv   5Gi        RWO            Delete           Available                     local-storage             16s
+
+# PV创建成功并几区Available状态
+</code></pre><p>使用PV和PVC的最佳实践，创建一个StorageClass来描述这个PV：</p>
+<pre><code>apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner   # 目前不支持Dynamic Provisioning，所有使用这个，因为它没饭在用户创建PVC的时候自动创建对应的PV
+volumeBindingMode: WaitForFirstConsumer   # 延迟绑定，告诉kubernetes的volume控制循环，虽然已经发现了StorageClass关联的PV和PVC，但是不要现在就进行绑定（设置PVC的VolumeName字段）操作
+
+</code></pre><p>通常，在提交了PV和PVC的YAML后，kubernetes会根据它们的属性以及StorageClass来进行绑定，绑定成功后Pod才能通过PVC使用这个PV，但是在Local PV中这个流程不行。</p>
+<blockquote>
+<p>举个例子，有个Pod声明使用pvc-1，规定只能运行在node-2，此时集群中有两个属性（大小和读写权限）相同的Local PV（PV-1对应磁盘在node-1，PV-2对应磁盘在node-2）。假设kubernetes的Volume控制循环里，首先检查到PVC-1和PV-1匹配，直接绑定在一起。然后kubernetes创建pod，问题来了，Pod声明的PVC-1与node-1的PV-1绑定了，根据调度器必须考虑Volume分布的原则，pod被调度到node-1，但是我们规定是pod要运行在node-2，所有pod调度失败。</p>
+</blockquote>
+<p>所以使用Local PV的时候，必须要推迟绑定PV和PVC。具体而言就是<strong>推迟到调度的时候进行绑定</strong>。等待第一个声明使用该PVC的Pod出现在调度器之后，调度器再综合考虑所有的调度规则（包括每个PV所在的节点位置），来统一决定，这个Pod声明的PVC应该跟哪个PV进行绑定。</p>
+<p><strong>通过延迟绑定机制，原本实时发生在PVC和PV的绑定过程，就被延迟到了Pod第一次调度的时候在调度器中进行，从而保证了这个绑定结果不会影响Pod正常调度</strong>。在具体实现中，调度器实际上维护了一个与Volume Controller类似的控制循环，专门负责为那些声明了“延迟绑定”的PV和PVC进行绑定工作。</p>
+<blockquote>
+<p>当一个Pod的PVC尚未完成绑定时，调度器也不会等待，而是直接把这个Pod重新放回调度队列，等到下一个调度周期再做处理。</p>
+</blockquote>
+<p>创建StorageClass：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create -f local-sc.yaml 
+storageclass.storage.k8s.io/local-storage created
+
+</code></pre></div><p>然后创建普通的PVC就能让pod来使用Local PV：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: PersistentVolumeClaim
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: example-local-claim
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">accessModes</span>:
+  - ReadWriteOnce
+  <span style="color:#66d9ef">resources</span>:
+    <span style="color:#66d9ef">requests</span>:
+      <span style="color:#66d9ef">storage</span>: 5Gi
+  <span style="color:#66d9ef">storageClassName</span>: local-storage   <span style="color:#75715e">#kubernetes检测到这个PVC不会直接给它绑定</span>
+</code></pre></div><p>创建这个PVC：</p>
+<pre><code>$ kubectl create -f local-pvc.yaml 
+persistentvolumeclaim/example-local-claim created
+
+$ kubectl get pvc
+NAME                  STATUS    VOLUME    CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+example-local-claim   Pending                                       local-storage   7s
+
+</code></pre><p>PVC会一直处于pending状态，等待绑定。</p>
+<p>编写一个Pod来声明使用这个PVC：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: example-pv-pod
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">containers</span>:
+    - <span style="color:#66d9ef">name</span>: example-pv-container
+      <span style="color:#66d9ef">image</span>: nginx
+      <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
+          <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;http-server&#34;</span>
+      <span style="color:#66d9ef">volumeMounts</span>:
+        - <span style="color:#66d9ef">mountPath</span>: <span style="color:#e6db74">&#34;/usr/share/nginx/html&#34;</span>
+          <span style="color:#66d9ef">name</span>: example-pv-storage
+  <span style="color:#66d9ef">volumes</span>:
+  - <span style="color:#66d9ef">name</span>: example-pv-storage
+    <span style="color:#66d9ef">persistentVolumeClaim</span>:
+      <span style="color:#66d9ef">claimName</span>: example-local-claim
+</code></pre></div><p>一旦创建这个pod之前处于pending的pvc就会编程Bound状态：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create -f local-pod.yaml 
+pod/example-pv-pod created
+
+$ kubectl get pvc
+NAME                  STATUS    VOLUME       CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+example-local-claim   Bound     example-pv   5Gi        RWO            local-storage   6h
+
+</code></pre></div><p>在创建的Pod进入调度器之后，绑定操作就开始进行。</p>
+<p>像kubernetes这样构建出来的、基于本地存储的Volume，完全可以提供容器持久化存储的功能，所以像StatefulSet这样的有状态编排工具也完全可以通过声明Local类型的pv和pvc来管理应用的存储状态。</p>
+<p>手动创建PV（即static的PV管理方式）在删除PV时需要按如下流程执行操作，否则PV删除失败：</p>
+<ol>
+<li>删除使用这个PV的Pod</li>
+<li>从宿主机移除本地磁盘（如umount）</li>
+<li>删除pvc</li>
+<li>删除pv</li>
+</ol>
+<p>上述操作比较繁琐，kubernetes提供了Static Provision来帮助管理这些PV。</p>
+<p>比如，所有磁盘都挂载在宿主机的<code>/mnt/disks</code>目录下，当Static Provision启动后，通过DaemonSet自动检查每个宿主机的<code>/mnt/disks</code>目录，然后调用kubernetes API，为这些目录下的每一个挂载，创建一个对应的PV对象出来，如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pv
+NAME                CAPACITY    ACCESSMODES   RECLAIMPOLICY   STATUS      CLAIM     STORAGECLASS    REASON    AGE
+local-pv-ce05be60   1024220Ki   RWO           Delete          Available             local-storage             26s
+
+$ kubectl describe pv local-pv-ce05be60 
+Name:  local-pv-ce05be60
+...
+StorageClass: local-storage
+Status:  Available
+Claim:  
+Reclaim Policy: Delete
+Access Modes: RWO
+Capacity: 1024220Ki
+NodeAffinity:
+  Required Terms:
+      Term 0:  kubernetes.io/hostname in <span style="color:#f92672">[</span>node-1<span style="color:#f92672">]</span>
+Message: 
+Source:
+    Type: LocalVolume <span style="color:#f92672">(</span>a persistent volume backed by local storage on a node<span style="color:#f92672">)</span>
+    Path: /mnt/disks/vol1
+</code></pre></div><p>这个PV里面的各种定义，StorageClass、本地片挂载点位置，都是通过Provision的配置文件指定的。这个Provision本身也是一个External Provision。</p>
+<h1 id="自定义存储插件">自定义存储插件</h1>
+<p>PV和PVC的实现原理，是处于整个存储提醒的可扩展性的考虑，在kubernetes中，存储插件的开发有两种方式：FlexVolume和CSI。</p>
+
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>
