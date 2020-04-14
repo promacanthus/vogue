@@ -1,0 +1,39 @@
+---
+title: 01-Go-kit简介.md
+date: 2020-04-14T10:09:14.246627+08:00
+draft: false
+hideLastModified: false
+summaryImage: ""
+keepImageRatio: true
+tags:
+- ""
+- 开发框架
+- Go-kit
+summary: 01-Go-kit简介.md
+showInMenu: false
+
+---
+
+# 01-Go-kit简介
+
+## 什么是Go kit
+
+Go kit是Go语言库的一个集合帮助构建可靠、健壮、可维护的微服务。它最初被认为是一种工具包，可以帮助大型（所谓的现代企业）组织采用Go作为开发语言，同时也为较小的初创企业和组织服务。有关Go kit起源的更多信息，请参阅[Go kit：现代企业中的Go](http://peter.bourgon.org/go-kit/)。
+
+## 为什么需要使用Go kit
+
+如果要在组织中采用微服务模式，那么应该使用Go kit，它将有助于架构和创建服务，并且可以避免常见的陷阱，从而编写优雅的代码。
+
+Go kit还可以帮助证明Go作为开发语言的合理性，它通过提供成熟的模式和习惯用法（由大量经验丰富的开发者编写和维护，并在生产环境中进行验证的），降低了Go和微服务的风险。
+
+## Go kit的维护者
+
+Go kit最初是由Peter Bourgon构思的，但是现在由来自不同背景和组织的一大批贡献者构建和维护。Go kit目前是纯自发维护的，没有任何商业支持。
+
+## Go kit是否可用于生产环境
+
+可以，目前Go kit已经在多个组织中用于生产环境。
+
+## Go kit与Go Micro相比如何
+
+像Go kit一样，Micro将自己描述为微服务工具箱。但是与Go工具包不同，Micro还将自己描述为微服务生态系统。它具有更广阔的视野，对有关基础架构和体系结构的期望和意见进行了定义。简而言之，Micro希望成为一个平台。相反，Go kit希望集成到其他平台中。

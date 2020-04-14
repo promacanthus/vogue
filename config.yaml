@@ -6,16 +6,16 @@ theme: hugo-refresh
 
 # This options specify where to look for the images used in this config
 # The default value is the "asset" directory of this theme
-assetDir: "static"
+# assetDir: "static"
 
 # Option to specify the default language of the theme
 # I.e., the landing language of your root 
-DefaultContentLanguage: en
+DefaultContentLanguage: zh
 
 ## Option to disable additional language in your site.
-disableLanguages: ["ru"]
+# disableLanguages: ["ru"]
 
-disableKinds: ["sitemap","RSS"]
+# disableKinds: ["sitemap","RSS"]
 
 # Option to specify that all links will be open in a new tab.
 blackfriday:
@@ -81,7 +81,7 @@ params:
   pagNotFound:
     # option to specify the main picture of the sidebar
     # the starting folder is configure in "assetDir" of this file
-    image: "images/avataaars_404.png"
+    image: "images/avataaars_404.jpg"
     # option to specify the title of the 404 page
     title: 404 Page Not Found :(
     # option to specify the subtitle of the 404 page
@@ -101,7 +101,7 @@ params:
     # option to specify the subtitle in the homepage
     subtitle: Personal website and blog
     # option to specify image in the homepage
-    image: "images/avataaars.png" # worker.svg 
+    image: "images/avataaars.jpg" # worker.svg 
     # option to specify the width of the image in the homepage
     imageWidth: 500px
 
