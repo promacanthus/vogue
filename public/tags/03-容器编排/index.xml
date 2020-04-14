@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>03-容器编排 on Promacanthus</title>
+    <link>http://localhost:1313/tags/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/</link>
+    <description>Recent content in 03-容器编排 on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 10:09:14 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>01-Pod-1.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/01-pod-1/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/01-pod-1/</guid>
+      <description>01-Pod-1.md</description>
+    </item>
+    
+    <item>
+      <title>02-Pod-2.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/02-pod-2/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/02-pod-2/</guid>
+      <description>02-Pod-2.md</description>
+    </item>
+    
+    <item>
+      <title>03-Pod-3.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/03-pod-3/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/03-pod-3/</guid>
+      <description>03-Pod-3.md</description>
+    </item>
+    
+    <item>
+      <title>04-控制器模型.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/04-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/04-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%A8%A1%E5%9E%8B/</guid>
+      <description>04-控制器模型.md</description>
+    </item>
+    
+    <item>
+      <title>05-作业副本与水平扩展.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/05-%E4%BD%9C%E4%B8%9A%E5%89%AF%E6%9C%AC%E4%B8%8E%E6%B0%B4%E5%B9%B3%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/05-%E4%BD%9C%E4%B8%9A%E5%89%AF%E6%9C%AC%E4%B8%8E%E6%B0%B4%E5%B9%B3%E6%89%A9%E5%B1%95/</guid>
+      <description>05-作业副本与水平扩展.md</description>
+    </item>
+    
+    <item>
+      <title>06-StatefulSet.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/06-statefulset/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/06-statefulset/</guid>
+      <description>06-StatefulSet.md</description>
+    </item>
+    
+    <item>
+      <title>07-Operator.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/07-operator/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/07-operator/</guid>
+      <description>07-Operator.md</description>
+    </item>
+    
+    <item>
+      <title>08-Daemonset.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/08-daemonset/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/08-daemonset/</guid>
+      <description>08-Daemonset.md</description>
+    </item>
+    
+    <item>
+      <title>09-Job&amp;Cronjob.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/09-jobcronjob/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/09-jobcronjob/</guid>
+      <description>09-Job&amp;amp;Cronjob.md</description>
+    </item>
+    
+    <item>
+      <title>10-编程范式.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/10-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/10-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F/</guid>
+      <description>10-编程范式.md</description>
+    </item>
+    
+    <item>
+      <title>11-声明式API.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/11-%E5%A3%B0%E6%98%8E%E5%BC%8Fapi/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/11-%E5%A3%B0%E6%98%8E%E5%BC%8Fapi/</guid>
+      <description>11-声明式API.md</description>
+    </item>
+    
+    <item>
+      <title>12-RBAC.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/12-rbac/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/03-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/12-rbac/</guid>
+      <description>12-RBAC.md</description>
+    </item>
+    
+  </channel>
+</rss>

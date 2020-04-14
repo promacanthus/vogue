@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dockerfile-Guide on Promacanthus</title>
+    <link>http://localhost:1313/tags/dockerfile-guide/</link>
+    <description>Recent content in Dockerfile-Guide on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 10:09:14 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/dockerfile-guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>01-Dockerfile样例.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/dockerfile-guide/01-dockerfile%E6%A0%B7%E4%BE%8B/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/dockerfile-guide/01-dockerfile%E6%A0%B7%E4%BE%8B/</guid>
+      <description>01-Dockerfile样例.md</description>
+    </item>
+    
+    <item>
+      <title>02-DockerFile指南.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/dockerfile-guide/02-dockerfile%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/dockerfile-guide/02-dockerfile%E6%8C%87%E5%8D%97/</guid>
+      <description>02-DockerFile指南.md</description>
+    </item>
+    
+    <item>
+      <title>03-Dockerfile精简.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/dockerfile-guide/03-dockerfile%E7%B2%BE%E7%AE%80/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/dockerfile-guide/03-dockerfile%E7%B2%BE%E7%AE%80/</guid>
+      <description>03-Dockerfile精简.md</description>
+    </item>
+    
+    <item>
+      <title>04-Dockerfile多阶段构建.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/dockerfile-guide/04-dockerfile%E5%A4%9A%E9%98%B6%E6%AE%B5%E6%9E%84%E5%BB%BA/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/dockerfile-guide/04-dockerfile%E5%A4%9A%E9%98%B6%E6%AE%B5%E6%9E%84%E5%BB%BA/</guid>
+      <description>04-Dockerfile多阶段构建.md</description>
+    </item>
+    
+  </channel>
+</rss>

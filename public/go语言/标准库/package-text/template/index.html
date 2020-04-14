@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/package-text/template/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="template.md" /><meta property="og:description" content="template.md" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/style.sass" integrity="">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">template.md</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <h1 id="package-templage">package templage</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;text/template&#34;</span>
+</code></pre></div><p>templage包实现数据驱动的模板以生成文本输出。</p>
+<p>要生成HTML输出，请查看<code>html/template</code>包，该软件包具有与此软件包相同的接口，但会自动保护HTML输出免受某些攻击。</p>
+<p>Templates通过将模板应用于数据结构来运行。 模板中的注释指的是数据结构的元素（通常是结构体的字段或map中的键），以控制执行并派生要显示的值。 模板执行引擎将遍历结构并设置光标（以句点<code>“.”</code>表示）到结构中当前位置的值。</p>
+<p>模板的输入文本是UTF-8编码的任何格式的文本。</p>
+<ul>
+<li>动作：数据评估或控制</li>
+<li>结构：以<code>“ {{”</code>和<code>“}}”</code>界定</li>
+</ul>
+<p>所有动作之外的文本将原样复制到输出中。 除了<code>raw string</code>，动作可能不会跨越换行符，尽管注释可以。</p>
+<p>一旦开始解析，可以并行安全地执行模板，如果并行执行共享一个Writer，则输出可以交错。</p>
+<p>这是一个简单的示例，输出“ 17 items are made of wool ”。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Inventory</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Material</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">Count</span>    <span style="color:#66d9ef">uint</span>
+}
+
+<span style="color:#a6e22e">sweaters</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Inventory</span>{<span style="color:#e6db74">&#34;wool&#34;</span>, <span style="color:#ae81ff">17</span>}
+<span style="color:#a6e22e">tmpl</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;test&#34;</span>).<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;{{.Count}} items are made of {{.Material}}&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> { panic(<span style="color:#a6e22e">err</span>) }
+<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">tmpl</span>.<span style="color:#a6e22e">Execute</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#a6e22e">sweaters</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> { panic(<span style="color:#a6e22e">err</span>) }
+</code></pre></div><p>下面展示更多复杂的示例。</p>
+<h2 id="文字和空格">文字和空格</h2>
+<p>默认情况下，执行模板时，将逐个复制动作之间的所有文本。例如，在上面的示例中，运行程序时，字符串<code>“ items made of ”</code>显示在标准输出上。</p>
+<p>但是，为帮助格式化模板源代码，如果操作的左定界符（默认为<code>“{{”</code>）后紧跟一个减号和ASCII空格字符（<code>“{{- ”</code>），则会紧接在前的文本。 同样，如果右定界符（<code>“}}”</code>）前面有一个空格和减号（<code>“ -}}”</code>），则所有紧随其后的空格都将修剪掉。 在这些修饰标记中，必须存在ASCII空格； <code>“{{-3}}”</code>解析为包含数字-3的动作。</p>
+<p>例如，执行以下模板：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#e6db74">&#34;{{23 -}} &lt; {{- 45}}&#34;</span>
+<span style="color:#75715e">// 生成的输出
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;23&lt;45&#34;</span>
+</code></pre></div><p>对于此修剪操作，空格字符的定义与Go中的相同：空格，水平制表符，回车符和换行符。</p>
+<h3 id="注释">注释</h3>
+<p>注释的语法和 Go 语言程序代码中的块注释语法相同，即使用<code>/*</code>和 <code>*/</code> 将注释内容包括起来，例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#75715e">/* 这是注释内容 */</span>}}
+
+</code></pre></div><p>模板中的注释会在模板的解析阶段被剔除，输出时会多出一个空行，就是模板文本中的注释所在的那一行。</p>
+<h2 id="根对象">根对象</h2>
+<p>在Go语言的标准库模板中引擎中，点操作符默认指向的是根对象，即<code>Execute</code>函数中的第二个参数，该参数是一个<code>interface{}</code>类型，<code>test/template</code>包提供的文本模板引擎会根据提供的根对象进行底层分析，自动判断以什么形式去理解模板中的语法。</p>
+<h2 id="复杂对象">复杂对象</h2>
+<h3 id="struct">struct</h3>
+<p>渲染struct对象，如上面的Inventory。使用分隔符包裹起来的内容和Inventory类型中的字段名称要一一对应，且大小写保持一致（Go语言对大小写敏感）。</p>
+<p>使用同样的方法调用对象所具有的方法。</p>
+<h3 id="map">map</h3>
+<p>利用<code>map[string]interface{}</code>类型的根对象，可以实现灵活地向模板添加需要被渲染的子对象。这种方案可行的根本原因在于Go语言中，当<code>interface{}</code>类型作为参数时，调用者可以传入任意类型的值。</p>
+<h2 id="定义变量">定义变量</h2>
+<p>文本模板引擎支持使用字母数字作为变量的名称，并使用美元符号<code>($)</code>作为前缀，例如<code>$name</code>，在模板中变量的定义语法和程序代码中类似，使用<code>:=</code>连接变量名和赋值语句。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;Alice&#34;</span>}}
+{{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">18</span>}}
+{{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">round2</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">true</span>}}
+<span style="color:#a6e22e">Name</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name</span>}}
+<span style="color:#a6e22e">Age</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">age</span>}}
+<span style="color:#a6e22e">Round2</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">round2</span>}}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Name</span>: <span style="color:#a6e22e">Alice</span>
+<span style="color:#a6e22e">Age</span>: <span style="color:#ae81ff">18</span>
+<span style="color:#a6e22e">Round2</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><h3 id="注意点">注意点</h3>
+<ol>
+<li>变量定义（或首次获得赋值）必须使用<code>:=</code>的语法</li>
+<li>获取变量值时，直接在相应位置使用美元符号加上变量名称即可</li>
+<li>所有有关变量的操作都属于模板语法的一部分，因此需要使用双层大括号将其包裹起来</li>
+</ol>
+<p>在变量定以后，修改变量的值，直接使用等号即可。</p>
+<h2 id="动作">动作</h2>
+<h3 id="if">if</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#66d9ef">if</span> .<span style="color:#a6e22e">yIsZero</span>}}
+        <span style="color:#a6e22e">除数不能为</span> <span style="color:#ae81ff">0</span>
+{{<span style="color:#66d9ef">else</span>}}
+        {{.<span style="color:#a6e22e">result</span>}}
+{{<span style="color:#a6e22e">end</span>}}
+</code></pre></div><p>在模板使用中，将条件语句（条件语句必须返回一个bool值）放置在if关键字之后，使用空格将它们分隔，并将整个语句使用分隔符<code>{{和}}</code>进行包裹。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">pipeline</span>}} <span style="color:#a6e22e">T1</span> {{<span style="color:#a6e22e">end</span>}}
+{{<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">pipeline</span>}} <span style="color:#a6e22e">T1</span> {{<span style="color:#66d9ef">else</span>}} <span style="color:#a6e22e">T0</span> {{<span style="color:#a6e22e">end</span>}}
+{{<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">pipeline</span>}} <span style="color:#a6e22e">T1</span> {{<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">pipeline</span>}} <span style="color:#a6e22e">T0</span> {{<span style="color:#a6e22e">end</span>}}
+</code></pre></div><h3 id="range">range</h3>
+<p>除了可以在模板中进行条件判断，还可以通过range语句进行迭代操作，直接在模板中对集合类型的数据进行处理和渲染。</p>
+<p>Go语言中一般来说有三种类型可以进行迭代操作，数组（Array）、切片（Slice）、字典（Map）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#66d9ef">range</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">:=</span> .<span style="color:#a6e22e">Names</span>}}
+        {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name</span>}}
+{{<span style="color:#a6e22e">end</span>}}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Alice</span>
+<span style="color:#a6e22e">Bob</span>
+<span style="color:#a6e22e">Carol</span>
+<span style="color:#a6e22e">David</span>
+
+{{<span style="color:#66d9ef">range</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">i</span>, <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">:=</span> .<span style="color:#a6e22e">Names</span>}}
+        {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">i</span>}}. {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name</span>}}
+{{<span style="color:#a6e22e">end</span>}}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">0.</span> <span style="color:#a6e22e">Alice</span>
+<span style="color:#ae81ff">1.</span> <span style="color:#a6e22e">Bob</span>
+<span style="color:#ae81ff">2.</span> <span style="color:#a6e22e">Carol</span>
+<span style="color:#ae81ff">3.</span> <span style="color:#a6e22e">David</span>
+</code></pre></div><p>通过使用语法结构<code>range$index,$value := .Names</code>，可以获得变量的索引和值。就模板语法而言，迭代不同的集合类型没有区别。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#66d9ef">range</span> <span style="color:#a6e22e">pipeline</span>}} <span style="color:#a6e22e">T1</span> {{<span style="color:#a6e22e">end</span>}}
+{{<span style="color:#66d9ef">range</span> <span style="color:#a6e22e">pipeline</span>}} <span style="color:#a6e22e">T1</span> {{<span style="color:#66d9ef">else</span>}} <span style="color:#a6e22e">T0</span> {{<span style="color:#a6e22e">end</span>}}
+</code></pre></div><h3 id="with">with</h3>
+<p>使用with语句来限定模板渲染的对象范围，对比以下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 不带with
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">SKU</span>: {{.<span style="color:#a6e22e">Inventory</span>.<span style="color:#a6e22e">SKU</span>}}
+<span style="color:#a6e22e">Name</span>: {{.<span style="color:#a6e22e">Inventory</span>.<span style="color:#a6e22e">Name</span>}}
+<span style="color:#a6e22e">UnitPrice</span>: {{.<span style="color:#a6e22e">Inventory</span>.<span style="color:#a6e22e">UnitPrice</span>}}
+<span style="color:#a6e22e">Quantity</span>: {{.<span style="color:#a6e22e">Inventory</span>.<span style="color:#a6e22e">Quantity</span>}}
+
+<span style="color:#75715e">// 带with
+</span><span style="color:#75715e"></span>{{<span style="color:#a6e22e">with</span> .<span style="color:#a6e22e">Inventory</span>}}
+        <span style="color:#a6e22e">SKU</span>: {{.<span style="color:#a6e22e">SKU</span>}}
+        <span style="color:#a6e22e">Name</span>: {{.<span style="color:#a6e22e">Name</span>}}
+        <span style="color:#a6e22e">UnitPrice</span>: {{.<span style="color:#a6e22e">UnitPrice</span>}}
+        <span style="color:#a6e22e">Quantity</span>: {{.<span style="color:#a6e22e">Quantity</span>}}
+{{<span style="color:#a6e22e">end</span>}}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#a6e22e">with</span> <span style="color:#a6e22e">pipeline</span>}} <span style="color:#a6e22e">T1</span> {{<span style="color:#a6e22e">end</span>}}
+{{<span style="color:#a6e22e">with</span> <span style="color:#a6e22e">pipeline</span>}} <span style="color:#a6e22e">T1</span> {{<span style="color:#66d9ef">else</span>}} <span style="color:#a6e22e">T0</span> {{<span style="color:#a6e22e">end</span>}}
+</code></pre></div><h3 id="作用域">作用域</h3>
+<p>和程序代码中的作用域相似，文本密保引擎中也有作用域的概念，with语句是作用域最直接的体现。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;alice&#34;</span>}}
+<span style="color:#a6e22e">name1</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span>}}
+{{<span style="color:#a6e22e">with</span> <span style="color:#66d9ef">true</span>}}
+        {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span> = <span style="color:#e6db74">&#34;alice2&#34;</span>}}
+        {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name2</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;bob&#34;</span>}}
+        <span style="color:#a6e22e">name2</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name2</span>}}
+{{<span style="color:#a6e22e">end</span>}}
+<span style="color:#a6e22e">name1</span> <span style="color:#a6e22e">after</span> <span style="color:#a6e22e">with</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span>}}
+
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">name1</span>: <span style="color:#a6e22e">alice</span>
+<span style="color:#a6e22e">name2</span>: <span style="color:#a6e22e">bob</span>
+<span style="color:#a6e22e">name1</span> <span style="color:#a6e22e">after</span> <span style="color:#a6e22e">with</span>: <span style="color:#a6e22e">alice2</span>
+</code></pre></div><p>在进入with代码库之前，name1的值为alice，但在with代码块中被修改成了alice2，这个赋值操作直接修改了在模板中全局作用域中定义的模板变量name1的值。</p>
+<p>如果在模板末尾增加<code>name2 after with: {{$name2}}</code>，那么运行会报错<code>Parse: template: test:10: undefined variable &quot;$name2&quot;</code>，模板引擎在解析阶段就发现名为 <code>$name2</code> 的模板变量在 with 代码块之外是属于未定义的，这和在程序代码中操作一个超出作用域的变量是一致的。</p>
+<p><strong>注意点：</strong></p>
+<ol>
+<li>模板变量<code>name1</code>是在模板的全局作用域中定义的</li>
+<li>模板变量<code>name1</code>是在with代码块中进行单纯的赋值操作，即<code>=</code>不是<code>:=</code></li>
+<li>模板变量<code>name2</code>是在with代码的作用域中定义的</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;alice&#34;</span>}}
+<span style="color:#a6e22e">name1</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span>}}
+{{<span style="color:#a6e22e">with</span> <span style="color:#66d9ef">true</span>}}
+        {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;alice2&#34;</span>}}
+        {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name2</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;bob&#34;</span>}}
+        <span style="color:#a6e22e">name1</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">with</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span>}}
+        <span style="color:#a6e22e">name2</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name2</span>}}
+{{<span style="color:#a6e22e">end</span>}}
+<span style="color:#a6e22e">name1</span> <span style="color:#a6e22e">after</span> <span style="color:#a6e22e">with</span>: {{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span>}}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">name1</span>: <span style="color:#a6e22e">alice</span>
+<span style="color:#a6e22e">name1</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">with</span>: <span style="color:#a6e22e">alice2</span>
+<span style="color:#a6e22e">name2</span>: <span style="color:#a6e22e">bob</span>
+<span style="color:#a6e22e">name1</span> <span style="color:#a6e22e">after</span> <span style="color:#a6e22e">with</span>: <span style="color:#a6e22e">alice</span>
+</code></pre></div><p>在模板中使用 <code>:=</code> 的时候，模板引擎会在当前作用域内新建一个同名的模板变量（等同于程序代码中本地变量和全局变量的区别），在同个作用域内对这个模板变量的操作都不会影响到其它作用域。</p>
+<blockquote>
+<p>除了with语句，if语句和range语句都会在各自的代码块中形成一个局部的作用域。</p>
+</blockquote>
+<h2 id="函数">函数</h2>
+<p>在执行期间会在两个函数Map中查找函数：</p>
+<ol>
+<li>在模板中</li>
+<li>在全局函数Map中</li>
+</ol>
+<p>默认情况下，模板中未定义任何函数，但可以使用Funcs方法添加它们。</p>
+<h3 id="自定义函数">自定义函数</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">tmpl</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;test&#34;</span>).<span style="color:#a6e22e">Funcs</span>(<span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">FuncMap</span>{
+        <span style="color:#e6db74">&#34;add&#34;</span>: <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>
+        },
+})
+
+<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tmpl</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">`
+</span><span style="color:#e6db74">result: </span><span style="color:#75715e">{{</span><span style="color:#a6e22e">add</span> <span style="color:#a6e22e">1</span> <span style="color:#a6e22e">2</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">`</span>)
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">result</span>: <span style="color:#ae81ff">3</span>
+</code></pre></div><p><code>Funcs</code>方法接受一个<code>template.FuncMap</code>类型的参数，其用法和map类型作为根对象一样，底层也是<code>map[string]interface{}</code>，通过这种方法，就可以向模板中添加更多的函数与满足需求。</p>
+<p>标准库中的内置函数参见下面的预定义函数。</p>
+<h3 id="预定义函数">预定义函数</h3>
+<p>预定义的全局函数命名如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">and</span>
+<span style="color:#75715e">// 通过返回第一个空的参数或最后一个参数，来返回参数的逻辑与的结果
+</span><span style="color:#75715e">// 即，“and x y”的行为类似于“ if x then y else x”。 对所有参数进行求值。
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">call</span>
+<span style="color:#75715e">// 返回调用第一个参数的结果，该参数必须是一个函数，其余参数作为它的参数。
+</span><span style="color:#75715e">// 因此，“call X.Y 1 2”在Go表示法中是 .X.Y(1,2)，其中Y是函数值字段，map条目等。
+</span><span style="color:#75715e">// 第一个参数必须是产生函数类型值的评估结果（不同于诸如print之类的预定义函数）。
+</span><span style="color:#75715e">// 该函数必须返回一个或两个结果值，其中第二个是error类型。
+</span><span style="color:#75715e">// 如果参数不匹配该函数，或者返回的错误值为非nil，则执行停止。
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">html</span>
+<span style="color:#75715e">// 返回与其参数的文本表示形式等效的转义HTML。
+</span><span style="color:#75715e">// 此功能在html/template中不可用，但有一些例外。
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">index</span>
+<span style="color:#75715e">// 返回通过后续参数索引其第一个参数的结果。
+</span><span style="color:#75715e">//  因此，按照Go语法中：
+</span><span style="color:#75715e">// “index x 1 2 3”是x [1] [2] [3]
+</span><span style="color:#75715e">//  每个索引项目必须是map，切片或数组
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">slice</span>
+<span style="color:#75715e">// slice返回将其第一个参数与其余参数相切片的结果。
+</span><span style="color:#75715e">// 因此，按照Go语法：
+</span><span style="color:#75715e">// “ slice x 1 2”是x [1:2]
+</span><span style="color:#75715e">// “ slice x”是x [:]
+</span><span style="color:#75715e">// “ slice x 1”是x [1:]
+</span><span style="color:#75715e">// “ slice x 1 2 3” “是x [1:2:3]
+</span><span style="color:#75715e">// 第一个参数必须是字符串，切片或数组。
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">js</span>      <span style="color:#75715e">// 返回等效于其参数的文本表示形式的转义JavaScript。
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">len</span>     <span style="color:#75715e">// 返回其参数的整数长度。
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">not</span>     <span style="color:#75715e">// 返回其单个参数的逻辑反。
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">or</span>
+<span style="color:#75715e">// 通过返回第一个非空参数或最后一个参数，来返回其参数的逻辑或的结果，
+</span><span style="color:#75715e">// 即“or x y”的行为类似于“if x then x else y”。 对所有参数进行求值。
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">print</span>   <span style="color:#75715e">// fmt.Sprint的别名
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">printf</span>  <span style="color:#75715e">// fmt.Sprintf的别名
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">println</span> <span style="color:#75715e">//  fmt.Sprintln的别名
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">urlquery</span>
+<span style="color:#75715e">// 以适合嵌入URL查询的形式返回其参数的文本表示形式的转义值。
+</span><span style="color:#75715e">// 此功能在html/template中不可用，但有一些例外。
+</span></code></pre></div><p>用于等式与不等式判断的函数主要有以下6个，都接收两个分别名为<code>arg1</code>和<code>arg2</code>的参数：</p>
+<ul>
+<li>eq(equal)：当等式 <code>arg1 == arg2</code> 成立时，返回 true，否则返回 false</li>
+<li>ne(not equal)：当不等式 <code>arg1 != arg2</code> 成立时，返回 true，否则返回 false</li>
+<li>lt(less than)：当不等式 <code>arg1 &lt; arg2</code> 成立时，返回 true，否则返回 false</li>
+<li>le(less than or equal)：当不等式 <code>arg1 &lt;= arg2</code> 成立时，返回 true，否则返回 false</li>
+<li>gt(greater than)：当不等式 <code>arg1 &gt; arg2</code> 成立时，返回 true，否则返回 false</li>
+<li>ge(greater than or equal)：当不等式 <code>arg1 &gt;= arg2</code> 成立时，返回 true，否则返回 false</li>
+</ul>
+<p>在Go语言中，函数的调用都是以 <strong>函数名称(参数1，参数2，&hellip;)</strong> 的形式，在模板引擎中可以在语法上省略括号。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;alice&#34;</span>}}
+{{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name2</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;bob&#34;</span>}}
+{{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">age1</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">18</span>}}
+{{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">age2</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">23</span>}}
+
+{{<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">eq</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">age1</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">age2</span>}}
+        <span style="color:#a6e22e">年龄相同</span>
+{{<span style="color:#66d9ef">else</span>}}
+        <span style="color:#a6e22e">年龄不相同</span>
+{{<span style="color:#a6e22e">end</span>}}
+
+{{<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ne</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name1</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">name2</span>}}
+        <span style="color:#a6e22e">名字不相同</span>
+{{<span style="color:#a6e22e">end</span>}}
+
+{{<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">gt</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">age1</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">age2</span>}}
+        <span style="color:#a6e22e">alice</span> <span style="color:#a6e22e">年龄比较大</span>
+{{<span style="color:#66d9ef">else</span>}}
+        <span style="color:#a6e22e">bob</span> <span style="color:#a6e22e">年龄比较大</span>
+{{<span style="color:#a6e22e">end</span>}}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">年龄不相同</span>
+<span style="color:#a6e22e">名字不相同</span>
+<span style="color:#a6e22e">bob</span> <span style="color:#a6e22e">年龄比较大</span>
+</code></pre></div><h2 id="管道">管道</h2>
+<p>文本模板引擎中也实现了和Unix操作系统一样的管道操作，使用上述add函数进行展示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">result</span>: {{<span style="color:#a6e22e">add</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span> | <span style="color:#a6e22e">add</span> <span style="color:#ae81ff">2</span> | <span style="color:#a6e22e">add</span> <span style="color:#ae81ff">2</span>}}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">result</span>: <span style="color:#ae81ff">8</span>
+</code></pre></div><h2 id="模板复用">模板复用</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">tmpl</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;test&#34;</span>).<span style="color:#a6e22e">Funcs</span>(<span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">FuncMap</span>{
+        <span style="color:#e6db74">&#34;join&#34;</span>: <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Join</span>,
+})
+
+{{<span style="color:#a6e22e">define</span> <span style="color:#e6db74">&#34;list&#34;</span>}}
+    {{<span style="color:#a6e22e">join</span> . <span style="color:#e6db74">&#34;, &#34;</span>}}
+{{<span style="color:#a6e22e">end</span>}}
+<span style="color:#a6e22e">Names</span>: {{<span style="color:#a6e22e">template</span> <span style="color:#e6db74">&#34;list&#34;</span> .<span style="color:#a6e22e">names</span>}}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Names</span>: <span style="color:#a6e22e">Alice</span>, <span style="color:#a6e22e">Bob</span>, <span style="color:#a6e22e">Cindy</span>, <span style="color:#a6e22e">David</span>
+</code></pre></div><p><strong>注意点：</strong></p>
+<ol>
+<li>通过<code>Funcs</code>方法添加了名为join模板函数，实际上是调用<code>string.join</code></li>
+<li>通过<code>define”&lt;名称&gt;“</code>的语法定义一个局部模板，以根对象<code>.</code>作为参数调用<code>join</code>模板函数</li>
+<li>通过<code>template&quot;&lt;名称&gt;&quot;&lt;参数&gt;</code>的语法，调用名为<code>list</code>的局部模板，并将<code>,names</code>作为参数传递进去（传递的参数会成为局部模板的根对象）</li>
+</ol>
+<h2 id="从本地文件中加载模板">从本地文件中加载模板</h2>
+<p>模板内容都硬编码在程序代码中，每次修改都需要重新编译和运行程序，很麻烦也不利于管理，可以将模板内容保存在本地文件中，然后在程序中加载对应的模板后进行渲染。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">tmpl</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">ParseFiles</span>(<span style="color:#e6db74">&#34;template_local.tmpl&#34;</span>)
+</code></pre></div><p>在同个目录创建一个名为<code>template_local.tmpl</code>的模板文件，文件后缀名为<code>.tpl</code>或<code>.tmpl</code>，文件内容如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#a6e22e">range</span> <span style="color:#f92672">.</span><span style="color:#a6e22e">names</span><span style="color:#75715e">}}</span>
+    - <span style="color:#75715e">{{</span><span style="color:#f92672">.</span><span style="color:#75715e">}}</span>
+<span style="color:#75715e">{{</span><span style="color:#a6e22e">end</span><span style="color:#75715e">}}</span>
+</code></pre></div><p><code>template.ParseFiles</code>接收变长的参数，可以同时指定多个模板文件，需要渲染指定的文件时，使用<code>.ExecuteTemplate</code>函数，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">tmpl</span>.<span style="color:#a6e22e">ExecuteTemplate</span>(<span style="color:#a6e22e">w</span>, <span style="color:#e6db74">&#34;template_local.tmpl&#34;</span>, <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}{
+        <span style="color:#e6db74">&#34;names&#34;</span>: []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;Alice&#34;</span>, <span style="color:#e6db74">&#34;Bob&#34;</span>, <span style="color:#e6db74">&#34;Cindy&#34;</span>, <span style="color:#e6db74">&#34;David&#34;</span>},
+})
+</code></pre></div><h2 id="func-htmlescape">func HTMLEscape</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">HTMLEscape</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>, <span style="color:#a6e22e">b</span> []<span style="color:#66d9ef">byte</span>)
+</code></pre></div><p>HTMLEscape将等同于纯文本数据<code>b</code>的转义HTML写入<code>w</code>。</p>
+<h2 id="func-htmlescapestring">func HTMLEscapeString</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">HTMLEscapeString</span>(<span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">string</span>
+</code></pre></div><p>HTMLEscapeString返回等效于纯文本数据<code>s</code>的转义HTML。</p>
+<h2 id="func-htmlescaper">func HTMLEscaper</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">HTMLEscaper</span>(<span style="color:#a6e22e">args</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">string</span>
+</code></pre></div><p>HTMLEscaper返回与<code>args</code>的文本表示形式等效的转义HTML。</p>
+<h2 id="func-istrue">func IsTrue</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">IsTrue</span>(<span style="color:#a6e22e">val</span> <span style="color:#66d9ef">interface</span>{}) (<span style="color:#a6e22e">truth</span>, <span style="color:#a6e22e">ok</span> <span style="color:#66d9ef">bool</span>)
+</code></pre></div><p>IsTrue报告<code>val</code>是否为“true”（不是其类型的零），以及该<code>val</code>是否具有有意义的真值。这是if和其他此类操作使用的<code>true</code>定义。</p>
+<h2 id="func-jsescape">func JSEscape</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">JSEscape</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>, <span style="color:#a6e22e">b</span> []<span style="color:#66d9ef">byte</span>)
+</code></pre></div><p>JSEscape将等同于纯文本数据<code>b</code>的转义JavaScript写入<code>w</code>。</p>
+<h2 id="func-jsescapestring">func JSEscapeString</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">JSEscapeString</span>(<span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">string</span>
+</code></pre></div><p>JSEscapeString返回等效于纯文本数据<code>s</code>的转义JavaScript。</p>
+<h2 id="func-jsescaper">func JSEscaper</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">JSEscaper</span>(<span style="color:#a6e22e">args</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">string</span>
+
+</code></pre></div><p>SEscaper返回等效于<code>args</code>的文本表示形式的转义JavaScript。</p>
+<h2 id="func-urlqueryescaper">func URLQueryEscaper</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">URLQueryEscaper</span>(<span style="color:#a6e22e">args</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">string</span>
+</code></pre></div><p>URLQueryEscaper以适合嵌入URL查询的形式返回其参数的文本表示形式的转义值。</p>
+<h2 id="type-execerror">type ExecError</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ExecError</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span> <span style="color:#75715e">// Name of template.
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Err</span>  <span style="color:#66d9ef">error</span>  <span style="color:#75715e">// Pre-formatted error.
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>ExecError是Execute在评估其模板出错时返回的自定义错误类型。 （如果发生写错误，则返回实际错误；它不会属于ExecError类型。）</p>
+<h3 id="func-execerror-error">func (ExecError) Error</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#a6e22e">ExecError</span>) <span style="color:#a6e22e">Error</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><h3 id="func-execerror-unwrap">func (ExecError) Unwrap</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#a6e22e">ExecError</span>) <span style="color:#a6e22e">Unwrap</span>() <span style="color:#66d9ef">error</span>
+</code></pre></div><h2 id="type-funcmap">type FuncMap</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">FuncMap</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}
+</code></pre></div><p>FuncMap是定义从名称到函数的Map的映射类型。</p>
+<ul>
+<li>每个函数必须具有单个返回值，</li>
+<li>或者具有两个返回值，其中第二个是error类型。在这种情况下，如果第二个（错误）返回值在执行过程中评估为non-nil，则执行终止，并且Execute返回该错误。</li>
+</ul>
+<p>当模板引擎调用带有参数列表的函数时，该参数列表必须是可指派给该函数的参数类型。</p>
+<ul>
+<li>适用任意类型参数的函数可以使用<code>interface{}</code>或<code>reflect.Value</code>类型的参数。</li>
+<li>返回任意类型结果的函数可以返回<code>interface{}</code>或<code>reflect.Value</code>类型的返回值。</li>
+</ul>
+<h2 id="type-template">type Template</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Template</span> <span style="color:#66d9ef">struct</span> {
+        <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
+        <span style="color:#f92672">*</span><span style="color:#a6e22e">parse</span>.<span style="color:#a6e22e">Tree</span>
+        <span style="color:#f92672">*</span><span style="color:#a6e22e">common</span>
+        <span style="color:#a6e22e">leftDelim</span>  <span style="color:#66d9ef">string</span>
+        <span style="color:#a6e22e">rightDelim</span> <span style="color:#66d9ef">string</span>
+}
+</code></pre></div><p>Template表示一个已被解析的模板。 <code>*parse.Tree</code>字段仅导出供<code>html/template</code>使用，应被所有其他客户端视为未导出。</p>
+<h3 id="样例">样例</h3>
+<h4 id="basic">Basic</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 定义一个模板
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">letter</span> = <span style="color:#e6db74">`
+</span><span style="color:#e6db74">Dear </span><span style="color:#75715e">{{</span><span style="color:#a6e22e">.Name</span><span style="color:#75715e">}}</span><span style="color:#e6db74">,
+</span><span style="color:#e6db74"></span><span style="color:#75715e">{{</span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">.Attended</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">It was a pleasure to see you at the wedding.
+</span><span style="color:#e6db74"></span><span style="color:#75715e">{{-</span> <span style="color:#66d9ef">else</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">It is a shame you couldn&#39;t make it to the wedding.
+</span><span style="color:#e6db74"></span><span style="color:#75715e">{{-</span> <span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#75715e">{{</span><span style="color:#66d9ef">with</span> <span style="color:#a6e22e">.Gift</span> <span style="color:#75715e">-}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Thank you for the lovely </span><span style="color:#75715e">{{</span><span style="color:#a6e22e">.</span><span style="color:#75715e">}}</span><span style="color:#e6db74">.
+</span><span style="color:#e6db74"></span><span style="color:#75715e">{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Best wishes,
+</span><span style="color:#e6db74">Josie
+</span><span style="color:#e6db74">`</span>
+
+<span style="color:#75715e">// 准备一些数据以插入模板
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Recipient</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Name</span>, <span style="color:#a6e22e">Gift</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">Attended</span>   <span style="color:#66d9ef">bool</span>
+}
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">recipients</span> = []<span style="color:#a6e22e">Recipient</span>{
+    {<span style="color:#e6db74">&#34;Aunt Mildred&#34;</span>, <span style="color:#e6db74">&#34;bone china tea set&#34;</span>, <span style="color:#66d9ef">true</span>},
+    {<span style="color:#e6db74">&#34;Uncle John&#34;</span>, <span style="color:#e6db74">&#34;moleskin pants&#34;</span>, <span style="color:#66d9ef">false</span>},
+    {<span style="color:#e6db74">&#34;Cousin Rodney&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">false</span>},
+}
+
+<span style="color:#75715e">// 创建一个template对象并将常量letter解析给它
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">Must</span>(<span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;letter&#34;</span>).<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">letter</span>))
+
+<span style="color:#75715e">// 对每一个recipient执行模板
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">recipients</span> {
+    <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Execute</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#a6e22e">r</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;executing template:&#34;</span>, <span style="color:#a6e22e">err</span>)
+    }
+}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Dear</span> <span style="color:#a6e22e">Aunt</span> <span style="color:#a6e22e">Mildred</span>,
+
+<span style="color:#a6e22e">It</span> <span style="color:#a6e22e">was</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">pleasure</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">see</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">wedding</span>.
+<span style="color:#a6e22e">Thank</span> <span style="color:#a6e22e">you</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">lovely</span> <span style="color:#a6e22e">bone</span> <span style="color:#a6e22e">china</span> <span style="color:#a6e22e">tea</span> <span style="color:#a6e22e">set</span>.
+
+<span style="color:#a6e22e">Best</span> <span style="color:#a6e22e">wishes</span>,
+<span style="color:#a6e22e">Josie</span>
+
+<span style="color:#a6e22e">Dear</span> <span style="color:#a6e22e">Uncle</span> <span style="color:#a6e22e">John</span>,
+
+<span style="color:#a6e22e">It</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">shame</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">couldn</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">t</span> <span style="color:#a6e22e">make</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">wedding</span>.
+<span style="color:#a6e22e">Thank</span> <span style="color:#a6e22e">you</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">lovely</span> <span style="color:#a6e22e">moleskin</span> <span style="color:#a6e22e">pants</span>.
+
+<span style="color:#a6e22e">Best</span> <span style="color:#a6e22e">wishes</span>,
+<span style="color:#a6e22e">Josie</span>
+
+<span style="color:#a6e22e">Dear</span> <span style="color:#a6e22e">Cousin</span> <span style="color:#a6e22e">Rodney</span>,
+
+<span style="color:#a6e22e">It</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">shame</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">couldn</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">t</span> <span style="color:#a6e22e">make</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">wedding</span>.
+
+<span style="color:#a6e22e">Best</span> <span style="color:#a6e22e">wishes</span>,
+<span style="color:#a6e22e">Josie</span>
+</code></pre></div><h4 id="block">Block</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> (
+    <span style="color:#a6e22e">master</span>  = <span style="color:#e6db74">`Names:</span><span style="color:#75715e">{{</span><span style="color:#a6e22e">block</span> <span style="color:#e6db74">&#34;list&#34;</span> <span style="color:#a6e22e">.</span><span style="color:#75715e">}}{{</span><span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#75715e">}}{{</span><span style="color:#66d9ef">range</span> <span style="color:#a6e22e">.</span><span style="color:#75715e">}}{{</span><span style="color:#66d9ef">println</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#a6e22e">.</span><span style="color:#75715e">}}{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74">`</span>
+    <span style="color:#a6e22e">overlay</span> = <span style="color:#e6db74">`</span><span style="color:#75715e">{{</span><span style="color:#a6e22e">define</span> <span style="color:#e6db74">&#34;list&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74"> </span><span style="color:#75715e">{{</span><span style="color:#a6e22e">join</span> <span style="color:#a6e22e">.</span> <span style="color:#e6db74">&#34;, &#34;</span><span style="color:#75715e">}}{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74"> `</span>
+)
+<span style="color:#66d9ef">var</span> (
+    <span style="color:#a6e22e">funcs</span>     = <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">FuncMap</span>{<span style="color:#e6db74">&#34;join&#34;</span>: <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Join</span>}
+    <span style="color:#a6e22e">guardians</span> = []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;Gamora&#34;</span>, <span style="color:#e6db74">&#34;Groot&#34;</span>, <span style="color:#e6db74">&#34;Nebula&#34;</span>, <span style="color:#e6db74">&#34;Rocket&#34;</span>, <span style="color:#e6db74">&#34;Star-Lord&#34;</span>}
+)
+<span style="color:#a6e22e">masterTmpl</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;master&#34;</span>).<span style="color:#a6e22e">Funcs</span>(<span style="color:#a6e22e">funcs</span>).<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">master</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
+<span style="color:#a6e22e">overlayTmpl</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">Must</span>(<span style="color:#a6e22e">masterTmpl</span>.<span style="color:#a6e22e">Clone</span>()).<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">overlay</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">masterTmpl</span>.<span style="color:#a6e22e">Execute</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#a6e22e">guardians</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">overlayTmpl</span>.<span style="color:#a6e22e">Execute</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#a6e22e">guardians</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Names</span>:
+<span style="color:#f92672">-</span> <span style="color:#a6e22e">Gamora</span>
+<span style="color:#f92672">-</span> <span style="color:#a6e22e">Groot</span>
+<span style="color:#f92672">-</span> <span style="color:#a6e22e">Nebula</span>
+<span style="color:#f92672">-</span> <span style="color:#a6e22e">Rocket</span>
+<span style="color:#f92672">-</span> <span style="color:#a6e22e">Star</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Lord</span>
+<span style="color:#a6e22e">Names</span>: <span style="color:#a6e22e">Gamora</span>, <span style="color:#a6e22e">Groot</span>, <span style="color:#a6e22e">Nebula</span>, <span style="color:#a6e22e">Rocket</span>, <span style="color:#a6e22e">Star</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Lord</span>
+</code></pre></div><h4 id="func">Func</h4>
+<p>本示例演示了用于处理模板文本的自定义函数。它使用<code>strings.Title</code>函数，并使用它使标题文本在模板的输出中看起来不错。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 首先，创建一个FuncMap用来注册函数
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">funcMap</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">FuncMap</span>{
+        <span style="color:#75715e">// “title”是在模板文本中将调用的函数
+</span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Title</span>,
+}
+
+<span style="color:#75715e">// 一个简单的模板定义来测试函数
+</span><span style="color:#75715e">// 通过几种方式打印输入文本：
+</span><span style="color:#75715e">// - 原版输出
+</span><span style="color:#75715e">// - 调用title函数
+</span><span style="color:#75715e">// - 调用title函数然后以%q输出
+</span><span style="color:#75715e">// - 以%q输出然后调用title函数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">templateText</span> = <span style="color:#e6db74">`
+</span><span style="color:#e6db74">Input: </span><span style="color:#75715e">{{</span><span style="color:#66d9ef">printf</span> <span style="color:#e6db74">&#34;%q&#34;</span> <span style="color:#a6e22e">.</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Output 0: </span><span style="color:#75715e">{{</span><span style="color:#a6e22e">title</span> <span style="color:#a6e22e">.</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Output 1: </span><span style="color:#75715e">{{</span><span style="color:#a6e22e">title</span> <span style="color:#a6e22e">.</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">printf</span> <span style="color:#e6db74">&#34;%q&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Output 2: </span><span style="color:#75715e">{{</span><span style="color:#66d9ef">printf</span> <span style="color:#e6db74">&#34;%q&#34;</span> <span style="color:#a6e22e">.</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">title</span><span style="color:#75715e">}}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">`</span>
+
+<span style="color:#75715e">// 创建一个模板，然后添加函数，并解析文本
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">tmpl</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;titleTest&#34;</span>).<span style="color:#a6e22e">Funcs</span>(<span style="color:#a6e22e">funcMap</span>).<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">templateText</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;parsing: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+
+<span style="color:#75715e">// 运行模板来验证输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">tmpl</span>.<span style="color:#a6e22e">Execute</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#e6db74">&#34;the go programming language&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;execution: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Input</span>: <span style="color:#e6db74">&#34;the go programming language&#34;</span>
+<span style="color:#a6e22e">Output</span> <span style="color:#ae81ff">0</span>: <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">Go</span> <span style="color:#a6e22e">Programming</span> <span style="color:#a6e22e">Language</span>
+<span style="color:#a6e22e">Output</span> <span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#34;The Go Programming Language&#34;</span>
+<span style="color:#a6e22e">Output</span> <span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#34;The Go Programming Language&#34;</span>
+</code></pre></div><h4 id="glob">Glob</h4>
+<p>从目录加载一组模板。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 创建一个临时目录并使用示例模板定义填充该目录
+</span><span style="color:#75715e">// 通常，模板文件将已经存在与程序已知的某个位置
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">dir</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">createTestDir</span>([]<span style="color:#a6e22e">templateFile</span>{
+    <span style="color:#75715e">// T0.tmpl 是一个纯模板文件仅调用T1
+</span><span style="color:#75715e"></span>    {<span style="color:#e6db74">&#34;T0.tmpl&#34;</span>, <span style="color:#e6db74">`T0 invokes T1: (</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">template</span> <span style="color:#e6db74">&#34;T1&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">)`</span>},
+    <span style="color:#75715e">// T1.tmpl 定义一个模板, T1 调用 T2
+</span><span style="color:#75715e"></span>    {<span style="color:#e6db74">&#34;T1.tmpl&#34;</span>, <span style="color:#e6db74">`</span><span style="color:#75715e">{{</span><span style="color:#a6e22e">define</span> <span style="color:#e6db74">&#34;T1&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">T1 invokes T2: (</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">template</span> <span style="color:#e6db74">&#34;T2&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">)</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74">`</span>},
+    <span style="color:#75715e">// T2.tmpl 定义一个模板 T2.
+</span><span style="color:#75715e"></span>    {<span style="color:#e6db74">&#34;T2.tmpl&#34;</span>, <span style="color:#e6db74">`</span><span style="color:#75715e">{{</span><span style="color:#a6e22e">define</span> <span style="color:#e6db74">&#34;T2&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">This is T2</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74">`</span>},
+})
+<span style="color:#75715e">// 测试后清除目录
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">RemoveAll</span>(<span style="color:#a6e22e">dir</span>)
+
+<span style="color:#75715e">// pattern是用于查找所有模板文件的全局模式
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">pattern</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Join</span>(<span style="color:#a6e22e">dir</span>, <span style="color:#e6db74">&#34;*.tmpl&#34;</span>)
+
+<span style="color:#75715e">// T0.tmpl 是第一个匹配的名字 ，因此它成为起始模板即ParseGlob的返回值
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">tmpl</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">Must</span>(<span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">ParseGlob</span>(<span style="color:#a6e22e">pattern</span>))
+
+<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tmpl</span>.<span style="color:#a6e22e">Execute</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#66d9ef">nil</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;template execution: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">T0</span> <span style="color:#a6e22e">invokes</span> <span style="color:#a6e22e">T1</span>: (<span style="color:#a6e22e">T1</span> <span style="color:#a6e22e">invokes</span> <span style="color:#a6e22e">T2</span>: (<span style="color:#a6e22e">This</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">T2</span>))
+</code></pre></div><h4 id="helper">Helper</h4>
+<p>此示例演示了一种共享模板并在不同上下文中使用它们的方法。在此变体中，我们将多个驱动程序模板手动添加到现有的模板包中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 创建一个临时目录并使用示例模板定义填充该目录
+</span><span style="color:#75715e">// 通常，模板文件将已经存在与程序已知的某个位置
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">dir</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">createTestDir</span>([]<span style="color:#a6e22e">templateFile</span>{
+    <span style="color:#75715e">// T1.tmpl定义一个模板, T1 调用 T2.
+</span><span style="color:#75715e"></span>    {<span style="color:#e6db74">&#34;T1.tmpl&#34;</span>, <span style="color:#e6db74">`</span><span style="color:#75715e">{{</span><span style="color:#a6e22e">define</span> <span style="color:#e6db74">&#34;T1&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">T1 invokes T2: (</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">template</span> <span style="color:#e6db74">&#34;T2&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">)</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74">`</span>},
+    <span style="color:#75715e">// T2.tmpl 定义模板 T2.
+</span><span style="color:#75715e"></span>    {<span style="color:#e6db74">&#34;T2.tmpl&#34;</span>, <span style="color:#e6db74">`</span><span style="color:#75715e">{{</span><span style="color:#a6e22e">define</span> <span style="color:#e6db74">&#34;T2&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">This is T2</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74">`</span>},
+})
+<span style="color:#75715e">// 测试后清除目录
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">RemoveAll</span>(<span style="color:#a6e22e">dir</span>)
+
+<span style="color:#75715e">// pattern是用于查找所有模板文件的全局模式
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">pattern</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Join</span>(<span style="color:#a6e22e">dir</span>, <span style="color:#e6db74">&#34;*.tmpl&#34;</span>)
+
+<span style="color:#75715e">// 加载帮助程序
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">templates</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">Must</span>(<span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">ParseGlob</span>(<span style="color:#a6e22e">pattern</span>))
+<span style="color:#75715e">// 添加一个驱动程序模板；用一个明确的模板定义来做到这一点
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">templates</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;{{define `driver1`}}Driver 1 calls T1: ({{template `T1`}})\n{{end}}&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#e6db74">&#34;parsing driver1: &#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+<span style="color:#75715e">// 添加另一个驱动程序模板
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">templates</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;{{define `driver2`}}Driver 2 calls T2: ({{template `T2`}})\n{{end}}&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#e6db74">&#34;parsing driver2: &#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+
+<span style="color:#75715e">// 在执行之前加载所有模板，text/template包不需要这种操作
+</span><span style="color:#75715e">// 但是html/template包的转义需要这样的操作，这是一个好习惯
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">templates</span>.<span style="color:#a6e22e">ExecuteTemplate</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#e6db74">&#34;driver1&#34;</span>, <span style="color:#66d9ef">nil</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;driver1 execution: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">templates</span>.<span style="color:#a6e22e">ExecuteTemplate</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#e6db74">&#34;driver2&#34;</span>, <span style="color:#66d9ef">nil</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;driver2 execution: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+
+<span style="color:#75715e">// 输出
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Driver</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">calls</span> <span style="color:#a6e22e">T1</span>: (<span style="color:#a6e22e">T1</span> <span style="color:#a6e22e">invokes</span> <span style="color:#a6e22e">T2</span>: (<span style="color:#a6e22e">This</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">T2</span>))
+<span style="color:#a6e22e">Driver</span> <span style="color:#ae81ff">2</span> <span style="color:#a6e22e">calls</span> <span style="color:#a6e22e">T2</span>: (<span style="color:#a6e22e">This</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">T2</span>)
+</code></pre></div><h4 id="share">Share</h4>
+<p>本示例演示如何将一组驱动程序模板与不同的帮助程序模板集一起使用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 创建一个临时目录并使用示例模板定义填充该目录
+</span><span style="color:#75715e">// 通常，模板文件将已经存在与程序已知的某个位置
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">dir</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">createTestDir</span>([]<span style="color:#a6e22e">templateFile</span>{
+    <span style="color:#75715e">// T0.tmpl 是一个纯模板文件仅调用 T1.
+</span><span style="color:#75715e"></span>    {<span style="color:#e6db74">&#34;T0.tmpl&#34;</span>, <span style="color:#e6db74">&#34;T0 ({{.}} version) invokes T1: ({{template `T1`}})\n&#34;</span>},
+    <span style="color:#75715e">// T1.tmpl 定义一个模板, T1 调用 T2. 注意 T2 并没有定义
+</span><span style="color:#75715e"></span>    {<span style="color:#e6db74">&#34;T1.tmpl&#34;</span>, <span style="color:#e6db74">`</span><span style="color:#75715e">{{</span><span style="color:#a6e22e">define</span> <span style="color:#e6db74">&#34;T1&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">T1 invokes T2: (</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">template</span> <span style="color:#e6db74">&#34;T2&#34;</span><span style="color:#75715e">}}</span><span style="color:#e6db74">)</span><span style="color:#75715e">{{</span><span style="color:#66d9ef">end</span><span style="color:#75715e">}}</span><span style="color:#e6db74">`</span>},
+})
+<span style="color:#75715e">// 测试后清空目录
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">RemoveAll</span>(<span style="color:#a6e22e">dir</span>)
+
+<span style="color:#75715e">// pattern是用于查找所有模板文件的全局模式
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">pattern</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Join</span>(<span style="color:#a6e22e">dir</span>, <span style="color:#e6db74">&#34;*.tmpl&#34;</span>)
+
+<span style="color:#75715e">// 加载驱动程序
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">drivers</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">Must</span>(<span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">ParseGlob</span>(<span style="color:#a6e22e">pattern</span>))
+
+<span style="color:#75715e">//  必须定义T2模板的实现，首先克隆驱动程序，然后将T2的定义添加到模板名称空间
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 1. 克隆帮助程序集，以创建一个新的名称空间来运行它们
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">first</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">drivers</span>.<span style="color:#a6e22e">Clone</span>()
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#e6db74">&#34;cloning helpers: &#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+<span style="color:#75715e">// 2. 定义 T2, version A, 并解析它
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">first</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;{{define `T2`}}T2, version A{{end}}&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#e6db74">&#34;parsing T2: &#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+
+<span style="color:#75715e">// 使用不同版本的T2重复上述过程
+</span><span style="color:#75715e">// 1. 克隆驱动程序
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">second</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">drivers</span>.<span style="color:#a6e22e">Clone</span>()
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#e6db74">&#34;cloning drivers: &#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+<span style="color:#75715e">// 2. 定义 T2, version B, 并解析它
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">second</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;{{define `T2`}}T2, version B{{end}}&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#e6db74">&#34;parsing T2: &#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+
+<span style="color:#75715e">// 以相反的顺序执行模板，以验证第一个模板不受第二个模板的影响。
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">second</span>.<span style="color:#a6e22e">ExecuteTemplate</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#e6db74">&#34;T0.tmpl&#34;</span>, <span style="color:#e6db74">&#34;second&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;second execution: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">first</span>.<span style="color:#a6e22e">ExecuteTemplate</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#e6db74">&#34;T0.tmpl&#34;</span>, <span style="color:#e6db74">&#34;first&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;first: execution: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+}
+<span style="color:#a6e22e">Output</span>:
+
+<span style="color:#a6e22e">T0</span> (<span style="color:#a6e22e">second</span> <span style="color:#a6e22e">version</span>) <span style="color:#a6e22e">invokes</span> <span style="color:#a6e22e">T1</span>: (<span style="color:#a6e22e">T1</span> <span style="color:#a6e22e">invokes</span> <span style="color:#a6e22e">T2</span>: (<span style="color:#a6e22e">T2</span>, <span style="color:#a6e22e">version</span> <span style="color:#a6e22e">B</span>))
+<span style="color:#a6e22e">T0</span> (<span style="color:#a6e22e">first</span> <span style="color:#a6e22e">version</span>) <span style="color:#a6e22e">invokes</span> <span style="color:#a6e22e">T1</span>: (<span style="color:#a6e22e">T1</span> <span style="color:#a6e22e">invokes</span> <span style="color:#a6e22e">T2</span>: (<span style="color:#a6e22e">T2</span>, <span style="color:#a6e22e">version</span> <span style="color:#a6e22e">A</span>))
+</code></pre></div><h3 id="func-must">func Must</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Must</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>
+</code></pre></div><p>Must是一个帮助程序，它包装返回（<code>*Template</code>，error）的函数的调用，如果错误为非nil，则会出现恐慌。它旨在用于变量初始化，例如</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">t</span> = <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">Must</span>(<span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;name&#34;</span>).<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;text&#34;</span>))
+</code></pre></div><h3 id="func-new">func New</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>
+</code></pre></div><p>New使用给定名称分配新的未定义模板。</p>
+<h3 id="func-parsefiles">func ParseFiles</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ParseFiles</span>(<span style="color:#a6e22e">filenames</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ParseFiles创建一个新的模板，并从指定文件中解析模板定义。 返回的模板名称将具有第一个文件的基本名称和已解析的内容。 必须至少有一个文件。 如果发生错误，解析将停止并且返回的<code>*Template</code>为nil。</p>
+<p>当在不同目录中解析具有相同名称的多个文件时，最后一个文件将是结果文件。例如，ParseFiles（<code>“a/foo”</code>，<code>“b/foo”</code>）将<code>“ b/foo”</code>存储为名为<code>“foo”</code>的模板，而<code>“a/foo”</code>不可用。</p>
+<h3 id="func-parseglob">func ParseGlob</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ParseGlob</span>(<span style="color:#a6e22e">pattern</span> <span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ParseGlob创建一个新的模板，并从该pattern标识的文件中解析模板定义。 这些文件根据<code>filepath.Match</code>的语义进行匹配，并且该模式必须匹配至少一个文件。 返回的模板将具有该模式匹配的第一个文件的（基本）名称和（解析的）内容。 ParseGlob等效于使用模式匹配的文件列表调用ParseFiles。</p>
+<p>当在不同目录中解析具有相同名称的多个文件时，最后一个文件将是结果文件。</p>
+<h3 id="func-template-addparsetree">func (*Template) AddParseTree</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">AddParseTree</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">tree</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">parse</span>.<span style="color:#a6e22e">Tree</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>AddParseTree添加具有指定名称的模板的解析树，并将其与<code>t</code>关联。如果该模板尚不存在，它将创建一个新模板。如果模板确实存在，它将被替换。</p>
+<h3 id="func-template-clone">func (*Template) Clone</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Clone</span>() (<span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>Clone返回模板的副本，包括所有关联的模板。 不会复制实际的表示形式，但是会复制关联模板的命名空间，因此在副本中进一步调用Parse会将模板添加到副本中，而不是原始模板。 Clone可用于准备通用模板，并将其与其他模板的变体定义一起使用，方法是在完成克隆后添加变体。</p>
+<h3 id="func-template-definedtemplates">func (*Template) DefinedTemplates</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">DefinedTemplates</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><p>DefinedTemplates返回一个字符串，其中列出了已定义的模板，并以字符串<code>“;”</code>作为前缀。如果没有，则返回空字符串。用于在此处和<code>html/template</code>中生成错误消息。</p>
+<h3 id="func-template-delims">func (*Template) Delims</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Delims</span>(<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">right</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>
+</code></pre></div><p>Delims将动作定界符设置为指定的字符串，以在后续对Parse，ParseFiles或ParseGlob的调用中使用。 嵌套模板定义将继承设置。 空定界符代表相应的默认值：<code>{{</code>或<code>}}</code>。 返回值是template，因此可以链式调用。</p>
+<h3 id="func-template-execute">func (*Template) Execute</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Execute</span>(<span style="color:#a6e22e">wr</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>, <span style="color:#a6e22e">data</span> <span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>Execute将已解析的模板应用于指定的数据对象，并将输出写入<code>wr</code>。 如果执行模板或写入其输出时发生错误，则执行将停止，但是可能已将部分结果写入Writer。 模板可以安全地并行执行，如果并行执行共享一个Writer，则输出可能会交错。</p>
+<p>如果数据是<code>reflect.Value</code>，则该模板将应用于<code>reflect.Value</code>所持有的具体值，如<code>fmt.Print</code>中所示。</p>
+<h3 id="func-template-executetemplate">func (*Template) ExecuteTemplate</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">ExecuteTemplate</span>(<span style="color:#a6e22e">wr</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>, <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">data</span> <span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">error</span>
+</code></pre></div><p>ExecuteTemplate将指定名称的与<code>t</code>关联的模板应用于指定的数据对象，并将输出写入<code>wr</code>。 如果执行模板或写入其输出时发生错误，则执行将停止，但是可能已将部分结果写入输出写入器。 模板可以安全地并行执行，如果并行执行共享一个Writer，则输出可能会交错。</p>
+<h3 id="func-template-funcs">func (*Template) Funcs</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Funcs</span>(<span style="color:#a6e22e">funcMap</span> <span style="color:#a6e22e">FuncMap</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>
+</code></pre></div><p>Funcs将参数映射的元素添加到模板的FuncMap。 必须在解析模板之前调用它。 如果映射中的值不是具有适当返回类型的函数，或者该名称不能在语法上用作模板中的函数，则它会返回恐慌。 覆盖Map元素是合法的。 返回值是Template，因此可以链式调用。</p>
+<h3 id="func-template-lookup">func (*Template) Lookup</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Lookup</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>
+</code></pre></div><p>查找将返回与<code>t</code>关联的给定名称的模板。如果没有这样的模板或模板没有定义，则返回nil。</p>
+<h3 id="func-template-name">func (*Template) Name</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Name</span>() <span style="color:#66d9ef">string</span>
+</code></pre></div><p>Name返回模板的名称。</p>
+<h3 id="func-template-new">func (*Template) New</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>
+</code></pre></div><p>New分配与给定模板和相同定界符关联的新的未定义模板。该关联是可传递的，它允许一个模板通过<code>{{template}}</code>动作来调用另一个模板。</p>
+<p>由于关联的模板共享基础数据，因此无法安全并行地进行模板构建。模板一旦构建，就可以并行执行。</p>
+<h3 id="func-template-option">func (*Template) Option</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Option</span>(<span style="color:#a6e22e">opt</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>
+</code></pre></div><p>Option设置模板的选项。选项由字符串（简单字符串或<code>“key=value”</code>）描述。选项字符串中最多可以有一个等号。如果选项字符串无法识别或无效，则返回恐慌。</p>
+<p>已知选项：</p>
+<ul>
+<li>missingkey：使用Map中不存在的键索引了Map，来控制执行期间的行为。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#e6db74">&#34;missingkey=default&#34;</span> <span style="color:#a6e22e">or</span> <span style="color:#e6db74">&#34;missingkey=invalid&#34;</span>
+        <span style="color:#75715e">// default的行为：什么也不做继续执行
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 如果输出，索引操作的值是&#34;&lt;no value&gt;&#34;字符串
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;missingkey=zero&#34;</span>
+        <span style="color:#75715e">// 该操作返回Map类型元素的零值
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;missingkey=error&#34;</span>
+        <span style="color:#75715e">// 执行立即停止并返回错误
+</span></code></pre></div><h3 id="func-template-parse">func (*Template) Parse</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">text</span> <span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>Parse将文本解析为<code>t</code>的模板主体。文本中的命名模板定义(<code>{{define ...}}</code>或<code>{{block ...}}</code>语句)定义了与<code>t</code>关联的其他模板，并从<code>t</code>本身的定义中删除。
+sudo
+可以在连续调用Parse中重新定义模板。 具有仅包含空白和注释的主体的模板定义被认为是空的，不会替换现有模板的主体。 这允许使用Parse添加新的命名模板定义，而不会覆盖主模板主体。</p>
+<h3 id="func-template-parsefiles">func (*Template) ParseFiles</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">ParseFiles</span>(<span style="color:#a6e22e">filenames</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ParseFiles解析指定的文件，并将生成的模板与<code>t</code>关联。 如果发生错误，则解析停止，返回的模板为nil； 否则为<code>t</code>。 必须至少有一个文件。 由于由ParseFiles创建的模板是由参数文件的基本名称命名的，因此<code>t</code>通常应具有文件（基本）名称之一的名称。 如果不是，则根据<code>t</code>的内容，在调用ParseFiles之前，<code>t.Execute</code>可能会失败。 在这种情况下，请使用<code>t.ExecuteTemplate</code>执行有效的模板。</p>
+<p>当在不同目录中解析具有相同名称的多个文件时，最后一个将是结果文件。</p>
+<h3 id="func-template-parseglob">func (*Template) ParseGlob</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">ParseGlob</span>(<span style="color:#a6e22e">pattern</span> <span style="color:#66d9ef">string</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>, <span style="color:#66d9ef">error</span>)
+</code></pre></div><p>ParseGlob解析pattern识别的文件中的模板定义，并将结果模板与<code>t</code>关联。 这些文件根据<code>filepath.Match</code>的语义进行匹配，并且该模式必须匹配至少一个文件。 ParseGlob等效于使用模式匹配的文件列表调用<code>t.ParseFiles</code>。</p>
+<p>当在不同目录中解析具有相同名称的多个文件时，最后一个文件将是结果文件。</p>
+<h3 id="func-template-templates">func (*Template) Templates</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>) <span style="color:#a6e22e">Templates</span>() []<span style="color:#f92672">*</span><span style="color:#a6e22e">Template</span>
+</code></pre></div><p>Templates返回与<code>t</code>关联的已定义模板的切片。</p>
+
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>

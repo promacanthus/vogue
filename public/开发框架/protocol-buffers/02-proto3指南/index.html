@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><link rel="icon" href="/favicon_main.svg"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" /><meta property="og:url"  content="http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/02-proto3%E6%8C%87%E5%8D%97/" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="02-proto3指南" /><meta property="og:description" content="02-proto3指南" /><meta property="og:image:width"  content="600" />
+        <meta property="og:image:height" content="400" /><meta property="og:image" content="http://localhost:1313/images/default_summary_hu2be732aee21a2469ead3fe1f2df8caca_2088687_600x0_resize_q75_box.jpg" /><title>Promacanthus</title>
+    
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open&#43;Sans" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/style.sass" integrity="">
+<link rel="stylesheet" type="text/css" href="/css/monokai-sublime.9.15.8.min.91376415864fdd3a92be524052267afece4bdb1bb8c6c754f5e60c5ac28e93be.css" integrity="sha256-kTdkFYZP3TqSvlJAUiZ6/s5L2xu4xsdU9eYMWsKOk74=">
+<link rel="stylesheet" type="text/css" href="/css/icons.f72c0103ff9598115ab2a76351494b950570479ce3f1795fec13fc62e4185dcf.css" integrity="sha256-9ywBA/&#43;VmBFasqdjUUlLlQVwR5zj8Xlf7BP8YuQYXc8=">
+<link rel="stylesheet" type="text/css" href="/css/refresh.a55f73bd3031566bede1873d229fc74559352e7072fc322debef4b7ea58f58b8.css" integrity="sha256-pV9zvTAxVmvt4Yc9Ip/HRVk1LnBy/DIt6&#43;9LfqWPWLg=">
+<link rel="stylesheet" type="text/css" href="/css/devicon.min.149016fbf45c8bc157d6f55ce3ee875feaa3f90446bf7d151fbc16a9f21a8859.css" integrity="sha256-FJAW&#43;/Rci8FX1vVc4&#43;6HX&#43;qj&#43;QRGv30VH7wWqfIaiFk=">
+  </head>
+  <body>
+     
+
+    <div id="preloader">
+      <div id="status"></div>
+    </div><nav class="navbar is-fresh is-transparent no-shadow" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+
+      
+      
+      
+      <a class="navbar-item">
+        <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+        <div class="navbar-item left-menu-icon-wrapper">
+          分类
+        </div>
+      </a>
+
+      <div class="navbar-item is-expanded"></div>
+      <a class="navbar-item is-hidden-desktop">  
+        <div data-target="navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+          Menu
+        </div>
+        <div data-target="navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+          <svg width="1000px" height="1000px">
+            <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+            <path class="path2" d="M 300 500 L 700 500"></path>
+            <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+          </svg>
+          <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div>
+      </a>
+    </div>
+
+    
+
+    <div id="navbar-menu" class="navbar-menu is-static">
+      
+      <div class="navbar-end">
+        
+          <a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+            <div class="navbar-dropdown">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+            <div class="navbar-dropdown">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+          </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+            <div class="navbar-dropdown">
+              <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+            <div class="navbar-dropdown">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+          </div></div>
+    </div>
+
+
+
+
+  </div>
+</nav>
+<nav id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+  
+        
+        
+        
+        <a class="navbar-item">
+          <div class="menu-icon-wrapper left-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+          <div class="navbar-item left-menu-icon-wrapper">
+            分类
+          </div>
+        </a>
+  
+        <div class="navbar-item is-expanded"></div>
+        <a class="navbar-item is-hidden-desktop">  
+          <div data-target="cloned-navbar-menu" class="navbar-item right-menu-icon-wrapper is-hidden-desktop">
+            Menu
+          </div>
+          <div data-target="cloned-navbar-menu" class="menu-icon-wrapper right-menu-icon-wrapper" style="visibility: visible;">
+            <svg width="1000px" height="1000px">
+              <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+              <path class="path2" d="M 300 500 L 700 500"></path>
+              <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+          </div>
+        </a>
+      </div>
+  
+      
+  
+      <div id="cloned-navbar-menu" class="navbar-menu is-static">
+        <div class="navbar-end"><a href="/" class="navbar-item is-secondary">主页</a><a href="/%E5%85%B3%E4%BA%8E/" class="navbar-item is-secondary">关于</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="navbar-link">微服务</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%9A%E5%8A%A1/" class="navbar-item">微服务业务</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0/" class="navbar-item">微服务平台</a><a href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="navbar-item">领域驱动设计</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/" class="navbar-link">填坑记</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/traefik/" class="navbar-item">Traefik</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/mysql/" class="navbar-item">MySQL</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/kubernetes/" class="navbar-item">Kubernetes</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/" class="navbar-item">HTTP</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/golang/" class="navbar-item">Golang</a><a href="/%E5%A1%AB%E5%9D%91%E8%AE%B0/docker/" class="navbar-item">Docker</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="navbar-link">开发框架</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/webassembly/" class="navbar-item">WebAssembly</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/protocol-buffers/" class="navbar-item">Protocol Buffers</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/grpc/" class="navbar-item">GRPC</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-web/" class="navbar-item">Go Web</a><a href="/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/" class="navbar-item">Go Kit</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="navbar-link">集成开发环境</a>
+              <div class="navbar-dropdown">
+                <a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode/" class="navbar-item">VSCode</a><a href="/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/goland/" class="navbar-item">Goland</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="navbar-link">常用工具</a>
+              <div class="navbar-dropdown">
+                <a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/git/" class="navbar-item">Git</a><a href="/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="navbar-item">正则表达式</a></div>
+            </div><a href="/%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C/" class="navbar-item is-secondary">产品手册</a><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/go%E8%AF%AD%E8%A8%80/" class="navbar-link">Go语言</a>
+              <div class="navbar-dropdown">
+                <a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="navbar-item">样例代码</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%AE%98%E6%96%B9%E6%96%87%E7%AB%A0/" class="navbar-item">官方文章</a><a href="/go%E8%AF%AD%E8%A8%80/%E6%A0%87%E5%87%86%E5%BA%93/" class="navbar-item">标准库</a><a href="/go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80/" class="navbar-item">基础</a></div>
+            </div><div class="navbar-item has-dropdown is-hoverable">
+              <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="navbar-link">云原生</a>
+              <div class="navbar-dropdown">
+                <a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/etcd/" class="navbar-item">Etcd</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="navbar-item">开发环境配置</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/traefik/" class="navbar-item">Traefik</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/service-mesh/" class="navbar-item">Service Mesh</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/ingress/" class="navbar-item">Ingress</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/helm/" class="navbar-item">Helm</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/docker/" class="navbar-item">Docker</a><a href="/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/" class="navbar-item">Kubernetes</a></div>
+            </div></div>
+      </div>
+  
+  
+  
+  
+    </div>
+  </nav>
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait">
+        <h1 class="title is-2 section-title">02-proto3指南</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>
+        
+        <section class="section content has-text-justified">
+          <p>本指南介绍如何使用<code>protocol buffers</code>语言构建<code>protocol buffers</code>数据，包括：</p>
+<ul>
+<li><code>.proto</code>文件语法</li>
+<li>如何从<code>.proto</code>文件生成数据访问类</li>
+</ul>
+<p>它涵盖了<code>protocol buffers</code>语言的<code>proto3</code>版本：有关较早的<code>proto2</code>语法的信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/proto"><code>Proto2</code>语言指南</a>。</p>
+<p>这是一个参考指南，对于使用本文档中描述的许多功能的分步示例，请参阅所选语言的<a href="https://developers.google.com/protocol-buffers/docs/tutorials">教程</a>（目前仅限<code>proto</code>2，更多<code>proto3</code>文档即将推出）。</p>
+<h2 id="定义消息类型">定义消息类型</h2>
+<p>首先看一个非常简单的例子。假设要定义搜索请求消息格式，其中每个搜索请求都有：</p>
+<ul>
+<li>一个字符串类型的查询</li>
+<li>所查询的特定页码</li>
+<li>每页返回的结果数</li>
+</ul>
+<p>这是用于定义消息类型的<code>.proto</code>文件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"> <span style="color:#75715e">// 指定正在使用proto3语法，默认使用proto2，必须是文件的第一个非空注释行
+</span><span style="color:#75715e"></span>syntax <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;proto3&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SearchRequest</span> {     <span style="color:#75715e">// 消息格式以名称-值对的形式指定三个字段
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">string</span> query <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;         <span style="color:#75715e">// 每个字段有一个名称和类型
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int32</span> page_number <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">int32</span> result_per_page <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h3 id="指定字段类型">指定字段类型</h3>
+<p>在上面的例子中，所有的字段都是标量类型：两个整型一个字符串类型。同时也可以给字段指定组合类型（包括枚举或其他类型）。</p>
+<h3 id="分配字段编号">分配字段编号</h3>
+<p>如上所示，消息定义中的每个字段都定义一个<strong>唯一的编号</strong>。这些字段的编号用于在消息的<a href="../Protocol-Buffers/04-%E7%BC%96%E7%A0%81.md">二进制格式</a>中标识字段，一旦消息类型被使用就不能再更改。请注意：</p>
+<ul>
+<li><code>1到15</code>范围内的字段编号需要一个字节进行编码，包括字段的编号和字段的类型（可以在<a href="../Protocol-Buffers/04-%E7%BC%96%E7%A0%81.md"><code>protocol buffers</code>编码</a>中找到更多相关信息）</li>
+<li><code>16到2047</code>范围内的字段编号占用两个字节。 因此，应该为非常频繁出现的消息元素保留数字1到15，请记住为将来可能添加的频繁出现的元素留出一些空间</li>
+</ul>
+<p>可以指定的最小字段数为1，最大字段数为536,870,911（2的29次方-1）。</p>
+<blockquote>
+<p>不能使用数字19000到19999（<code>FieldDescriptor::kFirstReservedNumber</code>到<code>FieldDescriptor::kLastReservedNumber</code>），因为它们是为<code>protocol buffers</code>实现而保留的。</p>
+</blockquote>
+<p>如果在<code>.proto</code>中使用这些保留数字之一，<code>protocol buffers</code>编译器会发出警告。同样，不能使用任何以前保留的字段编号。</p>
+<h3 id="自定字段规则">自定字段规则</h3>
+<p>消息的字段可以是以下之一：</p>
+<ul>
+<li>单数：格式良好的消息可以包含零个或一个（但不超过一个）这样的字段。这是<code>proto3</code>语法的默认字段规则。</li>
+<li>重复：该字段可以在格式良好的消息中重复任意次数（包括零）。将保留重复值的顺序。</li>
+</ul>
+<p>在<code>proto3</code>中，标量数字类型的重复字段默认使用<strong>压缩</strong>编码。</p>
+<p>在<a href="../Protocol-Buffers/04-%E7%BC%96%E7%A0%81.md"><code>Protocol Buffer Encoding</code></a>中找到有关压缩编码的更多信息。</p>
+<h3 id="添加更多消息类型">添加更多消息类型</h3>
+<p>可以在单个<code>.proto</code>文件中定义多种消息类型。如果要定义多个相关消息，这非常有用。例如，如果要定义与<code>SearchResponse</code>消息类型对应的回复消息格式，则可以将其添加到相同的<code>.proto</code>文件中：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SearchRequest</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> query <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">int32</span> page_number <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">int32</span> result_per_page <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SearchResponse</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#f92672">...</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h3 id="添加注释">添加注释</h3>
+<p>要为<code>.proto</code>文件添加注释，请使用<code>C/C++</code>样式<code>//</code>和<code>/* ... */</code>语法。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#75715e">/* SearchRequest 代表一个查询请求,
+</span><span style="color:#75715e"> * 带有分页选项以指示要包含在响应中的结果。*/</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SearchRequest</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> query <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">int32</span> page_number <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;  <span style="color:#75715e">// 我们需要的页码
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int32</span> result_per_page <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;  <span style="color:#75715e">// 每页返回的结果数
+</span><span style="color:#75715e"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h3 id="保留字段">保留字段</h3>
+<p>如果通过完全删除字段或将其注释来更新消息类型，未来的用户可以在对类型进行更新时再次使用该字段编号。如果以后加载相同<code>.proto</code>文件的旧版本，这可能会导致严重问题，包括数据损坏，隐私错误等。确保不会发生这种情况的一种方法是<strong>指定已删除字段或字段的编号为保留的</strong>（否则可能导致JSON序列化问题）。如果将来的任何用户尝试使用这些字段标识符，<code>protocol buffers</code>编译器将会发出警告。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Foo</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  reserved <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">to</span> <span style="color:#ae81ff">11</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  reserved <span style="color:#e6db74">&#34;foo&#34;</span>, <span style="color:#e6db74">&#34;bar&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>请注意，不能在同一保留语句中混合字段名称和字段编号。</p>
+<h3 id="proto文件将生成什么"><code>.proto</code>文件将生成什么</h3>
+<p>在<code>.proto</code>文件上运行<code>protocol buffers</code>编译器时，编译器会根据文件中的描述生成所选语言的代码，这些代码是需要使用的消息类型，包括：获取和设置字段值，将消息序列化为输出流，并从输入流中解析消息。</p>
+<ul>
+<li>对于<code>C++</code>，编译器会从每个<code>.proto</code>生成一个<code>.h</code>和<code>.cc</code>文件，并为文件中描述的每种消息类型提供一个类。</li>
+<li>对于<code>Java</code>，编译器生成一个<code>.java</code>文件，其中包含每种消息类型的类，以及用于创建消息类实例的特殊<code>Builder</code>类。</li>
+<li><code>Python</code>有点不同：<code>Python</code>编译器生成一个模块，其中包含<code>.proto</code>中每种消息类型的静态描述符，然后与元类一起使用，以在运行时创建必要的<code>Python</code>数据访问类。</li>
+<li>对于<code>Go</code>，编译器会生成一个<code>.pb.go</code>文件，其中包含文件中每种消息类型的类型。</li>
+<li>对于<code>Ruby</code>，编译器生成一个带有包含消息类型的<code>Ruby</code>模块的<code>.rb</code>文件。</li>
+<li>对于<code>Objective-C</code>，编译器从每个<code>.proto</code>生成一个<code>pbobjc.h</code>和<code>pbobjc.m</code>文件，其中包含文件中描述的每种消息类型的类。</li>
+<li>对于<code>C＃</code>，编译器从每个<code>.proto</code>生成一个<code>.cs</code>文件，其中包含文件中描述的每种消息类型的类。</li>
+<li>对于<code>Dart</code>，编译器会生成一个<code>.pb.dart</code>文件，其中包含文件中每种消息类型的类。</li>
+</ul>
+<p>可以按照所选语言的教程（即将推出的proto3版本）了解有关为每种语言使用API​​的更多信息。有关更多API详细信息，请参阅相关<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">API参考</a>（proto3版本即将推出）。</p>
+<h2 id="标量值类型">标量值类型</h2>
+<p>标量消息字段可以具有以下类型之一：该表显示<code>.proto</code>文件中指定的类型，以及自动生成的类中的相应类型：</p>
+<table>
+<thead>
+<tr>
+<th>.proto 类型</th>
+<th>注释</th>
+<th>Go类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>double</td>
+<td></td>
+<td>float64</td>
+</tr>
+<tr>
+<td>float</td>
+<td></td>
+<td>float32</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>使用可变长度编码，编码负数的效率低（如果字段可能有负值，改用sint32）</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>使用可变长度编码，编码负数的效率低（如果字段可能有负值，改用sint64）</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>uint32</td>
+<td>使用可变长度编码</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>使用可变长度编码</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>sint32</td>
+<td>使用可变长度编码，有符号int值（这比常规int32更有效地编码负数）</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>sint64</td>
+<td>使用可变长度编码，有符号int值（这比常规int64更有效地编码负数）</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>fixed32</td>
+<td>总是四个字节，如果值大于2的28次方则比uint32更有效</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>fixed64</td>
+<td>总是八个字节，如果值大于2的56次方则比uint32更有效</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>sfixed32</td>
+<td>总是四个字节</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>sfixed64</td>
+<td>总是八个字节</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>bool</td>
+<td></td>
+<td>bool</td>
+</tr>
+<tr>
+<td>string</td>
+<td>字符串必须始终包含UTF-8编码或7位ASCII文本，且不能超过2的32次方</td>
+<td>string</td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>可以包含不超过2的32次方的任意字节序列</td>
+<td>[]bytes</td>
+</tr>
+</tbody>
+</table>
+<p>在<a href="../Protocol-Buffers/04-%E7%BC%96%E7%A0%81.md"><code>protocol buffers</code>编码</a>中可以找到更多关于在序列化消息时这些类型是如何被编码的信息。</p>
+<h2 id="默认值">默认值</h2>
+<p>在解析消息时，如果编码消息不包含某个特定的单数元素，则解析对象中相应的字段将被设置为该字段的默认值。这些默认值根据类型而不同：</p>
+<ul>
+<li>对于字符串，默认值为空字符串。</li>
+<li>对于字节，默认值为空字节。</li>
+<li>对于布尔型，默认值为false。</li>
+<li>对于数字类型，默认值为零。</li>
+<li>对于枚举，默认值是<strong>第一个定义的枚举值</strong>，该值必须为0。</li>
+<li>对于消息字段，未设置该字段。它的确切值取决于编程语言。有关详细信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">生成代码指南</a>。</li>
+</ul>
+<p>重复（repeated）字段的默认值为空（通常是相应编程语言的空列表）。</p>
+<blockquote>
+<p>请注意，对于<strong>标量消息字段</strong>，一旦解析了消息，就无法确定字段是否显式设置为默认值（例如，布尔值是否设置为<code>false</code>）或根本没有设置值，因此，在定义消息类型时要注意。例如，如果不希望默认情况下也发生这种行为，那么当设置为<code>false</code>时，没有一个布尔值可以打开某些行为。另外请注意，如果标量消息字段设置为其默认值，则该值不会在传输时序列化。</p>
+</blockquote>
+<p>有关默认值如何在生成的代码中工作的更多详细信息，请参阅所选语言的<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">生成代码指南</a>。</p>
+<h2 id="枚举">枚举</h2>
+<p>在定义消息类型时，可能希望其中一个字段只有一个预定义的值列表。例如，假设要为每个<code>SearchRequest</code>添加语料库（<code>corups</code>）字段，其中语料库可以是<code>UNIVERSAL</code>，<code>WEB</code>，<code>IMAGES</code>，<code>LOCAL</code>，<code>NEWS</code>，<code>PRODUCTS</code>或<code>VIDEO</code>。可以非常简单地通过向消息定义添加枚举（<code>enum</code>），并为每个可能的值添加常量。</p>
+<p>在下面的例子中，添加了一个名为<code>Corpus</code>的枚举，其中包含所有可能的值，以及一个类型为Corpus的字段：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SearchRequest</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> query <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">int32</span> page_number <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">int32</span> result_per_page <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">enum</span> Corpus {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    UNIVERSAL <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    WEB <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    IMAGES <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    LOCAL <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    NEWS <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    PRODUCTS <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    VIDEO <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  }<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  Corpus corpus <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>如上所示，<code>Corpus</code>枚举的第一个常量映射为零：每个枚举定义<strong>必须</strong>包含一个映射到零的常量作为其第一个元素。这是因为：</p>
+<ul>
+<li>必须有一个零值，以便可以使用0作为数字默认值。</li>
+<li>零值必须是第一个元素，以便与<code>proto2</code>语义兼容，其中第一个枚举值始终是默认值。</li>
+</ul>
+<p>可以通过为不同的枚举常量指定相同的值来定义别名。为此，需要将<code>allow_alias</code>选项设置为<code>true</code>，否则<code>proto</code>编译器将在找到别名时生成错误消息。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">enum</span> EnumAllowingAlias {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">option</span> allow_alias <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;    <span style="color:#75715e">// 开启配置
+</span><span style="color:#75715e"></span>  UNKNOWN <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  STARTED <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  RUNNING <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">enum</span> EnumNotAllowingAlias {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  UNKNOWN <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  STARTED <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#75715e">// RUNNING = 1;  // 取消注释此行将导致Google内部的编译错误和外部的警告消息。
+</span><span style="color:#75715e"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>枚举常量必须在32位整数范围内。由于枚举值在传输时使用<a href="/Protocol-Buffers/04-%E7%BC%96%E7%A0%81.md"><code>varint</code>编码</a>，因此，负值效率低，不建议使用。可以在消息定义中定义枚举，如上例所示，也可以在外部定义枚举，这些枚举可以在<code>.proto</code>文件中的任何消息定义中重用。还可以使用语法<code>MessageType.EnumType</code>将一个消息中声明的枚举类型用作不同消息中字段的类型。</p>
+<p>在使用枚举的<code>.proto</code>文件上运行<code>protocol buffers</code>编译器时，生成的代码将具有相应的<code>Java</code>或<code>C++</code>枚举类型，在Python中使用一个特殊的<code>EnumDescriptor</code>类，用于在运行时生成类中创建一组带有整数值的符号常量。</p>
+<p>在反序列化期间，无法识别的枚举值将保留在消息中，如何表示这种值取决于具体的编程语言。</p>
+<ul>
+<li>在支持具有超出指定符号范围的值的开放枚举类型的编程语言中（例如<code>C++</code>和<code>Go</code>），未知的枚举值仅作为其基础整数表示存储。</li>
+<li>在支持封闭枚举类型（如<code>Java</code>）的编程语言中，枚举中的大小写用于表示无法识别的值，并且可以使用特殊访问器访问基础整数。</li>
+</ul>
+<p>在任何一种情况下，如果消息被序列化了，那么无法识别的值仍然会和消息一起被序列化。</p>
+<p>有关如何在应用程序中使用消息枚举的详细信息，请参阅所选语言的<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">生成代码指南</a>。</p>
+<h3 id="保留值">保留值</h3>
+<p>如果通过完全删除枚举条目或将其注释掉来更新枚举类型，那么未来的用户可以在对类型进行更新时重用该数值。如果后面又加载相同<code>.proto</code>文件的旧版本，这可能会导致严重问题（包括数据损坏，隐私错误等）。确保不会发生这种情况的一种方法是设置已删除条目的数值（和<code>/</code>或名称，也可能导致JSON序列化问题））为<code>reserved</code>。如果将来的任何用户尝试使用这些标识符，<code>protocol buffers</code>编译器将会发出警告。可以使用<code>max</code>关键字指定保留（<code>reserved</code>）的数值范围达到最大可能值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">enum</span> Foo {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  reserved <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">to</span> <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">40</span> <span style="color:#66d9ef">to</span> <span style="color:#66d9ef">max</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  reserved <span style="color:#e6db74">&#34;FOO&#34;</span>, <span style="color:#e6db74">&#34;BAR&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>请注意，不能在同一保留（<code>reserved</code>）语句中混合字段名称和数值。</p>
+<h2 id="使用其他消息类型">使用其他消息类型</h2>
+<p>可以使用其他消息类型作为字段类型。例如，假设在每个<code>SearchResponse</code>消息中包含<code>Result</code>消息，为此，可以在同一<code>.proto</code>中定义<code>Result</code>消息类型，然后在<code>SearchResponse</code>中指定<code>Result</code>类型的字段：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SearchResponse</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">repeated</span> Result results <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Result</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> url <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> title <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">repeated</span> <span style="color:#66d9ef">string</span> snippets <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h3 id="导入定义">导入定义</h3>
+<p>在上面的示例中，<code>Result</code>消息类型在与<code>SearchResponse</code>相同的文件中定义，如果要用作字段类型的消息类型在另一个<code>.proto</code>文件中定义，可以通过导入来使用其他<code>.proto</code>文件中的定义。</p>
+<p>要导入另一个<code>.proto</code>的定义，请在文件顶部添加一个<code>import</code>语句：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;myproject/other_protos.proto&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>默认情况下，只能使用直接导入的<code>.proto</code>文件中的定义。但是，有时可能需要将<code>.proto</code>文件移动到新位置。那么，可以在旧位置放置一个虚拟<code>.proto</code>文件，以使用<code>import public</code>将所有导入转发到新位置，而不是直接移动<code>.proto</code>文件并在一次更改中更新所有导入它的文件。<code>import public</code>的依赖可以被任何包含<code>import public</code>语句的<code>proto</code>文件传递。 例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#75715e">// new.proto
+</span><span style="color:#75715e">// 所有定义都移动到了这里。
+</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">// old.proto
+</span><span style="color:#75715e">// 这是proto文件，所有的clients都导入了它。
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> public <span style="color:#e6db74">&#34;new.proto&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;other.proto&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">// client.proto
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;old.proto&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">// 使用old.proto和new.proto中的定义，但不使用other.proto
+</span></code></pre></div><p><code>proto</code>编译器使用<code>-I/--proto_path</code>标志在编译器命令行中指定的一组目录中搜索导入的文件。如果没有给出标志，它将查找调用编译器的目录。通常，应将<code>--proto_path</code>标志设置为项目的根目录，并对所有导入使用完全限定名称。</p>
+<h3 id="使用proto2消息类型">使用<code>proto2</code>消息类型</h3>
+<p>可以导入<a href="https://developers.google.com/protocol-buffers/docs/proto"><code>proto2</code></a>消息类型并在<code>proto3</code>消息中使用它们，反之亦然。但是，<code>proto2</code>枚举不能直接用于<code>proto3</code>语法（如果已导入的<code>proto2</code>消息使用它们就没关系）。</p>
+<h2 id="嵌套类型">嵌套类型</h2>
+<p>可以在其他消息类型中定义和使用消息类型，如下例所示：此处<code>Result</code>消息在<code>SearchResponse</code>消息中定义：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SearchResponse</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Result</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">string</span> url <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">string</span> title <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">repeated</span> <span style="color:#66d9ef">string</span> snippets <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  }<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">repeated</span> Result results <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>如果要在其父消息类型之外重用此消息类型，请将其称为<code>Parent.Type</code>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SomeOtherMessage</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  SearchResponse.Result result <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>可以根据需要深入嵌套消息：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Outer</span> {       <span style="color:#75715e">// Level 0
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">message</span> <span style="color:#a6e22e">MiddleAA</span> {  <span style="color:#75715e">// Level 1
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Inner</span> {   <span style="color:#75715e">// Level 2
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">int64</span> ival <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#66d9ef">bool</span>  booly <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    }<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  }<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">message</span> <span style="color:#a6e22e">MiddleBB</span> {  <span style="color:#75715e">// Level 1
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Inner</span> {   <span style="color:#75715e">// Level 2
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">int32</span> ival <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#66d9ef">bool</span>  booly <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    }<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  }<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h2 id="更新消息类型">更新消息类型</h2>
+<p>如果现有的消息类型不再满足需求，例如，希望消息格式具有额外的字段，但仍然希望使用旧格式创建的代码。<strong>在不破坏任何现有代码的情况下更新消息类型非常简单</strong>。请记住以下规则：</p>
+<ul>
+<li>请勿更改任何现有字段的字段编号。</li>
+<li>如果添加新字段，则使用“旧”消息格式序列化的任何消息仍可由新生成的代码进行解析。应该记住这些元素的默认值，以便新代码可以正确地与旧代码生成的消息进行交互。同样的新代码创建的消息可以由旧代码解析，旧的二进制文件在解析时只是忽略新字段。有关详细信息，请参阅“未知字段”部分。</li>
+<li>在更新的消息类型中不再使用的字段编号就可以删除。 有时想要重命名该字段，可能添加前缀“<code>OBSOLETE_</code>”，或者将字段编号设置为保留（<code>reserved</code>），以便<code>.proto</code>的未来用户不会意外地重复使用该编号。</li>
+<li><code>int32</code>，<code>uint32</code>，<code>int64</code>，<code>uint64</code>和<code>bool</code>都是兼容的，这意味着可以将字段从这些类型之一更改为另一种类型，而不会破坏向前或向后兼容性。如果在传输中解析出一个不适合相应类型的数字，将获得与在<code>C++</code>中将该数字转换为该类型相同的效果（例如，如果将64位数字作为int32读取，它将被截断为32位）。</li>
+<li><code>sint32</code>和<code>sint64</code>彼此兼容，但与其他整数类型不兼容。</li>
+<li>只要<code>byte</code>是有效的<code>UTF-8</code>，<code>string</code>和<code>byte</code>是兼容的。</li>
+<li>如果<code>byte</code>包含消息的编码版本，则嵌入消息与<code>byte</code>兼容。</li>
+<li><code>fixed32</code>与<code>sfixed32</code>兼容，<code>fixed64</code>与<code>sfixed64</code>兼容。</li>
+<li><code>enum</code>在传输格式中与<code>int32</code>，<code>uint32</code>，<code>int64</code>和<code>uint64</code>兼容（请注意，如果值不合适，将截断值）。但请注意，在反序列化消息时，客户端代码可能会以不同方式对待它们：例如，无法识别的<code>proto3</code>枚举类型将保留在消息中，但在反序列化消息时如何表示它是依赖于编程语言的。<code>Int</code>字段总是保留它们的值。</li>
+<li>将单个值更改为新<code>oneof</code>的成员是安全且二进制兼容的。如果确保没有代码一次设置多个字段，那么将多个字段移动到新的<code>oneof</code>可能是安全的。将任何字段移动到某个现有的<code>oneof</code>中都是不安全的。</li>
+</ul>
+<h2 id="未知字段">未知字段</h2>
+<p>未知字段是格式良好的<code>protocol buffers</code>序列化数据，它表示解析器无法识别的字段。例如，当旧二进制文件解析具有新字段的新二进制文件发送的数据时，这些新字段将成为旧二进制文件中的未知字段。</p>
+<p>最初，<code>proto3</code>消息在解析期间总是丢弃未知字段，但在3.5版本中，重新引入了未知字段的保存以匹配<code>proto2</code>行为。在版本3.5及更高版本中，未知字段在解析期间保留并包含在序列化输出中。</p>
+<h2 id="any"><code>Any</code></h2>
+<p><code>Any</code>消息类型允许将消息用作嵌入类型，而无需使用这些消息的<code>.proto</code>定义。<code>Any</code>包含任意序列化消息（如<code>byte</code>），并带有一个<code>URL</code>作为该消息类型的全局唯一标识符用于表示和解析它。要使用<code>Any</code>类型，需要导入<code>google/protobuf/any.proto</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;google/protobuf/any.proto&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">ErrorStatus</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">message</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">repeated</span> google.protobuf.Any details <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p><code>type.googleapis.com/packagename.messagename</code>是给定消息类型的默认类型<code>URL</code>。</p>
+<p>不同的编程语言实现将支持运行时库来帮助程序以类型安全的方式打包和解压缩<code>Any</code>值。例如，在<code>Java</code>中，<code>Any</code>类型将具有特殊的<code>pack()</code>和<code>unpack()</code>访问器，而在<code>C++</code>中则有<code>PackFrom()</code>和<code>UnpackTo () </code>方法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">// 在Any中存储任意消息类型。
+</span><span style="color:#75715e"></span>NetworkErrorDetails details <span style="color:#f92672">=</span> ...;
+ErrorStatus status;
+status.add_details()<span style="color:#f92672">-&gt;</span>PackFrom(details);
+
+<span style="color:#75715e">// 从Any读取任意消息。
+</span><span style="color:#75715e"></span>ErrorStatus status <span style="color:#f92672">=</span> ...;
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> Any<span style="color:#f92672">&amp;</span> detail : status.details()) {
+  <span style="color:#66d9ef">if</span> (detail.Is<span style="color:#f92672">&lt;</span>NetworkErrorDetails<span style="color:#f92672">&gt;</span>()) {
+    NetworkErrorDetails network_error;
+    detail.UnpackTo(<span style="color:#f92672">&amp;</span>network_error);
+    ... processing network_error ...
+  }
+}
+</code></pre></div><p><strong>目前，正在开发用于处理<code>Any</code>类型的运行时库。</strong></p>
+<p>如果已熟悉<a href="https://developers.google.com/protocol-buffers/docs/proto"><code>proto2</code>语法</a>，则<code>Any</code>类型将替换<a href="https://developers.google.com/protocol-buffers/docs/proto#extensions">扩展</a>。</p>
+<h2 id="oneof"><code>Oneof</code></h2>
+<p>如果有一个包含许多字段的消息，并且最多只能同时设置一个字段，则可以使用<code>oneof</code>来强制执行此操作同时还能节省内存。</p>
+<p><code>oneof</code>字段与正常的字段一样，只是在同一个<code>oneof</code>中的所有字段共享内存，并且最多可以同时设置一个字段。设置<code>oneof</code>中的任何一个成员时都会自动清除所有其他成员。可以使用<code>case()</code>或<code>WhichOneof()</code>方法检查<code>oneof</code>中的哪个值（如果有）被设置了，具体使用哪个取决于选择的编程语言。</p>
+<h3 id="使用oneof">使用<code>Oneof</code></h3>
+<p>要在<code>.proto</code>中定义<code>oneof</code>，请使用<code>oneof</code>关键字，并在后面跟着<code>oneof</code>名称，在本例中为<code>test_oneof</code>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">SampleMessage</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">oneof</span> test_oneof {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">string</span> name <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    SubMessage sub_message <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  }<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>然后，将<code>oneof</code>字段添加到<code>oneof</code>定义中。可以添加任何类型的字段，但不能使用<code>repeated</code>字段。</p>
+<p>在生成的代码中，<code>oneof</code>字段与常规字段具有相同的<code>getter</code>和<code>setter</code>。还可以获得一种特殊方法来检查<code>oneof</code>中设置了哪个值（如果有）。可以在相关<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">API参考</a>中找到有关所选语言的<code>oneof API</code>的更多信息。</p>
+<h3 id="oneof的功能"><code>Oneof</code>的功能</h3>
+<ul>
+<li>
+<p>设置<code>oneof</code>字段将自动清除<code>oneof</code>的所有其他成员。因此，如果设置多个字段，则只有设置的最后一个字段仍然具有值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">SampleMessage message;
+message.set_name(<span style="color:#e6db74">&#34;name&#34;</span>);
+CHECK(message.has_name());
+message.mutable_sub_message();   <span style="color:#75715e">// Will clear name field.
+</span><span style="color:#75715e"></span>CHECK(<span style="color:#f92672">!</span>message.has_name());
+</code></pre></div></li>
+<li>
+<p>如果解析器在传输中遇到同一个<code>oneof</code>的多个成员，则在解析的消息中仅使用看到的最后一个成员。</p>
+</li>
+<li>
+<p><code>oneof</code>不能是<code>repeated</code>。</p>
+</li>
+<li>
+<p>如果将<code>oneof</code>字段设置为默认值（例如将<code>int32</code> <code>oneof</code>字段设置为0），那么该<code>oneof</code>字段的<code>“case”</code>将会被设置，并且这些字段的值将在传输时序列化。</p>
+</li>
+<li>
+<p>如果使用的是<code>C++</code>，请确保代码不会导致内存崩溃。以下示例代码将崩溃，因为通过调用<code>set_name()</code>方法删除了<code>sub_message</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">SampleMessage message;
+SubMessage<span style="color:#f92672">*</span> sub_message <span style="color:#f92672">=</span> message.mutable_sub_message();
+message.set_name(<span style="color:#e6db74">&#34;name&#34;</span>);      <span style="color:#75715e">// Will delete sub_message
+</span><span style="color:#75715e"></span>sub_message<span style="color:#f92672">-&gt;</span>set_...            <span style="color:#75715e">// Crashes here
+</span></code></pre></div></li>
+<li>
+<p>同样在<code>C++</code>中，如果<code>Swap()</code>两条<code>oneof</code>的消息，则每条消息都将以另一条消息的<code>“case”</code>作为结束：在下面的示例中，<code>msg1</code>将会有<code>sub_message</code>同时<code>msg2</code>将会有<code>name</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">SampleMessage msg1;
+msg1.set_name(<span style="color:#e6db74">&#34;name&#34;</span>);
+SampleMessage msg2;
+msg2.mutable_sub_message();
+msg1.swap(<span style="color:#f92672">&amp;</span>msg2);
+CHECK(msg1.has_sub_message());
+CHECK(msg2.has_name());
+</code></pre></div></li>
+</ul>
+<h3 id="向后兼容性问题">向后兼容性问题</h3>
+<p>添加或删除<code>oneof</code>字段时要小心。如果在检查<code>oneof</code>的值返回<code>None/NOT_SET</code>，这可能意味着<code>oneof</code>尚未设置或已设置为<code>oneof</code>的另一个不同版本。没有办法区分，因为没有办法知道传输中的未知字段是否是<code>oneof</code>的成员。</p>
+<h4 id="标签重用问题">标签重用问题</h4>
+<ul>
+<li><strong>将字段移入或移出<code>oneof</code></strong>：在序列化或解析消息后，可能会丢失一些信息（某些字段将被清除）。但是，可以安全地将单个字段移动到新的<code>oneof</code>字段中，并且如果已知只有一个字段被设置，则可以移动多个字段。</li>
+<li><strong>删除<code>oneof</code>字段并将其添加回</strong>：在序列化或解析消息后，这可能会清除当前设置的<code>oneof</code>字段。</li>
+<li><strong>拆分或合并<code>oneof</code></strong>：这与移动常规字段有类似的问题。</li>
+</ul>
+<h2 id="maps">Maps</h2>
+<p>如果要在数据定义中创建关联映射，<code>protocol buffers</code>提供了一种方便的快捷方式语法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf">map&lt;key_type, value_type&gt; map_field <span style="color:#f92672">=</span> N;<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>其中<code>key_type</code>可以是任何<strong>整数</strong>或<strong>字符串</strong>类型（除了浮点类型和字节之外的任何标量类型）。请注意，枚举不是有效的<code>key_type</code>。 <code>value_type</code>可以是<code>map</code>之外的任何类型。</p>
+<p>如果要创建一个<code>map</code>，其中每个<code>Project</code>消息与字符串键相关联，则可以像下面这样定义它：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf">map&lt;<span style="color:#66d9ef">string</span>, Project&gt; projects <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><ul>
+<li><code>map</code>的字段不能是<code>repeated</code>。</li>
+<li>传输格式的顺序和<code>map</code>值的迭代顺序是未定义的，因此不能依赖<code>map</code>中的项目按特定顺序排序。</li>
+<li>从<code>.proto</code>文件中生成文本格式时，<code>map</code>按键排序，数字键按数字排序。</li>
+<li>在传输或合并时进行解析，如果有重复的<code>map</code>键，那么就使用最后的那个键。从文本格式解析<code>map</code>时，如果存在重复键，则解析可能会失败。</li>
+<li>如果给<code>map</code>提供了键却没有提供值，那么字段序列化的具体行为就取决于具体的编程语言。在<code>c++</code>,<code>Java</code>，<code>Python</code>中使用类型的默认值进行序列化，在其他编程语言中，没有值被序列化。</li>
+</ul>
+<p>目前，所有<code>proto3</code>支持的编程语言都能生成<code>map</code>API，更多关于所选语言的<code>map</code>API的参考查看<a href="https://developers.google.com/protocol-buffers/docs/reference/overview">API参考文档</a>。</p>
+<h3 id="向后兼容性">向后兼容性</h3>
+<p>在传输时，<code>map</code>的语法等效于下面的示例，因此不支持<code>map</code>的<code>protocol buffers</code>实现仍然可以处理传输的数据：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">MapFieldEntry</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  key_type key <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  value_type value <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">repeated</span> MapFieldEntry map_field <span style="color:#f92672">=</span> N;<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>支持<code>map</code>的任何<code>protocol buffers</code>实现都必须生成和接受上述定义所表示的可接受的数据。</p>
+<h2 id="packages">Packages</h2>
+<p>可以将可选的<code>package</code>说明符添加到<code>.proto</code>文件，以防止<code>protocol buffers</code>消息类型之间的名称冲突。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#f92672">package</span> foo<span style="color:#f92672">.</span>bar;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Open</span> { <span style="color:#f92672">...</span> }<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>然后，可以在定义消息类型的字段时使用<code>package</code>说明符：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Foo</span> {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#f92672">...</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  foo.bar.Open open <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#f92672">...</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p><code>package</code>说明符影响生成代码的方式取决于选择的编程语言：</p>
+<ul>
+<li>在<code>C++</code>中，生成的类包含在<code>C++</code>命名空间中。例如，<code>Open</code>将位于命名空间<code>foo::bar</code>中。</li>
+<li>在<code>Java</code>中，除非在<code>.proto</code>文件中明确提供选项<code>java_package</code>，否则该包将用作<code>Java</code>包。</li>
+<li>在<code>Python</code>中，将忽略<code>package</code>指令，因为<code>Python</code>模块是根据它们在文件系统中的位置进行组织的。</li>
+<li>在<code>Go</code>中，除非在<code>.proto</code>文件中明确提供选项<code>go_package</code>，否则该包将用作<code>Go</code>包名称。</li>
+<li>在<code>Ruby</code>中，生成的类包含在嵌套的<code>Ruby</code>命名空间中，转换为所需的<code>Ruby</code>大写形式（首字母大写;如果第一个字符不是字母，则<code>PB_</code>前置）。例如，<code>Open</code>将位于名称空间<code>Foo::Bar</code>中。</li>
+<li>在<code>C＃</code>中，转换为<code>PascalCase</code>后，包将用作命名空间，除非在<code>.proto</code>文件中明确提供选项<code>csharp_namespace</code>。例如，<code>Open</code>将位于名称空间<code>Foo.Bar</code>中。</li>
+</ul>
+<h3 id="包和名称解析">包和名称解析</h3>
+<p><code>protocol buffers</code>语言中的类型名称解析与<code>C++</code>类似：首先搜索最里面的范围，然后搜索下一个范围，依此类推，每个包被认为是其父包的“内部”。一个<code>'.'</code> （例如<code>.foo.bar.Baz</code>）意味着从最外层的范围开始。</p>
+<p><code>protocol buffers</code>编译器通过解析导入的<code>.proto</code>文件来解析所有类型名称。每种编程语言的代码生成器都知道如何引用该语言中的每种类型，即使它具有不同的范围规则。</p>
+<h2 id="定义服务">定义服务</h2>
+<p>如果要在RPC（远程过程调用）系统中使用自定义消息类型，可以在<code>.proto</code>文件中定义RPC服务接口<code>protocol buffers</code>编译器将以选择的编程语言生成服务接口代码和<code>stub</code>。</p>
+<blockquote>
+<p>例如，要定义一个RPC服务，该服务获取<code>SearchRequest</code>请求并返回<code>SearchResponse</code>响应消息，可以在<code>.proto</code>文件中定义它，如下所示：</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">service</span> SearchService {<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">rpc</span> Search (SearchRequest) <span style="color:#66d9ef">returns</span> (SearchResponse);<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>与<code>protocol buffers</code>一起使用的最简单的RPC系统是<a href="https://grpc.io/">gRPC</a>：一种由Google开发的语言平台中立的开源RPC系统。gRPC特别适用于<code>protocol buffers</code>，并允许使用特定的<code>protocol buffers</code>编译器插件直接从<code>.proto</code>文件生成相关的RPC代码。</p>
+<p>如果不想使用gRPC，也可以将<code>protocol buffers</code>与自定义的RPC实现一起使用。可以在<a href="https://developers.google.com/protocol-buffers/docs/proto#services"><code>Proto2</code>语言指南</a>中找到更多相关信息。</p>
+<p>还有一些正在进行的第三方项目为<code>Protocol Buffers</code>开发RPC实现。有关我们了解的项目的链接列表，请参阅<a href="https://github.com/protocolbuffers/protobuf/blob/master/docs/third_party.md">第三方加载项wiki页面</a>。</p>
+<h2 id="json映射">JSON映射</h2>
+<p><code>Proto3</code>支持<code>JSON</code>中的规范编码，使得在系统之间共享数据变得更加容易。在下表中逐个类型地描述编码。</p>
+<p>如果<code>JSON</code>编码数据中缺少某个值，或者其值为<code>null</code>，则在解析为<code>protocol buffers</code>时，它将被解释为相应的默认值。如果某个字段在<code>protocol buffers</code>中具有默认值，则默认情况下将在<code>JSON</code>编码的数据中省略该字段以节省空间。一种实现方式是提供可选选项在<code>JSON</code>编码的输出中输出字段和它的默认值。</p>
+<table>
+<thead>
+<tr>
+<th>proto3</th>
+<th>JSON</th>
+<th>JSON example</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>object</td>
+<td><code>{&quot;fooBar&quot;: v, &quot;g&quot;: null, …}</code></td>
+<td>生成JSON对象。<code>message</code>字段名称映射到小驼峰命名并成为JSON对象的<code>key</code>。如果指定了<code>json_name</code>字段这个选项，则将指定的值作为<code>key</code>。解析器接受小驼峰命名的名称（或<code>json_name</code>选项指定的名称）和原始的<code>proto</code>字段名称。<code>null</code>是所有字段类型都可接受的值，并被视为相应字段类型的默认值。</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>string</td>
+<td><code>&quot;FOO_BAR&quot;</code></td>
+<td>使用<code>proto</code>中指定的枚举值的名称。解析器接受枚举名称和整数值。</td>
+</tr>
+<tr>
+<td>map&lt;K,V&gt;</td>
+<td>object</td>
+<td><code>{&quot;k&quot;: v, …}</code></td>
+<td>所有键都转换为字符串。</td>
+</tr>
+<tr>
+<td>repeated V</td>
+<td>array</td>
+<td><code>[v, …]</code></td>
+<td><code>null</code>被接受为空的<code>list[]</code>。</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>true, false</td>
+<td><code>true, false</code></td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+<td><code>&quot;Hello World!&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>base64 string</td>
+<td><code>&quot;YWJjMTIzIT8kKiYoKSctPUB+&quot;</code></td>
+<td>JSON值将是使用带填充的标准base64编码方式编码的字符串数据。带有/不带填充的标准或URL安全的base64编码方式也是可接受的。</td>
+</tr>
+<tr>
+<td>int32, fixed32, uint32</td>
+<td>number</td>
+<td><code>1, -10, 0</code></td>
+<td>十进制数形式的JSON值，接受数字或字符串。</td>
+</tr>
+<tr>
+<td>int64, fixed64, uint64</td>
+<td>string</td>
+<td><code>&quot;1&quot;, &quot;-10&quot;</code></td>
+<td>十进制字符串形式的JSON值，接受数字或字符串。</td>
+</tr>
+<tr>
+<td>float, double</td>
+<td>number</td>
+<td><code>1.1, -10.0, 0, &quot;NaN&quot;, &quot;Infinity&quot;</code></td>
+<td>一个或多个特殊字符串<code>“NaN”</code>，<code>“Infinity”</code>和<code>“-Infinity”</code>形式的JSON值，接受数字或字符串，指数表示法也被接受。</td>
+</tr>
+<tr>
+<td>Any</td>
+<td>object</td>
+<td><code>{&quot;@type&quot;: &quot;url&quot;, &quot;f&quot;: v, … }</code></td>
+<td>如果<code>Any</code>包含具有特殊JSON映射的值，则它将按如下方式转换：<code>{“@ type”：xxx，“value”：yyy}</code>。 否则，该值将转换为JSON对象，并将插入<code>“@type”</code>字段以指示实际数据类型。</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>string</td>
+<td><code>&quot;1972-01-01T10:00:20.021Z&quot;</code></td>
+<td>使用<code>RFC 3339</code>，其中生成的输出将始终被<strong>Z-标准化</strong>并使用0,3,6或9个小数位。也接受“Z”以外的偏移。</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>string</td>
+<td><code>&quot;1.000340012s&quot;, &quot;1s&quot;</code></td>
+<td>生成的输出始终包含0,3,6或9个小数位，具体取决于所需的精度，后跟后缀<code>“s”</code>。接受任何小数位（也可以没有小数位），只要它们符合纳秒精度并且需要后缀<code>“s”</code>。</td>
+</tr>
+<tr>
+<td>Struct</td>
+<td>object</td>
+<td><code>{ … }</code></td>
+<td>任意JSON对象，查看<code>struct.proto</code>文件</td>
+</tr>
+<tr>
+<td>Wrapper types</td>
+<td>various types</td>
+<td><code>2, &quot;2&quot;, &quot;foo&quot;, true, &quot;true&quot;, null, 0, …</code></td>
+<td><code>Wrappers</code>在JSON中使用与包装基元类型相同的表示形式，除了在数据转换和传输期间允许和保留<code>null</code>。</td>
+</tr>
+<tr>
+<td>FieldMask</td>
+<td>string</td>
+<td><code>&quot;f.fooBar,h&quot;</code></td>
+<td>查看<code>field_mask.proto</code>文件</td>
+</tr>
+<tr>
+<td>ListValue</td>
+<td>array</td>
+<td><code>[foo, bar, …]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Value</td>
+<td>value</td>
+<td></td>
+<td>任意JSON值</td>
+</tr>
+<tr>
+<td>NullValue</td>
+<td>null</td>
+<td></td>
+<td>JSON中的<code>null</code></td>
+</tr>
+<tr>
+<td>Empty</td>
+<td>object</td>
+<td><code>{}</code></td>
+<td>空的JSON对象</td>
+</tr>
+</tbody>
+</table>
+<h3 id="json选项">JSON选项</h3>
+<p><code>proto3 JSON</code>实现可以提供以下可用选项：</p>
+<ul>
+<li><strong>输出字段的默认值</strong>：在<code>proto3 JSON</code>的输出中默认省略字段的默认值。有一个选项可以提供覆盖此行为并输出字段的默认值。</li>
+<li><strong>忽略未知字段</strong>：默认情况下，<code>proto3 JSON</code>解析器会拒绝未知字段，可以提供一个选项来忽略解析未知字段。</li>
+<li><strong>使用<code>proto</code>字段名称而不是小驼峰命名的名称</strong>：默认情况下，<code>proto3 JSON</code>会将字段名称转换为小驼峰命名并将其用作JSON的名称。有一个选项可以提供使用<code>proto</code>字段名称作为JSON的名称。<code>proto3 JSON</code>解析器需要接受转换后的小驼峰命名的名称和<code>proto</code>字段名称。</li>
+<li><strong>将枚举值作为整数而不是字符串输出</strong>：默认情况下，在JSON输出中使用枚举值的名称。可以提供一个选项以使用枚举值的数值。</li>
+</ul>
+<h2 id="可用选项">可用选项</h2>
+<p><code>.proto</code>文件中的各个声明可以使用许多选项进行注释。选项不会更改声明的整体含义，但可能会影响该声明在特定上下文中被处理的方式。可用选项的完整列表在<code>google/protobuf/descriptor.proto</code>中定义。</p>
+<ul>
+<li>一些选项是<strong>文件级选项</strong>，这意味着它们应该在顶级范围内编写，而不是在任何<code>message</code>、<code>enum</code>或<code>service</code>的定义中。</li>
+<li>一些选项是<strong>消息级选项</strong>，这意味着它们应该写在<code>message</code>定义中。</li>
+<li>一些选项是<strong>字段级选项</strong>，这意味着它们应该写在字段定义中。</li>
+</ul>
+<blockquote>
+<p>可用选项也可以写在枚举类型，枚举值，服务类型和服务方法上，但是，目前没有任何支持这些的可用选项。</p>
+</blockquote>
+<p>以下是一些最常用的选项：</p>
+<ul>
+<li>
+<p><code>java_package</code>（文件级选项）：用于生成的Java类的包。如果<code>.proto</code>文件中没有给出显式的<code>java_package</code>选项，那么默认情况下将使用<code>proto</code>包（.<code>proto</code>文件中的<code>“package”</code>关键字指定的包）。但是，<code>proto</code>包通常不能生成好的<code>Java</code>包，因为<code>proto</code>包不会以反向域名开头。如果不生成Java代码，则此选项无效。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">option</span> java_package <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;com.example.foo&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div></li>
+<li>
+<p><code>java_multiple_files</code>（文件级选项）：生成在包级别中定义的顶级<code>message</code>、<code>enum</code>和<code>service</code>，而不是在<code>.proto</code>文件之后命名的外部类中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">option</span> java_multiple_files <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div></li>
+<li>
+<p><code>java_outer_classname</code>（文件级选项）：生成最外层的Java类的类名（以及文件名）。如果<code>.proto</code>文件中没有指定显式的<code>java_outer_classname</code>，则通过将<code>.proto</code>文件名转换为驼峰命名来构造类名（因此<code>foo_bar.proto</code>变为<code>FooBar.java</code>）。如果不生成Java代码，则此选项无效。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">option</span> java_outer_classname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Ponycopter&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div></li>
+<li>
+<p>optimize_for（文件级选项）：可以设置为<code>SPEED</code>，<code>CODE_SIZE</code>或<code>LITE_RUNTIME</code>。这会影响<code>C++</code>和<code>Java</code>代码生成器（可能还有第三方生成器），以下列方式：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">option</span> optimize_for <span style="color:#f92672">=</span> CODE_SIZE;<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><ul>
+<li><code>SPEED</code>（default）：<code>protocol buffers</code>编译器将生成用于对消息类型进行序列化、解析和执行其他常见操作的代码。此代码经过高度优化。</li>
+<li><code>CODE_SIZE</code>：<code>protocol buffers</code>编译器将生成最小的类，并依赖于基于反射的共享代码来实现序列化、解析和各种其他操作。因此生成的代码将比使用<code>SPEED</code>小得多，但操作会更慢。生成的类仍将实现与<code>SPEED</code>模式完全相同的公共API。此模式在包含大量<code>.proto</code>文件的应用程序中最有用，并且不需要所有这些文件都非常快速。</li>
+<li><code>LITE_RUNTIME</code>：<code>protocol buffers</code>编译器将生成仅依赖于<code>“lite”</code>的运行时库的类（即依赖于<code>libprotobuf-lite</code>而不是<code>libprotobuf</code>）。<code>lite</code>运行时库比完整库小得多（大约小一个数量级），其中省略了描述符和反射等功能。这对于在移动电话等受限平台上运行的应用程序尤其有用。编译器仍将生成所有方法的快速实现，就像在<code>SPEED</code>模式下那样。生成的类将仅实现每种语言的<code>MessageLite</code>接口，该接口仅提供完整<code>Message</code>接口的方法的子集。
+`</li>
+</ul>
+</li>
+<li>
+<p><code>cc_enable_arenas</code>（文件级选项）：为<code>C++</code>生成的代码启用<a href="https://developers.google.com/protocol-buffers/docs/reference/arenas">竞技场分配</a>。</p>
+</li>
+<li>
+<p><code>objc_class_prefix</code>（文件级选项）：设置<code>Objective-C</code>类前缀，该前缀由此<code>.proto</code>文件提供给所有<code>Objective-C</code>生成的类和枚举，没有默认值。应该使用<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html#//apple_ref/doc/uid/TP40011210-CH10-SW4">Apple建议</a>的3-5个大写字符之间的前缀。请注意，Apple保留所有2个字母的前缀。</p>
+</li>
+<li>
+<p><code>deprecated</code>（文件级选项）：如果设置为<code>true</code>，则表示该字段已弃用，新代码不应使用该字段。在大多数语言中，这没有实际效果。在<code>Java</code>中，这将成为<code>@Deprecated</code>注释。将来，其他特定语言的代码生成器可能会在字段的访问器上生成弃用注释，这将导致在编译尝试使用该字段的代码时发出警告。如果任何人都没有使用该字段，并且想要阻止新用户使用该字段，请考虑使用保留语句替换字段声明。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-protobuf" data-lang="protobuf"><span style="color:#66d9ef">int32</span> old_field <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span> [deprecated<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>];<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div></li>
+</ul>
+<h3 id="自定义选项">自定义选项</h3>
+<p><code>Protocol Buffers</code>还允许定义和使用自定义的选项。这是大多数人不需要的<strong>高级功能</strong>。如果确实认为需要创建自定义的选项，请参阅<a href="https://developers.google.com/protocol-buffers/docs/proto.html#customoptions"><code>proto2</code>语言指南</a>以获取详细信息。请注意，创建自定义的选项使用的<a href="https://developers.google.com/protocol-buffers/docs/proto.html#extensions">扩展</a>仅允许用于<code>proto3</code>中的自定义的选项。</p>
+<h2 id="生成自定义的类">生成自定义的类</h2>
+<p>需要使<code>.proto</code>文件中定义的消息类型来生成<code>Java</code>，<code>Python</code>，<code>C++</code>，<code>Go</code>，<code>Ruby</code>，<code>Objective-C</code>或<code>C＃</code>代码，这需要在<code>.proto</code>上运行<code>protocol buffers</code>编译器<code>protoc</code>。如果尚未安装编译器，请下载该软件包并按照自述文件中的说明进行操作。对于<code>Go</code>，还需要为编译器安装一个特殊的代码生成器插件，可以在<code>GitHub</code>上的<code>golang/protobuf</code>存储库中找到这个插件和安装说明。</p>
+<p>协议编译器的调用如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">protoc --proto_path<span style="color:#f92672">=</span>IMPORT_PATH <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       --cpp_out<span style="color:#f92672">=</span>DST_DIR <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       --java_out<span style="color:#f92672">=</span>DST_DIR <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       --python_out<span style="color:#f92672">=</span>DST_DIR <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       --go_out<span style="color:#f92672">=</span>DST_DIR <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       --ruby_out<span style="color:#f92672">=</span>DST_DIR <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       --objc_out<span style="color:#f92672">=</span>DST_DIR <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       --csharp_out<span style="color:#f92672">=</span>DST_DIR <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>       path/to/file.proto
+</code></pre></div><ul>
+<li>
+<p><code>IMPORT_PATH</code>指定解析导入指令时查找<code>.proto</code>文件的目录，如果省略，则使用当前目录。可以通过多次传递<code>--proto_path</code>选项来指定多个导入目录,将按顺序搜索。<code>-I=IMPORT_PATH</code>可以用作<code>--proto_path</code>的缩写形式。</p>
+</li>
+<li>
+<p>可以提供一个或多个输出指令：</p>
+<ul>
+<li><code>--cpp_out</code>在<code>DST_DIR</code>中生成<code>C++</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/cpp-generated"><code>C++</code>生成代码参考</a>。</li>
+<li><code>--java_out</code>在<code>DST_DIR</code>中生成<code>Java</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/java-generated"><code>Java</code>生成代码参考</a>。</li>
+<li><code>--python_out</code>在<code>DST_DIR</code>中生成<code>Python</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/python-generated"><code>Python</code>生成代码参考</a>。</li>
+<li><code>--go_out</code>在<code>DST_DIR</code>中生成<code>Go</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/go-generated"><code>Go</code>生成代码参考</a>。</li>
+<li><code>--ruby_out</code>在<code>DST_DIR</code>中生成<code>Ruby</code>代码。<code>Ruby</code>生成的代码参考即将推出！</li>
+<li><code>--objc_out</code>在<code>DST_DIR</code>中生成<code>Objective-C</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/objective-c-generated"><code>Objective-C</code>生成的代码参考</a>。</li>
+<li><code>--csharp_out</code>在<code>DST_DIR</code>中生成<code>C＃</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/csharp-generated"><code>C＃</code>生成代码参考</a>。</li>
+<li><code>--php_out</code>在<code>DST_DIR</code>中生成<code>PHP</code>代码。有关更多信息，请参阅<a href="https://developers.google.com/protocol-buffers/docs/reference/php-generated"><code>PHP</code>生成代码参考</a>。</li>
+</ul>
+<p>为方便起见，如果<code>DST_DIR</code>以<code>.zip</code>或.<code>jar</code>结尾，编译器会将输出写入具有给定名称的单个<code>ZIP</code>格式存档文件。<code>.jar</code>输出还将根据<code>Java JAR</code>规范的要求提供清单文件。请注意，如果输出存档已存在，则会被覆盖; 编译器不够智能，无法将文件添加到现有存档中。</p>
+</li>
+<li>
+<p>必须提供一个或多个<code>.proto</code>文件作为输入。可以一次指定多个<code>.proto</code>文件。虽然文件是相对于当前目录命名的，但每个文件必须驻留在其中一个<code>IMPORT_PATH</code>中，以便编译器可以确定其规范名称。</p>
+</li>
+</ul>
+
+        </section>
+      </div>
+    </div>
+  </div>  
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-right is-family-monospace is-centered-tablet-portrait">
+        上次修改:&nbsp;14 April 2020</div>
+    </div>
+  </div></section>
+<footer class="footer footer-dark">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <img src="/footer.svg" alt="">
+        
+      </div>
+      
+    <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Website</h3>
+          </div>
+          <ul class="link-list"><li>
+              <a href="/"><span class="icon"><i class="fa fa-home"></i></span> 主页</a>
+            </li><li></li>
+            <li><a href="/tags/">
+                <span class="icon"><i class="fa fa-tag"></i></span> 
+                所有类别
+              </a></li>
+          </ul>
+        </div>
+      </div>
+    
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Contacts</h3>
+          </div>
+          <ul class="link-list">
+            
+            
+            <li>
+              <a href="https://github.com/Promacanthus" target="_blank">
+                <span class="icon"><i class="fa fa-github"></i></span>
+                
+                  Github
+                
+              </a>
+            </li>
+                         
+            
+            <li>
+              <a href="mailto:promacanthus@gmail.com" target="_blank">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                
+                  Gmail
+                
+              </a>
+            </li>
+            
+                   
+                   
+                   
+          </ul>
+        </div>
+      </div>
+      
+
+      
+      <div class="column">
+        <div class="footer-column">
+          <div class="footer-header">
+              <h3>Copyright</h3>
+          </div>
+          <ul class="link-list">
+            <li>
+              <a>
+                <span class="icon"><i class="fa fa-copyright"></i></span>
+                promacanthus - 2020
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</footer>
+    <div id="backtotop"><a href="#"></a></div><div class="sidebar">
+  <div class="sidebar-header"><img src="/sidebar.svg" alt="">
+    
+    <a class="sidebar-close" href="javascript:void(0);">
+      <i data-feather="x"></i>
+    </a>
+  </div>
+  <div class="inner">
+    <ul class="sidebar-menu">
+      <li class="no-children"><a href="/tags/"><div class="columns">
+              <table width="100%">  
+                <tr>
+                  <td class="">
+                    <span class="icon"><i class="fa fa-cubes"></i></span>
+                    所有类别
+                  </td>
+                  <td class="has-text-right" >
+                      
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </a>
+      <li class="no-children">
+          <a href="/tags/">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">316</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go%e8%af%ad%e8%a8%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go语言</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">115</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>云原生</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">114</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%b7%e4%be%8b%e4%bb%a3%e7%a0%81">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>样例代码</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">73</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kubernetes">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Kubernetes</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">53</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e6%a1%86%e6%9e%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发框架</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">37</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/docker">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Docker</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">33</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%9f%ba%e7%a1%80">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>基础</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">30</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%a1%ab%e5%9d%91%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>填坑记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">20</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/helm">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Helm</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">17</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">15</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>集成开发环境</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">14</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/vscode">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>VSCode</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">13</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/03-%e5%ae%b9%e5%99%a8%e7%bc%96%e6%8e%92">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>03-容器编排</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">12</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%a0%87%e5%87%86%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>标准库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">11</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/grpc">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>gRPC</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">10</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/protocol-buffers">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Protocol-Buffers</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">9</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/examples">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Examples</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">8</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/05-%e5%ae%b9%e5%99%a8%e7%bd%91%e7%bb%9c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>05-容器网络</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/09-dashboard">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>09-Dashboard</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/10-%e7%ac%94%e8%ae%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>10-笔记</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>常用工具</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%b8%9a%e5%8a%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务业务</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">7</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/git">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Git</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/mysql">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>MySQL</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/registry">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Registry</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>开发环境配置</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">6</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/01-%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>01-容器技术</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/golang">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Golang</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/traefik">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Traefik</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%8e%9f%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>原理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">5</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/dockerfile-guide">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Dockerfile-Guide</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e5%ba%93">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方库</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e9%a2%86%e5%9f%9f%e9%a9%b1%e5%8a%a8%e8%ae%be%e8%ae%a1">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>领域驱动设计</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">4</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/06-%e4%bd%9c%e4%b8%9a%e8%b0%83%e5%ba%a6%e4%b8%8e%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>06-作业调度与资源管理</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/go-web">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Go-Web</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/http">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>HTTP</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-net">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-net</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>微服务平台</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">3</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/02-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>02-集群搭建</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/08-%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>08-监控与日志</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/apimachinery">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>apimachinery</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/etcd">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Etcd</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/init-system">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>init-system</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/kit">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>kit</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/pkg">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>pkg</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/service-mesh">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Service-mesh</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">2</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/04-%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>04-持久化存储</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/07-%e5%ae%b9%e5%99%a8%e8%bf%90%e8%a1%8c%e6%97%b6">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>07-容器运行时</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/goland">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Goland</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/nginx-ingress">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>nginx-ingress</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-io">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-io</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-log">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-log</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-os">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-os</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-syscall">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-syscall</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/package-text">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>package-text</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/proxy">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Proxy</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/runtime">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>runtime</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/skopeo">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>Skopeo</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/transport">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>transport</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/webassembly">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>WebAssembly</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e4%ba%a7%e5%93%81%e6%89%8b%e5%86%8c">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>产品手册</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%85%b3%e4%ba%8e">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>关于</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e5%ae%98%e6%96%b9%e6%96%87%e7%ab%a0">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>官方文章</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li>
+      <li class="no-children">
+          <a href="/tags/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f">
+            <div class="columns">
+              
+              <table width="100%">  
+                  <tr>
+                    <td class=""><span class="icon"><i class="fa fa-cube"></i></span>正则表达式</td>
+                    <td class="has-text-right" >
+                        <div class="tag-number">1</div>
+                      
+                    </td>
+                    
+                  </tr>
+              </table>
+              
+            </div>
+          </a>
+      </li></ul>
+  </div>
+</div>
+<script src="/js/jquery-2.2.4.893e90f6230962e42231635df650f20544ad22affc3ee396df768eaa6bc5a6a2.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="></script>
+<script src="/js/feather.4.22.0.1ab07abeb9975f283f6b5f29451981be680fbf77ea778f991d457511d210476a.js" integrity="sha256-GrB6vrmXXyg/a18pRRmBvmgPv3fqd4&#43;ZHUV1EdIQR2o="></script>
+<script src="/js/modernizr-3.6.0.e013a1e54e3c19d83537ba42b900d34451e5e4b2e789be27a02ac9b152edb741.js" integrity="sha256-4BOh5U48Gdg1N7pCuQDTRFHl5LLnib4noCrJsVLtt0E="></script>
+<script src="/js/refresh.f6a5a7cd6b7a72867ff68f6ab208dd115915f6bd3a2269803d3f1835373ad619.js" integrity="sha256-9qWnzWt6coZ/9o9qsgjdEVkV9r06ImmAPT8YNTc61hk="></script>
+
+<script>
+  window.MathJax = {
+    loader: {
+      load: ['core', 'input/tex-base', 'output/chtml'],  
+      source: {
+        'core': '\/js\/mathjax\/core.d48fedf25c74c54fa6bf79646de92b02155872bdc4f5f7d0bbfc662523d8b4f5.js',
+        'input/tex-base': '\/js\/mathjax\/tex-base.1b68b8741dfc54e8f7222f88bea8ffcfc57ac54b2a2d8f4edf6800aa44d49441.js',
+        'output/chtml': '\/js\/mathjax\/chtml.926cd166e0f8c1f8a566a718d60c9c58a2b7142b156d30d5f02cec7c3b0ad60a.js',
+        'output/chtml/fonts/tex': '\/js\/mathjax\/tex_out.b8b2bb939c0dae84bf1390bfe6d32af13e83f647cdac01d544d2a7a517477e9d.js'
+      },
+    },
+    chtml: {
+      fontURL: '/fonts' 
+    },
+  };
+</script>
+
+<script src="/js/mathjax/startup.234a2513e6bdbc1eee06ca19abceca30fe4034e82afb373c08274c1ba2feb1a6.js" integrity="sha256-I0olE&#43;a9vB7uBsoZq87KMP5ANOgq&#43;zc8CCdMG6L&#43;saY="></script>
+<script src="/js/highlight.9.18.1.b1c58829c55afcc1f568022af4b08ed8976da404d2990b7535bd8e19c0e3310c.js" integrity="sha256-scWIKcVa/MH1aAIq9LCO2JdtpATSmQt1Nb2OGcDjMQw="></script>
+<script src="/js/highlightjs-line-numbers.2.7.0.min.ddfe282e07b7ec1ed069c23f92c7c8216ddb3f1879c4e962d37fd52adbd15a05.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU="></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  hljs.initLineNumbersOnLoad();
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.codeinline').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+</body>
+</html>

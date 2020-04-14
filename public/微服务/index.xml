@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微服务 on Promacanthus</title>
+    <link>http://localhost:1313/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content in 微服务 on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 12:31:02 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>真的需要微服务吗</title>
+      <link>http://localhost:1313/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%9C%9F%E7%9A%84%E9%9C%80%E8%A6%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%90%97/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%9C%9F%E7%9A%84%E9%9C%80%E8%A6%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%90%97/</guid>
+      <description>真的需要微服务吗</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>09-Dashboard on Promacanthus</title>
+    <link>http://localhost:1313/tags/09-dashboard/</link>
+    <description>Recent content in 09-Dashboard on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 10:09:14 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/09-dashboard/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>01-Guide.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/01-guide/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/01-guide/</guid>
+      <description>01-Guide.md</description>
+    </item>
+    
+    <item>
+      <title>02-Access-Control.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/02-access-control/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/02-access-control/</guid>
+      <description>02-Access-Control.md</description>
+    </item>
+    
+    <item>
+      <title>03-Accessing-Dashboard.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/03-accessing-dashboard/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/03-accessing-dashboard/</guid>
+      <description>03-Accessing-Dashboard.md</description>
+    </item>
+    
+    <item>
+      <title>04-Creating-sample-user.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/04-creating-sample-user/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/04-creating-sample-user/</guid>
+      <description>04-Creating-sample-user.md</description>
+    </item>
+    
+    <item>
+      <title>05-Integrations.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/05-integrations/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/05-integrations/</guid>
+      <description>05-Integrations.md</description>
+    </item>
+    
+    <item>
+      <title>06-FQA.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/06-fqa/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/06-fqa/</guid>
+      <description>06-FQA.md</description>
+    </item>
+    
+    <item>
+      <title>kubectl-proxy.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/kubectl-proxy/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/09-dashboard/kubectl-proxy/</guid>
+      <description>kubectl-proxy.md</description>
+    </item>
+    
+  </channel>
+</rss>

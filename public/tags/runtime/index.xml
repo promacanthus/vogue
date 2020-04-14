@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>runtime on Promacanthus</title>
+    <link>http://localhost:1313/tags/runtime/</link>
+    <description>Recent content in runtime on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 10:09:14 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/runtime/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>schema.md</title>
+      <link>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%AE%98%E6%96%B9%E5%BA%93/apimachinery/pkg/runtime/schema/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E4%BA%91%E5%8E%9F%E7%94%9F/kubernetes/%E5%AE%98%E6%96%B9%E5%BA%93/apimachinery/pkg/runtime/schema/</guid>
+      <description>schema.md</description>
+    </item>
+    
+  </channel>
+</rss>

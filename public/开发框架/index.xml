@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开发框架 on Promacanthus</title>
+    <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/</link>
+    <description>Recent content in 开发框架 on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 12:29:33 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>常用开发框架</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/</guid>
+      <description>常用开发框架</description>
+    </item>
+    
+    <item>
+      <title>微服务框架对比</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6%E5%AF%B9%E6%AF%94/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6%E5%AF%B9%E6%AF%94/</guid>
+      <description>微服务框架对比.</description>
+    </item>
+    
+  </channel>
+</rss>

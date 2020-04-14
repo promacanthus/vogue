@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTTP on Promacanthus</title>
+    <link>http://localhost:1313/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/</link>
+    <description>Recent content in HTTP on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Apr 2020 21:52:51 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CORS和Cookie</title>
+      <link>http://localhost:1313/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/cors%E5%92%8Ccookie/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%A1%AB%E5%9D%91%E8%AE%B0/http/cors%E5%92%8Ccookie/</guid>
+      <description>CORS和Cookie</description>
+    </item>
+    
+  </channel>
+</rss>

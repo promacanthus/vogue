@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Examples on Promacanthus</title>
+    <link>http://localhost:1313/tags/examples/</link>
+    <description>Recent content in Examples on Promacanthus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 10:09:14 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/examples/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>00-Endpoints(REST)</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/00-endpointsrest/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/00-endpointsrest/</guid>
+      <description>00-Endpoints(REST)</description>
+    </item>
+    
+    <item>
+      <title>01-Endpoints(gRPC)</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/01-endpointsgrpc/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/01-endpointsgrpc/</guid>
+      <description>01-Endpoints(gRPC)</description>
+    </item>
+    
+    <item>
+      <title>API-Monitoring</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/api-monitoring/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/api-monitoring/</guid>
+      <description>API-Monitoring</description>
+    </item>
+    
+    <item>
+      <title>Hystrix-Circuit-Breaker</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/hystrix-circuit-breaker/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/hystrix-circuit-breaker/</guid>
+      <description>Hystrix-Circuit-Breaker</description>
+    </item>
+    
+    <item>
+      <title>Logging</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/logging/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/logging/</guid>
+      <description>Logging</description>
+    </item>
+    
+    <item>
+      <title>Logging(ELK)</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/loggingelk/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/loggingelk/</guid>
+      <description>Logging(ELK)</description>
+    </item>
+    
+    <item>
+      <title>Rate-Limiting</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/rate-limiting/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/rate-limiting/</guid>
+      <description>Rate-Limiting</description>
+    </item>
+    
+    <item>
+      <title>Service-Discovery</title>
+      <link>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/service-discovery/</link>
+      <pubDate>Tue, 14 Apr 2020 10:09:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/go-kit/examples/service-discovery/</guid>
+      <description>Service-Discovery</description>
+    </item>
+    
+  </channel>
+</rss>
