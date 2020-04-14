@@ -1,5 +1,5 @@
 ---
-title: 01-Git基础.md
+title: 01-Git基础
 date: 2020-04-14T10:09:14.294627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 常用工具
 - Git
-summary: 01-Git基础.md
+summary: 01-Git基础
 showInMenu: false
 
 ---
-
-# 01-Git基础
 
 ## 版本控制演变过程
 

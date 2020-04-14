@@ -16,6 +16,7 @@ showInMenu: false
 ---
 
 # 容器 & Docker & 虚拟机
+
 - Container(容器)是一种轻量级的虚拟化技术，它不需要模拟硬件创建虚拟机。在Linux系统里面，使用到Linux kernel的cgroups，namespace(ipc，network， user，pid，mount），capability等用于隔离运行环境和资源限制的技术，我们称之为容器。
 
 容器技术早就出现。

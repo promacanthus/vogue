@@ -1,5 +1,5 @@
 ---
-title: HTTP-Protocol.md
+title: HTTP-Protocol
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
 hideLastModified: false
@@ -10,12 +10,10 @@ tags:
 - 开发框架
 - Go-Web
 - HTTP
-summary: HTTP-Protocol.md
+summary: HTTP-Protocol
 showInMenu: false
 
 ---
-
-# HTTP协议
 
 ## HTTP/1.1 首部字段
 

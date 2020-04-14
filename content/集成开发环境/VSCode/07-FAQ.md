@@ -1,5 +1,5 @@
 ---
-title: 07-FAQ.md
+title: 07-FAQ
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
 hideLastModified: false
@@ -9,18 +9,16 @@ tags:
 - ""
 - 集成开发环境
 - VSCode
-summary: 07-FAQ.md
+summary: 07-FAQ
 showInMenu: false
 
 ---
 
-# 07-FAQ
-
 1. 安装了扩展程序，但是没有任何功能正常工作？
 
-> 检查是否安装了所有依赖的Go工具。执行`Go: Install/Update Tools`命令。如果希望只是安装指定的工具，查看[扩展程序依赖的Go工具](/VSCode-go/06-扩展程序依赖的Go工具.md)，然后手动安装需要的工具。
+> 检查是否安装了所有依赖的Go工具。执行`Go: Install/Update Tools`命令。如果希望只是安装指定的工具，查看[插件依赖的Go工具](../06-插件依赖的go工具/)，然后手动安装需要的工具。
 
-2. 安装工具时显示`git pull --ff-only`错误？
+1. 安装工具时显示`git pull --ff-only`错误？
 
 > 有可能时因为正在安装的工具库被强制push，删除相关工具在`$GOPATH/src`（如果设置了`go.toolsGopath`,相应的路径也需要检查）中的文件夹然后重新安装。
 
@@ -62,19 +60,19 @@ showInMenu: false
 
 6. 扩展程序如何确定要使用的`GOPATH`?
 
-> 查看[扩展程序中设置GOPATH](/VSCode-go/08-扩展程序中设置GOPATH.md)。
+> 查看[扩展程序中设置GOPATH](../08-插件中设置GOPATH/)。
 
-7. VSCode 是否支持 Go Modules?
+1. VSCode 是否支持 Go Modules?
 
-> 查看[VSCode支持Go-Models](/VSCode-go/05-VSCode支持Go-Modules.md)。
+> 查看[VSCode支持Go-Models](../05-支持Go-Modules/)。
 
 8. 使用Go Modules时，为什么代码导航和代码完成速度会变慢？
 
-> 查看[VSCode支持Go-Models](/VSCode-go/05-VSCode支持Go-Modules.md)。
+> 查看[VSCode支持Go-Models](../05-支持Go-Modules/)。
 
 9. 使用Go Modules时可以受用语言服务器吗？
 
-> 查看[VSCode中使用Go语言服务器](/VSCode-go/13-VSCode中使用Go语言服务器.md)。
+> 查看[VSCode中使用Go语言服务器](../13-使用Go语言服务器/)。
 
 10. 如何仅仅运行代码而不是调试代码？
 
@@ -108,14 +106,15 @@ showInMenu: false
   4. 如果依然不起作用，在终端中执行`gocode -s -debug`后立即执行`gocode close`或者`gocode exit`然后再试一次。`gocode`的结果将输出再终端中。如果使用`Go Modules`，那么使用`gocode-gomod`而不是`gocode`。
   5. 如果再终端中看到预期的结果，但是在VSCode中没有预期的结果，那么在[vscode-go的仓库](https://github.com/Microsoft/vscode-go)和[gocode的仓库](https://github.com/mdempsky/gocode)中开一个`issue`。如果使用`Go Modules`在[这里](https://github.com/stamblerre/gocode)中开一个`issue`。
 
-1.    为什么在文件保存时格式化不生效？
+14.    为什么在文件保存时格式化不生效？
 
 > 查看日志（操作见问题12），具体的消息如`"Formatting took too long"`或者`Format On Save feature could be aborted`。如果看到此类消息，很大概率因为格式化花太长时间而被中止，这影响到了保存体验。可以设置`editor.formatOnSaveTimeout`来控制超时参数。
 
-1.   导入的包有红色的下划线显示“包未找到”？
+15.   导入的包有红色的下划线显示“包未找到”？
 
 > 这些是构建错误，点击`View`->`Output`->从面板右上角的下拉菜单中选择`go`。然后就可以看到`go build`的输出（或者是`go test`的输出，如果当前文件时测试文件）。将`go build`命令和参数一起拷贝后尝试在终端中运行。如果仍然看到相同的错误，那么问题在于`GOPATH`的设置。如果它运行正常，那么提交一个`issue`。
 
-1.   如何获取已实现但尚未发布的功能/错误修复程序？如何获得Go扩展的测试版？
+16.   如何获取已实现但尚未发布的功能/错误修复程序？如何获得Go扩展的测试版？
 
-> 查看[安装测试版本](/VSCode-go/12-使用扩展程序最新的测试版.md)
+> 查看[安装测试版本](../12-安装最新的测试版/)
+

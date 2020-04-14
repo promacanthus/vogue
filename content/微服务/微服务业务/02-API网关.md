@@ -1,5 +1,5 @@
 ---
-title: 02-API网关.md
+title: 02-API网关
 date: 2020-04-14T10:09:14.282627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 微服务
 - 微服务业务
-summary: 02-API网关.md
+summary: 02-API网关
 showInMenu: false
 
 ---
-
-# API网关
 
 原文链接：<https://www.nginx.com/blog/building-microservices-using-an-api-gateway/>
 
@@ -31,7 +29,7 @@ showInMenu: false
 
 例如，下图显示了在亚马逊Android移动应用程序中滚动浏览商品详细信息时看到的内容。
 
-![image](../../images/amazon.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/amazon.png)
 
 即使这是智能手机应用程序，商品详细信息页面也会显示很多信息。例如，不仅有基本的产品信息（如名称，描述和价格），而且此页面还显示：
 
@@ -55,7 +53,7 @@ showInMenu: false
 - 送货服务：运输选项，截止日期、成本、运输提供商的API
 - 推荐服务：推荐项目
 
-![image](../../images/mobile-client.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/mobile-client.png)
 
 我们需要决定移动客户端如何访问这些服务。
 
@@ -95,7 +93,7 @@ showInMenu: false
 
 下图显示了API网关通常如何适合该体系结构：
 
-![image](../../images/API-gateway.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/API-gateway.png)
 
 1. API网关负责**请求路由，组合和协议转换**。
 

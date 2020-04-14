@@ -14,9 +14,7 @@ showInMenu: false
 
 ---
 
-# 05-支持Go Modules
-
-VS Code使用大量[Go工具](/VSCode-go/06-扩展程序依赖的Go工具.md)来提供代码导航，代码完成，构建，分析等功能。
+VS Code使用大量[Go工具](06-扩展程序依赖的Go工具.md)来提供代码导航，代码完成，构建，分析等功能。
 
 > 这些工具还没有为[Go模块](https://blog.golang.org/modules2019)提供良好的支持。
 
@@ -55,7 +53,7 @@ https://github.com/golang/go/issues/24661 是Go工具团队用来跟踪各种Go�
 如果不想使用语言服务器:
 
 - 如果代码补全缓慢，请在[`gocode`仓库](https://github.com/stamblerre/gocode)中记录一个问题。
-- 如果代码导航速度慢，请在`[godef仓库](https://github.com/rogpeppe/godef)`中记录问题，或者如果在设置中选择了`gogetdoc`，请在[`gogetdoc仓库](https://github.com/zmb3/gogetdoc)`中记录问题。
+- 如果代码导航速度慢，请在[godef仓库](https://github.com/rogpeppe/godef)中记录问题，或者如果在设置中选择了`gogetdoc`，请在[`gogetdoc仓库](https://github.com/zmb3/gogetdoc)`中记录问题。
 
 3. 文件保存时不再自动导入。为什么？
 

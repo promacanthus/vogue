@@ -1,5 +1,5 @@
 ---
-title: 06-MySQL容器初始化.md
+title: 06-MySQL容器初始化
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 填坑记
 - MySQL
-summary: 06-MySQL容器初始化.md
+summary: 06-MySQL容器初始化
 showInMenu: false
 
 ---
-
-# MySQL容器初始化
 
 默认情况下，MySQL镜像创建的Docker容器启动时只是一个空的数据库实例，为了简化Docker部署，需要在Docker创建MySQL容器时：
 

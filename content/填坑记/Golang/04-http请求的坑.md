@@ -1,5 +1,5 @@
 ---
-title: 04-http请求的坑.md
+title: 04-http请求
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 填坑记
 - Golang
-summary: 04-http请求的坑.md
+summary: 04-http请求
 showInMenu: false
 
 ---
-
-# 04-http请求的坑
 
 通过HTTP POST方法传输数据的时候，有两种不同的方式需要区分。
 

@@ -1,5 +1,5 @@
 ---
-title: 03-Git与GitHub同步.md
+title: 03-Git与GitHub同步
 date: 2020-04-14T10:09:14.294627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 常用工具
 - Git
-summary: 03-Git与GitHub同步.md
+summary: 03-Git与GitHub同步
 showInMenu: false
 
 ---
-
-# 03-Git与GitHub同步
 
 ## 配置公私钥
 

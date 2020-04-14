@@ -1,5 +1,5 @@
 ---
-title: grpc.md
+title: package grpc
 date: 2020-04-14T10:09:14.262627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 开发框架
 - gRPC
-summary: grpc.md
+summary: grpc
 showInMenu: false
 
 ---
-
-# package grpc
 
 grpc包实现了一个称为gRPC的RPC系统。关于gRPC的更多详细访问 [grpc.io](https://grpc.io/)。
 
@@ -365,4 +363,3 @@ Header 返回一个 CallOptions，用于检索普通 RPC 的 Header 元数据。
 ```go
 func MaxCallRecvMsgSize(s int) CallOption
 ```
-

@@ -1,5 +1,5 @@
 ---
-title: 02-proto3指南.md
+title: 02-proto3指南
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 开发框架
 - Protocol-Buffers
-summary: 02-proto3指南.md
+summary: 02-proto3指南
 showInMenu: false
 
 ---
-
-# 02-proto3指南
 
 本指南介绍如何使用`protocol buffers`语言构建`protocol buffers`数据，包括：
 

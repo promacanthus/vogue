@@ -1,5 +1,5 @@
 ---
-title: 07-Golang快速入门.md
+title: 07-Golang快速入门
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 开发框架
 - gRPC
-summary: 07-Golang快速入门.md
+summary: 07-Golang快速入门
 showInMenu: false
 
 ---
-
-# 07-Golang快速入门
 
 本指南以简单的工作示例为您介绍Go中的gRPC。
 
@@ -25,7 +23,7 @@ showInMenu: false
 gRPC要求Go版本大于等于1.6：
 
 ```bash
-sugoi@Sugoi-PC:~$ go version 
+sugoi@Sugoi-PC:~$ go version
 go version go1.12.7 linux/amd64
 ```
 

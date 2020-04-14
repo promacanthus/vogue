@@ -1,5 +1,5 @@
 ---
-title: 09-proto3规范.md
+title: 09-proto3规范
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 开发框架
 - Protocol-Buffers
-summary: 09-proto3规范.md
+summary: 09-proto3规范
 showInMenu: false
 
 ---
-
-# 09-proto3规范
 
 这是`Protocol Buffers`语言（`proto3`）第3版的语言规范参考。使用Extended Backus-Naur Form（EBNF）指定语法：
 
@@ -25,7 +23,7 @@ showInMenu: false
 {}  repetition (any number of times)
 ```
 
-有关使用proto3的更多信息，请参阅[语言指南](../Protocol-Buffers/02-proto3指南.md)。
+有关使用proto3的更多信息，请参阅[语言指南](../Protocol-Buffers/02-proto3指南/)。
 
 ## 词汇元素
 
@@ -138,7 +136,7 @@ package foo.bar;
 
 ## 可用选项
 
-选项可用于`proto`文件，消息，枚举和服务。可用选项可以是`protobuf`定义的选项或自定义选项。有关更多信息，请参阅[语言指南中的选项](../Protocol-Buffers/02-proto3指南.md)。
+选项可用于`proto`文件，消息，枚举和服务。可用选项可以是`protobuf`定义的选项或自定义选项。有关更多信息，请参阅[语言指南中的选项](../Protocol-Buffers/02-proto3指南/)。
 
 ```protobuf
 option = "option" optionName  "=" constant ";"
@@ -278,7 +276,7 @@ service SearchService {
 
 ## `Proto`文件
 
-```
+```proto
 proto = syntax { import | package | option | topLevelDef | emptyStatement }
 topLevelDef = message | enum | service
 ```

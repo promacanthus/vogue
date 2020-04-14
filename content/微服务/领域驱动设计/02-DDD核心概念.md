@@ -1,5 +1,5 @@
 ---
-title: 02-DDD核心概念.md
+title: 02-DDD核心概念
 date: 2020-04-14T10:09:14.290627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 微服务
 - 领域驱动设计
-summary: 02-DDD核心概念.md
+summary: 02-DDD核心概念
 showInMenu: false
 
 ---
-
-# 02-DDD核心概念
 
 领域、子域、核心域、通用域和支撑域。
 
@@ -34,7 +32,7 @@ DDD 的研究方法与自然科学的研究方法类似。
 
 在自然科学研究中遇到复杂问题时，通常的做法就是将问题一步一步地细分，再针对细分出来的问题域，逐个深入研究，探索和建立所有子域的知识体系。当所有问题子域完成研究时，就建立了全部领域的完整知识体系了。
 
-![tree](../../images/tree.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/tree.jpg)
 
 - 第一步：确定研究对象，即研究领域，一棵桃树。桃树的知识体系是已经确定要研究的问题域，对应 DDD 的**领域**。
 - 第二步：对研究对象进行细分，将桃树细分为器官。根、茎、叶、花、果实和种子等器官则是细分后的问题**子域**。这个过程就是 DDD 将领域细分为多个子域的过程。
@@ -87,7 +85,7 @@ DDD 的研究方法与自然科学的研究方法类似。
 
 从事件风暴建立通用语言到领域对象设计和代码落地的完整过程如下图所示。
 
-![DDD](../../images/DDD-process.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/DDD-process.png)
 
 在事件风暴的过程中，建立领域模型，在领域建模的过程中会形成通用的业务术语和用户故事。事件风暴也是一个团队统一语言的过程。
 
@@ -97,7 +95,7 @@ DDD 的研究方法与自然科学的研究方法类似。
 
 > **设计过程中可以用表格，来记录事件风暴和微服务设计过程中产生的领域对象及其属性**。比如，领域对象在 DDD 分层架构中的位置、属性、依赖关系以及与代码模型对象的映射关系等。
 
-![sheet](../../images/sheet-example.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/sheet-example.jpg)
 
 DDD 分析和设计过程中的每一个环节都需要保证限界上下文内术语的统一，在代码模型设计的时侯就要建立领域对象和代码对象的一一映射，从而保证业务模型和代码模型的一致，实现业务语言与代码语言的统一。
 
@@ -182,7 +180,7 @@ DDD 分析和设计过程中的每一个环节都需要保证限界上下文内�
 
 #### 举例
 
-![value-object](../../images/value-object.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/value-object.jpg)
 
 人员实体原本包括：姓名、年龄、性别以及人员所在的省、市、县和街道等属性。这样显示地址相关的属性就很零碎。将“省、市、县和街道等属性”拿出来构成一个“地址属性集合”，这个集合就是值对象。
 
@@ -230,11 +228,11 @@ type Address struct{
 
 - 属性嵌入的方式：引用单一属性的值对象或只有一条记录的多属性值对象的实体，可以采用属性嵌入的方式嵌入
 
-![embed](../../images/embed.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/embed.jpg)
 
 - 序列化大对象的方式：引用一条或多条记录的多属性值对象的实体，可以采用序列化大对象的方式嵌入，比如，人员实体可以有多个通讯地址，多个地址序列化后可以嵌入人员的地址属性。
 
-![serial](../../images/serial.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/serial.jpg)
 
 **值对象创建后就不允许修改了，只能用另外一个值对象来整体替换**。
 
@@ -403,7 +401,7 @@ DDD 引入值对象是希望实现从“数据建模为中心”向“领域建�
 - 消息中间件
 - 事件接收和处理等
 
-![domain-event](../../images/domain-event.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/domain-event.jpg)
 
 #### 事件构建和发布
 
@@ -426,7 +424,7 @@ DDD 引入值对象是希望实现从“数据建模为中心”向“领域建�
 
 为了保证事件结构的统一，还会创建事件基类 DomainEvent（参考下图），子类可以扩充属性和方法。由于事件没有太多的业务行为，实现方法一般比较简单。
 
-![domainevent](../../images/domainevent.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/domainevent.jpg)
 
 事件发布之前需要先构建事件实体并持久化。
 

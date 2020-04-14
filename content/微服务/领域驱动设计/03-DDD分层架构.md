@@ -1,5 +1,5 @@
 ---
-title: 03-DDD分层架构.md
+title: 03-DDD分层架构
 date: 2020-04-14T10:09:14.290627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 微服务
 - 领域驱动设计
-summary: 03-DDD分层架构.md
+summary: 03-DDD分层架构
 showInMenu: false
 
 ---
-
-# 03-DDD分层架构
 
 微服务架构模型有好多种，例如：
 
@@ -30,13 +28,13 @@ DDD 的分层架构在不断发展。
 2. 后来四层架构有了进一步的优化，实现了各层对基础层的解耦；
 3. 再后来领域层和应用层之间增加了上下文环境（Context）层，五层架构（DCI）就此形成了。
 
-![image](../../images/tradition.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/tradition.jpg)
 
 > 在传统四层架构中，基础层是被其它层依赖的，它位于最核心的位置，按照分层架构的思想，它就是核心，但实际上**领域层**才是软件的核心，所以这种依赖是有问题的。后来采用依赖倒置（Dependency inversion principle,DIP）的设计，优化了传统的四层架构，实现了各层对基础层的解耦。
 
 本文的 DDD 分层架构就是优化后的四层架构。在下面这张图中，从上到下依次是：用户接口层、应用层、领域层和基础层。
 
-![image](../../images/DDDarth.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/DDDarth.jpg)
 
 ## 用户接口层
 
@@ -88,13 +86,13 @@ DDD 的分层架构在不断发展。
 
 以聚合为基础单元，完成领域模型和微服务架构的演进。聚合可以作为一个整体，在不同的领域模型之间重组或者拆分，或者直接将一个聚合独立为微服务。
 
-![image](../../images/arch-upgrade.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/arch-upgrade.jpg)
 
 ### 微服务内服务的演进
 
 在微服务内部，实体的方法被领域服务组合和封装，领域服务又被应用服务组合和封装。在服务逐层组合和封装的过程中，你会发现这样一个有趣的现象。
 
-![image](../../images/microservice-upgrade.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/microservice-upgrade.jpg)
 
 在服务设计时，并不一定能完整预测有哪些下层服务会被多少个上层服务组装，因此领域层通常只提供一些原子服务，比如领域服务 a、b、c。但随着系统功能增强和外部接入越来越多，应用服务会不断丰富。
 
@@ -113,7 +111,7 @@ DDD 分层架构的优势：
 
 DDD 分层架构中的要素其实和三层架构类似，只是在 DDD 分层架构中，这些要素被重新归类，重新划分了层，确定了层与层之间的交互规则和职责边界。
 
-![image](../../images/three2DDD.jpg)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/three2DDD.jpg)
 
 三层架构向 DDD 分层架构演进，主要发生在业务逻辑层和数据访问层。
 
@@ -140,7 +138,7 @@ DDD 分层架构在用户接口层引入了 DTO，给前端提供了更多的可
 
 > 外圆代码依赖只能指向内圆，内圆不需要知道外圆的任何情况。
 
-![clear](../../images/clear-arch.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/clear-arch.png)
 
 在洋葱架构中，各层的职能是这样划分的：
 
@@ -160,7 +158,7 @@ DDD 分层架构在用户接口层引入了 DTO，给前端提供了更多的可
 
 在六边形架构中，红圈内的核心业务逻辑（应用程序和领域模型）与外部资源（包括 APP、Web 应用以及数据库资源等）完全隔离，仅通过适配器进行交互。它解决了业务逻辑与用户界面的代码交错问题，很好地实现了前后端分离。六边形架构各层的依赖关系与整洁架构一样，都是由外向内依赖。
 
-![six](../../images/six-arch.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/six-arch.png)
 
 六边形架构将系统分为内六边形和外六边形两层，这两层的职能划分如下：
 
@@ -171,7 +169,7 @@ DDD 分层架构在用户接口层引入了 DTO，给前端提供了更多的可
 
 ### 三种模型架构对比
 
-![three](../../images/three-arch.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/three-arch.png)
 
 图中红色线框的作用就是将核心业务逻辑与外部应用、基础资源进行隔离。
 
@@ -233,7 +231,7 @@ DDD 分层架构在用户接口层引入了 DTO，给前端提供了更多的可
 
 下图中微服务 B 中红色框内的应用服务 B，它除了可以组合和编排自己的领域服务外，还可以组合和编排外部微服务的应用服务。它只要将编排后的服务发布到 API 网关供前端调用，这样前端就可以直接访问自己的微服务了。
 
-![image](../../images/example-project-1.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/example-project-1.png)
 
 ##### 企业级中台微服务
 
@@ -243,7 +241,7 @@ DDD 分层架构在用户接口层引入了 DTO，给前端提供了更多的可
 
 BFF 微服务可以承担应用层和用户接口层的主要职能，完成各个中台微服务的服务组合和编排，可以适配不同前端和渠道的要求。
 
-![image](../../images/example-project.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/example-project.png)
 
 #### 应用与资源的解耦与适配
 

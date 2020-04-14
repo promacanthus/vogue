@@ -1,5 +1,5 @@
 ---
-title: minikube.md
+title: minikube
 date: 2020-04-14T10:09:14.226627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 云原生
 - 开发环境配置
-summary: minikube.md
+summary: minikube
 showInMenu: false
 
 ---
-
-# minikube
 
 Minikube是一种可以轻松在本地运行Kubernetes的工具。 Minikube在笔记本电脑上的虚拟机（VM）内运行一个单节点Kubernetes集群，以供希望试用Kubernetes或每天进行开发的用户使用。
 

@@ -1,5 +1,5 @@
 ---
-title: 03-Chromium的坑.md
+title: 03-Chromium
 date: 2020-04-14T10:09:14.226627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 填坑记
 - Docker
-summary: 03-Chromium的坑.md
+summary: 03-Chromium
 showInMenu: false
 
 ---
-
-# 03-Chromium的坑
 
 制作镜像的时候，在里面安装了一个chromium浏览器，但是容易出现崩溃的情况。
 

@@ -1,5 +1,5 @@
 ---
-title: 01-logs.md
+title: 01-logs
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 填坑记
 - Kubernetes
-summary: 01-logs.md
+summary: 01-logs
 showInMenu: false
 
 ---
-
-# 01-logs
 
 ## 问题
 

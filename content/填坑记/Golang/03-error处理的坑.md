@@ -1,5 +1,5 @@
 ---
-title: 03-error处理的坑.md
+title: 03-error处理
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 填坑记
 - Golang
-summary: 03-error处理的坑.md
+summary: 03-error处理
 showInMenu: false
 
 ---
-
-# 03-error处理的坑
 
 ## 问题
 

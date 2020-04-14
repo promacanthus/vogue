@@ -1,5 +1,5 @@
 ---
-title: 08-Golang应用.md
+title: 08-Golang应用
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 开发框架
 - gRPC
-summary: 08-Golang应用.md
+summary: 08-Golang应用
 showInMenu: false
 
 ---
-
-# 08-Golang应用
 
 本教程提供了一个基本对Go程序员的指导关于如何使用gRPC。
 
@@ -24,7 +22,7 @@ showInMenu: false
 2. 使用`protocol buffers`编译器生成服务端和客户端代码
 3. 使用Go gRPC API为你的服务编写一个简单的客户端和服务端
 
-假定已阅读[概述](../gRPC/01-gRPC简介.md)并熟悉[`protocol buffers`](../Protocol-Buffers/01-Protocol-Buffers简介.md)。请注意，本教程中的示例使用`protocol buffers`的`proto3`版本：可以在[proto3语言指南](../Protocol-Buffers/02-proto3指南.md)和[Go代码生成指南](../gRPC/09-Go生成代码指南.md)中找到更多信息。
+假定已阅读概述并熟悉`protocol buffers`。请注意，本教程中的示例使用`protocol buffers`的`proto3`版本：可以在[proto3语言指南](../Protocol-Buffers/02-proto3指南/)和[Go代码生成指南](../gRPC/09-Go生成代码指南/)中找到更多信息。
 
 ## 为何使用gRPC
 
@@ -46,7 +44,7 @@ go get google.golang.org/grpc
 cd $GOPATH/src/google.golang.org/grpc/examples/route_guide
 ```
 
-还应该安装相关工具来生成服务端和客户端接口代码，如果还没有准备好，请按照[Go快速入门指南](../gRPC/07-Golang快速入门.md)中的设置说明进行操作。
+还应该安装相关工具来生成服务端和客户端接口代码，如果还没有准备好，请按照Go快速入门指南中的设置说明进行操作。
 
 ## 定义服务
 

@@ -1,5 +1,5 @@
 ---
-title: 06-gRPC编写格式.md
+title: 06-gRPC编写格式
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 开发框架
 - gRPC
-summary: 06-gRPC编写格式.md
+summary: 06-gRPC编写格式
 showInMenu: false
 
 ---
-
-# 06-gRPC编写格式
 
 ## 介绍
 
@@ -22,7 +20,7 @@ showInMenu: false
 
 ## Protocol
 
-Production rules are using <a href="http://tools.ietf.org/html/rfc5234">ABNF syntax</a>.
+Production rules are using `<a href="http://tools.ietf.org/html/rfc5234">ABNF syntax</a>`.
 
 ### Outline
 

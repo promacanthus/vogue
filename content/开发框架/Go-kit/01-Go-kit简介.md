@@ -1,5 +1,5 @@
 ---
-title: 01-Go-kit简介.md
+title: 01-Go-kit简介
 date: 2020-04-14T10:09:14.246627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 开发框架
 - Go-kit
-summary: 01-Go-kit简介.md
+summary: 01-Go-kit简介
 showInMenu: false
 
 ---
-
-# 01-Go-kit简介
 
 ## 什么是Go kit
 

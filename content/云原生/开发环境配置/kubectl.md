@@ -1,5 +1,5 @@
 ---
-title: kubectl.md
+title: kubectl
 date: 2020-04-14T10:09:14.222627+08:00
 draft: false
 hideLastModified: false
@@ -9,13 +9,10 @@ tags:
 - ""
 - 云原生
 - 开发环境配置
-summary: kubectl.md
+summary: kubectl
 showInMenu: false
 
 ---
-
-
-# kubectl
 
 ## 安装
 
@@ -117,6 +114,7 @@ kubectl config set-context $CONTEXT_NAME \
     --user=$USER_NICK \
     --kubeconfig=/path/to/standalone/.kube/config
 ```
+
 注：
 生成独立的 kubeconfig 时，标识 `--embed-certs` 是必选的，这样才能远程访问主机上的集群。
 

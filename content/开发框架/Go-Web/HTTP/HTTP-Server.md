@@ -1,5 +1,5 @@
 ---
-title: HTTP-Server.md
+title: HTTP-Server
 date: 2020-04-14T10:09:14.246627+08:00
 draft: false
 hideLastModified: false
@@ -10,12 +10,10 @@ tags:
 - 开发框架
 - Go-Web
 - HTTP
-summary: HTTP-Server.md
+summary: HTTP-Server
 showInMenu: false
 
 ---
-
-# HTTP服务
 
 原文链接：https://juejin.im/post/5dd11baff265da0c0c1fe813
 
@@ -29,7 +27,7 @@ showInMenu: false
 
 所以http服务器的工作就在于如何接受来自客户端的request，并向客户端返回response。
 
-![images](../../../images/client-server.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/client-server.png)
 
 服务器在接收到请求时，首先会进入路由(router)，这是一个Multiplexer，路由的工作在于为这个request找到对应的处理器(handler)，处理器对request进行处理，并构建response。Golang实现的http server同样遵循这样的处理流程。
 

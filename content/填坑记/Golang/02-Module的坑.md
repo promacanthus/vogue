@@ -1,5 +1,5 @@
 ---
-title: 02-Module的坑.md
+title: 02-Module
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 填坑记
 - Golang
-summary: 02-Module的坑.md
+summary: 02-Module
 showInMenu: false
 
 ---
-
-# 02-Module的坑
 
 ## 1. 多版本依赖冲突问题
 

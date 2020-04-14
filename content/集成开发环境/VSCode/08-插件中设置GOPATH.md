@@ -1,5 +1,5 @@
 ---
-title: 08-插件中设置GOPATH.md
+title: 08-插件中设置GOPATH
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 集成开发环境
 - VSCode
-summary: 08-插件中设置GOPATH.md
+summary: 08-插件中设置GOPATH
 showInMenu: false
 
 ---
-
-# 08-插件中设置`GOPATH`
 
 在任何使用都可以使用`Go: Current GOPATH`命令来查看扩展程序使用的`GOPATH`。
 

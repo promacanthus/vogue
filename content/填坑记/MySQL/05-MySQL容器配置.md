@@ -1,5 +1,5 @@
 ---
-title: 05-MySQL容器配置.md
+title: 05-MySQL容器配置
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 填坑记
 - MySQL
-summary: 05-MySQL容器配置.md
+summary: 05-MySQL容器配置
 showInMenu: false
 
 ---
-
-# MySQL容器
 
 ## 使用自定义MySQL配置文件
 

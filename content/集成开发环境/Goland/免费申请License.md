@@ -1,5 +1,5 @@
 ---
-title: 免费申请License.md
+title: 免费申请License
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 集成开发环境
 - Goland
-summary: 免费申请License.md
+summary: 免费申请License
 showInMenu: false
 
 ---
-
-# 免费申请License
 
 ## 教育版授权证书
 

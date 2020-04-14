@@ -1,5 +1,5 @@
 ---
-title: virtualBox.md
+title: virtualBox
 date: 2020-04-14T10:09:14.226627+08:00
 draft: false
 hideLastModified: false
@@ -9,16 +9,14 @@ tags:
 - ""
 - 云原生
 - 开发环境配置
-summary: virtualBox.md
+summary: virtualBox
 showInMenu: false
 
 ---
 
-# VirtualBox
-
 ## 安装
 
-将以下行添加到您的`/etc/apt/sources.list`中，将<mydist>替换为对应的发行版代号，18.04为bionic
+将以下行添加到您的`/etc/apt/sources.list`中，将`<mydist>`替换为对应的发行版代号，18.04为bionic
 
 ```bash
 echo "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian bionic contrib" >> /etc/apt/sources.list

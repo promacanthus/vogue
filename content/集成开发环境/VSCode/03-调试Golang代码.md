@@ -1,5 +1,5 @@
 ---
-title: 03-调试Golang代码.md
+title: 03-调试Golang代码
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 集成开发环境
 - VSCode
-summary: 03-调试Golang代码.md
+summary: 03-调试Golang代码
 showInMenu: false
 
 ---
-
-# 03-调试Golang代码
 
 ## 安装`delve`
 

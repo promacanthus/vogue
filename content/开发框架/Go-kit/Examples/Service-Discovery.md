@@ -1,5 +1,5 @@
 ---
-title: Service-Discovery.md
+title: Service-Discovery
 date: 2020-04-14T10:09:14.254627+08:00
 draft: false
 hideLastModified: false
@@ -10,7 +10,7 @@ tags:
 - 开发框架
 - Go-kit
 - Examples
-summary: Service-Discovery.md
+summary: Service-Discovery
 showInMenu: false
 
 ---

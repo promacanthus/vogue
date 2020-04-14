@@ -1,5 +1,5 @@
 ---
-title: 01-Endpoints(gRPC).md
+title: 01-Endpoints(gRPC)
 date: 2020-04-14T10:09:14.254627+08:00
 draft: false
 hideLastModified: false
@@ -10,12 +10,10 @@ tags:
 - 开发框架
 - Go-kit
 - Examples
-summary: 01-Endpoints(gRPC).md
+summary: 01-Endpoints(gRPC)
 showInMenu: false
 
 ---
-
-# 01-gRPC Endpoint
 
 查看[原文](https://www.ru-rocker.com/2017/02/24/micro-services-using-go-kit-grpc-endpoint/)。
 
@@ -37,7 +35,7 @@ showInMenu: false
 
 ## 一步步操作
 
-假设我们已经从[上一篇文章](../Examples/00-Endpoints(REST).md)中获得了所需的库。但这还不够，我们需要安装其他库和`protocol buffers`。
+假设我们已经从上一篇文章中获得了所需的库。但这还不够，我们需要安装其他库和`protocol buffers`。
 
 1. 从[这里](https://github.com/google/protobuf/releases)下载`protocol buffers`的编译器，提取bin文件夹并将其导出到`$PATH`中。
 

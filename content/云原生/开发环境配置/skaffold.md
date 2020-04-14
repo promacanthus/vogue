@@ -1,5 +1,5 @@
 ---
-title: skaffold.md
+title: skaffold
 date: 2020-04-14T10:09:14.226627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 云原生
 - 开发环境配置
-summary: skaffold.md
+summary: skaffold
 showInMenu: false
 
 ---
-
-# skaffold
 
 ## 安装
 

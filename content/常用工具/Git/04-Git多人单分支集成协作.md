@@ -1,5 +1,5 @@
 ---
-title: 04-Git多人单分支集成协作.md
+title: 04-Git多人单分支集成协作
 date: 2020-04-14T10:09:14.298627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 常用工具
 - Git
-summary: 04-Git多人单分支集成协作.md
+summary: 04-Git多人单分支集成协作
 showInMenu: false
 
 ---
-
-# 04-Git多人单分支集成协作
 
 ## 不同人修改不用文件
 

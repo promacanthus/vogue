@@ -1,5 +1,5 @@
 ---
-title: register.md
+title: package register
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
 hideLastModified: false
@@ -11,12 +11,10 @@ tags:
 - Docker
 - 官方库
 - docker
-summary: register.md
+summary: register
 showInMenu: false
 
 ---
-
-# package registry
 
 ```bash
 import "github.com/docker/docker/registry"

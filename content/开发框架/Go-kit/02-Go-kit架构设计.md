@@ -1,5 +1,5 @@
 ---
-title: 02-Go-kit架构设计.md
+title: 02-Go-kit架构设计
 date: 2020-04-14T10:09:14.254627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 开发框架
 - Go-kit
-summary: 02-Go-kit架构设计.md
+summary: 02-Go-kit架构设计
 showInMenu: false
 
 ---
-
-# 02-Go-kit架构设计
 
 ## 简介：Go kit核心概念
 
@@ -36,7 +34,7 @@ showInMenu: false
 
 从下面的架构图来看，其中可以注意下中间件：类似于常见框架中的中间件模式，通常用来记录日志、限制频率、负载均衡以及分布式追踪等等，主要在 Endpoint 以及 Service 中实现。
 
-![go-kit-arch](../../images/go-kit-arch.png)
+![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/go-kit-arch.png)
 
 ### 依赖注入
 

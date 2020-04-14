@@ -1,5 +1,5 @@
 ---
-title: Rate-Limiting.md
+title: Rate-Limiting
 date: 2020-04-14T10:09:14.254627+08:00
 draft: false
 hideLastModified: false
@@ -10,7 +10,7 @@ tags:
 - 开发框架
 - Go-kit
 - Examples
-summary: Rate-Limiting.md
+summary: Rate-Limiting
 showInMenu: false
 
 ---

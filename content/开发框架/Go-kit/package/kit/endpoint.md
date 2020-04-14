@@ -1,5 +1,5 @@
 ---
-title: endpoint.md
+title: package endpoint
 date: 2020-04-14T10:09:14.254627+08:00
 draft: false
 hideLastModified: false
@@ -11,12 +11,10 @@ tags:
 - Go-kit
 - package
 - kit
-summary: endpoint.md
+summary: endpoint
 showInMenu: false
 
 ---
-
-# package endpoint
 
 ## overview
 

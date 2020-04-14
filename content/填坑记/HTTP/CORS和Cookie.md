@@ -1,5 +1,5 @@
 ---
-title: CORS和Cookie.md
+title: CORS和Cookie
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - 填坑记
 - HTTP
-summary: CORS和Cookie.md
+summary: CORS和Cookie
 showInMenu: false
 
 ---
-
-# CORS和Cookie
 
 ## 问题
 
