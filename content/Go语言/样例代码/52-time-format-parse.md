@@ -1,20 +1,18 @@
 ---
-title: 52-time-format-parse.md
+title: 52-time-format-parse
 date: 2020-01-10T20:10:27.191007+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 52-time-format-parse.md
+summary: 52-time-format-parse
 showInMenu: false
 
 ---
 
-# 52-time-format-parse
 
 ```go
 // Go支持通过基于模式设计的时间格式化和解析。

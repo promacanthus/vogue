@@ -1,20 +1,18 @@
 ---
-title: 04-constants.md
+title: 04-constants
 date: 2020-01-10T19:50:56.185945+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 04-constants.md
+summary: 04-constants
 showInMenu: false
 
 ---
 
-# 04-constants
 
 ```go
 //  Golang支持的常量包括字符、字符串、布尔和数值

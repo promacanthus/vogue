@@ -1,21 +1,17 @@
 ---
-title: 04-Kubernetes本质.md
+title: 04-Kubernetes本质
 date: 2020-04-14T10:09:14.158627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 01-容器技术
-summary: 04-Kubernetes本质.md
+summary: 04-Kubernetes本质
 showInMenu: false
 
 ---
-
-# 04-Kubernetes本质
 
 > "容器"，实际上是一个由Linux Namespace、Linux Cgroups和rootfs三种技术构建出来的进程的隔离环境。
 
@@ -43,11 +39,11 @@ showInMenu: false
 
 谷歌公开发表的基础设施体系（[The Google Stack](http://malteschwarzkopf.de/research/assets/google-stack.pdf)）：
 
-![image](../../../images/google-stack.png)
+![image](/images/google-stack.png)
 
 ## Kubernetes架构
 
-### Kubernetes要解决的问题是什么？
+### Kubernetes要解决的问题是什么
 
 编排？调度？容器云？集群管理？
 
@@ -113,7 +109,7 @@ Kubernetes由Master和Node两种节点组成，分别对应这控制节点和计
 
 围绕Pod为核心，构建出Kubernetes项目的核心功能“全景图”：
 
-![image](../../../images/kubernetes-arch.png)
+![image](/images/kubernetes-arch.png)
 
 - 不同Pod之间不仅有访问关系，还要求发起时加上授权信息。那么如何实现？使用Secret对象，它其实是**一个保存在Etcd里的键值对数据**。把授权信息以Secret的方式存在Etcd里，**Kubernetes会在指定的Pod启动时，自动把Secret里的数据以Volume的方式挂载到容器里**。这样就可以使用授权信息进行容器之间的访问。
 

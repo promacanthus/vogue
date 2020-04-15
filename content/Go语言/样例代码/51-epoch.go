@@ -1,19 +1,3 @@
----
-title: 51-epoch.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 51-epoch.go
-showInMenu: false
-
----
-
 // 程序中的一个常见要求是获取自Unix时代以来的秒数，毫秒数或纳秒数。
 
 package main

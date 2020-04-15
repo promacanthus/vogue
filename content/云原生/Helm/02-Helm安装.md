@@ -1,20 +1,17 @@
 ---
-title: 02-Helm安装.md
+title: 02-Helm安装
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Helm
-summary: 02-Helm安装.md
+summary: 02-Helm安装
 showInMenu: false
 
 ---
-
-# 02-Helm安装
 
 - 客户端：helm
 - 服务端：Tiller

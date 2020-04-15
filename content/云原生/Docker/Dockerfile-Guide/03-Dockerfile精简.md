@@ -1,21 +1,17 @@
 ---
-title: 03-Dockerfile精简.md
+title: 03-Dockerfile精简
 date: 2020-04-14T10:09:14.098627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
-- Docker
 - Dockerfile-Guide
-summary: 03-Dockerfile精简.md
+summary: 03-Dockerfile精简
 showInMenu: false
 
 ---
-
-# 03-Dockerfile精简
 
 ## 优化基础镜像
 
@@ -440,7 +436,7 @@ node-distroless   7b4db3b7f1e5   76.7MB
 只有 76.7MB！
 
 比之前的镜像小了 600MB！
- 
+
 但在使用 distroless 时有一些事项需要注意。
 
 当容器在运行时，如果你想要检查它，可以使用以下命令 attach 到正在运行的容器上：

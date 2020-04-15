@@ -1,20 +1,17 @@
 ---
-title: 47-regular-expressions.md
+title: 47-regular-expressions
 date: 2020-01-10T20:09:10.954787+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 47-regular-expressions.md
+summary: 47-regular-expressions
 showInMenu: false
 
 ---
-
-# 47-regular-expressions
 
 ```go
 // Go内置支持正则表达式

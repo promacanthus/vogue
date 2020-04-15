@@ -1,20 +1,18 @@
 ---
-title: 45-string-func.md
+title: 45-string-func
 date: 2020-01-10T20:07:59.854589+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 45-string-func.md
+summary: 45-string-func
 showInMenu: false
 
 ---
 
-# 45-string-func
 
 ```go
 //   标准库strings包提供了很多有用的字符串相关函数。

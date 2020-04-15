@@ -1,20 +1,18 @@
 ---
-title: 21-errors.md
+title: 21-errors
 date: 2020-01-10T20:00:33.729632+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 21-errors.md
+summary: 21-errors
 showInMenu: false
 
 ---
 
-# 21-errors
 
 ```go
 // Go的惯例中，通过明确的贩毒的返回值来传达错误，这与Java和Ruby等语言中使用的异常以及C语言中有时候使用的重载单个结果或错误值形成对比

@@ -1,20 +1,17 @@
 ---
-title: 05-Charts开发.md
+title: 05-Charts开发
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Helm
-summary: 05-Charts开发.md
+summary: 05-Charts开发
 showInMenu: false
 
 ---
-
-# 05-Chars开发
 
 ## 前置条件
 

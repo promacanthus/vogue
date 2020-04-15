@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - Protocol-Buffers
 summary: 09-proto3规范
 showInMenu: false

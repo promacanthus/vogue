@@ -1,5 +1,5 @@
 ---
-title: k8s简介.md
+title: k8s简介
 date: 2020-04-14T10:09:14.206627+08:00
 draft: false
 hideLastModified: false
@@ -9,8 +9,7 @@ tags:
 - ""
 - 云原生
 - Kubernetes
-- 10-笔记
-summary: k8s简介.md
+summary: k8s简介
 showInMenu: false
 
 ---
@@ -27,7 +26,9 @@ K- ubernetes的自我修复机制使得容器集群总是运行在用户期望�
 ![image](https://note.youdao.com/yws/public/resource/2a9d776b887651686e00ee8b72f722ff/xmlnote/37F45B8EF26648EC9745CB6AE553B675/8458)
 
 ## Kubernetes资源对象
+
 ### Pods：
+
 Pod是Kubernetes的基本操作单元，**把相关的一个或多个容器构成一个Pod**，通常Pod里的容器运行相同的应用。==Pod包含的容器运行在同一个Minion(Host)上==，看作一个统一管理单元，共享相同的**volumes**和**network namespace**/**IP**和**Port**空间。
 
 ### Services：

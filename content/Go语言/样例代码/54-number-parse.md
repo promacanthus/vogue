@@ -1,20 +1,17 @@
 ---
-title: 54-number-parse.md
+title: 54-number-parse
 date: 2020-01-10T20:11:09.787134+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 54-number-parse.md
+summary: 54-number-parse
 showInMenu: false
 
 ---
-
-# 54-number-parse
 
 ```go
 // 从字符串中解析数字是许多程序中基本且常见的任务。

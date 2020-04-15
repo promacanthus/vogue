@@ -1,21 +1,18 @@
 ---
-title: Centos安装K8S.md
+title: Centos安装K8S
 date: 2020-04-14T10:09:14.206627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 10-笔记
-summary: Centos安装K8S.md
+summary: Centos安装K8S
 showInMenu: false
 
 ---
 
-# 操作系统配置
 ## 配置防火墙
 Kubernetes的Master与Node之间有大量的网络通信，安全的做法是在防火墙上配置各组件需要相互通信的端口号，在一个安全的内网环境中可以关闭防护墙。
 

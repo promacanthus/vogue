@@ -1,19 +1,3 @@
----
-title: 39-stateful-goroutine.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 39-stateful-goroutine.go
-showInMenu: false
-
----
-
 //  在前面的例子中，使用显示定义的互斥锁来跨多个goroutine同步对共享状态的访问。
 
 // 另一种方式是使用goroutine和通道内置的同步功能来实现相同的效果，

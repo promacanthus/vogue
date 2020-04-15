@@ -1,21 +1,17 @@
 ---
-title: 06-FQA.md
+title: 06-FQA
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 09-Dashboard
-summary: 06-FQA.md
+summary: 06-FQA
 showInMenu: false
 
 ---
-
-# FQA
 
 1. 如何在开发环境使用HTTPS？
 

@@ -1,21 +1,17 @@
 ---
-title: Docker简介.md
+title: Docker简介
 date: 2020-04-14T10:09:14.122627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- 原理
-summary: Docker简介.md
+summary: Docker简介
 showInMenu: false
 
 ---
-
-# 什么是容器？
 
 >一句话概括容器：容器就是将软件打包成标准化单元，以用于开发、交付和部署。
 
@@ -28,7 +24,7 @@ showInMenu: false
 
 ![image](https://mmbiz.qpic.cn/mmbiz_png/hvUCbRic69sAb5t6ckoXSeXDAGcsjolfEDH1O45w5Tr9rz7uCezRQnLoDJ3myKqDRYWMAp2hV6ctVPpmGibL2Aicw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
 
-# 什么是Docker？
+## 什么是Docker
 
 下面我通过四点向你说明Docker到底是个什么东西。
 
@@ -39,12 +35,13 @@ showInMenu: false
 
 ![image](https://mmbiz.qpic.cn/mmbiz_jpg/hvUCbRic69sAb5t6ckoXSeXDAGcsjolfEm0j1EwoJiazqz8ryHicL5uDnNCjCV6qEAmX8wp4WNmc9GWfOicibUicib1DQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
 
-# Docker思想
+## Docker思想
 
 - 集装箱
 - 标准化： ①运输方式 ② 存储方式 ③ API接口
 - 隔离
-# Docker容器的特点
+
+## Docker容器的特点
 
 - 轻量
 
@@ -58,7 +55,7 @@ showInMenu: false
 
 >Docker 赋予应用的隔离性不仅限于彼此隔离，还独立于底层的基础设施。Docker 默认提供最强的隔离，因此应用出现问题，也只是单个容器的问题，而不会波及到整台机器。
 
-# 为什么要用Docker
+## 为什么要用Docker
 
 1. Docker 的镜像提供了除内核外完整的运行时环境，确保了应用运行环境一致性，从而不会再出现 “这段代码在我机器上没问题啊” 这类问题；——**一致的运行环境**
 2. 可以做到秒级、甚至毫秒级的启动时间。大大的节约了开发、测试、部署的时间。——**更快速的启动时间**
@@ -67,16 +64,18 @@ showInMenu: false
 5. 可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上，而不用担心运行环境的变化导致应用无法正常运行的情况。——**迁移方便**
 6. 使用 Docker 可以通过定制应用镜像来实现持续集成、持续交付、部署。——**持续交付和部署**
 
+## 容器 VS 虚拟机
 
-# 容器 VS 虚拟机
-　　简单来说： 容器和虚拟机具有相似的资源隔离和分配优势，但功能有所不同，因为容器虚拟化的是操作系统，而不是硬件，因此容器更容易移植，效率也更高。
+简单来说： 容器和虚拟机具有相似的资源隔离和分配优势，但功能有所不同，因为容器虚拟化的是操作系统，而不是硬件，因此容器更容易移植，效率也更高。
 
-## 两者对比图
-　　传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便.
+### 两者对比图
+
+传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便.
 　　
 ![image](https://mmbiz.qpic.cn/mmbiz_png/hvUCbRic69sAb5t6ckoXSeXDAGcsjolfEAOZF4UIzYS0ibYC36KX8D4lBOzuouiatBDANhR3DlKGMHTe7cNuRd4WA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
 
 ## 容器与虚拟机 (VM) 总结
+
 ![image](https://mmbiz.qpic.cn/mmbiz_png/hvUCbRic69sAb5t6ckoXSeXDAGcsjolfEiaIoMmKLfWx2EB5tzibjL4iaF9WkYibLhPDgpTE6PicicMTv0ibjK6RuzWpAw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
 
 容器是一个应用层抽象，用于将代码和依赖资源打包在一起。 多个容器可以在同一台机器上运行，共享操作系统内核，但各自作为独立的进程在用户空间中运行 。与虚拟机相比， 容器占用的空间较少（容器镜像大小通常只有几十兆），瞬间就能完成启动 。
@@ -86,10 +85,12 @@ showInMenu: false
 通过Docker官网，我们知道了这么多Docker的优势，但是大家也没有必要完全否定虚拟机技术，因为两者有不同的使用场景。虚拟机更擅长于彻底隔离整个运行环境。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而 Docker通常用于隔离不同的应用 ，例如前端，后端以及数据库。
 
 ## 容器与虚拟机 (VM)两者是可以共存的
+
 就我而言，对于两者无所谓谁会取代谁，而是两者可以和谐共存。
 ![image](https://mmbiz.qpic.cn/mmbiz_png/hvUCbRic69sAb5t6ckoXSeXDAGcsjolfEovxooShWdgbcKbCGNnRZqtT7v6lU5iahXhib1ZOuDt7TjAJMqa2wK9ow/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
 
 # Docker基本概念
+
 Docker 包括三个基本概念：
 
 - 镜像（Image）
@@ -100,7 +101,9 @@ Docker 包括三个基本概念：
 ![image](https://mmbiz.qpic.cn/mmbiz_jpg/hvUCbRic69sAb5t6ckoXSeXDAGcsjolfEXGyrdRkaI9SIgEibENic9JU2lwlknd9YKmhCu7QkyD2cicnACiaJx3FxCA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
 
 ## 镜像（Image）——一个特殊的文件系统
+
 操作系统分为:
+
 - 内核
 - 用户空间。
 
@@ -117,34 +120,36 @@ Docker 包括三个基本概念：
 分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。
 
 ## 容器（Container)——镜像运行时的实体
-　　镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是**静态**的定义，容器是镜像**运行时**的实体。容器可以被创建、启动、停止、删除、暂停等 。
+
+镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是**静态**的定义，容器是镜像**运行时**的实体。容器可以被创建、启动、停止、删除、暂停等 。
 
 - 容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。前面讲过镜像使用的是分层存储，容器也是如此。
 
-　　容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。
+容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。
 
-　　按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据 ，++容器存储层要保持无状态化++。所有的文件写入操作，都应该使用数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。
+按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据 ，++容器存储层要保持无状态化++。所有的文件写入操作，都应该使用数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。
 
 数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此， 使用数据卷后，容器可以随意删除、重新 run ，数据却不会丢失。
 
 ## 仓库（Repository）——集中存放镜像文件的地方
+
 1. 镜像构建完成后，可以很容易的在当前宿主上运行，但是， 如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry就是这样的服务。
 2. 一个 Docker Registry中可以包含多个仓库（Repository）；每个仓库可以包含多个标签（Tag）；每个标签对应一个镜像。所以说：镜像仓库是Docker用来集中存放镜像文件的地方类似于我们之前常用的代码仓库。
 
 >通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本 。我们可以通过 <仓库名>:<标签>的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 latest 作为默认标签.。
 
-#### 这里补充一下Docker Registry 公开服务和私有 Docker Registry的概念：
+这里补充一下Docker Registry 公开服务和私有 Docker Registry的概念
 
 - Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，并可能提供收费服务供用户管理私有镜像。
 
 最常使用的 Registry 公开服务是官方的 Docker Hub ，这也是默认的 Registry，并拥有大量的高质量的官方镜像，网址为：https://hub.docker.com/ 。在国内访问Docker Hub 可能会比较慢国内也有一些云服务商提供类似于 Docker Hub 的公开服务。
 
->如 
+> 如
+>
 >- 时速云镜像库
 >- 网易云镜像服务
 >- DaoCloud 镜像市场
 >- 阿里云镜像库等
-
 
 - 除了使用公开服务外，用户还可以在 本地搭建私有 Docker Registry 。Docker 官方提供了 Docker Registry 镜像，可以直接使用做为私有 Registry 服务。开源的 Docker Registry 镜像只提供了 Docker Registry API 的服务端实现，足以支持 docker 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。
 　　
@@ -153,7 +158,6 @@ Docker 包括三个基本概念：
 “Docker - Build, Ship, and Run Any App, Anywhere”
 
 ---
-
 
 - Build（构建镜像） ： 镜像就像是集装箱包括文件以及运行环境等等资源。
 - Ship（运输镜像） ：主机和仓库间运输，这里的仓库就像是超级码头一样。

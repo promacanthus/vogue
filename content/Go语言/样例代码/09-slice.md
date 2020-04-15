@@ -1,20 +1,18 @@
 ---
-title: 09-slice.md
+title: 09-slice
 date: 2020-01-10T19:54:36.101497+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 09-slice.md
+summary: 09-slice
 showInMenu: false
 
 ---
 
-# 09-slice
 
 ```go
 // 切片是Go中的关键数据类型，为序列提供了比数组更强大的接口。

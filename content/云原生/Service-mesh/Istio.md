@@ -1,15 +1,14 @@
 ---
-title: Istio.md
+title: Istio
 date: 2020-04-14T10:09:14.218627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Service-mesh
-summary: Istio.md
+summary: Istio
 showInMenu: false
 
 ---
@@ -30,6 +29,7 @@ showInMenu: false
 - 观测（Observe）：通过丰富的自动跟踪、监控和记录所以服务，了解正在发生的情况。
 
 # Service Mesh
+
 **借着微服务和容器化的东风，传统的代理摇身一变，成了如今炙手可热的 Service Mesh。**
 
 有网络访问的地方就会有代理的存在。
@@ -39,6 +39,7 @@ showInMenu: false
 ![image](http://p99.pstatp.com/large/pgc-image/15401920262142c9b170d4d)
 
 代理可以为整个通信带来更多的功能，比如：
+
 1. **拦截**：选择性拦截传输的网络流量，比如GFW
 2. **统计**：既然所有的流量都经过代理，那么代理也可以用来统计网络中的数据信息，比如了解哪些人在访问哪些网站，通信的应答延迟等
 3. **缓存**：如果通信双方比较”远“，访问比较慢，那么代理可以把最近访问的数据缓存在本地，后面的访问不用访问后端来做到加速，比如CDN
@@ -59,12 +60,13 @@ showInMenu: false
 
 - 原来的代理都是基于网络流量的，一般都是工作在 IP 或者 TCP 层，很少关心具体的应用逻辑。
 - 在 Service Mesh 中，代理知道整个集群的所有应用信息，并且额外添加了:
-    - 热更新、
-    - 注入服务发现、
-    - 降级熔断、
-    - 认证授权、
-    - 超时重试、
-    - 日志监控等功能
+
+  - 热更新、
+  - 注入服务发现、
+  - 降级熔断、
+  - 认证授权、
+  - 超时重试、
+  - 日志监控等功能
 
 **让这些通用的功能不必每个应用都自己实现，放在代理中即可**。Service Mesh 中的代理对微服务中的应用做了定制化的改进！
 
@@ -81,6 +83,7 @@ showInMenu: false
 > 可以理解 Service Mesh 中的代理会抢了 Nginx 的生意，这也是为了 Nginx 也要开始做 NginMesh 的原因。
 
 # Istio
+
 ![image](https://preliminary.istio.io/docs/concepts/what-is-istio/arch.svg)
 
 Istio 就是我们上述提到的 Service Mesh 架构的一种实现，服务之间的通信（比如这里的 Service A 访问 Service B）会通过代理（默认是 Envoy）来进行。
@@ -88,6 +91,7 @@ Istio 就是我们上述提到的 Service Mesh 架构的一种实现，服务之
 而且中间的网络协议支持 HTTP/1.1，HTTP/2，gRPC 或者 TCP，可以说覆盖了主流的通信协议。
 
 控制中心做了进一步的细分，分成了 Pilot、Mixer 和 Citadel，它们的各自功能如下：
+
 - **Pilot**：为 Envoy 提供了服务发现，流量管理和智能路由（AB 测试、金丝雀发布等），以及错误处理（超时、重试、熔断）功能。
 
 用户通过 Pilot 的 API 管理网络相关的资源对象，Pilot 会根据用户的配置和服务的信息把网络流量管理变成 Envoy 能识别的格式分发到各个 Sidecar 代理中。
@@ -98,6 +102,7 @@ Istio 就是我们上述提到的 Service Mesh 架构的一种实现，服务之
 代理会和控制中心通信，一方面可以获取需要的服务之间的信息，另一方面也可以汇报服务调用的 Metrics 数据。
 
 ## Istio解决的问题
+
 单个应用拆分成了许多分散的微服务，它们之间相互调用才能完成一个任务，而一旦某个过程出错（组件越多，出错的概率也就越大），就非常难以排查。
 
 用户请求出现问题无外乎两个问题：**错误和响应慢**。
@@ -107,8 +112,7 @@ Istio 就是我们上述提到的 Service Mesh 架构的一种实现，服务之
 3. 应用升级发布
 4. 系统安全
 
-
-## 用什么姿势接入 Istio？
+## 用什么姿势接入 Istio
 
 虽然 Istio 能解决那么多的问题，但是引入 Istio 并不是没有代价的。最大的问题是 Istio 的复杂性，强大的功能也意味着 Istio 的概念和组件非常多，要想理解和掌握 Istio ，并成功在生产环境中部署需要非常详细的规划。
 

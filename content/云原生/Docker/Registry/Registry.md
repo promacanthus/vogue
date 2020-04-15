@@ -1,16 +1,14 @@
 ---
-title: Registry.md
+title: Registry
 date: 2020-04-14T10:09:14.114627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- Registry
-summary: Registry.md
+summary: Registry
 showInMenu: false
 
 ---

@@ -1,20 +1,18 @@
 ---
-title: 17-pointer.md
+title: 17-pointer
 date: 2020-01-10T19:59:23.077545+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 17-pointer.md
+summary: 17-pointer
 showInMenu: false
 
 ---
 
-# 17-pointer
 
 ```go
 //  Go支持指针，允许传递对程序中的值和记录的引用

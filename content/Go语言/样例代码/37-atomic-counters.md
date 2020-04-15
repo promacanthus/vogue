@@ -1,20 +1,18 @@
 ---
-title: 37-atomic-counters.md
+title: 37-atomic-counters
 date: 2020-01-10T20:05:30.450207+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 37-atomic-counters.md
+summary: 37-atomic-counters
 showInMenu: false
 
 ---
 
-# 37-atomic-counters
 
 ```go
 //  Golang中管理状态的首要机制是通过通道进行通信

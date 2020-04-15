@@ -1,20 +1,17 @@
 ---
-title: 50-time.md
+title: 50-time
 date: 2020-01-10T20:09:58.322922+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 50-time.md
+summary: 50-time
 showInMenu: false
 
 ---
-
-# 50-time
 
 ```go
 // Go为times和durations提供广泛支持

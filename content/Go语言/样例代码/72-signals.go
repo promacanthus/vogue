@@ -1,20 +1,4 @@
----
-title: 72-signals.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 72-signals.go
-showInMenu: false
-
----
-
-// 有时希望Go程序能够智能地处理Unix信号。
+// 有时希望Go程序能够智能地处理Unix信号
 // 例如，希望服务器在收到SIGTERM时正常关闭，或者命令行工具在收到SIGINT时停止处理输入
 
 package main

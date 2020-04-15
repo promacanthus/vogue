@@ -1,20 +1,17 @@
 ---
-title: flag.md
+title: package flag
 date: 2020-04-14T10:09:14.270627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 标准库
-summary: flag.md
+summary: package flag
 showInMenu: false
 
 ---
-
-# package flag
 
 ```go
 import "flag"

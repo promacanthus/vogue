@@ -1,16 +1,14 @@
 ---
-title: 01-Storage.md
+title: 01-Storage
 date: 2020-04-14T10:09:14.182627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 04-持久化存储
-summary: 01-Storage.md
+summary: 01-Storage
 showInMenu: false
 
 ---
@@ -228,7 +226,7 @@ spec:
 # 总结
 如下图：
 
-![](https://static001.geekbang.org/resource/image/e8/d9/e8b2586e4e14eb54adf8ff95c5c18cd9.png)
+![image](https://static001.geekbang.org/resource/image/e8/d9/e8b2586e4e14eb54adf8ff95c5c18cd9.png)
 
 - PVC 描述的是Pod想要使用的**持久化存储的属性**，比如存储的大小、读写权限等
 - PV 描述的是具体的**Volume的属性**，比如volume的类型，挂载的目录，远程存储服务器地址等
@@ -236,8 +234,8 @@ spec:
 
 > StorageClass的另一个重要的作用是指定Provisioner(存储插件),这时候,如果存储插件支持Dynamic Provisioning的话,kubernetes就可以自动创建PV。
 
-
 # 本地持久化存储
+
 如何解决kubernetes内置的20种持久化数据集不能满足需求的问题？在开源项目中，“不能用、不好用、需定制开发”是开源项目落地的三大常态。
 
 在持久化存储中，本地持久化存储的需求最高，这样的好处很明显。Volume直接使用本地磁盘（SSD），读写性能相比于大多数远程存储来说，要好很多。

@@ -1,20 +1,17 @@
 ---
-title: 60-line-filters.md
+title: 60-line-filters
 date: 2020-01-10T20:14:12.891132+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 60-line-filters.md
+summary: 60-line-filters
 showInMenu: false
 
 ---
-
-# 60-line-filters
 
 ```go
 // 行过滤器是一种常见的程序类型，它读取stdin的输入，处理它，然后将一些派生结果打印到stdout

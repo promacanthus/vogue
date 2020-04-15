@@ -1,19 +1,3 @@
----
-title: 13-multiple-return-values.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 13-multiple-return-values.go
-showInMenu: false
-
----
-
 //  Go内置支持多个返回值，这个特性通常用在惯用的Go中，如从函数中返回结果和错误值
 
 package main

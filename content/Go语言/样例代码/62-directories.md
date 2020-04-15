@@ -1,20 +1,17 @@
 ---
-title: 62-directories.md
+title: 62-directories
 date: 2020-01-10T20:14:45.818303+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 62-directories.md
+summary: 62-directories
 showInMenu: false
 
 ---
-
-# 62-directories
 
 ```go
 // Go有几个有用的功能来处理文件系统中的目录。

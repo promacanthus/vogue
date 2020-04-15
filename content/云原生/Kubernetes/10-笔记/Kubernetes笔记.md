@@ -1,5 +1,5 @@
 ---
-title: Kubernetes笔记.md
+title: Kubernetes笔记
 date: 2020-04-14T10:09:14.206627+08:00
 draft: false
 hideLastModified: false
@@ -9,8 +9,7 @@ tags:
 - ""
 - 云原生
 - Kubernetes
-- 10-笔记
-summary: Kubernetes笔记.md
+summary: Kubernetes笔记
 showInMenu: false
 
 ---

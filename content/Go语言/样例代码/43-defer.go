@@ -1,19 +1,3 @@
----
-title: 43-defer.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 43-defer.go
-showInMenu: false
-
----
-
 // Defer 用于确保稍后在程序执行执行函数调用，通常用于清理目的。
 
 // 在其他编程语言中，defer通常用于ensure或者finally中。

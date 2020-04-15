@@ -6,15 +6,13 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 微服务
-- 微服务业务
 summary: 02-API网关
 showInMenu: false
 
 ---
 
-原文链接：<https://www.nginx.com/blog/building-microservices-using-an-api-gateway/>
+[原文链接](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)
 
 这是本系列的第二篇文章，将讨论使用API网关构建微服务。当选择将应用程序构建为一组微服务时，需要确定应用程序的客户端如何与微服务进行交互。
 
@@ -29,7 +27,7 @@ showInMenu: false
 
 例如，下图显示了在亚马逊Android移动应用程序中滚动浏览商品详细信息时看到的内容。
 
-![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/amazon.png)
+![image](/images/amazon.png)
 
 即使这是智能手机应用程序，商品详细信息页面也会显示很多信息。例如，不仅有基本的产品信息（如名称，描述和价格），而且此页面还显示：
 
@@ -53,7 +51,7 @@ showInMenu: false
 - 送货服务：运输选项，截止日期、成本、运输提供商的API
 - 推荐服务：推荐项目
 
-![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/mobile-client.png)
+![image](/images/mobile-client.png)
 
 我们需要决定移动客户端如何访问这些服务。
 
@@ -93,7 +91,7 @@ showInMenu: false
 
 下图显示了API网关通常如何适合该体系结构：
 
-![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/API-gateway.png)
+![image](/images/API-gateway.png)
 
 1. API网关负责**请求路由，组合和协议转换**。
 
@@ -170,7 +168,7 @@ API网关需要知道与之通信的每个微服务的位置（IP地址和端口
 
 基础结构服务（例如，消息代理）通常具有**静态位置**，可以通过OS环境变量指定。但是，确定应用程序服务的位置并不容易，应用服务具有动态分配的位置。由于自动扩展和升级，服务实例集会**动态更改**。因此，与网络中的任何其他服务客户端一样，API网关需要使用系统的服务发现机制：**服务器端发现**或**客户端发现**。
 
-稍后的文章将更详细地描述[服务发现](/Microservices/04-服务发现.md)。现在，值得注意的是，如果系统使用客户端发现，那么API网关必须能够查询**服务注册表（Service Registry）**，它是所有微服务实例及其位置的数据库。
+稍后的文章将更详细地描述[服务发现](../04-服务发现/)。现在，值得注意的是，如果系统使用客户端发现，那么API网关必须能够查询**服务注册表（Service Registry）**，它是所有微服务实例及其位置的数据库。
 
 ### 处理部分失败
 

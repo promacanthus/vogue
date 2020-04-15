@@ -1,20 +1,18 @@
 ---
-title: 53-random-number.md
+title: 53-random-number
 date: 2020-01-10T20:10:53.055084+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 53-random-number.md
+summary: 53-random-number
 showInMenu: false
 
 ---
 
-# 53-random-number
 
 ```go
 //  Go的math/rand包提供伪随机数生成。

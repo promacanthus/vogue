@@ -1,20 +1,18 @@
 ---
-title: 24-channel-buffering.md
+title: 24-channel-buffering
 date: 2020-01-10T20:01:39.969734+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 24-channel-buffering.md
+summary: 24-channel-buffering
 showInMenu: false
 
 ---
 
-# 24-channel-buffering
 
 ```go
 // 默认情况下，通道是不带缓冲区的,这意味着只有接收端和发送端同时准备好才能发送数据

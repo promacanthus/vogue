@@ -1,18 +1,4 @@
----
-title: 38-mutexes.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 38-mutexes.go
-showInMenu: false
 
----
 
 // 对于简单的计数器状态可以通过 atomic 操作来控制
 // 对于更复杂的状态，可以使用互斥锁（mutex）安全地访问多个goroutine中的数据

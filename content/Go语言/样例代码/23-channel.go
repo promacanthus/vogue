@@ -1,18 +1,3 @@
----
-title: 23-channel.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 23-channel.go
-showInMenu: false
-
----
 
 // 通道是连接并发goroutine的管道
 // 可以通过管道在一个goroutine与另一个goroutine之间发送和接收值

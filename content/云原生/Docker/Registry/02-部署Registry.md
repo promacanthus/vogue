@@ -1,16 +1,14 @@
 ---
-title: 02-部署Registry.md
+title: 02-部署Registry
 date: 2020-04-14T10:09:14.110627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- Registry
-summary: 02-部署Registry.md
+summary: 02-部署Registry
 showInMenu: false
 
 ---

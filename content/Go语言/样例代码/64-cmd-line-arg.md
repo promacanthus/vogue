@@ -1,20 +1,18 @@
 ---
-title: 64-cmd-line-arg.md
+title: 64-cmd-line-arg
 date: 2020-01-10T20:15:23.049427+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 64-cmd-line-arg.md
+summary: 64-cmd-line-arg
 showInMenu: false
 
 ---
 
-# 64-cmd-line-arg
 
 ```go
 // 命令行参数是参数化执行程序的常用方法。

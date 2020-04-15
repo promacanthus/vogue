@@ -1,16 +1,14 @@
 ---
-title: 07-Operator.md
+title: 07-Operator
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 03-容器编排
-summary: 07-Operator.md
+summary: 07-Operator
 showInMenu: false
 
 ---

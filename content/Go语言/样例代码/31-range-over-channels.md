@@ -1,20 +1,18 @@
 ---
-title: 31-range-over-channels.md
+title: 31-range-over-channels
 date: 2020-01-10T20:03:40.769961+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 31-range-over-channels.md
+summary: 31-range-over-channels
 showInMenu: false
 
 ---
 
-# 31-range-over-channels
 
 ```go
 //  使用for和range遍历基础数据结构,使用同样的句法遍历通道中的值

@@ -1,20 +1,18 @@
 ---
-title: 32-timers.md
+title: 32-timers
 date: 2020-01-10T20:03:55.837993+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 32-timers.md
+summary: 32-timers
 showInMenu: false
 
 ---
 
-# 32-timers
 
 ```go
 //  我们通常需要在未来的某些时间点执行Go代码或者在某个时间段内重复

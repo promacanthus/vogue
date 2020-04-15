@@ -1,18 +1,3 @@
----
-title: 21-errors.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 21-errors.go
-showInMenu: false
-
----
 
 // Go的惯例中，通过明确的贩毒的返回值来传达错误，这与Java和Ruby等语言中使用的异常以及C语言中有时候使用的重载单个结果或错误值形成对比
 //  在Go中很容的看到哪些函数返回错误并使用任何其他相同的语言结构体来处理它们，而不是错误任务

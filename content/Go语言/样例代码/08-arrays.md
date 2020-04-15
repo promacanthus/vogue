@@ -1,20 +1,18 @@
 ---
-title: 08-arrays.md
+title: 08-arrays
 date: 2020-01-10T19:53:32.637573+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 08-arrays.md
+summary: 08-arrays
 showInMenu: false
 
 ---
 
-# 08-arrays
 
 ```go
 // 在Go中，数组是定长的元素编号序列

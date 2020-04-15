@@ -1,20 +1,17 @@
 ---
-title: 49-xml.md
+title: 49-xml
 date: 2020-01-10T20:09:42.022875+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 49-xml.md
+summary: 49-xml
 showInMenu: false
 
 ---
-
-# 49-xml
 
 ```go
 // Go使用encoding.xml包提供对XML和类XML格式的内置支持。

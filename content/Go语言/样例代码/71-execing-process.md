@@ -1,20 +1,17 @@
 ---
-title: 71-execing-process.md
+title: 71-execing-process
 date: 2020-01-10T20:17:17.631089+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 71-execing-process.md
+summary: 71-execing-process
 showInMenu: false
 
 ---
-
-# 71-execing-process
 
 ```go
 // 上一个例子生成一个外部的进程，当我们需要一个正在运行的Go进程可访问的外部进程时，会这样做

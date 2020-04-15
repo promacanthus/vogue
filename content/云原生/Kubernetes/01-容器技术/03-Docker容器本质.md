@@ -1,21 +1,17 @@
 ---
-title: 03-Docker容器本质.md
+title: 03-Docker容器本质
 date: 2020-04-14T10:09:14.158627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 01-容器技术
-summary: 03-Docker容器本质.md
+summary: 03-Docker容器本质
 showInMenu: false
 
 ---
-
-# 03-Docker容器的本质
 
 ## 典型示例
 

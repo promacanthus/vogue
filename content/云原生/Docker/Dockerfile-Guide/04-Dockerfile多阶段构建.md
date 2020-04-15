@@ -1,21 +1,17 @@
 ---
-title: 04-Dockerfile多阶段构建.md
+title: 04-Dockerfile多阶段构建
 date: 2020-04-14T10:09:14.098627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
-- Docker
 - Dockerfile-Guide
-summary: 04-Dockerfile多阶段构建.md
+summary: 04-Dockerfile多阶段构建
 showInMenu: false
 
 ---
-
-# 04-Dockerfile多阶段构建
 
 只需要在 Dockerfile 中多次使用 FORM 声明，每次 FROM 指令可以使用不同的基础镜像，并且每次 FROM 指令都会开始新的构建，可以选择将一个阶段的构建结果复制到另一个阶段，在最终的镜像中只会留下最后一次构建的结果，并且只需要编写一个 Dockerfile 文件。
 

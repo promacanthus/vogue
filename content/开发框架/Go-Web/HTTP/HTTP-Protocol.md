@@ -230,7 +230,7 @@ URI的分层部分（hierarchical part）包含了资源的识别信息，这些
 
 URI的另一个可选部分为片段（fragment）,片段使用井号（#）作为前缀，它可以对URI定义的资源中的次级资源进行表示（secondary resource）进行标识。当URI包含参数时，URI的片段将被放在查询参数之后。因为URI的片段是有客户端负责处理的，所以Web浏览器在将URI发送给服务器之前，一般都会先把URI中的片段移除。（如果想要取得URI片段，那么可以通过JS或某个HTTP客户端库，将URI片段包含在一个GET请求里面）。
 
-使用HTTP方案的URI示例：`http://sausheong:password@www.example. com/ docs/file?name=sausheong&location=singapore#summary`
+使用HTTP方案的URI示例：`http://sausheong:password@www.example.com/docs/file?name=sausheong&location=singapore#summary`
 
 - 这个URI使用的是HTTP方案
 - 跟在方案之后的是一个冒号，位于@符号之前的分段`sausheong:password`

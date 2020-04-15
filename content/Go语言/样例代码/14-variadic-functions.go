@@ -1,18 +1,3 @@
----
-title: 14-variadic-functions.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 14-variadic-functions.go
-showInMenu: false
-
----
 
 //  可变参数函数可以被任意数量的尾随参数调用
 //  例如，fmt.Println就是一个常见的可变参数函数

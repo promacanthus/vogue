@@ -1,20 +1,17 @@
 ---
-title: 07-switch.md
+title: 07-switch
 date: 2020-01-10T19:52:36.557673+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 07-switch.md
+summary: 07-switch
 showInMenu: false
 
 ---
-
-#  07-switch
 
 ```go
 //  Switch语句表达多个分支的条件

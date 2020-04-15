@@ -1,19 +1,3 @@
----
-title: 68-HTTP-client.go
-date: 2020-01-10T19:46:27.011442+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 68-HTTP-client.go
-showInMenu: false
-
----
-
 // Go标准库为net/http包中的HTTP客户端和服务器提供了出色的支持
 
 package main

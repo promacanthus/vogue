@@ -1,20 +1,17 @@
 ---
-title: 72-signals.md
+title: 72-signals
 date: 2020-01-10T20:17:32.778816+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 72-signals.md
+summary: 72-signals
 showInMenu: false
 
 ---
-
-# 72-signals
 
 ```go
 // 有时希望Go程序能够智能地处理Unix信号。

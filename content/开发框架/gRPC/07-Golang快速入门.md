@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - gRPC
 summary: 07-Golang快速入门
 showInMenu: false

@@ -1,20 +1,18 @@
 ---
-title: 33-tickers.md
+title: 33-tickers
 date: 2020-01-10T20:04:07.702019+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 33-tickers.md
+summary: 33-tickers
 showInMenu: false
 
 ---
 
-# 33-tickers
 
 ```go
 //  Timer（计时器）用于在未来的执行一次某件事

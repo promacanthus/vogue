@@ -1,20 +1,18 @@
 ---
-title: 22-goroutines.md
+title: 22-goroutines
 date: 2020-01-10T20:00:59.67767+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 22-goroutines.md
+summary: 22-goroutines
 showInMenu: false
 
 ---
 
-# 22-goroutines
 
 ```go
 // Goroutine是一个轻量级的执行线程

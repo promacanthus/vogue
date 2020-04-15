@@ -1,15 +1,14 @@
 ---
-title: 通过socket与docker通信.md
+title: 通过socket与docker通信
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-summary: 通过socket与docker通信.md
+summary: 通过socket与docker通信
 showInMenu: false
 
 ---

@@ -1,15 +1,14 @@
 ---
-title: Docker常见错误汇总.md
+title: Docker常见错误汇总
 date: 2020-04-14T10:09:14.106627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-summary: Docker常见错误汇总.md
+summary: Docker常见错误汇总
 showInMenu: false
 
 ---

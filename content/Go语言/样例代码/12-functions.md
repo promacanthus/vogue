@@ -1,20 +1,18 @@
 ---
-title: 12-functions.md
+title: 12-functions
 date: 2020-01-10T19:56:34.165448+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 12-functions.md
+summary: 12-functions
 showInMenu: false
 
 ---
 
-# 12-functions
 
 ```go
 // 函数是Go的核心

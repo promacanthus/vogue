@@ -1,18 +1,4 @@
----
-title: 60-line-filters.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 60-line-filters.go
-showInMenu: false
 
----
 
 // 行过滤器是一种常见的程序类型，它读取stdin的输入，处理它，然后将一些派生结果打印到stdout
 // 常见的行过滤器有：grep和sed。

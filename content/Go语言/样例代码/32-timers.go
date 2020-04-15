@@ -1,19 +1,3 @@
----
-title: 32-timers.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 32-timers.go
-showInMenu: false
-
----
-
 //  我们通常需要在未来的某些时间点执行Go代码或者在某个时间段内重复
 //  Golang内置了timer（计时器）和ticker（断续器），使得上述目的很容易实现
 

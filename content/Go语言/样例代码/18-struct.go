@@ -1,19 +1,3 @@
----
-title: 18-struct.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 18-struct.go
-showInMenu: false
-
----
-
 //  Go中的结构是字段的类型集合，它们可用于将数据分组在一起以形成记录
 
 package main

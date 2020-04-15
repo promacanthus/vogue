@@ -1,18 +1,3 @@
----
-title: 33-tickers.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 33-tickers.go
-showInMenu: false
-
----
 
 //  Timer（计时器）用于在未来的执行一次某件事
 //  Ticker（断续器）用于定期重复做某件事

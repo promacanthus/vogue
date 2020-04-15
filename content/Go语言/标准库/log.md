@@ -1,5 +1,5 @@
 ---
-title: log.md
+title: packages log
 date: 2020-04-14T10:09:14.274627+08:00
 draft: false
 hideLastModified: false
@@ -9,12 +9,10 @@ tags:
 - ""
 - Go语言
 - 标准库
-summary: log.md
+summary: packages log
 showInMenu: false
 
 ---
-
-# packages log
 
 ```go
 import "log"

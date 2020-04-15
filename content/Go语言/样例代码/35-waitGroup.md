@@ -1,20 +1,18 @@
 ---
-title: 35-waitGroup.md
+title: 35-waitGroup
 date: 2020-01-10T20:04:51.414116+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 35-waitGroup.md
+summary: 35-waitGroup
 showInMenu: false
 
 ---
 
-# 35-waitGroup
 
 ```go
 //  要等待多个goroutine完成,可以使用WaitGroup

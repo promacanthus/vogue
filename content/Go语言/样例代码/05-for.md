@@ -1,20 +1,18 @@
 ---
-title: 05-for.md
+title: 05-for
 date: 2020-01-10T19:51:27.829846+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 05-for.md
+summary: 05-for
 showInMenu: false
 
 ---
 
-# 05-for
 
 ```go
 // for是Golang中唯一的循环结构，for循环有三种基本形式

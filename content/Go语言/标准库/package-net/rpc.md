@@ -1,21 +1,17 @@
 ---
-title: rpc.md
+title: package rpc
 date: 2020-04-14T10:09:14.274627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 标准库
-- package-net
-summary: rpc.md
+summary: package rpc
 showInMenu: false
 
 ---
-
-# package rpc
 
 ```go
 import "net/rpc"

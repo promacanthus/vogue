@@ -1,26 +1,25 @@
 ---
-title: 06-Service.md
+title: 06-Service
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 05-容器网络
-summary: 06-Service.md
+summary: 06-Service
 showInMenu: false
 
 ---
 
-# Service
 kubernetes使用Service：
+
 1. Pod的IP地址不固定
 2. 一组Pod之间有负载均衡的需求
 
 典型的Service如下：
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -33,9 +32,11 @@ spec:
   - name: default
     protocol: TCP
     port: 80            #service的端口
-    targetPort: 9376    #代理的Pod的端口 
+    targetPort: 9376    #代理的Pod的端口
 ```
+
 具体的应用的Deployment如下：
+
 ```yaml
 # 这个容器的作用是每次访问9376端口，返回它自己的hostname
 apiVersion: apps/v1

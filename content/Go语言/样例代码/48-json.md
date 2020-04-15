@@ -1,20 +1,17 @@
 ---
-title: 48-json.md
+title: 48-json
 date: 2020-01-10T20:09:27.902835+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 48-json.md
+summary: 48-json
 showInMenu: false
 
 ---
-
-# 48-json
 
 ```go
 // Go提供对JSON编码和解码的内置支持，包括内置和自定义类型

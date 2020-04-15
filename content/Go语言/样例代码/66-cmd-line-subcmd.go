@@ -1,18 +1,4 @@
----
-title: 66-cmd-line-subcmd.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 66-cmd-line-subcmd.go
-showInMenu: false
 
----
 
 // 一些命令行工具，比如go工具或git有许多子命令，每个子命令都有自己的一组标志。
 // 例如： go build 和 go get 是go工具的两个不同子命令

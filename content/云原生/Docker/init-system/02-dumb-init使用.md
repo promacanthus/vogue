@@ -1,16 +1,14 @@
 ---
-title: 02-dumb-init使用.md
+title: 02-dumb-init使用
 date: 2020-04-14T10:09:14.118627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- init-system
-summary: 02-dumb-init使用.md
+summary: 02-dumb-init使用
 showInMenu: false
 
 ---

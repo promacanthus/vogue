@@ -1,19 +1,3 @@
----
-title: 57-Base64.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 57-Base64.go
-showInMenu: false
-
----
-
 // Go内置支持base64编解码。
 
 package main

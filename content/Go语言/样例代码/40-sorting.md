@@ -1,20 +1,18 @@
 ---
-title: 40-sorting.md
+title: 40-sorting
 date: 2020-01-10T20:06:20.262329+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 40-sorting.md
+summary: 40-sorting
 showInMenu: false
 
 ---
 
-# 40-sorting
 
 ```go
 // Go的sort包实现了内置和用户定义类型的排序。

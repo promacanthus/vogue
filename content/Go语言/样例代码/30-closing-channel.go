@@ -1,18 +1,4 @@
----
-title: 30-closing-channel.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 30-closing-channel.go
-showInMenu: false
 
----
 
 //  关闭通道表示不再会有值传递给它,这对于与通道的接收器进行通信完成非常有用。
 

@@ -1,19 +1,3 @@
----
-title: 56-SHA1-hashes.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 56-SHA1-hashes.go
-showInMenu: false
-
----
-
 // SHA1哈希经常用于计算二进制或者文本blob的短标识，
 // 例如Git就使用SHA1来标识版本化的文件和目录。
 

@@ -1,16 +1,14 @@
 ---
-title: Registry迁移.md
+title: Registry迁移
 date: 2020-04-14T10:09:14.114627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- Registry
-summary: Registry迁移.md
+summary: Registry迁移
 showInMenu: false
 
 ---

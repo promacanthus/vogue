@@ -1,16 +1,14 @@
 ---
-title: 09-Job&Cronjob.md
+title: 09-Job&Cronjob
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 03-容器编排
-summary: 09-Job&Cronjob.md
+summary: 09-Job&Cronjob
 showInMenu: false
 
 ---

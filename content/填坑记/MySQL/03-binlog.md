@@ -6,7 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 填坑记
 - MySQL
 summary: 03-binlog

@@ -1,19 +1,3 @@
----
-title: 65-cmd-line-flags.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 65-cmd-line-flags.go
-showInMenu: false
-
----
-
 // 命令行标识是制定命令行程序选项的常用方法
 // 例如： wc -l 其中 -l 就是一个命令行标识
 

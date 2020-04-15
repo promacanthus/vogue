@@ -1,21 +1,17 @@
 ---
-title: 02-Access-Control.md
+title: 02-Access-Control
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 09-Dashboard
-summary: 02-Access-Control.md
+summary: 02-Access-Control
 showInMenu: false
 
 ---
-
-# Access Control
 
 当`Dashboard`安装完成并且能够正常访问后，将专注于为用户配置对群集资源的访问控制。从版本`1.7`开始：
 

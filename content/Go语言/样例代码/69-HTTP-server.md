@@ -1,20 +1,17 @@
 ---
-title: 69-HTTP-server.md
+title: 69-HTTP-server
 date: 2020-01-10T20:16:49.487616+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 69-HTTP-server.md
+summary: 69-HTTP-server
 showInMenu: false
 
 ---
-
-# 69-HTTP-server
 
 ```go
 // 使用net/http包可以轻松编写基本的HTTP服务器

@@ -1,15 +1,14 @@
 ---
-title: Docker命令.md
+title: Docker命令
 date: 2020-04-14T10:09:14.102627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-summary: Docker命令.md
+summary: Docker命令
 showInMenu: false
 
 ---
@@ -59,7 +58,6 @@ showInMenu: false
 
 #### 在子命令中还有更多丰富的选项，可以使用 docker COMMAND --help 查看。例如：
 
-
-```
-# docker run --help
+```bash
+docker run --help
 ```

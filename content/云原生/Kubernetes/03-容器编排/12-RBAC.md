@@ -1,16 +1,14 @@
 ---
-title: 12-RBAC.md
+title: 12-RBAC
 date: 2020-04-14T10:09:14.182627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 03-容器编排
-summary: 12-RBAC.md
+summary: 12-RBAC
 showInMenu: false
 
 ---
@@ -22,12 +20,15 @@ kubernetes中所有的API对象都是保存在Etcd中，但是，对于这些API
 > 在kubernetes中，负责授权工作的机制就是RBAC，基于角色的访问控制（Role-Based Access Control）
 
 RBAC的三个基本概念：
+
 1. Role：一组规则，定义了一组对kubernetesAPI对象的操作权限
 2. Subject:被作用者，可以是人，也可以是机器，也可以是kubernetes中定义的用户
 3. RoleBinding：定义了被作用者和角色之间的绑定关系
 
 # Role
+
 Role是Kubernetes的API对象，定义如下：
+
 ```yaml
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
@@ -43,6 +44,7 @@ rules:      # 定义权限规则
 > Namespace是kubernetes项目里的逻辑管理单位，不同Namespace的API对象，在通过kubectl命令操作的时候，是相对隔离的（逻辑上的隔离并不提供实际的隔离或者多租户能力）。
 
 # RoleBinding
+
 RoleBinding本身也是一个kubernetes的API对象，定义如下：
 ```yaml
 kind: RoleBinding

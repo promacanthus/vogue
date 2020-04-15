@@ -1,23 +1,17 @@
 ---
-title: runtime.md
+title: package runtime
 date: 2020-04-14T10:09:14.218627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 官方库
-- apimachinery
-- pkg
-summary: runtime.md
+summary: package runtime
 showInMenu: false
 
 ---
-
-# package runtime
 
 ```go
 import "k8s.io/apimachinery/pkg/runtime"

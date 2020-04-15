@@ -1,19 +1,3 @@
----
-title: 42-panic.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 42-panic.go
-showInMenu: false
-
----
-
 // panic通常表示一些意料之外的错误。
 // 大多数情况下，我们使用它来快速应对在正常操作期间不应该发生的错误或者不准备优雅地处理的错误。
 

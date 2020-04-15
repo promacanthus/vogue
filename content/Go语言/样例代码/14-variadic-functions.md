@@ -1,20 +1,18 @@
 ---
-title: 14-variadic-functions.md
+title: 14-variadic-functions
 date: 2020-01-10T19:57:58.629475+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 14-variadic-functions.md
+summary: 14-variadic-functions
 showInMenu: false
 
 ---
 
-# 14-variadic-functions
 
 ```go
 //  可变参数函数可以被任意数量的尾随参数调用

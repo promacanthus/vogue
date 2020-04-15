@@ -1,20 +1,18 @@
 ---
-title: 51-epoch.md
+title: 51-epoch
 date: 2020-01-10T20:10:11.710962+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 51-epoch.md
+summary: 51-epoch
 showInMenu: false
 
 ---
 
-# 51-epoch
 
 ```go
 // 程序中的一个常见要求是获取自Unix时代以来的秒数，毫秒数或纳秒数。

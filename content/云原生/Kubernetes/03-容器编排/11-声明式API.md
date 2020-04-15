@@ -1,22 +1,20 @@
 ---
-title: 11-声明式API.md
+title: 11-声明式API
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 03-容器编排
-summary: 11-声明式API.md
+summary: 11-声明式API
 showInMenu: false
 
 ---
 
 
-![k8s-api组](../../../images/k8s-api组.jpg)
+![image](/images/k8s-api组.jpg)
 
 # 工作原理
 
@@ -29,7 +27,7 @@ showInMenu: false
 
 通过这样的结构，整个Kubernetes里的所有API对象，实际上就是如下的树形结构：
 
-![images](https://static001.geekbang.org/resource/image/70/da/709700eea03075bed35c25b5b6cdefda.png)
+![image](https://static001.geekbang.org/resource/image/70/da/709700eea03075bed35c25b5b6cdefda.png)
 
 **API对象的组织方式是层层递进的**。
 
@@ -77,7 +75,7 @@ kind: CronJob
 
 具体的执行过程如下图所示：
 
-![images](https://static001.geekbang.org/resource/image/df/6f/df6f1dda45e9a353a051d06c48f0286f.png)
+![image](https://static001.geekbang.org/resource/image/df/6f/df6f1dda45e9a353a051d06c48f0286f.png)
 
 1. 发起创建API对象的POST请求后，编写的YAML的信息就被提交给了APIServer
 > APIServer会过滤这个请求，并完成前置工作（授权、超时处理、审计等）
@@ -408,6 +406,7 @@ func main() {
   }
 }
 ```
+
 main函数主要通过三个步骤完成初始化并启动一个自定义控制器的工作：
 1. main函数根据提供的Master配置（APIServer的地址端口和kubeconfig的路径）创建一个kubernetes的client（kubeclient）和Network对象的client（networkclient）。
 > 如果没有提供Master的配置，main函数会直接使用一种叫InClusterConfig的方式来创建这个client。这种方式我会假设自动以控制器是以Pod的方式运行在集群中的。因为集群中所有的pod都会默认以volume的形式挂载ServiceAccount，所以控制器就直接使用默认的ServiceAccount数据卷里的授权信息来访问APIServer。
@@ -417,7 +416,7 @@ main函数主要通过三个步骤完成初始化并启动一个自定义控制�
 ## 自定义控制器的工作原理
 自定义控制器的工作原理如下图所示：
 
-![](https://static001.geekbang.org/resource/image/32/c3/32e545dcd4664a3f36e95af83b571ec3.png)
+![image](https://static001.geekbang.org/resource/image/32/c3/32e545dcd4664a3f36e95af83b571ec3.png)
 
 ### 第一步：自定义控制器从APIServer里获取它所关心的对象
 这个操作依靠informer（通知器）的代码库完成。informer与API对象是一一对应的。所以传递给自定义控制器的就是API对象的informer。

@@ -1,20 +1,17 @@
 ---
-title: 01-hello-world.md
+title: 01-hello-world
 date: 2020-01-10T19:49:35.91026+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 01-hello-world.md
+summary: 01-hello-world
 showInMenu: false
 
 ---
-
-# 01-hello-world
 
 ```go
 package main

@@ -1,18 +1,4 @@
----
-title: 52-time-format-parse.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 52-time-format-parse.go
-showInMenu: false
 
----
 
 // Go支持通过基于模式设计的时间格式化和解析。
 

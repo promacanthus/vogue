@@ -1,21 +1,17 @@
 ---
-title: 06-StatefulSet.md
+title: 06-StatefulSet
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 03-容器编排
-summary: 06-StatefulSet.md
+summary: 06-StatefulSet
 showInMenu: false
 
 ---
-
-# 06-StatefuSet
 
 Deployment并不足以覆盖所有的应用编排问题，因为它对应用做了一个简单的假设：
 > 一个应用的所有Pod是完全一样的，他们互相之间没有顺序也无所谓运行在哪台宿主机上。需要的时候Deployment通过Pod模板创建新的Pod，不需要的时候，就可以“杀掉”任意一个Pod。

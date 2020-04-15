@@ -1,16 +1,14 @@
 ---
-title: Docker镜像和容器.md
+title: Docker镜像和容器
 date: 2020-04-14T10:09:14.122627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- 原理
-summary: Docker镜像和容器.md
+summary: Docker镜像和容器
 showInMenu: false
 
 ---
@@ -21,10 +19,10 @@ showInMenu: false
 
 - 容器（container）和镜像（image）之间的区别
 
-
 - 容器和运行中的容器之间的区别
 
 # Image(镜像） Definition
+
 > 镜像（Image）就是一堆只读层（read-only layer）的统一视角，下面的这张图能够帮助理解镜像的定义
 
 ![image](http://p3.pstatp.com/large/pgc-image/1525685156976915ec66445)
@@ -38,7 +36,7 @@ showInMenu: false
 
 ### sudo tree -L 1 /var/lib/docker/
 
-```
+```bash
 /var/lib/docker/ 
                 ├── aufs 
                 ├── containers 
@@ -51,10 +49,9 @@ showInMenu: false
                 └── volumes 7 directories, 2 files
 ```
 
-
 # Container（容器） Definition
->容器（container）的定义和镜像（image）几乎一模一样，也是一堆层的统一视角，唯一区别在于容器的最上面那一层是可读可写的。
 
+>容器（container）的定义和镜像（image）几乎一模一样，也是一堆层的统一视角，唯一区别在于容器的最上面那一层是可读可写的。
 
 **容器的定义并没有提及容器是否在运行**
 
@@ -63,6 +60,7 @@ showInMenu: false
 **要点：==容器 = 镜像 + 读写层==。并且容器的定义并没有提及是否要运行容器。**
 
 # Running Container Definition
+
 >一个运行态容器（running container）被定义为一个可读写的统一文件系统加上隔离的进程空间和包含其中的进程。
 
 ![image](http://p1.pstatp.com/large/pgc-image/15256851574757bd68f3c27)
@@ -75,7 +73,7 @@ showInMenu: false
 
 可以通过运行以下命令来验证上面所说的：
 
-```
+```bash
 docker run ubuntu touch happiness.txt
 
 find / -name happiness.txt
@@ -86,6 +84,7 @@ find / -name happiness.txt
 即便是这个ubuntu容器不再运行，依旧能够在主机的文件系统上找到这个新文件。
 
 # Image Layer Definition
+
 为了将零星的数据整合起来，提出了镜像层（image layer）这个概念。下面的这张图描述了一个镜像层，通过图片能够发现一个层并**不仅仅包含文件系统的改变**，它还能包含了其他重要信息。**元数据**（metadata）就是关于这个层的额外信息，++它不仅能够让Docker获取运行和构建时的信息，还包括父层的层次信息++。需要注意，==只读层和读写层都包含元数据==。
 
 ![image](http://p3.pstatp.com/large/pgc-image/1525685159879728ea7f25d)
@@ -95,9 +94,10 @@ find / -name happiness.txt
 ![image](http://p3.pstatp.com/large/pgc-image/1525685159578210dfee207)
 
 ### Metadata Location
+
 在主机上，镜像层（image layer）的元数据被保存在名为”json”的文件中，比如说：
 
-```
+```bash
 /var/lib/docker/graph/e809f156dc985.../json
 
 //e809f156dc985... 就是这层的id
@@ -108,7 +108,6 @@ find / -name happiness.txt
 
 # 全局理解（Tying It All Together）
 结合上面提到的实现细节来理解Docker的命令
-
 
 1. **docker create** 命令为指定的镜像（image）添加了一个可读写层，构成了一个新的容器。注意，这个容器并没有运行。
 

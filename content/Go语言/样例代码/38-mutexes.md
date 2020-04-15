@@ -1,20 +1,18 @@
 ---
-title: 38-mutexes.md
+title: 38-mutexes
 date: 2020-01-10T20:05:43.670239+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 38-mutexes.md
+summary: 38-mutexes
 showInMenu: false
 
 ---
 
-# 38-mutexes
 
 ```go
 // 对于简单的计数器状态可以通过 atomic 操作来控制

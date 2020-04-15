@@ -1,16 +1,14 @@
 ---
-title: 01-CRI.md
+title: 01-CRI
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 07-容器运行时
-summary: 01-CRI.md
+summary: 01-CRI
 showInMenu: false
 
 ---
@@ -20,6 +18,7 @@ showInMenu: false
 > 与kubelet以及容器运行时管理相关的内容，都属于SIG-Node的范畴。SIG-Node和kubelet是kubernetes整套体系里非常核心的一部分，它们才是kubernetes容器编排与管理系统跟容器打交道的主要场所。
 
 在kubernetes中有两个不可被替代的组件：
+
 1. kube-apiserver
 2. kubelet
 

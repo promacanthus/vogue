@@ -1,20 +1,18 @@
 ---
-title: 67-env-var.md
+title: 67-env-var
 date: 2020-01-10T20:16:15.444294+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 67-env-var.md
+summary: 67-env-var
 showInMenu: false
 
 ---
 
-# 67-env-var
 
 ```go
 // 环境变量是将配置信息传递给Unix程序的通用机制。

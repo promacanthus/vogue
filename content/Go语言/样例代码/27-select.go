@@ -1,19 +1,3 @@
----
-title: 27-select.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 27-select.go
-showInMenu: false
-
----
-
 // Go中的select等待多个通道的操作
 //  将goroutine\通道和select结合是Go中很强大的功能
 

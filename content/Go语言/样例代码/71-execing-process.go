@@ -1,19 +1,3 @@
----
-title: 71-execing-process.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 71-execing-process.go
-showInMenu: false
-
----
-
 // 上一个例子生成一个外部的进程，当我们需要一个正在运行的Go进程可访问的外部进程时，会这样做
 // 有时只想用另一个（也许是非Go进程）替换当前的Go进程。为此，将使用Go的经典exec函数来实现
 

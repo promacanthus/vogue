@@ -1,19 +1,3 @@
----
-title: 62-directories.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 62-directories.go
-showInMenu: false
-
----
-
 // Go有几个有用的功能来处理文件系统中的目录。
 
 package main

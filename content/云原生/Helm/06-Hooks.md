@@ -1,20 +1,17 @@
 ---
-title: 06-Hooks.md
+title: 06-Hooks
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Helm
-summary: 06-Hooks.md
+summary: 06-Hooks
 showInMenu: false
 
 ---
-
-# 06-Hooks
 
 Helm 提供了一个 hook 机制，允许在 release 的生命周期中的某些点进行干预。例如，可以使用 hooks 进行如下操作：
 

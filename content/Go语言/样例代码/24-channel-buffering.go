@@ -1,19 +1,3 @@
----
-title: 24-channel-buffering.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 24-channel-buffering.go
-showInMenu: false
-
----
-
 // 默认情况下，通道是不带缓冲区的,这意味着只有接收端和发送端同时准备好才能发送数据
 // 带缓冲区的通道在没有相应的接收端时,可以接收有限数量的值
 

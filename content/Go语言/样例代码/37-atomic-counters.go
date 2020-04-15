@@ -1,18 +1,3 @@
----
-title: 37-atomic-counters.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 37-atomic-counters.go
-showInMenu: false
-
----
 
 //  Golang中管理状态的首要机制是通过通道进行通信
 //  使用 sync/atomic 包中的原子计数器实现多个goroutine的访问

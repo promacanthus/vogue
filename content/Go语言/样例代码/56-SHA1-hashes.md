@@ -1,20 +1,17 @@
 ---
-title: 56-SHA1-hashes.md
+title: 56-SHA1-hashes
 date: 2020-01-10T20:11:39.327223+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 56-SHA1-hashes.md
+summary: 56-SHA1-hashes
 showInMenu: false
 
 ---
-
-# 56-SHA1-hashes
 
 ```go
 // SHA1哈希经常用于计算二进制或者文本blob的短标识，

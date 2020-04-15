@@ -1,20 +1,3 @@
----
-title: route_guide.proto
-date: 2020-04-14T10:09:14.262627+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- 开发框架
-- gRPC
-summary: route_guide.proto
-showInMenu: false
-
----
-
-
 syntax = "proto3";
 
 option java_multiple_files = true;

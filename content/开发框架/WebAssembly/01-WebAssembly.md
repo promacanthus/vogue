@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - WebAssembly
 summary: 01-WebAssembly
 showInMenu: false
@@ -20,9 +18,9 @@ Go 1.11向WebAssembly添加了一个实验端口。 Go 1.12对它的某些部分
 
 WebAssembly在其[主页](https://webassembly.org/)上描述为：
 
-> WebAssembly（缩写为Wasm）是基于堆栈的虚拟机的二进制指令格式。 Wasm被设计为可移植目标，用于编译高级语言（如C/C ++ / Rust），从而可以在Web上为客户端和服务器应用程序进行部署。
+> WebAssembly（缩写为Wasm）是基于堆栈的虚拟机的二进制指令格式。 Wasm被设计为可移植目标，用于编译高级语言（如C/C++/Rust），从而可以在Web上为客户端和服务器应用程序进行部署。
 
-如果不熟悉WebAssembly，请阅读下面的“[入门](##入门)”部分，观看下面的一些“[Go WebAssembly讲座](##GoWebAssembly讲座)”，然后查看下面的更多“[示例](##示例)”。
+如果不熟悉WebAssembly，请阅读下面的“入门”部分，观看下面的一些“Go WebAssembly讲座”，然后查看下面的更多“示例”。
 
 ## 入门
 

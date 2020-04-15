@@ -1,16 +1,14 @@
 ---
-title: 07-Ingress.md
+title: 07-Ingress
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 05-容器网络
-summary: 07-Ingress.md
+summary: 07-Ingress
 showInMenu: false
 
 ---
@@ -21,8 +19,8 @@ showInMenu: false
 
 > 假设有一个网站，`https://cage.example.com`,其中`https://cafe.example.com/coffee`对应的是咖啡点餐系统，而`https://cafe.exapmle.com/tea`对应的是茶水点餐系统。这两个系统，分别由名叫coffee和tea的Deployment来提供服务。
 
-
 如何能够使用kubernetes的Ingress来创建一个统一的负载均衡器，从而实现当用户访问不同的域名时，能够访问到不同的Deployment？只要定义如下的Ingress对象即可：
+
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -47,11 +45,13 @@ spec:
           servicePort: 80
 
 ```
+
 Fully Qualified Domian Name 的具体格式：[FQDN](https://tools.ietf.org/html/rfc3986)。
 
 当用户访问`cafe.example.com`的时候，实际上访问到的是这个Ingress对象。这样，kubernetes就能使用IngressRule来对请求进行下一步转发。**Ingress对象，其实就是kubernetes项目对“反向代理”的一种抽象**。一个Ingress对象的主要内容，实际上是一个“反向代理”服务（如Nginx）的配置文件的描述。这个代理服务对应的转发规则，就是IngressRule。
 
 所以在每个IngressRule里，都需要有：
+
 - `host`字段：作为这条IngressRule的入口
 - 一系列`path`字段：声明具体的转发策略（这与Nginx、HAproxy的配置文件的写法是一致的）
 

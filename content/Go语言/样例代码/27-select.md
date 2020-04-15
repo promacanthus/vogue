@@ -1,20 +1,18 @@
 ---
-title: 27-select.md
+title: 27-select
 date: 2020-01-10T20:02:38.461838+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 27-select.md
+summary: 27-select
 showInMenu: false
 
 ---
 
-# 27-select
 
 ```go
 // Go中的select等待多个通道的操作

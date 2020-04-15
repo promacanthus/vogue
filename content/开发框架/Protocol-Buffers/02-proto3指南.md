@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - Protocol-Buffers
 summary: 02-proto3指南
 showInMenu: false
@@ -50,9 +48,9 @@ message SearchRequest {     // 消息格式以名称-值对的形式指定三个
 
 ### 分配字段编号
 
-如上所示，消息定义中的每个字段都定义一个**唯一的编号**。这些字段的编号用于在消息的[二进制格式](../Protocol-Buffers/04-编码.md)中标识字段，一旦消息类型被使用就不能再更改。请注意：
+如上所示，消息定义中的每个字段都定义一个**唯一的编号**。这些字段的编号用于在消息的[二进制格式](../04-编码/)中标识字段，一旦消息类型被使用就不能再更改。请注意：
 
-- `1到15`范围内的字段编号需要一个字节进行编码，包括字段的编号和字段的类型（可以在[`protocol buffers`编码](../Protocol-Buffers/04-编码.md)中找到更多相关信息）
+- `1到15`范围内的字段编号需要一个字节进行编码，包括字段的编号和字段的类型（可以在[`protocol buffers`编码](../04-编码/)中找到更多相关信息）
 - `16到2047`范围内的字段编号占用两个字节。 因此，应该为非常频繁出现的消息元素保留数字1到15，请记住为将来可能添加的频繁出现的元素留出一些空间
 
 可以指定的最小字段数为1，最大字段数为536,870,911（2的29次方-1）。
@@ -70,7 +68,7 @@ message SearchRequest {     // 消息格式以名称-值对的形式指定三个
 
 在`proto3`中，标量数字类型的重复字段默认使用**压缩**编码。
 
-在[`Protocol Buffer Encoding`](../Protocol-Buffers/04-编码.md)中找到有关压缩编码的更多信息。
+在[`Protocol Buffer Encoding`](../04-编码/)中找到有关压缩编码的更多信息。
 
 ### 添加更多消息类型
 
@@ -153,7 +151,7 @@ message Foo {
 | string      | 字符串必须始终包含UTF-8编码或7位ASCII文本，且不能超过2的32次方       | string  |  |
 | bytes       | 可以包含不超过2的32次方的任意字节序列                                | []bytes |
 
-在[`protocol buffers`编码](../Protocol-Buffers/04-编码.md)中可以找到更多关于在序列化消息时这些类型是如何被编码的信息。
+在[`protocol buffers`编码](../04-编码/)中可以找到更多关于在序列化消息时这些类型是如何被编码的信息。
 
 ## 默认值
 
@@ -369,7 +367,7 @@ message ErrorStatus {
 
 `type.googleapis.com/packagename.messagename`是给定消息类型的默认类型`URL`。
 
-不同的编程语言实现将支持运行时库来帮助程序以类型安全的方式打包和解压缩`Any`值。例如，在`Java`中，`Any`类型将具有特殊的`pack()`和`unpack()`访问器，而在`C++`中则有`PackFrom()`和`UnpackTo () `方法：
+不同的编程语言实现将支持运行时库来帮助程序以类型安全的方式打包和解压缩`Any`值。例如，在`Java`中，`Any`类型将具有特殊的`pack()`和`unpack()`访问器，而在`C++`中则有`PackFrom()`和`UnpackTo ()`方法：
 
 ```c++
 // 在Any中存储任意消息类型。

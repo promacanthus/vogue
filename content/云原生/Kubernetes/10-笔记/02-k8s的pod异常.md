@@ -1,24 +1,19 @@
 ---
-title: 02-k8s的pod异常.md
+title: 02-k8s的pod异常
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 10-笔记
-summary: 02-k8s的pod异常.md
+summary: 02-k8s的pod异常
 showInMenu: false
 
 ---
 
-
-# pod 异常
 一般来说，无论 Pod 处于什么异常状态，都可以执行以下命令来查看 Pod 的状态：
-
 
 ```
 //查看 Pod 的配置是否正确
@@ -34,15 +29,18 @@ kubectl logs <pod-name> [-c <container-name>]
 **这些事件和日志通常都会有助于排查 Pod 发生的问题。**
 
 ### Pod 一直处于 Pending 状态
+
 Pending 说明 Pod 还没有调度到某个 Node 上面。
 
 可以通过 kubectl describe pod <pod-name> 命令查看到当前 Pod 的事件，进而判断为什么没有调度。
 
 **可能的原因:**
+
 - 资源不足，集群内所有的 Node 都不满足该 Pod 请求的 CPU、内存、GPU 等资源
 - HostPort 已被占用，通常推荐使用 Service 对外开放服务端口
 
 ### Pod 处于 Waiting 或 ContainerCreating 状态
+
 首先还是通过 kubectl describe pod <pod-name> 命令查看到当前 Pod 的事件。
 
 **可能的原因:**
@@ -57,11 +55,13 @@ Pending 说明 Pod 还没有调度到某个 Node 上面。
 - 容器无法启动，需要检查是否打包了正确的镜像或者是否配置了正确的容器参数
 
 ### Pod 处于 ImagePullBackOff 状态
+
 这通常是==镜像名称配置错误==或者==私有镜像的密钥配置错误==导致。
 
 这种情况可以使用 docker pull <image> 来验证镜像是否可以正常拉取。
 
 **如果是私有镜像**
+
 1. 首先创建一个 docker-registry 类型的 Secret
 
 

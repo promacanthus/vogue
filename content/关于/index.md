@@ -17,7 +17,7 @@ showInMenu: true
 
 > 该路线图由 [Alikhll (Ali Khalili)](https://github.com/Alikhll) 制作，由 [BON](https://github.com/Quorafind) 翻译为中文。[原仓库链接](https://github.com/Alikhll/golang-developer-roadmap)。
 
-![image](https://github.com/Promacanthus/Developer-Guide/blob/master/static/images/golang-developer-roadmap.png?raw=true)
+![image](/images/golang-developer-roadmap.png)
 
 ## 电子书
 

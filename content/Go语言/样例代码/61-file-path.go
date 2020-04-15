@@ -1,19 +1,3 @@
----
-title: 61-file-path.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 61-file-path.go
-showInMenu: false
-
----
-
 // filepath 包提供可以在操作系统之间移植的函数来解析或者构建file path
 // 如 : 1. Linux中的dir/file
 //         2. Windows中的dir\file。

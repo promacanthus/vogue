@@ -1,21 +1,17 @@
 ---
-title: 02-DockerFile指南.md
+title: 02-DockerFile指南
 date: 2020-04-14T10:09:14.094627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
-- Docker
 - Dockerfile-Guide
-summary: 02-DockerFile指南.md
+summary: 02-DockerFile指南
 showInMenu: false
 
 ---
-
-# 02-Dockerfile指南
 
 1. Dockerfile是专门用来进行自动化构建镜像的编排文件，通过`docker build`命令自动化地从Dockerfile所描述的步骤构建自定义的Docker镜像
 2. Dockerfile提供了统一的配置语法，通过这样一份配置文件，可以在各种不同的平台上进行分发，需要时通过 Dockerfile 构建一下就能得到所需的镜像

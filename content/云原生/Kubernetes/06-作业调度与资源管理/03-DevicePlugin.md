@@ -1,16 +1,14 @@
 ---
-title: 03-DevicePlugin.md
+title: 03-DevicePlugin
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 06-作业调度与资源管理
-summary: 03-DevicePlugin.md
+summary: 03-DevicePlugin
 showInMenu: false
 
 ---
@@ -18,6 +16,7 @@ showInMenu: false
 > 对于云的用户来说，在GPU的支持上，只要在Pod的YAML文件中声明，某个容器需要的GPU个数，那么kubernetes创建的容器里就应该出现对应的GPU设备，以及它所对应的驱动目录。
 
 以NVIDIA的GPU设备为例，上面的需求就意味着当用户的容器创建之后，这个容器里必须出现如下两部分设备和目录：
+
 1. GPU设备：`/dev/nvidia0`，这个是容器启动时的Devices参数
 2. GPU驱动目录：`/usr/local/nvidia/*`，这个是容器启动是Volume参数
 
@@ -40,12 +39,14 @@ spec:
           nvidia.com/gpu: 1
 
 ```
+
 在pod的limits字段里，这个资源的名称是`nvidia.com/gpu`，它的值是1，说明这个Pod声明了自己要使用一个NVIDIA类型的GPU。
 
 > kube-scheduler里面，并不关心这个字段的具体含义，只会在计算的时候，一律将调度器里保存的该类型资源的可用量直接减去Pod中声明的数值即可。**Extended Resource是kubernetes为用户设置的一种对自定义资源的支持**。
 
 为了让调度器知道这个自定义类型的资源在每台宿主机上的可用量，宿主机节点本身，就必须能够想
 APIServer汇报该类型资源的可用量。**在kubernetes中，各种类型资源可用量是Node对象Status字段的内容**，如下面的例子：
+
 ```yaml
 apiVersion: v1
 kind: Node
@@ -58,7 +59,9 @@ Status:
    memory:  2049008Ki
 
 ```
+
 为了能在上述Status字段里添加自定义资源的数据，必须使用PATCH API来对该Node对象进行更新，加上自定义资源的数量，这个PATCH操作，可以简单使用curl命令来发起，如下所示：
+
 ```yaml
 # 启动 Kubernetes 的客户端 proxy，这样你就可以直接使用 curl 来跟 Kubernetes  的 API Server 进行交互了
 $ kubectl proxy
@@ -70,6 +73,7 @@ $ curl --header "Content-Type: application/json-patch+json" \
 http://localhost:8001/api/v1/nodes/<your-node-name>/status
 
 ```
+
 PATCH操作完成后，Node是Status变成如下的内容：
 ```yaml
 apiVersion: v1

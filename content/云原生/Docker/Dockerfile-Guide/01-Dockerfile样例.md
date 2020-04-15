@@ -1,21 +1,17 @@
 ---
-title: 01-Dockerfile样例.md
+title: 01-Dockerfile样例
 date: 2020-04-14T10:09:14.094627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
-- Docker
 - Dockerfile-Guide
-summary: 01-Dockerfile样例.md
+summary: 01-Dockerfile样例
 showInMenu: false
 
 ---
-
-# 01-Dockerfile样例
 
 Dockfile是一种被Docker程序解释的脚本，Dockerfile由一条一条的指令组成，每条指令对应Linux下面的一条命令。Docker程序将这些Dockerfile指令翻译成真正的Linux命令。
 

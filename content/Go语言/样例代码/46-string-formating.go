@@ -1,19 +1,3 @@
----
-title: 46-string-formating.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 46-string-formating.go
-showInMenu: false
-
----
-
 //  Go在printf中对字符串的格式化输出的支持非常好。
 
 package main

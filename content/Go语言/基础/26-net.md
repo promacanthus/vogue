@@ -1,20 +1,16 @@
 ---
-title: 26-net.md
+title: 26-net
 date: 2019-12-04T12:48:47.448735+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
-- 基础
-summary: 26-net.md
+summary: 26-net
 showInMenu: false
 
 ---
-
-# 26-net
 
 ## socket与IPC
 

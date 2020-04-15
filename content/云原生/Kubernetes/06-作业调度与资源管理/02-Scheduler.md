@@ -1,16 +1,14 @@
 ---
-title: 02-Scheduler.md
+title: 02-Scheduler
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 06-作业调度与资源管理
-summary: 02-Scheduler.md
+summary: 02-Scheduler
 showInMenu: false
 
 ---
@@ -18,12 +16,14 @@ showInMenu: false
 在kubernetes项目中，**默认调度器的主要职责就是为一个新创建出来的Pod，寻找一个最适合的节点（Node）**。
 
 此处最合适的含义：
+
 1. 从集群所有的节点中，根据调度算法挑选出所有可以运行该Pod的节点
 2. 在上一步的结果中，在根据调度算法挑选一个最符合条件的节点作为最终结果
 
 > kubernetes发展的主旋律是整个开源项目的“民主化“，是组件的轻量化、接口化、插件化。所以有了CRI、CNI、CSI、CRD、Aggregated APIServer、Initializer、Device Plugin等各个层级的可扩展能力，**默认调度器**，却是kubernetes项目里最后一个没有对外暴露出良好的、定义过的、可扩展接口的组件。
 
 # 原理
+
 默认调度器的具体的调度流程：
 1. 检查Node（调用**Predicate**算法）
 2. 给Node打分（调用**Priority**算法）
@@ -38,6 +38,7 @@ showInMenu: false
 **kubernetes的调度器的核心，实际上就是两个相互独立的控制循环**。
 
 ## Informer Path
+
 主要目的是启动一系列Informer，用来监听（WATCH）Etcd中Pod、Node、Service等与调度相关的API对象的变化。
 
 > 比如，当一个待调度Pod（即它的nodeName字段为空）被创建出来后，调度器就会通过Pod Informer的Handler将这个待调度Pod添加进调度队列。
@@ -45,6 +46,7 @@ showInMenu: false
 在默认情况下，kubernetes的调度队列是一个PriorityQueue（优先级队列），并且当某些集群信息发生变化时，调度器还会对调度队列里的内容进行特殊的操作（调度优先级和抢占）。默认调度器还负责对调度器缓存进行更新，在kubernetes的调度部分进行性能优化的一个根本原则就是**尽最大可能将集群信息Cache化，以便从根本上提高Predicate和Priority调度算法的执行效率**。
 
 ## Scheduling Path
+
 调度器负责Pod调度的主循环，主要逻辑就是：
 1. 从调度队列里出队一个Pod
 2. 调用Predicate算法进行过滤，得到一组Node（所有可以运行这个Pod的宿主机列表）
@@ -58,6 +60,7 @@ showInMenu: false
 > Admit操作实际上就是把一组称为GeneralPredicates的最基本的调度算法，比如：资源是否可用、端口是否冲突等在执行一遍，作为kubelet端的二次确认。
 
 ### 无锁化
+
 除了上述过程中的**Cache化和乐观绑定**，默认调度器还有一个重要的设计：**无锁化**。在Scheduling Path 上:
 1. 调度器会启动多个Goroutine以节点为粒度并发执行Predicates算法，从而提高这一阶段的执行效率
 2. Priorities算法也会以MapReduce的方式并行计算然后再进行汇总

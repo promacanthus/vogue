@@ -1,20 +1,17 @@
 ---
-title: 15-Chart存储库.md
+title: 15-Chart存储库
 date: 2020-04-14T10:09:14.130627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Helm
-summary: 15-Chart存储库.md
+summary: 15-Chart存储库
 showInMenu: false
 
 ---
-
-# 15-Charts存储库
 
 Chart存储库是可以存储和共享charts的地方，Helm官方维护了一个[Chart存储库](https://github.com/helm/charts)。使用Helm可以轻松创建和运行自己的Chart存储库。
 

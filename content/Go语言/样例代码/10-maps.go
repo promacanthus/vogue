@@ -1,19 +1,3 @@
----
-title: 10-maps.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 10-maps.go
-showInMenu: false
-
----
-
 //  map是Go内置的关联数据类型（在其他语言中有时成为hash或者字典）
 
 package main

@@ -1,19 +1,3 @@
----
-title: 29-nonblocking-channel.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 29-nonblocking-channel.go
-showInMenu: false
-
----
-
 //  通道上的发送和接收操作都是阻塞的
 //  使用带有default子句的select来实现非阻塞发送,接收甚至是非阻塞多路select
 

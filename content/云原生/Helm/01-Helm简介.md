@@ -1,20 +1,17 @@
 ---
-title: 01-Helm简介.md
+title: 01-Helm简介
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Helm
-summary: 01-Helm简介.md
+summary: 01-Helm简介
 showInMenu: false
 
 ---
-
-# 01-Helm简介
 
 成功的软平台都有一个优秀的打包系统，比如：
 
@@ -73,7 +70,7 @@ Helm是一个包管理工具，这里的包指的就是chart，有如下功能�
 4. 更新、回滚和测试release
 
 Helm包含两个组件：Helm客户端和Tiller服务器，如下图所示：
-![image](../../images/overview.png)
+![image](/images/overview.png)
 
 Helm 客户端是终端用户使用的命令行工具，用户可以：
 

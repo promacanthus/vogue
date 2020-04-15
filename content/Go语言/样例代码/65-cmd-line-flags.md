@@ -1,20 +1,17 @@
 ---
-title: 65-cmd-line-flags.md
+title: 65-cmd-line-flags
 date: 2020-01-10T20:15:37.509103+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 65-cmd-line-flags.md
+summary: 65-cmd-line-flags
 showInMenu: false
 
 ---
-
-# 65-cmd-line-flags
 
 ```go
 // 命令行标识是制定命令行程序选项的常用方法

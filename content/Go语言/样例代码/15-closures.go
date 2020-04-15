@@ -1,18 +1,4 @@
----
-title: 15-closures.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 15-closures.go
-showInMenu: false
 
----
 
 //  Go支持匿名函数，可用于形成闭包
 //  当需要定义一个没有名字的内部函数时，匿名函数很有用

@@ -1,20 +1,16 @@
 ---
-title: 18-atomic.md
+title: 18-atomic
 date: 2019-11-25T11:15:47.526182+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
-- 基础
-summary: 18-atomic.md
+summary: 18-atomic
 showInMenu: false
 
 ---
-
-# 原子操作
 
 对于一个Go程序来说，Go语言运行时系统中的调度器会恰当地安排其中所以的goroutine运行。
 

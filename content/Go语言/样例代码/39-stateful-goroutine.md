@@ -1,20 +1,17 @@
 ---
-title: 39-stateful-goroutine.md
+title: 39-stateful-goroutine
 date: 2020-01-10T20:05:56.630271+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 39-stateful-goroutine.md
+summary: 39-stateful-goroutine
 showInMenu: false
 
 ---
-
-# 39-stateful-goroutine
 
 ```go
 //  在前面的例子中，使用显示定义的互斥锁来跨多个goroutine同步对共享状态的访问。

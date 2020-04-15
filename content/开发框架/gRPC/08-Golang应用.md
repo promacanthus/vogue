@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - gRPC
 summary: 08-Golang应用
 showInMenu: false
@@ -22,7 +20,7 @@ showInMenu: false
 2. 使用`protocol buffers`编译器生成服务端和客户端代码
 3. 使用Go gRPC API为你的服务编写一个简单的客户端和服务端
 
-假定已阅读概述并熟悉`protocol buffers`。请注意，本教程中的示例使用`protocol buffers`的`proto3`版本：可以在[proto3语言指南](../Protocol-Buffers/02-proto3指南/)和[Go代码生成指南](../gRPC/09-Go生成代码指南/)中找到更多信息。
+假定已阅读概述并熟悉`protocol buffers`。请注意，本教程中的示例使用`protocol buffers`的`proto3`版本：可以在proto3语言指南和[Go代码生成指南](../09-go生成代码指南/)中找到更多信息。
 
 ## 为何使用gRPC
 
@@ -54,7 +52,7 @@ cd $GOPATH/src/google.golang.org/grpc/examples/route_guide
 2. 方法请求类型
 3. 方法响应的类型
 
-完整的[`.proto`文件](../gRPC/route_guide.proto)在这里。
+完整的[`.proto`文件](../route_guide.proto/)在这里。
 
 定义一个服务需要在`.proto`文件中指定服务的名字：
 
@@ -108,7 +106,7 @@ message Point {
 
 ## 生成客户端和服务端代码
 
-第二步，使用`protoc`(`protocol buffers`的编译器)和特定的`gRPC-GO`插件(`protoc-gen-go`)，根据`.proto`文件中定义的服务生成gRPC客户端和服务端接口。这与[快速入门](../gRPC/07-Golang快速入门)中的操作一样。
+第二步，使用`protoc`(`protocol buffers`的编译器)和特定的`gRPC-GO`插件(`protoc-gen-go`)，根据`.proto`文件中定义的服务生成gRPC客户端和服务端接口。这与[快速入门](../07-golang快速入门)中的操作一样。
 
 在`route_guide`的示例目录中运行如下命令：
 

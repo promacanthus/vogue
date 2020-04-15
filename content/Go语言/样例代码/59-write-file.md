@@ -1,20 +1,17 @@
 ---
-title: 59-write-file.md
+title: 59-write-file
 date: 2020-01-10T20:13:46.443837+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 59-write-file.md
+summary: 59-write-file
 showInMenu: false
 
 ---
-
-# 59-write-file
 
 ```go
 //  在Go中写入文件的方式和读取文件的方式类似。

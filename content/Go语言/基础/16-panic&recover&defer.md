@@ -1,20 +1,16 @@
 ---
-title: 16-panic&recover&defer.md
+title: 16-panic&recover&defer
 date: 2020-03-19T12:28:05.914109+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
-- 基础
-summary: 16-panic&recover&defer.md
+summary: 16-panic&recover&defer
 showInMenu: false
 
 ---
-
-# 16-运行时恐慌
 
 ## 运行时恐慌（panic）
 

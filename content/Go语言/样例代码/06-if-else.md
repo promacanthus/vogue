@@ -1,20 +1,18 @@
 ---
-title: 06-if-else.md
+title: 06-if-else
 date: 2020-01-10T19:52:08.081738+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 06-if-else.md
+summary: 06-if-else
 showInMenu: false
 
 ---
 
-# 06-if-else
 
 ```go
 //  用Golang中的分支（if/else）非常简洁明了

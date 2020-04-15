@@ -1,19 +1,3 @@
----
-title: 35-waitGroup.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 35-waitGroup.go
-showInMenu: false
-
----
-
 //  要等待多个goroutine完成,可以使用WaitGroup
 
 package main

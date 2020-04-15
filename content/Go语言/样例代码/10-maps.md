@@ -1,20 +1,17 @@
 ---
-title: 10-maps.md
+title: 10-maps
 date: 2020-01-10T19:54:58.201479+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 10-maps.md
+summary: 10-maps
 showInMenu: false
 
 ---
-
-# 10-maps
 
 ```go
 //  map是Go内置的关联数据类型（在其他语言中有时成为hash或者字典）

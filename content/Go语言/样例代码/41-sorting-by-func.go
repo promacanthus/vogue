@@ -1,19 +1,3 @@
----
-title: 41-sorting-by-func.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 41-sorting-by-func.go
-showInMenu: false
-
----
-
 // 如何对集合中的数据进行非自然顺序的排序。
 
 // 假设要对string更具长度而非字母顺序排序。

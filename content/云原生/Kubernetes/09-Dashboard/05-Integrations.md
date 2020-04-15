@@ -1,5 +1,5 @@
 ---
-title: 05-Integrations.md
+title: 05-Integrations
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
 hideLastModified: false
@@ -10,12 +10,10 @@ tags:
 - 云原生
 - Kubernetes
 - 09-Dashboard
-summary: 05-Integrations.md
+summary: 05-Integrations
 showInMenu: false
 
 ---
-
-# Integrations
 
 目前只支持`Heapster`集成，但是有计划将集成框架引入`Dashboard`。它将允许支持和集成更多指标采集器以及其他应用程序，如`[Weave Scope](https://github.com/weaveworks/scope)`或`[Grafana](https://github.com/grafana/grafana)`等。
 

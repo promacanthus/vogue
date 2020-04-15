@@ -1,19 +1,3 @@
----
-title: 44-collection-func.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 44-collection-func.go
-showInMenu: false
-
----
-
 // 我们经常需要我们的程序对数据集合执行操作，
 // 例如 	1.选择满足给定谓词的所有项目
 //         		2.使用自定义函数将所有项目映射到新集合。

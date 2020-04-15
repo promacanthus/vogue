@@ -1,16 +1,14 @@
 ---
-title: 03-配置Registry.md
+title: 03-配置Registry
 date: 2020-04-14T10:09:14.110627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- Registry
-summary: 03-配置Registry.md
+summary: 03-配置Registry
 showInMenu: false
 
 ---

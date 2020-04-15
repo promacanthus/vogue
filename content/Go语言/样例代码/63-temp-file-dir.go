@@ -1,18 +1,4 @@
----
-title: 63-temp-file-dir.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 63-temp-file-dir.go
-showInMenu: false
 
----
 
 // 在整个程序执行过程中，经常需要创建程序退出后不需要的数据
 // 临时文件和目录对此非常有用，因为它们不会随着时间的推移而污染文件系统

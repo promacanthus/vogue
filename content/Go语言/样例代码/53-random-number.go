@@ -1,19 +1,3 @@
----
-title: 53-random-number.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 53-random-number.go
-showInMenu: false
-
----
-
 //  Go的math/rand包提供伪随机数生成。
 
 package main

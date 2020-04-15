@@ -1,20 +1,16 @@
 ---
-title: 24-bufio.md
+title: 24-bufio
 date: 2019-11-25T11:15:47.526182+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
-- 基础
-summary: 24-bufio.md
+summary: 24-bufio
 showInMenu: false
 
 ---
-
-# bufio
 
 bufio是buffered I/O的缩写，这个代码包中的程序实体实现的I/O操作都内置了缓冲区。bufio包中的数据类型主要有：
 

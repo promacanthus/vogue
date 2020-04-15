@@ -1,19 +1,3 @@
----
-title: 55-URL-parse.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 55-URL-parse.go
-showInMenu: false
-
----
-
 // URLs提供了一种统一的资源定位方式。
 
 package main

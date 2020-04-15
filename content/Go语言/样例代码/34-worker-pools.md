@@ -1,20 +1,18 @@
 ---
-title: 34-worker-pools.md
+title: 34-worker-pools
 date: 2020-01-10T20:04:26.970061+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 34-worker-pools.md
+summary: 34-worker-pools
 showInMenu: false
 
 ---
 
-# 34-worker-pools
 
 ```go
 //  使用goroutine和通道实现worker pool

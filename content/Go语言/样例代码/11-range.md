@@ -1,20 +1,18 @@
 ---
-title: 11-range.md
+title: 11-range
 date: 2020-01-10T19:56:01.177451+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 11-range.md
+summary: 11-range
 showInMenu: false
 
 ---
 
-# 11-range
 
 ```go
 // range遍历各种数据结构中的元素

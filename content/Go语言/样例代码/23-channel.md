@@ -1,20 +1,18 @@
 ---
-title: 23-channel.md
+title: 23-channel
 date: 2020-01-10T20:01:15.773694+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 23-channel.md
+summary: 23-channel
 showInMenu: false
 
 ---
 
-# 23-channel
 
 ```go
 // 通道是连接并发goroutine的管道

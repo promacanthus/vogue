@@ -1,21 +1,18 @@
 ---
-title: Harbor.md
+title: Harbor
 date: 2020-04-14T10:09:14.114627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- Registry
-summary: Harbor.md
+summary: Harbor
 showInMenu: false
 
 ---
 
-# 安装docker
 ### 使用官方安装脚本自动安装最新版
 
 ```

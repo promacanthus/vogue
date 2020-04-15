@@ -6,9 +6,7 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 微服务
-- 微服务平台
 summary: 03-DevOps
 showInMenu: false
 
@@ -16,7 +14,7 @@ showInMenu: false
 
 ## 传统开发流程
 
-![process](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/process.png)
+![process](/images/process.png)
 
 DevOps 是一种新型的业务研发流程，业务的开发人员:
 

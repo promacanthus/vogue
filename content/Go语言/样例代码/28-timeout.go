@@ -1,18 +1,4 @@
----
-title: 28-timeout.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 28-timeout.go
-showInMenu: false
 
----
 
 // timeouts 对于需要连接到外部资源或者需要绑定执行时间的程序非常重要
 //  使用通道和select在Go中实现timeout简单切优雅

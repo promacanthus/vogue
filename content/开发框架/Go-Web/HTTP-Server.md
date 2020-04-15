@@ -24,7 +24,7 @@ showInMenu: false
 
 所以http服务器的工作就在于如何接受来自客户端的request，并向客户端返回response。
 
-![image](https://github.com/Promacanthus/Developer-Guide/blob/master/static/images/client-server.png?raw=true)
+![image](/images/client-server.png)
 
 服务器在接收到请求时，首先会进入路由(router)，这是一个Multiplexer，路由的工作在于为这个request找到对应的处理器(handler)，处理器对request进行处理，并构建response。Golang实现的http server同样遵循这样的处理流程。
 

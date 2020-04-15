@@ -1,20 +1,18 @@
 ---
-title: 41-sorting-by-func.md
+title: 41-sorting-by-func
 date: 2020-01-10T20:06:53.766414+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 41-sorting-by-func.md
+summary: 41-sorting-by-func
 showInMenu: false
 
 ---
 
-# 41-sorting-by-func
 
 ```go
 // 如何对集合中的数据进行非自然顺序的排序。

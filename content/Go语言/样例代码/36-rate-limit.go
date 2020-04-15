@@ -1,18 +1,4 @@
----
-title: 36-rate-limit.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 36-rate-limit.go
-showInMenu: false
 
----
 
 // 速率限制是控制资源利用和维持服务质量的重要机制。
 //  Golang优雅的支持 goroutine、通道和断续器（ticker）的速率限制

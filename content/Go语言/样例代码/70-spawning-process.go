@@ -1,19 +1,3 @@
----
-title: 70-spawning-process.go
-date: 2019-11-25T11:15:47.534182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 70-spawning-process.go
-showInMenu: false
-
----
-
 // 有时候Go程序需要生成其他非Go进程
 // 例如一些网站的语法高亮，是通过从Go程序生成pygmentize进程来实现
 

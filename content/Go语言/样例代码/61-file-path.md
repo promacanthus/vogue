@@ -1,20 +1,17 @@
 ---
-title: 61-file-path.md
+title: 61-file-path
 date: 2020-01-10T20:14:29.886698+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 61-file-path.md
+summary: 61-file-path
 showInMenu: false
 
 ---
-
-# 61-file-path
 
 ```go
 // filepath 包提供可以在操作系统之间移植的函数来解析或者构建file path

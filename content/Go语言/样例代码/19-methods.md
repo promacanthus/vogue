@@ -1,20 +1,18 @@
 ---
-title: 19-methods.md
+title: 19-methods
 date: 2020-01-10T20:00:03.473592+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 19-methods.md
+summary: 19-methods
 showInMenu: false
 
 ---
 
-# 19-methods
 
 ```go
 // Go支持在结构体类型上定义方法

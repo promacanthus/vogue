@@ -1,38 +1,41 @@
 ---
-title: Docker数据管理.md
+title: Docker数据管理
 date: 2020-04-14T10:09:14.122627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Docker
-- 原理
-summary: Docker数据管理.md
+summary: Docker数据管理
 showInMenu: false
 
 ---
 
 容器的数据管理操作：
+
 1. 对数据进行持久化
 2. 多个容器之间进行数据共享
 
 容器中数据管理的两种方式：
+
 1. 数据卷（Data Volume）：容器内数据直接映射到本地主机环境
 2. 数据卷容器（Data Volume Containers）：使用特定容器维护数据卷
 
 # 数据卷
+
 可供容器使用的特殊目录，将主机操作系统目录直接映射进容器，类似于Linux的mount操作
 
 数据卷提供的特性：
+
 1. 数据卷可以在容器之间重用和共享，容器见传递数据变的高效方便
 2. 对数据卷内的数据进行修改会立马见效，无论是在容器内操作还是在本地操作
 3. 对数据卷的更新不会影响到镜像，解耦了应用和数据
 4. 数据卷会一直存在直到没有容器使用，可以安全的卸载
 
 在容器内创建数据卷示例：
+
 ```
 docker run  -d -P  --name web -v /webapp training/webapp python app.py
 //创建了一个数据卷挂载到/webapp目录

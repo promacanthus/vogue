@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - gRPC
 summary: 06-gRPC编写格式
 showInMenu: false

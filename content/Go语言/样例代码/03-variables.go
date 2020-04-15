@@ -1,19 +1,3 @@
----
-title: 03-variables.go
-date: 2019-11-25T11:15:47.530182+08:00
-draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- Go语言
-- 样例代码
-summary: 03-variables.go
-showInMenu: false
-
----
-
 // 在Go中，变量被显式声明并由编译器用于（例如检查函数调用的类型正确性）。
 
 package main

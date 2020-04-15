@@ -1,20 +1,18 @@
 ---
-title: 44-collection-func.md
+title: 44-collection-func
 date: 2020-01-10T20:07:44.746549+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - Go语言
 - 样例代码
-summary: 44-collection-func.md
+summary: 44-collection-func
 showInMenu: false
 
 ---
 
-# 44-collection-func
 
 ```go
 // 我们经常需要我们的程序对数据集合执行操作，

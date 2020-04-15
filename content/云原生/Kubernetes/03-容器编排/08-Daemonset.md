@@ -1,29 +1,26 @@
 ---
-title: 08-Daemonset.md
+title: 08-Daemonset
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
 hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 03-容器编排
-summary: 08-Daemonset.md
+summary: 08-Daemonset
 showInMenu: false
 
 ---
 
-
-
-# DaemonSet
 主要作用是让Kubernetes集群中运行一个Daemon Pod，这个Pod有如下三个特征:
+
 1. 这个Pod运行在Kubernetes集群里的每一个节点（Node）上
 2. 每个节点上只有一个这样的Pod实例
 3. 当有新节点计入Kubernetes集群后，该Pod会自动地在新节点上被创建出来；而当旧节点被删除后，它上面的Pod也相应地会被回收掉
 
 ## 举一些例子
+
 1. 各种网络插件的Agent组件，都必须运行在每一个节点上，用来处理这个节点上的容器网络
 2. 各种存储插件的Agent组件，也必须运行在每一个节点上，用来在这个节点上挂载远程存储目录，操作容器的Volume目录
 3. 各种监控组件和日志组件，也必须运行在每一个节点上，负责这个节点上的监控信息和日志搜集
@@ -33,6 +30,7 @@ showInMenu: false
 > 例如这个DaemonSet是网络存储插件的Agent组件，在整个kubernetes集群中还没有可用的容器网络时，所有的worker节点的状态都是NotReady。这个时候普通的Pod肯定不能运行的，所以DaemonSet要先于其他的。
 
 ## 例子yaml
+
 ```yaml
 apiVersion: apps/v1
 kind: DaemonSet
