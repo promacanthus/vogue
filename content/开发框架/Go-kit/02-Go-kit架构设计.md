@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - Go-kit
 summary: 02-Go-kit架构设计
 showInMenu: false

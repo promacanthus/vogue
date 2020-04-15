@@ -6,20 +6,18 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 关于
 summary: 关于
 showInMenu: true
 
 ---
 
-从零开始学习Go语言的学习记录。
+以Golang为基础，成为架构师的学习记录。
 
 首先看一下学习路线图，参考一下Go语言开发者路线图这个[仓库](https://github.com/Quorafind/golang-developer-roadmap-cn)。
 
-> 该路线图由 [Alikhll (Ali Khalili)](https://github.com/Alikhll) 制作，由 [BON](https://github.com/Quorafind) 翻译为中文。原仓库链接为： Alikhll/golang-developer-roadmap 。
+> 该路线图由 [Alikhll (Ali Khalili)](https://github.com/Alikhll) 制作，由 [BON](https://github.com/Quorafind) 翻译为中文。[原仓库链接](https://github.com/Alikhll/golang-developer-roadmap)。
 
-![image](https://github.com/Promacanthus/Golang-Guide/blob/master/static/images/golang-developer-roadmap.png)
+![image](https://github.com/Promacanthus/Developer-Guide/blob/master/static/images/golang-developer-roadmap.png?raw=true)
 
 ## 电子书
 

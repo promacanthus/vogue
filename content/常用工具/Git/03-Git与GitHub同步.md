@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 常用工具
 - Git
 summary: 03-Git与GitHub同步
 showInMenu: false
@@ -47,25 +45,25 @@ ssh-keygen -t rsa -b 4096 -C "youremail@example.com"
 2. 在右上角找到“Create a new repo”按钮，创建一个新的仓库
 3. 在Repository name填入仓库的名字(如 my_repo)，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库
 
-    > 在GitHub上的这个my_repo仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
+> 在GitHub上的这个my_repo仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
 
 4. 根据GitHub的提示，在本地的my_repo仓库下运行命令：
 
-    ```bash
-    git remote add origin git@github.com:<your Github name>/my_repo.git     # 根据github页面给的提示输入命令即可
-    ```
+```bash
+git remote add origin git@github.com:<your Github name>/my_repo.git     # 根据github页面给的提示输入命令即可
+```
 
-    添加后，远程库的名字就是origin（这是Git默认的叫法，也可以改成别的)，但是origin这个名字一看就知道是远程库。
+添加后，远程库的名字就是origin（这是Git默认的叫法，也可以改成别的)，但是origin这个名字一看就知道是远程库。
 
 5. 最后，就可以把本地库的所有内容推送到远程库上：
 
-    ```bash
-    git push -u origin master
-    ```
+```bash
+git push -u origin master
+```
 
-    把本地库的内容推送到远程，用`git push`命令，实际上是把当前分支master推送到远程。
+把本地库的内容推送到远程，用`git push`命令，实际上是把当前分支master推送到远程。
 
-    由于远程库是空的，第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送到远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+由于远程库是空的，第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送到远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
 
 6. 推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样。
 
@@ -81,9 +79,9 @@ git push origin master
 
 1. 将远程库的变更拉取到本地
 
-    ```bash
-    git fetch <remote name> <branch name>
-    ```
+```bash
+git fetch <remote name> <branch name>
+```
 
 2. 将拉取的远程库和本地库合并
 

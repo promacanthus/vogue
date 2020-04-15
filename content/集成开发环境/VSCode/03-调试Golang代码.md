@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 集成开发环境
 - VSCode
 summary: 03-调试Golang代码
 showInMenu: false
@@ -25,8 +23,8 @@ showInMenu: false
 
 调试器使用以下的设置项，你可能不需要添加/更改它们中的任何一个，以便在简单的情况下进行调试，但有时会给它们读取一些配置：
 
-- `go.gopath`，查看[扩展程序中设置`GOPATH`](/VSCode-go/08-扩展程序中设置GOPATH.md)
-- `go.inferGopath`，查看[扩展程序中设置`GOPATH`](/VSCode-go/08-扩展程序中设置GOPATH.md)
+- `go.gopath`，查看扩展程序中设置`GOPATH`]
+- `go.inferGopath`，查看扩展程序中设置`GOPATH`
 - `go.delveConfig`：
   - `apiVersion`：控制将要在无头服务中被使用的`delve apis`的版本，默认值为2。
   - `dlvLoadConfig`：当`apiVersion`为1时不适用。这个配置会传递给`delve`。控制`delve`的[各种功能](https://github.com/Microsoft/vscode-go/blob/0.6.85/package.json#L431-L468)，这些功能会影响调试窗格中显示的变量。
@@ -198,7 +196,7 @@ dlv debug --headless --listen=:2345 --log -- -myArg=123
 
 当选择此新的`Launch remote`目标启动调试器时，`VS Code`会将调试命令发送到之前启动的`dlv`服务器，而不是针对应用启动它自己的`dlv`实例。
 
-请参阅 https://github.com/lukehoban/webapp-go/tree/debugging 中调试在docker主机中运行的进程的示例。
+请参阅[这篇文章](https://github.com/lukehoban/webapp-go/tree/debugging)中调试在docker主机中运行的进程的示例。
 
 ## 故障排除
 
@@ -263,4 +261,3 @@ dlv debug --headless --listen=:2345 --log -- -myArg=123
 8. 尝试使用终端/命令行中的`dlv`
 
 > 将`"trace"："log"`添加到调试配置并在`VS Code`中调试。这会将日志发送到调试控制台，可以在其中查看对`dlv`的实际调用。可以复制并在终端中运行它
-> 

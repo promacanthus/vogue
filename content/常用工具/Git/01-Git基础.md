@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 常用工具
 - Git
 summary: 01-Git基础
 showInMenu: false

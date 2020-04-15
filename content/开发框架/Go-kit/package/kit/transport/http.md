@@ -6,12 +6,7 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - Go-kit
-- package
-- kit
-- transport
 summary: http
 showInMenu: false
 
@@ -324,7 +319,7 @@ type HTTPClient interface {
 
 HTTPClient 是一个建模 `*http.Client` 的接口。
 
-## type Headerer 
+## type Headerer
 
 ```go
 type Headerer interface {

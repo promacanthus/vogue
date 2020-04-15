@@ -6,15 +6,13 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 集成开发环境
 - VSCode
 summary: 05-支持Go-Modules.md
 showInMenu: false
 
 ---
 
-VS Code使用大量[Go工具](06-扩展程序依赖的Go工具.md)来提供代码导航，代码完成，构建，分析等功能。
+VS Code使用大量Go工具来提供代码导航，代码完成，构建，分析等功能。
 
 > 这些工具还没有为[Go模块](https://blog.golang.org/modules2019)提供良好的支持。
 
@@ -38,7 +36,7 @@ VS Code使用大量[Go工具](06-扩展程序依赖的Go工具.md)来提供代�
 
 如果不想使用语言服务器，请了解并非此扩展所依赖的所有Go工具都支持Go模块。
 
-https://github.com/golang/go/issues/24661 是Go工具团队用来跟踪各种Go工具中Go模块支持更新的问题列表。
+[这里](https://github.com/golang/go/issues/24661)是Go工具团队用来跟踪各种Go工具中Go模块支持更新的问题列表。
 
 ## FAQ
 

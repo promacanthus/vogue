@@ -6,8 +6,6 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 集成开发环境
 - VSCode
 summary: 08-插件中设置GOPATH
 showInMenu: false

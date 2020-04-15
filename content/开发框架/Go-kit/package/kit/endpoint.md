@@ -6,11 +6,7 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
-- 开发框架
 - Go-kit
-- package
-- kit
 summary: endpoint
 showInMenu: false
 
