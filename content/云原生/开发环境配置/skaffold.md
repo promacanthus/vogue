@@ -1,5 +1,5 @@
 ---
-title: skaffold
+title: Skaffold
 date: 2020-04-14T10:09:14.226627+08:00
 draft: false
 hideLastModified: false
@@ -32,9 +32,9 @@ sudo mv skaffold /usr/local/bin
 
 ## 常用指令
 
-## `skaffold init`
+### `skaffold init`
 
-Skaffold需要skaffold.yaml，对于受支持的项目Skaffold可以生成一个简单的配置。在项目的根目录下运行`skaffold init`为应用程序配置Skaffold。
+Skaffold需要`skaffold.yaml`，对于受支持的项目Skaffold可以生成一个简单的配置。在项目的根目录下运行`skaffold init`为应用程序配置Skaffold。
 
 ### `skaffold dev`
 
