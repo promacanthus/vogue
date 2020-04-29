@@ -1,5 +1,5 @@
 ---
-title: 04-http请求
+title: 04-http POST 请求
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
 hideLastModified: false
@@ -8,7 +8,7 @@ keepImageRatio: true
 tags:
 - 填坑记
 - Golang
-summary: 04-http请求
+summary: 04-http POST 请求
 showInMenu: false
 
 ---
@@ -18,7 +18,7 @@ showInMenu: false
 - form Data：url的参数形式
 - payload（有效负载）：json串
 
-不同形式的数据传输，需要对应通过的请求头。
+不同形式的数据传输，需要对应不同的请求头。
 
 - `Content-Type: application/x-www-form-urlencoded`
 
