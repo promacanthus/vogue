@@ -28,7 +28,7 @@ showInMenu: false
 - 控制（Control）：应用策略并确保其执行使得资源在消费者之间公平分配。
 - 观测（Observe）：通过丰富的自动跟踪、监控和记录所以服务，了解正在发生的情况。
 
-# Service Mesh
+## Service Mesh
 
 **借着微服务和容器化的东风，传统的代理摇身一变，成了如今炙手可热的 Service Mesh。**
 
@@ -36,7 +36,7 @@ showInMenu: false
 
 代理可以是嵌套的，也就是说通信双方 A、B 中间可以多层代理，而这些代理的存在有可能对 A、B 是透明的。
 
-![image](http://p99.pstatp.com/large/pgc-image/15401920262142c9b170d4d)
+![image](/images/15401920262142c9b170d4d.jpeg)
 
 代理可以为整个通信带来更多的功能，比如：
 
@@ -54,7 +54,7 @@ showInMenu: false
 在 Service Mesh 中，代理变成了**分布式**的，它常驻在应用的身边。
 > 最常见的就是 Kubernetes Sidecar 模式，每一个应用的 Pod 中都运行着一个代理，负责流量相关的事情。
 
-![image](http://p99.pstatp.com/large/pgc-image/15401920246263868d1f552)
+![image](/images/15401920246263868d1f552.jpeg)
 
 这样的话，应用所有的流量都被代理接管，那么这个代理就能做到上面提到的所有可能的事情，从而带来无限的想象力。
 
@@ -70,7 +70,7 @@ showInMenu: false
 
 **让这些通用的功能不必每个应用都自己实现，放在代理中即可**。Service Mesh 中的代理对微服务中的应用做了定制化的改进！
 
-![image](http://p99.pstatp.com/large/pgc-image/1540192024607866973174f)
+![image](/images/1540192024607866973174f.jpeg)
 
 应用微服务之后，每个单独的微服务都会有很多副本，而且可能会有多个版本，这么多微服务之间的相互调用和管理非常复杂，但是有了 Service Mesh，我们可以把这块内容统一在代理层。
 
@@ -78,13 +78,13 @@ showInMenu: false
 
 管理员只需要根据控制中心的API来配置整个集群的应用流量，安全规则即可，代理会自动和控制中心打交道根据用户的期望改变自己的行为。
 
-![image](http://p99.pstatp.com/large/pgc-image/154019202477706ba677eee)
+![image](/images/154019202477706ba677eee.jpeg)
 
 > 可以理解 Service Mesh 中的代理会抢了 Nginx 的生意，这也是为了 Nginx 也要开始做 NginMesh 的原因。
 
-# Istio
+## Istio
 
-![image](https://preliminary.istio.io/docs/concepts/what-is-istio/arch.svg)
+![image](/images/arch.svg)
 
 Istio 就是我们上述提到的 Service Mesh 架构的一种实现，服务之间的通信（比如这里的 Service A 访问 Service B）会通过代理（默认是 Envoy）来进行。
 
@@ -146,7 +146,7 @@ Istio 就是我们上述提到的 Service Mesh 架构的一种实现，服务之
 
 当然这个步骤只是一个参考，每个公司需要根据自己的情况、人力、时间和节奏来调整，找到适合自己的方案。
 
-# 总结
+## 总结
 
 Istio 的架构在数据中心和集群管理中非常常见，每个 Agent 分布在各个节点上（可以是服务器、虚拟机、Pod、容器）负责接收指令并执行，以及汇报信息。
 

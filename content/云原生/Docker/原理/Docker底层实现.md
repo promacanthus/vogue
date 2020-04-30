@@ -29,7 +29,7 @@ BSD jails  | OpenVZ
 
 - Docker最初目标是做一个特殊的LXC的开源系统，最后慢慢演变为它自己的一套容器运行时环境。**Docker基于Linux kernel的CGroups，Namespace，UnionFileSystem等技术封装成一种自定义的容器格式，用于提供一整套虚拟运行环境**。毫无疑问，近些年来Docker已经成为了容器技术的代名词。
 
-![image](http://p3.pstatp.com/large/pgc-image/15268821012845197bffa5b)
+![image](/images/15268821012845197bffa5b.jpeg)
 
 ## Docker Engine
 
@@ -39,7 +39,7 @@ Docker提供了一个打包和运行应用的隔离环境，称之为容器，Do
 
 Docker更详细的架构如图所示，采用CS架构，client通过RESTFUL API发送docker命令到docker daemon进程，docker daemon进程执行镜像编译，容器启停以及分发，数据卷管理等，一个client可以与多个docker daemon通信。
 
-![image](http://p9.pstatp.com/large/pgc-image/1526882101439c544302c89)
+![image](/images/1526882101439c544302c89.jpeg)
 
 - Docker Daemon：Docker后台进程，用于管理镜像，容器以及数据卷。
 - Docker Client：用于与Docker Daemon交互。
@@ -83,7 +83,7 @@ root@stretch:/home/vagrant# docker run -it --name demo alpine /bin/ash/
 :
 lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00 
 
-inet 127.0.0.1/8 scope host lo valid_lft forever preferred_lft 
+inet 127.0.0.1/8 scope host lo valid_lft forever preferred_lft
 
 forever6: eth0@if7: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff 
 
@@ -134,7 +134,7 @@ total 0
 
 PID namespace允许在新的namespace创建一棵新的进程树，它可以有自己的PID为1的进程。在PID namespace的隔离下，子进程名字空间无法知道父进程名字空间的进程，如在Docker容器中无法看到宿主机的进程，而父进程名字空间可以看到子进程名字空间的所有进程。如图所示：
 
-![image](http://p99.pstatp.com/large/pgc-image/1526882101287d928f19aac)
+![image](/images/1526882101287d928f19aac.jpeg)
 
 Linux内核加入PID Namespace后，对pid结构进行了修改，新增的upid结构用于跟踪namespace和pid。
 
@@ -150,7 +150,7 @@ Linux内核加入PID Namespace后，对pid结构进行了修改，新增的upid�
 // 加入PID Namespace之后的pid结构
 struct upid {
  int nr; /* moved from struct pid */
- struct pid_namespace *ns; 
+ struct pid_namespace *ns;
  struct hlist_node pid_chain; /* moved from struct pid */
 };
 
@@ -180,7 +180,7 @@ NS Namespace用于隔离挂载点，不同NS Namespace的挂载点互不影响�
 
 可以通过查看cat /proc/self/mountinfo来看挂载点信息，若没有传播参数则为MS_PRIVATE的选项。
 
-![image](http://p1.pstatp.com/large/pgc-image/1526882102003a57680e549)
+![image](/images/1526882102003a57680e549.jpeg)
 
 例如,在初始namespace有两个挂载点:
 
@@ -212,7 +212,7 @@ Docker容器中另一个重要特性是网络独立(++之所以不用隔离一�
 
 veth实现了不同namespace的网络数据传输。
 
-![image](http://p1.pstatp.com/large/pgc-image/1526882102037b2146afc68)
+![image](/images/1526882102037b2146afc68.jpeg)
 
 1. 在Docker中，宿主机的veth端会桥接到网桥中，接收到容器中的veth端发过来的数据后会经由网桥docker0再转发到宿主机网卡eth0，最终通过eth0发送数据。
 2. 在发送数据前，需要经过iptables MASQUERADE规则将源地址改成宿主机ip，这样才能接收到响应数据包。
@@ -370,7 +370,7 @@ Docker里面要限制内存和CPU使用，可以在启动时指定相关参数�
 root@stretch:/home/vagrant# docker run -i -t --cpu-period=100000 --cpu-quota=50000 --memory=512000000 alpine /bin/ash
 ```
 
-##  Capabilities
+## Capabilities
 
 我们在启动容器时会时常看到这样的参数--cap-add=NET_ADMIN，这是用到了Linux的capability特性。capability是为了实现更精细化的权限控制而加入的。
 
