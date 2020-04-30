@@ -29,12 +29,14 @@ kubelet也是按照控制器模式工作的，工作原理如下图所示：
 ![image](https://static001.geekbang.org/resource/image/91/03/914e097aed10b9ff39b509759f8b1d03.png)
 
 kubelet的工作核心，就是一个控制循环（即SyncLoop大圈），驱动这个控制循环运行的实践包括：
+
 1. Pod更新事件
 2. Pod生命周期变化
 3. kubelet本身设置的执行周期
 4. 定时的清理事件
 
 与其他控制器类似，kubelet启动的时候：
+
 1. 做的第一件事情，就是设置Listers，注册它所关心的各种事件的Informer，这些Informer就是SyncLoop需要处理的数据的来源。
 2. kubelet负责维护很多其他的子控制循环（小圈），这些小的控制循序的责任就是通过控制器模式，完成kubelet的某项具体职责，如：
    1. Volume Manager
@@ -42,8 +44,8 @@ kubelet的工作核心，就是一个控制循环（即SyncLoop大圈），驱�
    3. Node Status Manager：负责响应Node的状态变化，然后将Node的状态收集起来，并通过Heartbeat的方式上报给APIServer
    4. CPU Manager：负责维护Node的CPU核的信息，以便在Pod通过cpuset的方式请求CPU核的时候，能够正确地管理CPU核的使用量和可用量
 
-
 kubelet通过WATCH机制（WATCH的过滤条件是该Pod的nodeName字段与自己是否相同）监听与自己相关的Pod对象的变化：
+
 1. kubelet会把这些Pod的信息缓存在自己的内存里
 2. 当Pod完成调度与Node绑定后，Pod的变化会触发kubelet在控制循环里注册的Handler（即图中HandlePods部分）
 3. 通过检查Pod在kubelet内存里的状态，kubelet能够判断出这是一个新调度过来的Pod，从而触发Handler里ADD事件对应的处理逻辑
@@ -51,11 +53,13 @@ kubelet通过WATCH机制（WATCH的过滤条件是该Pod的nodeName字段与自�
 具体的处理过程中，kubelet会启动一个叫Pod Updata Worker的单独的Goroutine来完成Pod的处理工作。
 
 如果是ADD事件：
+
 1. kubelet为这个新的Pod生成对应的Pod Status
 2. 检查Pod所声明使用的Volume是否准备好
 3. 调用下层的容器运行时（如Docker），开始创建这个Pod所定义的容器
 
 如果是Update事件：
+
 1. kubelet会根据Pod对象具体的变更情况，调用下层容器运行时进行容器的重建工作
 
 > 注意，**kubelet调用下层容器运行时的执行过程，并不会直接调动Docker的API，而是通过一组叫作CRI的gRPC接口来间接执行**。之所以要在kubelet中引入这样一层单独的抽象，是为了对kubernetes屏蔽下层容器运行时的差异。在v1.6之前的版本，都是直接调用Docker的API来创建和管理容器的。
@@ -67,6 +71,7 @@ kubelet通过WATCH机制（WATCH的过滤条件是该Pod的nodeName字段与自�
 ![image](https://static001.geekbang.org/resource/image/51/fe/5161bd6201942f7a1ed6d70d7d55acfe.png)
 
 kubernetes通过编排能力创建了一个Pod之后，调度器会为这个Pod选择一个具体的节点来运行：
+
 1. kubelet通过SyncLoop来判断需要执行的具体操作，如创建一个Pod，那么kubelet调用GenericRuntime的通用组件来发起创建Pod 的CRI请求。
 2. 如果使用的是Docker项目，负责想用这个请求的是dockershim组件，它把CRI请求里的内容拿出来，组装成Dcoker API请求发送给Docker Daemon
 
@@ -77,6 +82,7 @@ kubelet将kubernetes对应用的定义，一步步转换成最终对Docker或者
 基于以上设计，SyncLoop本身就要求这个控制循环是绝对不可以被阻塞的，所以凡是在kubelet里有可能会消耗大量时间的操作，如准备Pod 的Volume，拉取镜像等，SyncLoop都会开启单独的Goroutine来进行操作。
 
 # CRI设计与工作原理
+
 CRI机制能够发挥作用的核心，就在于每一种容器项目现在都可以自己实现一个CRI shim，自行对CRI请求进行处理。这样，kubernetes就有了一个统一的容易抽象层，使得下层容器运行时可以自由地对接进入kubernetes中。
 
 > CRI shim就是容器项目的维护者们自由发挥的场地，除了dockershim之外，其他容器运行时的CRI shim都需要额外部署在宿主机上。
@@ -85,18 +91,21 @@ CNCF的containerd项目，可以通过一个典型的CRi shim能力，将kuberne
 
 ![image](https://static001.geekbang.org/resource/image/62/3d/62c591c4d832d44fed6f76f60be88e3d.png)
 
-
 CRI待实现的接口如下图所示：
 
 ![image](https://static001.geekbang.org/resource/image/f7/16/f7e86505c09239b80ad05aecfb032e16.png)
 
 作为一个CRI shim，containerd对CRI的具体实现如下，把CRI分为两组：
+
 1. RuntimeService,它提供的接口，主要是容器相关的操作，如创建、启动和删除容器，执行exec命令等
 2. ImageService，它提供的接口，主要是容器镜像相关的操作，如拉取和除镜像等
 
 ## RuntimeService
+
 ### 容器声明周期的实现
+
 在这一部分CRI设计的一个重要原则，就是确保这个接口本身，之关注容器不关注Pod，原因是：
+
 1. Pod是kubernetes的编排概念，而不是容器运行时的概念，所以不能假设所以下层容器项目，都能够暴露出可以直接映射为Pod的API。
 2. 如果CRI中引入了关于Pod的概念，那么接下来只要Pod API对象的字段发生编号，那么CRI就可能需要跟着变更。早起kubernetes开发中，Pod对象的变化比较频繁，对于CRI这样的标准接口来说，这样的变更率有点麻烦。
 

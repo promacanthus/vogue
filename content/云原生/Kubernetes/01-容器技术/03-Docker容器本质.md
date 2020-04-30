@@ -284,7 +284,7 @@ dockerinit负责完成：
 
 > **绑定挂载实际上是一个inode替换的过程**。在Linux操作系统中，inode可以理解为存放文件内容的“对象”，而dentry（目录项），就是访问这个inode所使用的“指针”
 
-![image](../../../images/bindmount.png)
+![image](/images/bindmount.png)
 
 如上图所示，`mount --bind /home /test` 命令会将`/home`目录挂载到`/test`上。其实相当于将`/test`的dentry重定向到了`/home` 的inode。这样当修改`/test`目录时，实际修改的是`/home`目录的inode。**这也就是为何，一旦执行umount命令，`/test`目录原先的内容就会恢复：因为修改真正发生在的是`/home`目录里**。
 
@@ -300,7 +300,7 @@ dockerinit负责完成：
 
 Docker容器全景图
 
-![image](../../../images/docker-container.png)
+![image](/images/docker-container.png)
 
 这个容器进程“python app.py”，运行在由Linux Namespace和Cgroups构成的隔离环境里，而它运行所需的各种文件，比如python，app.py，以及整个操作系统文件，则由多个联合挂载在一起的rootfs层提供。
 

@@ -76,11 +76,11 @@ token:      eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZ
 
 现在复制令牌并将其粘贴到登录屏幕上的`Enter token`字段中。
 
-![image](../../../images/Enter-Token.png)
+![image](/images/Enter-Token.png)
 
 单击登录按钮就可以了。现在以管理员身份登录。
 
-![image](../../../images/admin.png)
+![image](/images/admin.png)
 
 要了解有关如何在`Kubernetes`中授予/拒绝权限的更多信息，请阅读官方[认证](https://kubernetes.io/docs/admin/authentication/)和[授权](https://kubernetes.io/docs/admin/authorization/)文档。
 

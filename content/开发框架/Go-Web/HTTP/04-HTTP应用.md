@@ -15,7 +15,7 @@ showInMenu: false
 
 ## HTTP实体数据
 
-![body](../images/body-header.png)
+![body](/images/body-header.png)
 
 1. 数据类型表示实体数据的内容是什么，使用的是 `MIME type`，相关的头字段是 `Accept` 和 `Content-Type`；
 2. 数据编码表示实体数据的压缩方式，相关的头字段是 `Accept-Encoding` 和 `Content-Encoding`；
@@ -67,7 +67,7 @@ HTTP 协议为此定义了两个 `Accept` 请求头字段和两个 `Content` 实
 - 客户端用 `Accept` 头告诉服务器**希望接收**什么样的数据，`Accept,Accept-Encoding`
 - 服务器用 `Content` 头告诉客户端**实际发送**什么样的数据,`Content-Type,Content-Encoding`
 
-![header](../images/accept-content.png)
+![header](/images/accept-content.png)
 
 - 如果请求报文里没有 `Accept-Encoding` 字段，就表示客户端**不支持压缩数据**；
 - 如果响应报文里没有 `Content-Encoding` 字段，就表示**响应数据没有被压缩**。
@@ -102,7 +102,7 @@ HTTP 协议也使用 Accept **请求头字段**和 Content **实体头字段**�
 
 现在的浏览器都支持多种字符集，通常不会发送 `Accept-Charset`，而服务器也不会发送 `Content-Language`，因为使用的语言完全可以由字符集推断出来，所以在请求头里一般只会有 `Accept-Language` 字段，响应头里只会有 `Content-Type` 字段。
 
-![header](../images/language-charset.png)
+![header](/images/language-charset.png)
 
 ### 内容协商质量值和结果
 
@@ -165,7 +165,7 @@ Vary 字段可以认为是响应报文的一个特殊的“版本标记”。每
 - 数据块紧跟在长度头后，最后也用 CRLF 结尾，但数据不包含 CRLF；
 - 最后用一个长度为 0 的块表示结束，即“0\r\n\r\n”。
 
-![chuncked](../images/chuncked.png)
+![chuncked](/images/chuncked.png)
 
 > 浏览器在收到分块传输的数据后会自动按照规则去掉分块编码，重新组装出内容。
 
@@ -218,7 +218,7 @@ HTTP 协议为了满足这样的需求，提出了“**范围请求**”（range
 
 这种情况需要使用一种特殊的 MIME 类型：“`multipart/byteranges`”，表示报文的 body 是由多段字节序列组成的，并且还要用一个参数“`boundary=xxx`”给出段之间的分隔标记。多段数据的格式与分块传输也比较类似，但它需要用分隔标记 boundary 来区分不同的片段。
 
-![ranges](../images/ranges.png)
+![ranges](/images/ranges.png)
 
 每一个分段必须以“`-- boundary`”开始（前面加两个“-”），之后要用“`Content-Type`”和“`Content-Range`”标记这段数据的类型和所在范围，然后就像普通的响应头一样以回车换行结束，再加上分段数据，最后用一个“`-- boundary --`”（前后各有两个“-”）表示所有的分段结束。
 
@@ -241,7 +241,7 @@ HTTP 协议最初（0.9/1.0）是个非常简单的协议，通信过程也采�
 
 这么算下来，浪费的时间就是“3÷5=60%”，有三分之二的时间被浪费掉了，传输效率低得惊人。
 
-![connect](../images/short-connetc.png)
+![connect](/images/short-connetc.png)
 
 ### 长连接
 
@@ -257,7 +257,7 @@ HTTP 协议最初（0.9/1.0）是个非常简单的协议，通信过程也采�
 
 短连接和长连接的对比如下图所示：
 
-![connect](../images/long-connect.png)
+![connect](/images/long-connect.png)
 
 在短连接里发送了三次 HTTP“请求——应答”，每次都会浪费 60% 的 RTT 时间。而在长连接的情况下，同样发送三次请求，因为只在第一次时建立连接，在最后一次时关闭连接，所以浪费率就是“3÷9≈33%”，降低了差不多一半的时间损耗。
 
@@ -299,7 +299,7 @@ HTTP连接管理的第三种方式pipeline（管道或流水线），它在长�
 
 因为 HTTP 规定报文必须是“一发一收”，这就形成了一个**先进先出**的“串行”队列。队列里的请求没有轻重缓急的优先级，**只有入队的先后顺序**，排在最前面的请求被最优先处理。如果队首的请求因为处理的太慢耽误了时间，那么队列里后面的所有请求也不得不跟着一起等待，结果就是其他的请求承担了不应有的时间成本。
 
-![block](../images/block.png)
+![block](/images/block.png)
 
 ### 性能优化
 
@@ -394,7 +394,7 @@ HTTP 的 Cookie 机制，就是服务器记不住状态，就在外部想办法�
 
 有时，服务器会在响应头里添加多个 `Set-Cookie`，存储多个“`key=value`”。浏览器这边发送时不需要用多个 `Cookie` 字段，只要在一行里用“`;`”隔开就行。
 
-![cookie](../images/cookie.png)
+![cookie](/images/cookie.png)
 
 Cookie 是由**浏览器**负责存储的，而不是操作系统。所以，它是“**浏览器绑定**”的，只能在本浏览器内生效。浏览器对Cookie的数量和大小都有限制，不允许无限存储，一般总大小不能超过`4K`。
 
@@ -470,7 +470,7 @@ Cookie 的另一个常见用途是**广告跟踪**。
 2. 服务器响应请求，返回资源，同时标记资源的有效期；
 3. 浏览器缓存资源，等待下次重用。
 
-![cache](../images/cache.png)
+![cache](/images/cache.png)
 
 服务器标记资源有效期使用的头字段是“`Cache-Control`”，里面的值“`max-age=30`”就是资源的有效时间，相当于告诉浏览器，“这个页面只能缓存 30 秒，之后就算是过期，不能用。”
 
@@ -486,7 +486,7 @@ Cookie 的另一个常见用途是**广告跟踪**。
 
 > 除了`Cache-Control`，服务器也可以用`Expires`字段来标记资源的有效期，它的形式和Cookie差不多，都属于“过时”的属性，优先级低于`Cache-Control`。还有一个历史遗留字段`Pragma: no-cache`，除非为了兼容`HTTP/1.0`否则不建议使用。
 
-![cache](../images/cache-stract.png)
+![cache](/images/cache-stract.png)
 
 ### 客户端的缓存控制
 
@@ -521,7 +521,7 @@ Cookie 的另一个常见用途是**广告跟踪**。
 
 > 如果响应报文里提供了`Last-modified`，但没有`Cache-Control`或`Expires`，浏览器会使用启发算法计算一个缓存时间，在RFC中建议的是：`（Data - Last-modified） × 10%`。
 
-![last-modify](../images/last-modify.png)
+![last-modify](/images/last-modify.png)
 
 - “`Last-modified`”就是文件的最后修改时间。
 - “`ETag`” 是“实体标签”（Entity Tag）的缩写，是资源的一个唯一标识，主要是用来解决修改时间无法准确区分文件变化的问题。
@@ -586,7 +586,7 @@ Cookie 的另一个常见用途是**广告跟踪**。
 
 例如，下图中有两个代理：proxy1 和 proxy2，客户端发送请求会经过这两个代理，依次添加就是“Via: proxy1, proxy2”，等到服务器返回响应报文的时候就要反过来走，头字段就是“Via: proxy2, proxy1”。
 
-![proxy](../images/proxy.png)
+![proxy](/images/proxy.png)
 
 `Via` 字段(有的服务器响应报文中是`X-Via`)只解决了客户端和源服务器判断是否存在代理的问题，还不能知道对方的真实信息。
 
@@ -643,7 +643,7 @@ HTTP 的服务器缓存功能主要由代理服务器来实现（即缓存代理
 
 ### 缓存代理服务
 
-![proxy-cache](../images/proxy-cache.png)
+![proxy-cache](/images/proxy-cache.png)
 
 在没有缓存的时候，代理服务器每次都是直接转发客户端和服务器的报文，中间不会存储任何数据，只有最简单的中转功能。
 
@@ -678,7 +678,7 @@ HTTP 的服务器缓存功能主要由代理服务器来实现（即缓存代理
 
 下面的流程图是完整的服务器端缓存控制策略，可以同时控制客户端和代理。
 
-![server-cache-strategy](../images/server-cache-strategy.png)
+![server-cache-strategy](/images/server-cache-strategy.png)
 
 源服务器在设置完“`Cache-Control`”后必须要为报文加上“`Last-modified`”或“`ETag`”字段。否则，客户端和代理后面就无法使用条件请求来验证缓存是否有效，也就不会有 304 缓存重定向。
 
@@ -686,7 +686,7 @@ HTTP 的服务器缓存功能主要由代理服务器来实现（即缓存代理
 
 客户端在 HTTP 缓存体系里要面对的是代理和源服务器，也必须区别对待，如下图所示。
 
-![client-cache](../images/client-cache-strategy.png)
+![client-cache](/images/client-cache-strategy.png)
 
 max-age、no-store、no-cache 这三个属性也同样作用于代理和源服务器。
 
@@ -702,4 +702,3 @@ max-age、no-store、no-cache 这三个属性也同样作用于代理和源服�
 “`Vary`”字段，它是内容协商的结果，相当于报文的一个版本标记。同一个请求，经过内容协商后可能会有不同的字符集、编码、浏览器等版本。比如，“`Vary: Accept-Encoding`”“`Vary: User-Agent`”，缓存代理必须要存储这些不同的版本。当再收到相同的请求时，代理就读取缓存里的“`Vary`”，对比请求头里相应的“`Accept-Encoding`”“`User-Agent`”等字段，如果和上一个请求的完全匹配，比如都是“`gzip`”“`Chrome`”，就表示版本一致，可以返回缓存的数据。
 
 “`Purge`”，也就是“缓存清理”，它对于代理也是非常重要的功能，例如：过期的数据应该及时淘汰，避免占用空间；源站的资源有更新，需要删除旧版本，主动换成最新版（即刷新）；有时候会缓存了一些本不该存储的信息，例如网络谣言或者危险链接，必须尽快把它们删除。清理缓存的方法有很多，比较常用的一种做法是使用自定义请求方法“`PURGE`”，发给代理服务器，要求删除 URI 对应的缓存数据。
-

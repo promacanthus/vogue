@@ -54,7 +54,7 @@ Kubernetes支持几种验证和授权用户的方法。可以在[这里](https:/
 
 使用“跳过”选项将使`Dashboard`使用`Dashboard Service Account`的权限。默认情况下，跳过按钮自`1.10.1`起禁用。使用`--enable-skip-login dashboard`标志显示它。
 
-![image](../../../images/login-view.png)
+![image](/images/login-view.png)
 
 ### Authorization header
 
@@ -72,7 +72,7 @@ Kubernetes支持几种验证和授权用户的方法。可以在[这里](https:/
 
 #### Bearer Token 样例
 
-![images](../../../images/Bearer-Token.png)
+![images](/images/Bearer-Token.png)
 
 #### 使用kubectl获取token
 

@@ -108,9 +108,9 @@ HTTP/1.1 200 OK
 
 请求行或状态行再加上头部字段集合就构成了 HTTP 报文里完整的请求头或响应头，如下两个示意图。
 
-![request](../images/request-header.png)
+![request](/images/request-header.png)
 
-![response](../images/response-header.png)
+![response](/images/response-header.png)
 
 请求头和响应头的结构是基本一样的，唯一的区别是起始行。
 
@@ -185,7 +185,7 @@ Server 字段不是必须要出现的，因为这会把服务器的一部分信�
 - OPTIONS：列出可对资源实行的方法；
 - TRACE：追踪请求和响应的传输路径。
 
-![method](../images/method.jpg)
+![method](/images/method.jpg)
 
 > 这些方法，就像是对文件或数据库的“增删改查”操作，只不过这些动作操作的目标不是本地资源，而是远程服务器上的资源，所以只能由客户端“请求”或者“指示”服务器来完成。
 
@@ -288,7 +288,7 @@ URI 本质上是一个字符串，这个字符串的作用是**唯一地标记�
 
 下面的这张图显示了 URI 最常用的形式，由 `scheme`、`host:port`、`path` 和 `query` 四个部分组成，有的部分可以视情况省略。
 
-![URI](../images/URI.png)
+![URI](/images/URI.png)
 
 ### URI基本组成
 
@@ -345,7 +345,7 @@ file:///D:/http_study/www/      # file协议，表示本地文件，省略author
 
 URI “真正”的完整形态，如下图所示。
 
-![URI](../images/full-uri.png)
+![URI](/images/full-uri.png)
 
 这个“真正”形态比基本形态多了两部分。
 

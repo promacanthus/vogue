@@ -62,7 +62,7 @@ HTTP 有两个主要的缺点：安全不足和性能不高。
 
 这种做法有点像是“`Chunked`”分块编码的方式，也是“化整为零”的思路，但 `HTTP/2` 数据分帧后“`Header+Body`”的报文结构就完全消失了，协议看到的只是一个个的“碎片”。
 
-![binary](../images/binary.png)
+![binary](/images/binary.png)
 
 ### 虚拟的“流”
 
@@ -74,7 +74,7 @@ HTTP 有两个主要的缺点：安全不足和性能不高。
 
 在“流”的层面上看，消息是一些有序的“帧”序列，而在“连接”的层面上，消息却是乱序收发的“帧”。多个请求/响应之间没有了顺序关系，不需要排队等待，也就不会再出现“队头阻塞”问题，降低了延迟，大幅度提高了连接的利用率。
 
-![stream](../images/virtul-stream.png)
+![stream](/images/virtul-stream.png)
 
 为了更好地利用连接，加大吞吐量，`HTTP/2` 还添加了一些控制帧来管理虚拟的“流”，实现了优先级和流量控制，这些特性也和 TCP 协议非常相似。
 
@@ -101,7 +101,7 @@ HTTP 有两个主要的缺点：安全不足和性能不高。
 
 下图对比 `HTTP/1`、HTTPS 和 `HTTP/2` 的协议栈，`HTTP/2` 是建立在“`HPack`”“`Stream`”“`TLS1.2`”基础之上的，比 `HTTP/1`、`HTTPS` 复杂。
 
-![stack](../images/protocol-stack.png)
+![stack](/images/protocol-stack.png)
 
 虽然 `HTTP/2` 的底层实现很复杂，但它的“语义”还是简单的 `HTTP/1`。
 
@@ -141,7 +141,7 @@ PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n
 
 下面的这个表格列出了“静态表”的一部分，这样只要查表就可以知道字段名和对应的值，比如数字“2”代表“GET”，数字“8”代表状态码 200。
 
-![static-table](../images/static-table.png)
+![static-table](/images/static-table.png)
 
 如果表里只有 Key 没有 Value，或者是自定义字段根本找不到，这就要用到“**动态表**”（Dynamic Table），它添加在静态表后面，结构相同，但会在编码解码的时候随时更新。
 
@@ -153,7 +153,7 @@ PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n
 
 头部数据压缩之后，`HTTP/2` 就要把报文拆成二进制的帧准备发送。`HTTP/2` 的帧结构有点类似 TCP 的段或者 TLS 里的记录，但报头很小，只有 9 字节，非常地节省（ TCP 头最少是 20 个字节）。二进制的格式也保证了不会有歧义，而且使用位运算能够非常简单高效地解析。
 
-![frame](../images/frame.png)
+![frame](/images/frame.png)
 
 帧开头是 3 个字节的**长度**（但不包括头的 9 个字节），默认上限是 `2^14`，最大是 `2^24`，也就是说 `HTTP/2` 的帧通常不超过 16K，最大是 16M。
 
@@ -175,7 +175,7 @@ PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n
 
 Wireshark 抓包的帧实例：
 
-![frame](../images/wireshark-capture-frame.png)
+![frame](/images/wireshark-capture-frame.png)
 
 查看最后一行红色方框部分，共9个字节是报文的头。
 
@@ -212,7 +212,7 @@ Wireshark 抓包的帧实例：
 
 如下图显示了连接中无序的帧是如何依据流 ID 重组成流的。
 
-![stream](../images/streams.png)
+![stream](/images/streams.png)
 
 从这些特性中，还可以推理出一些深层次的知识点。
 
@@ -228,7 +228,7 @@ Wireshark 抓包的帧实例：
 
 `HTTP/2` 的流也有一个状态转换图，比 TCP 要简单一点，如下图，对应到一个标准的 HTTP“请求——应答”。
 
-![stream status](../images/stream-status.png)
+![stream status](/images/stream-status.png)
 
 1. 最开始流都是“**空闲**”（idle）状态，也就是“不存在”，可以理解成是待分配的“号段资源”。
 2. 当客户端发送 `HEADERS` 帧后，有了流 ID，流就进入了“**打开**”状态，两端都可以收发数据，
@@ -263,7 +263,7 @@ Google 在推 SPDY 的时候就已经意识到了这个问题，于是就又发�
 
 不过 `HTTP/3` 目前还处于草案阶段，正式发布前可能会有变动，`HTTP/3` 的协议栈如下图。
 
-![HTTP/3](../images/HTTP-3.png)
+![HTTP/3](/images/HTTP-3.png)
 
 ### QUIC协议
 
@@ -298,13 +298,13 @@ QUIC 基于 UDP，而 UDP 是“无连接”的，根本就不需要“握手”
 
 QUIC 使用不透明的“**连接 ID**”来标记通信的两个端点，客户端和服务器可以自行选择一组 ID 来标记自己，这样就解除了 TCP 里连接对“IP 地址 + 端口”（即常说的四元组）的强绑定，支持“**连接迁移**”（Connection Migration）。
 
-![QUIC](../images/QUIC.png)
+![QUIC](/images/QUIC.png)
 
 > 比如，你下班回家，手机会自动由 4G 切换到 WiFi。这时 IP 地址会发生变化，TCP 就必须重新建立连接。而 QUIC 连接里的两端连接 ID 不会变，所以连接在“逻辑上”没有中断，它就可以在新的 IP 地址上继续使用之前的连接，消除重连的成本，实现连接的无缝迁移。
 
 QUIC 的帧里有多种类型，PING、ACK 等帧用于管理连接，而 STREAM 帧专门用来实现流。QUIC 里的流与 `HTTP/2` 的流非常相似，也是帧的序列。但 `HTTP/2` 里的流都是双向的，而 QUIC 则分为双向流和单向流。
 
-![stream](../images/QUIC-stream.png)
+![stream](/images/QUIC-stream.png)
 
 QUIC 帧普遍采用变长编码，最少只要 1 个字节，最多有 8 个字节。
 
@@ -324,7 +324,7 @@ QUIC 本身就已经支持了加密、流和多路复用，所以 `HTTP/3` 的�
 
 由于流管理被“下放”到了 QUIC，所以 `HTTP/3` 里帧的结构也变简单了。帧头只有两个字段：类型和长度，而且同样都采用变长编码，最小只需要两个字节。
 
-![frame](../images/http-3-frame.png)
+![frame](/images/http-3-frame.png)
 
 `HTTP/3` 里的帧仍然分成**数据帧**和**控制帧**两类，HEADERS 帧和 DATA 帧传输数据，但其他一些帧因为在下层的 QUIC 里有了替代，所以在 `HTTP/3` 里就都消失了，比如 `RST_STREAM`、`WINDOW_UPDATE`、`PING` 等。
 

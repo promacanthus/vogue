@@ -36,7 +36,7 @@ HTTPS 与 HTTP 最大的区别，它能够鉴别危险的网站，并且尽最�
 
 HTTPS 做到机密性、完整性的原理就在于，把 HTTP 下层的传输协议由 `TCP/IP` 换成了 `SSL/TLS`，由“`HTTP over TCP/IP`”变成了“`HTTP over SSL/TLS`”，让 HTTP 运行在了安全的 `SSL/TLS` 协议上，收发报文不再使用 Socket API，而是调用专门的安全接口。
 
-![https](../images/https.png)
+![https](/images/https.png)
 
 HTTPS 本身并没有什么本事，全是靠着后面的 `SSL/TLS`“撑腰”。
 
@@ -97,7 +97,7 @@ OpenSSL 目前有三个主要的分支，`1.0.2` 和 `1.1.0` 都在2019年底不
 
 “对称加密”就是指加密和解密时使用密钥都是同一个，是“对称”的。只要保证了密钥的安全，那整个通信过程就可以说具有了机密性。
 
-![Symmetric encryption](../images/symmetric-encryption.png)
+![Symmetric encryption](/images/symmetric-encryption.png)
 
 TLS 里有非常多的对称加密算法，比如 RC4、DES、3DES、AES、ChaCha20 等，但前三种算法都被认为是**不安全**的，通常都禁止使用，目前常用的只有 **AES** 和 **ChaCha20**。
 
@@ -131,7 +131,7 @@ TLS 里有非常多的对称加密算法，比如 RC4、DES、3DES、AES、ChaCh
 
 非对称加密可以解决“密钥交换”的问题。网站秘密保管私钥，在网上任意分发公钥，你想要登录网站只要用公钥加密就行了，密文只能由私钥持有者才能解密。而黑客因为没有私钥，所以就无法破解密文。
 
-![Asymmetric-encryption](../images/asymmetric-encryption.png)
+![Asymmetric-encryption](/images/asymmetric-encryption.png)
 
 非对称加密算法的设计要比对称算法难得多，在 TLS 里只有很少的几种，比如 DH、DSA、RSA、ECC 等。
 
@@ -176,7 +176,7 @@ RSA 的运算速度是非常慢的，2048 位的加解密大约是 15KB/S（微�
 2. 然后用随机数产生对称算法使用的“会话密钥”（session key），再用公钥加密。因为会话密钥很短，通常只有 16 字节或 32 字节，所以慢一点也无所谓。
 3. 对方拿到密文后用私钥解密，取出会话密钥。这样，双方就实现了对称密钥的安全交换，后续就不再使用非对称加密，全都使用对称加密。
 
-![Hybrid encryption](../images/hybrid-encryption.png)
+![Hybrid encryption](/images/hybrid-encryption.png)
 
 这样混合加密就解决了对称加密算法的密钥交换问题，而且安全和性能兼顾，完美地实现了机密性。后面还有完整性、身份认证、不可否认等特性没有实现，所以现在的通信还不是绝对安全。
 
@@ -208,7 +208,7 @@ MD5（Message-Digest 5）、SHA-1（Secure Hash Algorithm 1），是最常用的
 
 所以，真正的完整性必须要建立在机密性之上，在混合加密系统里用会话密钥加密消息和摘要，这样黑客无法得知明文，也就没有办法动手脚了。这有个术语，叫哈希消息认证码（HMAC）。
 
-![hash](../images/hash.png)
+![hash](/images/hash.png)
 
 ### 数字签名
 
@@ -222,7 +222,7 @@ MD5（Message-Digest 5）、SHA-1（Secure Hash Algorithm 1），是最常用的
 
 签名和公钥一样完全公开，任何人都可以获取。但这个签名只有用私钥对应的公钥才能解开，拿到摘要后，再比对原文验证完整性。
 
-![digital signature](../images/digital-signature.png)
+![digital signature](/images/digital-signature.png)
 
 只要和网站互相交换公钥，就可以用“签名”和“验签”来确认消息的真实性，因为私钥保密，黑客不能伪造签名，就能够保证通信双方的身份。
 
@@ -284,11 +284,11 @@ TLS 包含几个子协议，由几个不同职责的模块组成，比较常用�
 
 下面的这张图简要地描述了 TLS 的握手过程，其中每一个“框”都是一个记录，多个记录组合成一个 TCP 包发送。所以，最多经过两次消息往返（4 个消息）就可以完成握手，然后就可以在安全的通信环境里发送 HTTP 报文，实现 HTTPS 协议。
 
-![https](../images/https-hand.png)
+![https](/images/https-hand.png)
 
 ### ECDHE握手过程
 
-![ECDHE](../images/ECDHE.png)
+![ECDHE](/images/ECDHE.png)
 
 在 TCP 建立连接之后，浏览器会首先发一个“`Client Hello`”消息，也就是跟服务器“打招呼”。里面有客户端的版本号、支持的密码套件，还有一个随机数（Client Random），用于后续生成会话密钥。
 
@@ -369,7 +369,7 @@ master_secret = PRF(pre_master_secret, "master secret", ClientHello.random + Ser
 - 第一个，使用 ECDHE 实现密钥交换，而不是 RSA，所以会在服务器端发出“`Server Key Exchange`”消息。
 - 第二个，因为使用了 ECDHE，客户端可以不用等到服务器发回“`Finished`”确认握手完毕，立即就发出 HTTP 报文，省去了一个消息往返的时间浪费。这个叫“`TLS False Start`”和“`TCP Fast Open`”有点像，都是不等连接完全建立就提前发应用数据，提高传输的效率。
 
-![rsa](../images/tradition-rsa.png)
+![rsa](/images/tradition-rsa.png)
 
 大体的流程没有变，只是“`Pre-Master`”不再需要用算法生成，而是客户端直接生成随机数，然后用服务器的公钥加密，通过“`Client Key Exchange`”消息发给服务器。服务器再用私钥解密，这样双方也实现了共享三个随机数，就可以生成主密钥。
 
@@ -428,7 +428,7 @@ TLS1.3 里只保留了:
 
 现在的 TLS1.3 里只有 5 个套件，无论是客户端还是服务器都不会再犯“选择困难症”了。
 
-![suit](../images/suit.jpg)
+![suit](/images/suit.jpg)
 
 废除 RSA 和 DH 密钥交换算法的原因，浏览器默认会使用 ECDHE 而不是 RSA 做密钥交换，这是因为它不具有“前向安全”（Forward Secrecy）。
 
@@ -471,7 +471,7 @@ HTTPS 连接大致上可以划分为两个部分，
 
 把 TLS 握手过程中影响性能的部分都标记了出来，对照着它就可以“有的放矢”地来优化 HTTPS。
 
-![optimization](../images/optimization-https.png)
+![optimization](/images/optimization-https.png)
 
 ### 硬件优化
 
@@ -548,7 +548,7 @@ HTTPS 建立连接的过程：先是 TCP 三次握手，然后是 TLS 一次握�
 
 “False Start”“Session ID”“Session Ticket”等方式只能实现 1-RTT，而 TLS1.3 更进一步实现了“0-RTT”，原理和“Session Ticket”差不多，但在发送 Ticket 的同时会带上应用数据（Early Data），免去了 1.2 里的服务器确认步骤，这种方式叫“Pre-shared Key”，简称为“PSK”。
 
-![pre-share-key](../images/pre-share-key.png)
+![pre-share-key](/images/pre-share-key.png)
 
 但“PSK”也不是完美的，它为了追求效率而牺牲了一点安全性，容易受到“重放攻击”（Replay attack）的威胁。黑客可以截获“PSK”的数据，像复读机那样反复向服务器发送。
 

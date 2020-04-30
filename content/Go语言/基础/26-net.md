@@ -112,9 +112,9 @@ syscall包中都有同名常量与之对应。
 proto：协议；表示socket实例所使用的协议，通常明确了前两个参数，就不在需要确定第三个参数值了，一般设置为0即可，内核程序会自动选择最适合的协议。
 
 - 当两个参数分别为`syscall.AF_INET`和`syscall.SOCK_DGRAM`的时候，内核程序会选择UDP作为协议
--  当两个参数分别为`syscall.AF_INET6`和`syscall.SOCK_STREAM`的时候，内核程序会选择TCP作为协议
+- 当两个参数分别为`syscall.AF_INET6`和`syscall.SOCK_STREAM`的时候，内核程序会选择TCP作为协议
 
-![images](../../images/syscall-socket.png)
+![images](/images/syscall-socket.png)
 
 在使用net包中的高层次API的时候，前两个参数（domain和typ）也不需要给定，只需要把前面罗列的9个可选值字符串字面量的其中一个，作为network参数的值就好了。
 
@@ -128,11 +128,11 @@ func DialTimeout(network, address string, timeout time.Duration) (Conn, error)
 
 开始的时间点几乎是调用`net.DialTimeout`函数的那一刻，之后的时间，主要会花费在：
 
-  - 解析参数network和address的值：在这个过程中，函数会确定网络服务的IP地址、端口号等必要信息、并在需要时访问DNS服务。
+- 解析参数network和address的值：在这个过程中，函数会确定网络服务的IP地址、端口号等必要信息、并在需要时访问DNS服务。
 
-    > 如果解析出的IP地址有多个，那么函数会串行或并发地尝试建立连接，无论以什么方式尝试，函数总会以最先建立成功的那个连接为准。**会根据超时前剩余的时间，去设定每次连接尝试的超时时间，以便让它们都有适当的时间执行**。
+> 如果解析出的IP地址有多个，那么函数会串行或并发地尝试建立连接，无论以什么方式尝试，函数总会以最先建立成功的那个连接为准。**会根据超时前剩余的时间，去设定每次连接尝试的超时时间，以便让它们都有适当的时间执行**。
 
-  - 创建socket实例并建立网络连接。
+- 创建socket实例并建立网络连接。
 
 不论执行到哪一步，只要绝对的超时时间到达的那一刻，网络连接还没有建立完成，该函数就会返回一个代表I/O操作超时的错误值。
 
