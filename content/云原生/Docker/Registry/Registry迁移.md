@@ -2,15 +2,6 @@
 title: Registry迁移
 date: 2020-04-14T10:09:14.114627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: Registry迁移
-showInMenu: false
-
 ---
 
 Docker Registry是Dockers镜像的存储和管理中心，在一个**离线**或**没有外网网络**的环境下使用大量docker镜像，需要提供一个镜像仓库时需要怎么操作比较合适呢？

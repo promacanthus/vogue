@@ -2,15 +2,6 @@
 title: 03-DDD分层架构
 date: 2020-04-14T10:09:14.290627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 微服务
-- 领域驱动设计
-summary: 03-DDD分层架构
-showInMenu: false
-
 ---
 
 微服务架构模型有好多种，例如：

@@ -2,15 +2,6 @@
 title: 02-dumb-init使用
 date: 2020-04-14T10:09:14.118627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: 02-dumb-init使用
-showInMenu: false
-
 ---
 
 dumb-init是一个简单的进程管理器和init系统，设计用于在最小容器环境（如Docker）中作为`PID 1`运行。它被部署为一个用C编写的小型静态链接二进制文件。

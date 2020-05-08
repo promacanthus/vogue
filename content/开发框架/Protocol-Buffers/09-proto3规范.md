@@ -2,14 +2,6 @@
 title: 09-proto3规范
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Protocol-Buffers
-summary: 09-proto3规范
-showInMenu: false
-
 ---
 
 这是`Protocol Buffers`语言（`proto3`）第3版的语言规范参考。使用Extended Backus-Naur Form（EBNF）指定语法：

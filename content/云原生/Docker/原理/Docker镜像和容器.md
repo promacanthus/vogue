@@ -2,15 +2,6 @@
 title: Docker镜像和容器
 date: 2020-04-14T10:09:14.122627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: Docker镜像和容器
-showInMenu: false
-
 ---
 
 ## Docker统一文件系统（the union file system）**

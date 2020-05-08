@@ -2,14 +2,6 @@
 title: 01-GOPATH和工作区
 date: 2019-11-25T11:15:47.522182+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-summary: 01-GOPATH和工作区
-showInMenu: false
-
 ---
 
 **版本的特性**：

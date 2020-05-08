@@ -2,15 +2,6 @@
 title: 12-RBAC
 date: 2020-04-14T10:09:14.182627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 12-RBAC
-showInMenu: false
-
 ---
 
 kubernetes内置的编排对象很难完全满足所有需求，基于插件机制来设计自己的编排对象，实现自己的控制器模式。

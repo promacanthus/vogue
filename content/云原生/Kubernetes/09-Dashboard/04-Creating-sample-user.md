@@ -2,15 +2,6 @@
 title: 04-Creating-sample-user
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 04-Creating-sample-user
-showInMenu: false
-
 ---
 
 在本指南中，将了解如何使用`Kubernetes`的`Service Account`机制创建新用户，授予此用户管理员权限并使用与此用户关联的`Bearer Token`登录仪表板。

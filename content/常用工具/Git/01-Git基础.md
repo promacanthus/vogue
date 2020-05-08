@@ -2,14 +2,6 @@
 title: 01-Git基础
 date: 2020-04-14T10:09:14.294627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Git
-summary: 01-Git基础
-showInMenu: false
-
 ---
 
 ## 版本控制演变过程

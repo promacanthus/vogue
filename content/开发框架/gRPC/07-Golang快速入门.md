@@ -2,14 +2,6 @@
 title: 07-Golang快速入门
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- gRPC
-summary: 07-Golang快速入门
-showInMenu: false
-
 ---
 
 本指南以简单的工作示例为您介绍Go中的gRPC。

@@ -2,15 +2,6 @@
 title: 02-DDD核心概念
 date: 2020-04-14T10:09:14.290627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 微服务
-- 领域驱动设计
-summary: 02-DDD核心概念
-showInMenu: false
-
 ---
 
 领域、子域、核心域、通用域和支撑域。

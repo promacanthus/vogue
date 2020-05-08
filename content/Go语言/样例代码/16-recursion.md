@@ -1,18 +1,8 @@
 ---
 title: 16-recursion
-date: 2020-01-10T19:58:47.857511+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 16-recursion
-showInMenu: false
-
 ---
-
 
 ```go
 //  Go支持递归函数

@@ -2,15 +2,6 @@
 title: kubectl命令
 date: 2020-04-14T10:09:14.206627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: kubectl命令
-showInMenu: false
-
 ---
 
 # 语法规则

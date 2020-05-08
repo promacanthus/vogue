@@ -2,14 +2,6 @@
 title: 08-插件中设置GOPATH
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- VSCode
-summary: 08-插件中设置GOPATH
-showInMenu: false
-
 ---
 
 在任何使用都可以使用`Go: Current GOPATH`命令来查看扩展程序使用的`GOPATH`。

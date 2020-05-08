@@ -2,15 +2,6 @@
 title: Istio
 date: 2020-04-14T10:09:14.218627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Service-mesh
-summary: Istio
-showInMenu: false
-
 ---
 
 [Istio](https://istio.io/)

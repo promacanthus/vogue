@@ -2,14 +2,6 @@
 title: 03-调试Golang代码
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- VSCode
-summary: 03-调试Golang代码
-showInMenu: false
-
 ---
 
 ## 安装`delve`

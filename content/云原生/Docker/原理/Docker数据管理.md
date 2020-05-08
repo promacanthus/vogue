@@ -2,15 +2,6 @@
 title: Docker数据管理
 date: 2020-04-14T10:09:14.122627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: Docker数据管理
-showInMenu: false
-
 ---
 
 容器的数据管理操作：

@@ -1,16 +1,7 @@
 ---
 title: 19-methods
-date: 2020-01-10T20:00:03.473592+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 19-methods
-showInMenu: false
-
 ---
 
 

@@ -2,15 +2,6 @@
 title: 01-logs
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 填坑记
-- Kubernetes
-summary: 01-logs
-showInMenu: false
-
 ---
 
 ## 问题

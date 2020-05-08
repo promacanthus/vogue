@@ -2,15 +2,6 @@
 title: 04-Charts简介
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Helm
-summary: 04-Charts简介
-showInMenu: false
-
 ---
 
 Helm使用称为chart的包装格式。chart是描述相关的一组Kubernetes资源的文件集合。

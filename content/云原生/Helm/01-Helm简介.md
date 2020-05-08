@@ -2,15 +2,6 @@
 title: 01-Helm简介
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Helm
-summary: 01-Helm简介
-showInMenu: false
-
 ---
 
 成功的软平台都有一个优秀的打包系统，比如：

@@ -2,15 +2,6 @@
 title: 13-Charts调试与测试
 date: 2020-04-14T10:09:14.130627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Helm
-summary: 13-Charts调试与测试
-showInMenu: false
-
 ---
 
 ## 调试模板

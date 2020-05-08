@@ -1,18 +1,8 @@
 ---
 title: 29-nonblocking-channel
-date: 2020-01-10T20:03:07.929894+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 29-nonblocking-channel
-showInMenu: false
-
 ---
-
 
 ```go
 //  通道上的发送和接收操作都是阻塞的

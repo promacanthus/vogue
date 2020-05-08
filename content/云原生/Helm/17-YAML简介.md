@@ -2,15 +2,6 @@
 title: 17-YAML简介
 date: 2020-04-14T10:09:14.130627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Helm
-summary: 17-YAML简介
-showInMenu: false
-
 ---
 
 YAML具有一些有用的特性，可以使我们的模板更少出错并更易于阅读。

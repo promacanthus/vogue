@@ -2,15 +2,6 @@
 title: 01-Storage
 date: 2020-04-14T10:09:14.182627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 01-Storage
-showInMenu: false
-
 ---
 
 容器化一个应用比较复杂的地方是**状态**的管理，常见的状态就是**存储状态**。

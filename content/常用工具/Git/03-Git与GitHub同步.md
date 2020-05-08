@@ -2,14 +2,6 @@
 title: 03-Git与GitHub同步
 date: 2020-04-14T10:09:14.294627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Git
-summary: 03-Git与GitHub同步
-showInMenu: false
-
 ---
 
 ## 配置公私钥

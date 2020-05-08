@@ -1,16 +1,7 @@
 ---
 title: 30-closing-channel
-date: 2020-01-10T20:03:23.761926+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 30-closing-channel
-showInMenu: false
-
 ---
 
 

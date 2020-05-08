@@ -2,15 +2,6 @@
 title: 08-Daemonset
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 08-Daemonset
-showInMenu: false
-
 ---
 
 主要作用是让Kubernetes集群中运行一个Daemon Pod，这个Pod有如下三个特征:

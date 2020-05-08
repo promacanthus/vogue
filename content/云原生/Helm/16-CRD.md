@@ -2,15 +2,6 @@
 title: 16-CRD
 date: 2020-04-14T10:09:14.130627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Helm
-summary: 16-CRD
-showInMenu: false
-
 ---
 
 使用自定义资源定义（CRD）时，区分两个不同的部分很重要：

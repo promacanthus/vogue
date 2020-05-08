@@ -1,18 +1,8 @@
 ---
 title: 63-temp-file-dir
-date: 2020-01-10T20:15:08.277767+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 63-temp-file-dir
-showInMenu: false
-
 ---
-
 
 ```go
 // 在整个程序执行过程中，经常需要创建程序退出后不需要的数据

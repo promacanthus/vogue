@@ -2,15 +2,6 @@
 title: 04- HTTP应用
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go-Web
-- HTTP
-summary: 04- HTTP应用
-showInMenu: false
-
 ---
 
 ## HTTP实体数据

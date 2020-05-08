@@ -2,15 +2,6 @@
 title: 03-Chromium
 date: 2020-04-14T10:09:14.226627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 填坑记
-- Docker
-summary: 03-Chromium
-showInMenu: false
-
 ---
 
 制作镜像的时候，在里面安装了一个chromium浏览器，但是容易出现崩溃的情况。

@@ -2,15 +2,6 @@
 title: 12-Charts注意事项
 date: 2020-04-14T10:09:14.130627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Helm
-summary: 12-Charts注意事项
-showInMenu: false
-
 ---
 
 ## 引用字符串，不要引用整数值

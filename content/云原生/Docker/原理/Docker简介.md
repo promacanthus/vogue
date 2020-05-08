@@ -2,15 +2,6 @@
 title: Docker简介
 date: 2020-04-14T10:09:14.122627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: Docker简介
-showInMenu: false
-
 ---
 
 >一句话概括容器：容器就是将软件打包成标准化单元，以用于开发、交付和部署。

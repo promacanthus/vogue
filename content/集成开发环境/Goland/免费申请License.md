@@ -2,13 +2,6 @@
 title: 免费申请License
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-summary: 免费申请License
-showInMenu: false
-
 ---
 
 ## 教育版授权证书

@@ -2,15 +2,6 @@
 title: 09-Job&Cronjob
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 09-Job&Cronjob
-showInMenu: false
-
 ---
 
 Deployment、StatefulSet、DaemonSet这三种编排概念，主要编排的对象是“**在线业务**”（即Long Running Task长作业）。比如Nginx、MySQL等等。**这行应用一旦运行起来，除非出错或者停止，它的容器进程会一直保持在Running状态**。

@@ -2,14 +2,6 @@
 title: 06-gRPC编写格式
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- gRPC
-summary: 06-gRPC编写格式
-showInMenu: false
-
 ---
 
 ## 介绍

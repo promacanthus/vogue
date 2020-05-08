@@ -2,15 +2,6 @@
 title: 02-HTTP详解
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go-Web
-- HTTP
-summary: 02-HTTP详解
-showInMenu: false
-
 ---
 
 HTTP 协议基本工作流程，也就是“请求——应答”，“一发一收”的模式。

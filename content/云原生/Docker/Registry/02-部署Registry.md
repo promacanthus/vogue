@@ -2,15 +2,6 @@
 title: 02-部署Registry
 date: 2020-04-14T10:09:14.110627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: 02-部署Registry
-showInMenu: false
-
 ---
 
 在部署Registry之前，需要在主机上安装Docker。Registry是registry镜像的实例，并在Docker中运行。

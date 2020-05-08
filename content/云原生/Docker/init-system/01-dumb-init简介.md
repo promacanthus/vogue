@@ -2,15 +2,6 @@
 title: 01-dumb-init简介
 date: 2020-04-14T10:09:14.114627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: 01-dumb-init简介
-showInMenu: false
-
 ---
 
 我们在很多地方都使用Docker容器：

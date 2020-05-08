@@ -2,15 +2,6 @@
 title: 01-Guide
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 01-Guide
-showInMenu: false
-
 ---
 
 `Kubernetes Dashboard`是一个通用的基于`WebUI`的`kubernetes`集群管理工具。用户管理运行在集群中的应用并对这些运行的应用进行快速的故障排查，同时也可以用于管理集群本身。

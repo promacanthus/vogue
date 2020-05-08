@@ -2,15 +2,6 @@
 title: 07-Operator
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 07-Operator
-showInMenu: false
-
 ---
 
 管理**有状态应用**的另一个解决方方案：Operator。

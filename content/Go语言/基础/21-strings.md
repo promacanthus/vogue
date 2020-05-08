@@ -2,14 +2,6 @@
 title: 21-strings
 date: 2019-11-25T11:15:47.526182+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-summary: 21-strings
-showInMenu: false
-
 ---
 
 Golang不但拥有可以独立代表Unicode字符的类型rune，而且还可以对字符串值进行Unicode字符拆分的for语句。标准库Unicode包及其子包还提供了很多函数和数据类型，可以解析各种内容中的Unicode字符。

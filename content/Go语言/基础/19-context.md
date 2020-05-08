@@ -2,14 +2,6 @@
 title: 19-context
 date: 2019-11-25T11:15:47.526182+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-summary: 19-context
-showInMenu: false
-
 ---
 
 使用WaitGroup可以实现一对多的goroutine协作流程同步，如果一开始不能确定子任务的goroutine数量，那么使用WaitGroup值来协调它们和分发子任务的goroutine就存在一定的风险。

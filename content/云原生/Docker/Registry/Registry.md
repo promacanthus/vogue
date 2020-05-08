@@ -2,15 +2,6 @@
 title: Registry
 date: 2020-04-14T10:09:14.114627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: Registry
-showInMenu: false
-
 ---
 
 docker-registry 是官方提供的工具，可以用于构建私有的镜像仓库。

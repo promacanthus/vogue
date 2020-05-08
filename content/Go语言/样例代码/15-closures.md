@@ -1,16 +1,7 @@
 ---
 title: 15-closures
-date: 2020-01-10T19:58:24.353492+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 15-closures
-showInMenu: false
-
 ---
 
 

@@ -1,16 +1,7 @@
 ---
 title: 72-signals
-date: 2020-01-10T20:17:32.778816+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 72-signals
-showInMenu: false
-
 ---
 
 ```go

@@ -2,15 +2,6 @@
 title: HTTP-Protocol
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go-Web
-- HTTP
-summary: HTTP-Protocol
-showInMenu: false
-
 ---
 
 ## HTTP/1.1 首部字段

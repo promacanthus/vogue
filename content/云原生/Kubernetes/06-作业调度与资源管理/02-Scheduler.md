@@ -2,15 +2,6 @@
 title: 02-Scheduler
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 02-Scheduler
-showInMenu: false
-
 ---
 
 在kubernetes项目中，**默认调度器的主要职责就是为一个新创建出来的Pod，寻找一个最适合的节点（Node）**。

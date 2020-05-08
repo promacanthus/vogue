@@ -2,14 +2,6 @@
 title: 02-gRPC概念
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- gRPC
-summary: 02-gRPC概念
-showInMenu: false
-
 ---
 
 本文档介绍了一些关键的gRPC概念，概述了gRPC的体系结构和RPC生命周期。

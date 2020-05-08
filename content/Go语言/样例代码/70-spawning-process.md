@@ -1,16 +1,7 @@
 ---
 title: 70-spawning-process
-date: 2020-01-10T20:17:02.679366+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 70-spawning-process
-showInMenu: false
-
 ---
 
 ```go

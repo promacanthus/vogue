@@ -2,14 +2,6 @@
 title: 07-FAQ
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- VSCode
-summary: 07-FAQ
-showInMenu: false
-
 ---
 
 1. 安装了扩展程序，但是没有任何功能正常工作？

@@ -2,14 +2,6 @@
 title: 08-Golang应用
 date: 2020-04-14T10:09:14.258627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- gRPC
-summary: 08-Golang应用
-showInMenu: false
-
 ---
 
 本教程提供了一个基本对Go程序员的指导关于如何使用gRPC。

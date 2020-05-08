@@ -2,17 +2,7 @@
 title: 02-Access-Control
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 02-Access-Control
-showInMenu: false
-
 ---
-
 当`Dashboard`安装完成并且能够正常访问后，将专注于为用户配置对群集资源的访问控制。从版本`1.7`开始：
 
 - `Dashboard`不再具有默认授予的**完全管理员权限**。

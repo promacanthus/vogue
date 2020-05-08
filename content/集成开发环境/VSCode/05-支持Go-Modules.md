@@ -2,14 +2,6 @@
 title: 05-支持Go-Modules.md
 date: 2020-04-14T10:09:14.278627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- VSCode
-summary: 05-支持Go-Modules.md
-showInMenu: false
-
 ---
 
 VS Code使用大量Go工具来提供代码导航，代码完成，构建，分析等功能。

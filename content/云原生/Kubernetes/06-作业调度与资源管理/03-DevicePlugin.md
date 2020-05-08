@@ -2,15 +2,6 @@
 title: 03-DevicePlugin
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 03-DevicePlugin
-showInMenu: false
-
 ---
 
 > 对于云的用户来说，在GPU的支持上，只要在Pod的YAML文件中声明，某个容器需要的GPU个数，那么kubernetes创建的容器里就应该出现对应的GPU设备，以及它所对应的驱动目录。

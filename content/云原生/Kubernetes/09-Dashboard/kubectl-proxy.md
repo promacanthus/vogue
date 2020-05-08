@@ -2,15 +2,6 @@
 title: kubectl-proxy
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: kubectl-proxy
-showInMenu: false
-
 ---
 
 在`localhost`和`Kubernetes API Server`之间创建一个服务端代理或者应用级别的网关。它还允许通过指定的`HTTP`路径提供静态内容。所有传入的数据都通过一个端口进入并转发到远程`kubernetes API Server`端口，不包含静态内容匹配的路径。

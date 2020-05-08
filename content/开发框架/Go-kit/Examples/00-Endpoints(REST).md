@@ -2,14 +2,6 @@
 title: 00-Endpoints(REST)
 date: 2020-04-14T10:09:14.254627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go-kit
-summary: 00-Endpoints(REST)
-showInMenu: false
-
 ---
 
 查看[原文](https://www.ru-rocker.com/2017/02/17/micro-services-using-go-kit-http-endpoint/)。

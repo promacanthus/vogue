@@ -2,10 +2,6 @@
 title: 关于
 date: 2020-04-14T10:09:14.306627+08:00
 draft: false
-hideLastModified: false
-keepImageRatio: true
-tags:
-summary: 关于
 showInMenu: true
 
 ---

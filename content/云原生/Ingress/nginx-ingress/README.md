@@ -2,13 +2,6 @@
 title: 安装指南
 date: 2020-04-14T10:09:14.130627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-summary: 安装指南
-showInMenu: false
 
 ---
 

@@ -2,15 +2,6 @@
 title: 01-为啥选择DDD
 date: 2020-04-14T10:09:14.290627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 微服务
-- 领域驱动设计
-summary: 01-为啥选择DDD
-showInMenu: false
-
 ---
 
 ## 软件架构模式演进

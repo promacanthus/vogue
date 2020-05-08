@@ -2,16 +2,6 @@
 title: k8s简介
 date: 2020-04-14T10:09:14.206627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- ""
-- 云原生
-- Kubernetes
-summary: k8s简介
-showInMenu: false
-
 ---
 
 Kubernetes是Google开源的容器集群管理系统，其提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：

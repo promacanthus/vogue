@@ -2,15 +2,6 @@
 title: 04-Kubernetes本质
 date: 2020-04-14T10:09:14.158627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 04-Kubernetes本质
-showInMenu: false
-
 ---
 
 > "容器"，实际上是一个由Linux Namespace、Linux Cgroups和rootfs三种技术构建出来的进程的隔离环境。

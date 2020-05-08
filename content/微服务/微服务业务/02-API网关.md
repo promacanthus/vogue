@@ -2,14 +2,6 @@
 title: 02-API网关
 date: 2020-04-14T10:09:14.282627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 微服务
-summary: 02-API网关
-showInMenu: false
-
 ---
 
 [原文链接](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)

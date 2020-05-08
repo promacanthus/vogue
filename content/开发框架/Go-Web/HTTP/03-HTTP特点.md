@@ -2,15 +2,6 @@
 title: 03-HTTP特点
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go-Web
-- HTTP
-summary: 03-HTTP特点
-showInMenu: false
-
 ---
 
 ## 特点

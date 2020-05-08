@@ -2,14 +2,6 @@
 title: 02-Go-kit架构设计
 date: 2020-04-14T10:09:14.254627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go-kit
-summary: 02-Go-kit架构设计
-showInMenu: false
-
 ---
 
 ## 简介：Go kit核心概念

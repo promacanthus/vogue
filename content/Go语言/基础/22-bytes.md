@@ -2,14 +2,6 @@
 title: 22-bytes
 date: 2019-11-25T11:15:47.526182+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-summary: 22-bytes
-showInMenu: false
-
 ---
 
 strings包和bytes包在API方面非常相似，单从它们提供的函数的数量和功能上说，差别微乎其微。

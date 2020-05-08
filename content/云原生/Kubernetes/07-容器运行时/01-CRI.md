@@ -2,15 +2,6 @@
 title: 01-CRI
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 01-CRI
-showInMenu: false
-
 ---
 
 在完成调度之后，kubernetes就需要负责将这个调度城管的Pod，在宿主机上创建出来，并把它所定义的各个容器启动起来。这是kubelet这个核心组件的主要功能。

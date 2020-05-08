@@ -2,15 +2,6 @@
 title: 03-Accessing-Dashboard
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 03-Accessing-Dashboard
-showInMenu: false
-
 ---
 
 在集群上安装`Dashboard`后，可以通过几种不同的方式访问它。请注意，本文档未描述访问集群应用程序的所有可能方法。如果在尝试访问`Dashboard`时出现任何错误，请首先阅读[常见问题解答](/kubernetes/Dashboard/06-FQA.md)并检查已关闭的问题。在大多数情况下，错误是由群集配置问题引起的。

@@ -2,15 +2,6 @@
 title: 03-配置Registry
 date: 2020-04-14T10:09:14.110627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: 03-配置Registry
-showInMenu: false
-
 ---
 
 Registry配置基于YAML文件。虽然具有开箱即用的默认值，但是在将系统投入生产之前详尽地查看它。

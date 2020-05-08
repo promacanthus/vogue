@@ -2,15 +2,6 @@
 title: kubectx
 date: 2020-04-14T10:09:14.222627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- 开发环境配置
-summary: kubectx
-showInMenu: false
-
 ---
 
 `kubectx`可帮助您来回切换集群。

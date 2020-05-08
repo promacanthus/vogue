@@ -2,15 +2,6 @@
 title: 06-StatefulSet
 date: 2020-04-14T10:09:14.162627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 06-StatefulSet
-showInMenu: false
-
 ---
 
 Deployment并不足以覆盖所有的应用编排问题，因为它对应用做了一个简单的假设：

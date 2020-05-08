@@ -2,15 +2,6 @@
 title: 02-Module
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 填坑记
-- Golang
-summary: 02-Module
-showInMenu: false
-
 ---
 
 ## 1. 多版本依赖冲突问题

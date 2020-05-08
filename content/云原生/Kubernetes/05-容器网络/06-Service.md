@@ -2,15 +2,6 @@
 title: 06-Service
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 06-Service
-showInMenu: false
-
 ---
 
 kubernetes使用Service：

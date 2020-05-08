@@ -2,15 +2,6 @@
 title: 11-子charts
 date: 2020-04-14T10:09:14.126627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Helm
-summary: 11-子charts
-showInMenu: false
-
 ---
 
 chart有称为子chart的依赖关系，它们也有自己的值和模板。关于子chart的注意点：

@@ -2,15 +2,6 @@
 title: 01-kubeadm
 date: 2020-04-14T10:09:14.158627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 01-kubeadm
-showInMenu: false
-
 ---
 
 1. Linux容器相关的技术可以帮助我们快速定位问题，并解决问题。

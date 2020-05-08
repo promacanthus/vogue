@@ -2,15 +2,6 @@
 title: Harbor
 date: 2020-04-14T10:09:14.114627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Docker
-summary: Harbor
-showInMenu: false
-
 ---
 
 ### 使用官方安装脚本自动安装最新版

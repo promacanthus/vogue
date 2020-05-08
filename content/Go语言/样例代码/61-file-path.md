@@ -1,18 +1,8 @@
 ---
 title: 61-file-path
-date: 2020-01-10T20:14:29.886698+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 61-file-path
-showInMenu: false
-
 ---
-
 ```go
 // filepath 包提供可以在操作系统之间移植的函数来解析或者构建file path
 // 如 : 1. Linux中的dir/file

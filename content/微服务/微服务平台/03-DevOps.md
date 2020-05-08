@@ -2,14 +2,6 @@
 title: 03-DevOps
 date: 2020-04-14T10:09:14.290627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 微服务
-summary: 03-DevOps
-showInMenu: false
-
 ---
 
 ## 传统开发流程

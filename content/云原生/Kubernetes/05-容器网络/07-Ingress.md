@@ -2,15 +2,6 @@
 title: 07-Ingress
 date: 2020-04-14T10:09:14.198627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 07-Ingress
-showInMenu: false
-
 ---
 
 在Service对外暴露的是三种方法中，LoadBalancer类型的Service，会在Cloud Provider（如GCP）里面创建一个该Service对应的负载均衡服务。

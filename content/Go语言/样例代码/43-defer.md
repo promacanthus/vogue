@@ -1,18 +1,8 @@
 ---
 title: 43-defer
-date: 2020-01-10T20:07:20.462484+08:00
+date: 2020-01-10T20:37:47.913857+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- Go语言
-- 样例代码
-summary: 43-defer
-showInMenu: false
-
 ---
-
 
 ```go
 // Defer 用于确保稍后在程序执行执行函数调用，通常用于清理目的。

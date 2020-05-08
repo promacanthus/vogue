@@ -2,15 +2,6 @@
 title: 04-http POST 请求
 date: 2020-04-14T10:09:14.238627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 填坑记
-- Golang
-summary: 04-http POST 请求
-showInMenu: false
-
 ---
 
 通过HTTP POST方法传输数据的时候，有两种不同的方式需要区分。

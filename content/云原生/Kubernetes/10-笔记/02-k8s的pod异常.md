@@ -2,15 +2,6 @@
 title: 02-k8s的pod异常
 date: 2020-04-14T10:09:14.202627+08:00
 draft: false
-hideLastModified: false
-summaryImage: ""
-keepImageRatio: true
-tags:
-- 云原生
-- Kubernetes
-summary: 02-k8s的pod异常
-showInMenu: false
-
 ---
 
 一般来说，无论 Pod 处于什么异常状态，都可以执行以下命令来查看 Pod 的状态：
