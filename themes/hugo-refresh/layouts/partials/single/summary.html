@@ -13,7 +13,7 @@
   <div class="column is-4">
   {{- end -}}
     <div class="box">
-      <figure class="image is-3by2">
+      <!-- <figure class="image is-3by2">
         {{- $image := "" -}}
         {{- $imgWidth := 0 -}}
         {{- $imgHeight := 0 -}}
@@ -43,17 +43,17 @@
           <img src="{{- $image.Permalink | relURL -}}" alt="">
         {{ end }}
         </a>
-      </figure>
+      </figure> -->
       <h3 class="title is-5 refresh-summary-title">
         {{ .Params.title }}
       </h3>
-      <p class="refresh-summary">
+      <!-- <p class="refresh-summary">
         {{- if .Params.summary -}}
           {{- .Params.summary -}}
         {{- else }}
           {{- .Plain -}}
         {{- end -}}
-      </p> 
+      </p>  -->
       <div class="action has-text-right">
         <a href="{{- .Permalink | relURL -}}" class="button is-primary">
                 {{ i18n "readMore" }}
