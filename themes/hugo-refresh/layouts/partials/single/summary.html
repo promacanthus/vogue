@@ -46,18 +46,24 @@
       </figure> -->
       <h3 class="title is-5 refresh-summary-title">
         {{ .Params.title }}
+
+        <a href="{{- .Permalink | relURL -}}" class="button is-primary">
+          {{ i18n "readMore" }}
+        </a>
+
       </h3>
-      <!-- <p class="refresh-summary">
+    
+      <p class="refresh-summary">
         {{- if .Params.summary -}}
           {{- .Params.summary -}}
         {{- else }}
           {{- .Plain -}}
         {{- end -}}
-      </p>  -->
-      <div class="action has-text-right">
+      </p> 
+      <!-- <div class="action has-text-right">
         <a href="{{- .Permalink | relURL -}}" class="button is-primary">
                 {{ i18n "readMore" }}
             </a>
-      </div>
+      </div> -->
     </div>
   </div>

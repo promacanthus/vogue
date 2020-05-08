@@ -21,8 +21,8 @@ DefaultContentLanguage: zh
 blackfriday:
   hrefTargetBlank: true
 
-# Taxonomies:
-  # tag: "tags"
+Taxonomies:
+  tag: "tags"
 
 # Supported fonts are:
 # https://fonts.google.com/
@@ -34,7 +34,7 @@ blackfriday:
 params:
   # parameter used to specify the number of article in each row 
   # for the summary pages, the possible options are: 2, 3, 4, 5 or 6
-  articlesPerRow: 6
+  articlesPerRow: 2
 
   # option to specify the favicon image of the site
   # the path is relative to the folder "assetDir" of this configuration
