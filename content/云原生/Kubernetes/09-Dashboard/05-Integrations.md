@@ -6,10 +6,8 @@ hideLastModified: false
 summaryImage: ""
 keepImageRatio: true
 tags:
-- ""
 - 云原生
 - Kubernetes
-- 09-Dashboard
 summary: 05-Integrations
 showInMenu: false
 
