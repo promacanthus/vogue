@@ -15,7 +15,7 @@ DefaultContentLanguage: zh
 ## Option to disable additional language in your site.
 # disableLanguages: ["ru"]
 
-# disableKinds: ["sitemap","RSS"]
+disableKinds: ["sitemap","RSS"]
 
 # Option to specify that all links will be open in a new tab.
 blackfriday:
@@ -62,7 +62,7 @@ params:
   # main pages options
   mainPage:
     # option to specify the main font of the theme
-    fontFamily: "Open Sans" 
+    fontFamily: "Roboto" 
 
   # sidebar options
   sidebar:
@@ -70,12 +70,12 @@ params:
     # the starting folder is configure in "assetDir" of this file
     logo: "images/refresh-square.svg"
     # option to specify the font of the sidebar
-    fontFamily: "Open Sans" # "Open Sans"
+    fontFamily: "Roboto" # "Open Sans"
 
   # navbar options
   navbar:
     # option to specify the logo of the sidebar
-    fontFamily: "Open Sans"
+    fontFamily: "Roboto"
   
   # 404 page options
   pagNotFound:
@@ -93,7 +93,7 @@ params:
   homepage:
     # this options let you specify if you want a link to the homepage
     # it can be: "none", "menu", "footer" or "menu+footer"
-    linkPosition: "menu+footer" 
+    linkPosition: "footer" 
     # this options let you specify the text of the link to the homepage
     # linkText: "Homepage"  
     # option to specify the title in the homepage
