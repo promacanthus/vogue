@@ -1,5 +1,5 @@
 ---
-title: 06-MySQL容器初始化
+title: 06 MySQL容器初始化
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
 ---

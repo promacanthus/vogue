@@ -1,5 +1,5 @@
 ---
-title: 03-binlog
+title: 03 binlog
 date: 2020-04-14T10:09:14.242627+08:00
 draft: false
 ---
