@@ -108,11 +108,23 @@ HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
 
 ### 结果
 
-最后生成的结果是由点分隔的被Base64-URLi编码的三个字符串，可以在HTML和HTTP环境中轻松传递这些字符串，与基于XML的标准（例如SAML）相比，它更紧凑。
+最后生成的结果是由点分隔的被Base64-URL编码的三个字符串，可以在HTML和HTTP环境中轻松传递这些字符串，与基于XML的标准（例如SAML）相比，它更紧凑。
 
 下图显示了一个JWT，它已对`header`和`payload`进行了编码，并用一个`secret`进行了签名。
 
 如果想使用JWT，可以使用[jwt.io Debugger](https://jwt.io/#debugger-io)解码，验证和生成JWT。
+
+### Base64URL
+
+前面提到，`Header` 和 `Payload` 串型化的算法是 Base64URL。这个算法跟 Base64 算法基本类似，但有一些小的不同。
+
+JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 `api.example.com/?token=xxx`）。Base64 有三个字符`+`、`/`和`=`，在 URL 里面有特殊含义，所以要被替换掉：
+
+- `=`被省略
+- `+`替换成`-`
+- `/`替换成`_`
+
+这就是 Base64URL 算法。
 
 ## JWT工作原理
 
