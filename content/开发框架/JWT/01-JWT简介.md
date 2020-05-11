@@ -128,6 +128,8 @@ HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
 
 **如果在`Authirization`请求头中发送令牌，则跨域资源共享（CORS）不会成为问题，因为它不使用cookie**。
 
+另一种做法是，跨域的时候，JWT 就放在 POST 请求的数据体里面。
+
 下图显示了如何获取JWT并将其用于访问API或资源：
 
 ![image](/images/client-credentials-grant.png)
@@ -137,6 +139,8 @@ HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
 3. 应用程序使用访问令牌来访问受保护的资源（例如API）。
 
 请注意，在使用签名令牌时，令牌或令牌中包含的所有信息都会暴露给用户或其他方，虽然他们无法更改它，因此不应将机密信息放入令牌中。
+
+![image](/images/17-1024x538.png)
 
 ## 为何使用JWT
 
@@ -148,3 +152,12 @@ HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
 4. 在用法方面，JWT是在互联网上广泛使用的，这说明在多平台（有其实移动平台）场景下，客户端侧对JWT进行处理是很容易的。
 
 如果想了解有关JWT的更多信息，或者在应用程序中使用它进行身份验证，请查看Auth0上的[JWT登录页面](http://auth0.com/learn/json-web-tokens?_ga=2.222409243.1097272832.1589187420-1075582363.1588919939)。
+
+## JWT特点
+
+- JWT 默认是不加密，但也是可以加密的。生成原始 Token 以后，可以用密钥再加密一次。
+- JWT 不加密的情况下，不能将秘密数据写入 JWT。
+- JWT 不仅可以用于认证，也可以用于交换信息。有效使用 JWT，可以降低服务器查询数据库的次数。
+- JWT 的**最大缺点**是，由于服务器不保存 session 状态，因此无法在使用过程中废止某个 token，或者更改 token 的权限。也就是说，一旦 JWT 签发了，在到期之前就会始终有效，除非服务器部署额外的逻辑。
+- JWT 本身包含了认证信息，一旦泄露，任何人都可以获得该令牌的所有权限。为了减少盗用，JWT 的有效期应该设置得比较短。对于一些比较重要的权限，使用时应该再次对用户进行认证。
+- 为了减少盗用，JWT 不应该使用 HTTP 协议明码传输，要使用 HTTPS 协议传输。
