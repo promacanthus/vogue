@@ -153,3 +153,34 @@ mysqlbinlog --start-datetime="2013-11-29 13:18:54" --stop-datetime="2013-11-29 1
 # 根据位置恢复
 mysqlbinlog  --start-position=293963814  --stop-position=346091760 --database=academy | mysql -uroot -pmysql
 ```
+
+## 全量导入优化
+
+加快source的一些MySQL参数：
+
+1. log_bin=OFF
+2. innodb_flush_log_at_trx_commit=0
+3. sync_binlog
+4. max_allowed_packet=500M
+
+> 注意，全局变量和会话级别变量的区别，使用global参数，即`set global max_allowed_packet=500M`。
+
+### innodb_flush_log_at_trx_commit
+
+提交事务的时候将 `redo` 日志写入磁盘中，(所谓的 redo 日志，就是记录下来你对数据做了什么修改)。如果要提交一个事务，此时就会根据一定的策略把 redo 日志从 redo log buffer 里刷入到磁盘文件里去。此时这个策略是通过 `innodb_flush_log_at_trx_commit` 来配置的，它的配置选项：
+
+- 值为0 : 提交事务的时候，不立即把 redo log buffer 刷入磁盘文件，而是依靠 InnoDB 的主线程每秒执行一次刷新到磁盘。
+- 值为1 : 提交事务的时候，就必须把 redo log buffer 刷入磁盘文件，只要事务提交成功，redo log 必然在磁盘。注意，因为操作系统的“延迟写”特性，此时的刷入只是写到了操作系统的缓冲区中，因此执行**同步**操作才能保证一定持久化到了硬盘中。
+- 值为2 : 提交事务的时候，把 redo 日志写入磁盘文件对应的 os cache 缓存里，而不是直接进入磁盘文件，可能 1 秒后才会把 os cache 里的数据写入到磁盘文件里去。
+
+### sync_binlog
+
+该参数控制着二进制日志写入磁盘的过程，他的配置选项：
+
+- 0：默认值。事务提交后，将二进制日志从缓冲写入磁盘，但是不进行刷新操作（`fsync()`），此时只是写入了操作系统缓冲，若操作系统宕机则会丢失部分二进制日志。
+- 1：事务提交后，将二进制文件写入磁盘并立即执行刷新操作，相当于是同步写入磁盘，不经过操作系统的缓存。
+- N：每写N次操作系统缓冲就执行一次刷新操作。
+
+### max_allowed_packet
+
+`max_allowed_packet` 参数（单位字节 ）限制Server接受的数据包大小。
