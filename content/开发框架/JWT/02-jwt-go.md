@@ -168,10 +168,10 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${KEY_FILE} -out ${C
 到这里JWT制作完成，下面开始从HTTP请求中验证Token。
 
 ```go
-import （
+import (
     jwtv4 "github.com/dgrijalva/jwt-go/v4"
     "github.com/dgrijalva/jwt-go/v4/request"
-    ）
+)
 
 token, err := request.ParseFromRequest(ctx.Request, request.OAuth2Extractor, func(token *jwtv4.Token) (interface{}, error) {
         if _, ok := token.Method.(*jwtv4.SigningMethodRSA); !ok {
