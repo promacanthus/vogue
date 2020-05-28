@@ -1,12 +1,12 @@
 ---
-title: "01 核心原理"
+title: "01 RPC定义"
 date: 2020-05-14T14:12:30+08:00
 draft: true
 ---
 
-- [RPC定义](#rpc%e5%ae%9a%e4%b9%89)
-  - [RPC通信流程](#rpc%e9%80%9a%e4%bf%a1%e6%b5%81%e7%a8%8b)
-  - [RPC在架构中的位置](#rpc%e5%9c%a8%e6%9e%b6%e6%9e%84%e4%b8%ad%e7%9a%84%e4%bd%8d%e7%bd%ae)
+- [RPC定义](#rpc定义)
+  - [RPC通信流程](#rpc通信流程)
+  - [RPC在架构中的位置](#rpc在架构中的位置)
 
 ## RPC定义
 
