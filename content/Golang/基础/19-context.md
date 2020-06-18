@@ -15,8 +15,8 @@ func coordinateWithContext() {
  total := 12
  var num int32
  fmt.Printf("The number: %d [with context.Context]\n", num)
-//  调用context.Backgoound和context.WithCancel创建一个可撤销的context对象ctx和一个撤销函数cancelFunc
- cxt, cancelFunc := context.WithCancel(context.Background())
+//  调用context.Background和context.WithCancel创建一个可撤销的context对象ctx和一个撤销函数cancelFunc
+ ctx, cancelFunc := context.WithCancel(context.Background())
  for i := 1; i <= total; i++ {
     //  每次迭代创建一个新的goroutine
   go addNum(&num, i, func() {
@@ -28,7 +28,7 @@ func coordinateWithContext() {
    }
   })
  }
-//  调用Done函数，并试图针对该函数返回的通道进行接收操作
+// 调用Done函数，并试图针对该函数返回的通道进行接收操作
 // 一旦cancelFunc被调用，针对该通道的接收操作就会马上结束
  <-cxt.Done()
  fmt.Println("End.")
@@ -37,7 +37,7 @@ func coordinateWithContext() {
 
 `context.Context`类型在1.7版本引入后，许多标准库都进行了扩展支持，包括：`os/exec`，`net`,`database/sql`,`runtime/pprof`，`runtime/trace`。
 
-**context类型是一种非常通用的同步工具，它的值不但可以被任意地扩散，而且还可以被用来传递额外的信息和信号。跟具体的说，Context类型可以提供一类代表上下文的值，此类值是并发安全的，可以被传播到多个goroutine**。
+**context类型是一种非常通用的同步工具，它的值不但可以被任意地扩散，而且还可以被用来传递额外的信息和信号。更具体的说，Context类型可以提供一类代表上下文的值，此类值是并发安全的，可以被传播到多个goroutine**。
 
 - Context类型是一个接口类型，context包中实现该接口的所有的私有类型，都是基于某个数据类型的指针类型，所以如此传播并不会影响该类型值的功能和安全。
 - Context类型的值是可以衍生，可以通过Context值产生出任意个子值，这些子值可以携带其父值的属性和数据，也可以响应通过其父值传达的信号。
@@ -61,11 +61,16 @@ Context接口类型中有两个方法与撤销相关：
    1. `context.Canceled`变量的值：表示手动撤销
    2. 或者`context.DeadlineExceeded`变量的值：表示给定的过期时间已到而导致撤销
 
-`context.WithCancel`函数产生一个可撤销的Context值，还会获得一个用于出发撤销信号的函数，通过调用该函数，可以触发针对这个Context值的撤销信号，一旦触发，撤销信号会立即被传达给这个Context这，并由它的Done方法的结果值（一个接收通道）表达出来。
+`context.WithCancel`函数产生一个可撤销的Context值，还会获得一个用于出发撤销信号的函数，通过调用该函数，可以触发针对这个Context值的撤销信号，一旦触发，撤销信号会立即被传达给这个Context值，并由它的Done方法的结果值（一个接收通道）表达出来。
 
 > 撤销函数只负责触发信号，对应的可撤销的Context值也只负责传达信号，它们不会管后边具体的撤销操作，代码在感知到撤销信号后，可以进行任意的操作，Context值对此并没有任何的约束。
 
-更进一步，这里的撤销最原始的含义是终止程序对某种请求（比如HTTP请求）的想用，或者取消对某个指令（如SQL指令）的处理，这是创建Context包和Context类型时的初衷。
+更进一步，这里的撤销最原始的含义是:
+
+- 终止程序对某种请求（比如HTTP请求）的响应，
+- 取消对某个指令（如SQL指令）的处理，
+
+这是创建Context包和Context类型时的**初衷**。
 
 ### 撤销信号在上下文树中的传播
 
@@ -99,7 +104,7 @@ WithValue函数在产生新的包含数据的Context值的时候，需要三个�
 
 Context类型的Value方法就是被用来获取数据的，在调用含数据的Context值的Value方法时，它会先判断给定的键，是否与当前值中存储的键相等，如果相等就把该值中存储的值直接返回，否则就到其父值中继续查找。如果父值中仍未存储相等的键，那么继续向上直到查找到根节点。
 
-**除了包含数据的Context可以存储数据，其他的Context值都不能携带数据**，Context的Value方法在向上查找的过程中会直接跳过这集中类型的Context值。
+**除了包含数据的Context可以存储数据，其他的Context值都不能携带数据**，Context的Value方法在向上查找的过程中会直接跳过这几种类型的Context值。
 
 > 如果调用的Value方法所属的Context本身就不包含数据，那么实际调用的就会是其父值的Value方法。因为这几种Context值的实际类型是结构体，它们通过将父值嵌入到自身来表达父子关系。
 
@@ -113,7 +118,7 @@ Context类型的实际值分为三种：
 2. 可撤销的Context值
    1. 手动撤销，手动调用撤销函数
    2. 定时撤销，设置定时撤销的时间，且不可更改，可在过期时间到达之前手动进行撤销
-3. 含数据的Context值，可以携带数据，每个值可以存储一对键值对，调用Value方法，它会沿着树根的方向逐个值进行查找，如果发现相等立即返回，否则将在最后返回nil 
+3. 含数据的Context值，可以携带数据，每个值可以存储一对键值对，调用Value方法，它会沿着树根的方向逐个值进行查找，如果发现相等立即返回，否则将在最后返回nil
 
 所有的Context值共同构成一颗上下文树，这棵树的作用域是全局的，根Context值是全局唯一的，不提供任何额外的功能。
 
