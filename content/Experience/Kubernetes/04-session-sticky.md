@@ -1,10 +1,10 @@
 ---
-title: "04 Session"
+title: "04 Session Sticky"
 date: 2020-06-04T13:58:06+08:00
 draft: true
 ---
 
-当运行对个Pod后，可以通过Service进行负载均衡，默认的方式是`RoundRobin`。Service官方文档点[这里](https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies)。
+当运行多个Pod后，可以通过Service进行负载均衡，默认的方式是`RoundRobin`。Service官方文档点[这里](https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies)。
 
 ## 问题
 
@@ -55,3 +55,11 @@ spec:
 ```
 
 Traefik官方文档中关于sticky session的说明点[这里](https://docs.traefik.io/routing/services/#sticky-sessions)。
+
+## 总结
+
+出现上述两种解决方案的原因是，通常情况下，实现会话粘滞的负载均衡是基于哈系算法实现的，主要的做法是对客户端 IP 地址或者会话 ID 计算哈希值，将取得的哈希值与**服务器列表的大小**进行取模运算，最终得到的值就是应该被路由到的服务器编号。
+
+- 在第一种方案中，使用的是kubernetes自带的service对象，集群自身知道后端运行的pod数量，即服务器列表的大小。
+
+- 在第二种方案中，使用的是第三方的组件，负载均衡发生在service之前，因此需要让第三方组件知道服务器列表的大小，从而实现客户端与服务端的映射。
