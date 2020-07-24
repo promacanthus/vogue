@@ -4,7 +4,14 @@ date: 2020-07-24T10:00:26+08:00
 draft: true
 ---
 
-## 网络拓扑和数据流
+- [0.1. 网络拓扑和数据流](#01-网络拓扑和数据流)
+- [0.2. 各层协议](#02-各层协议)
+  - [0.2.1. 应用层](#021-应用层)
+  - [0.2.2. 传输层](#022-传输层)
+  - [0.2.3. 网络层](#023-网络层)
+  - [0.2.4. 链路层](#024-链路层)
+
+## 0.1. 网络拓扑和数据流
 
 ![image](/images/350px-IP_stack_connections.svg.png)
 
@@ -19,9 +26,9 @@ draft: true
 
 通过RFC 1122中对各层的描述来封装应用程序数据并向下传输。
 
-## 各层协议
+## 0.2. 各层协议
 
-### 应用层
+### 0.2.1. 应用层
 
 - 9P, Plan 9 from Bell Labs distributed file system protocol
 - AFP, Apple Filing Protocol
@@ -95,7 +102,7 @@ draft: true
 - Z39.50
 - DNS, Domain Name Services
 
-### 传输层
+### 0.2.2. 传输层
 
 - ATP, AppleTalk Transaction Protocol
 - CUDP, Cyclic UDP
@@ -114,7 +121,7 @@ draft: true
 - µTP, Micro Transport Protocol
 - RSVP
 
-### 网络层
+### 0.2.3. 网络层
 
 - Anti-replay
 - Gateway-to-Gateway Protocol
@@ -131,7 +138,7 @@ draft: true
 - ECN
 - IPsec
 
-### 链路层
+### 0.2.4. 链路层
 
 - Address Resolution Protocol (ARP)
 - Reverse Address Resolution Protocol (RARP)
