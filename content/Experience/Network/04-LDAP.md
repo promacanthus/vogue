@@ -44,7 +44,7 @@ LDAP是基于[X.500](https://en.wikipedia.org/wiki/X.500)标准中包含的标�
 
 ## 0.2. 协议概观
 
-客户端启动一个LDAP会话来连接到一台LDAP服务器（称为目录系统代理DSA），默认连接到`TCP`和`UDP`的`389`端口上，或者在`LDAPS`（基于SSL的LDAP）的`636`端口上。[9]
+客户端启动一个LDAP会话来连接到一台LDAP服务器（称为目录系统代理DSA），默认连接到`TCP`和`UDP`的`389`端口上，或者在`LDAPS`（基于SSL的LDAP）的`636`端口上。
 
 然后客户端发送一个操作请求到服务器，服务器返回响应信息。除了某些例外，客户端无需在发送下一个请求之前等待上一个响应返回，服务器可以按任意顺序返回响应。所有请求和响应信息都使用基本编码规则（Basic Encoding Rules,BER）编码后再进行网络传输。
 
@@ -188,7 +188,7 @@ Search操作用于搜索和读取条目，其参数如下。
 例如：
 
 ```go
-filter：(＆(objectClass = person)(|(givenName = John)(mail = john *)))
+(＆(objectClass = person)(|(givenName = John)(mail = john *)))
 ```
 
 选择匹配`givenName`和`mail`的`objectClass`属性中的`person`元素
@@ -198,7 +198,7 @@ filter：(＆(objectClass = person)(|(givenName = John)(mail = john *)))
 如果要filter来匹配属性值的大小写，则必须使用可扩展的匹配过滤器，例如：
 
 ```go
-((＆(objectClass = person)(|(givenName:caseExactMatch:=John)(mail:caseExactSubstringsMatch:=john*)))
+(＆(objectClass = person)(|(givenName:caseExactMatch:=John)(mail:caseExactSubstringsMatch:=john*)))
 ```
 
 #### 0.4.4.4. derefAliases
