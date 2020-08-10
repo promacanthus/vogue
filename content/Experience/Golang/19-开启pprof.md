@@ -4,13 +4,16 @@ date: 2020-07-22T09:10:58+08:00
 draft: true
 ---
 
-## 导入pprof
+## 开启pprof
 
-```go
-import "net/http/pprof"
-```
+pprof 功能有两种开启方式，对应两种包：
 
-`pprof`包通过程序的HTTP运行时提供服务，使用pprof可视化工具性能分析数据并提供期望的输出格式。
+- `net/http/pprof` ：使用在 web 服务器的场景
+- `runtime/pprof`  ：使用在非服务器应用程序的场景
+
+这两个本质上是一致的，`net/http/pporf` 也只是在 `runtime/pprof` 上的一层 web 封装，通过程序的HTTP运行时提供服务，使用pprof可视化工具性能分析数据并提供期望的输出格式。
+
+### web方式
 
 只要导入这个包来注册它的HTTP处理程序就可以了，处理路径都是以`/debug/pprof/`开头的。要使用`pprof`主要在程序中导入`import _ "net/http/pprof"`
 
@@ -23,6 +26,21 @@ go func() {
 ```
 
 如果不使用`DefaultServeMux`，那么在路由器上注册使用的处理程序即可。
+
+### 非web方式
+
+这种通常用于程序调优的场景，程序只是一个应用程序，跑一次就结束，想找到瓶颈点，那么通常会使用到这个方式。
+
+```golang
+// cpu pprof 文件路径
+f, err := os.Create("cpufile.pprof")
+if err != nil {
+    log.Fatal(err)
+}
+// 开启 cpu pprof
+pprof.StartCPUProfile(f)
+defer pprof.StopCPUProfile()
+```
 
 ## 调用pprof
 
