@@ -31,9 +31,9 @@ kubectl apply -f rabc-config.yaml
 ### 3. 安装Tiller
 
 ```bash
-# 初始化
-helm init --service-account tiller --history-max 200 --tiller-image localhost:5000/tiller:v2.14.0 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
-# 更换国内的源
+# 初始化并更换国内的源
+helm init --service-account tiller --history-max 200 --tiller-image localhost:5000/tiller:v2.14.0 \
+    --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
 
 # 修改镜像
 kubectl set image deployments/tiller-deploy tiller=localhost:5000/tiller:v2.14.0 -n kube-system
