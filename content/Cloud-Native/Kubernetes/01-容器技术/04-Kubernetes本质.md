@@ -100,7 +100,7 @@ Kubernetes由Master和Node两种节点组成，分别对应这控制节点和计
 
 围绕Pod为核心，构建出Kubernetes项目的核心功能“全景图”：
 
-![image](/images/kubernetes-arch.png)
+![image](/images/16c095d6efb8d8c226ad9b098689f306.png)
 
 - 不同Pod之间不仅有访问关系，还要求发起时加上授权信息。那么如何实现？使用Secret对象，它其实是**一个保存在Etcd里的键值对数据**。把授权信息以Secret的方式存在Etcd里，**Kubernetes会在指定的Pod启动时，自动把Secret里的数据以Volume的方式挂载到容器里**。这样就可以使用授权信息进行容器之间的访问。
 
