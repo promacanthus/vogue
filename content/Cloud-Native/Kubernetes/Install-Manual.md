@@ -4,11 +4,27 @@ date: 2020-04-14T10:09:14.206627+08:00
 draft: false
 ---
 
-## google镜像下载地址
+- [0.1. google镜像下载地址](#01-google镜像下载地址)
+- [0.2. 安装前检查](#02-安装前检查)
+  - [0.2.1. Master](#021-master)
+  - [0.2.2. Worker](#022-worker)
+- [0.3. 安装运行时环境](#03-安装运行时环境)
+- [0.4. Docker](#04-docker)
+- [0.5. Kubeadm、Kubelet、kubectl](#05-kubeadmkubeletkubectl)
+  - [0.5.1. 配置主节点的kubelet的Cgroup驱动](#051-配置主节点的kubelet的cgroup驱动)
+- [0.6. 部署高可用集群](#06-部署高可用集群)
+  - [0.6.1. 为kube-apiserver部署负载均衡器](#061-为kube-apiserver部署负载均衡器)
+  - [0.6.2. 安装keepalived & HAProxy](#062-安装keepalived--haproxy)
+- [0.7. 部署堆叠集群](#07-部署堆叠集群)
+  - [0.7.1. 部署第一个控制平面节点](#071-部署第一个控制平面节点)
+  - [0.7.2. 添加其他控制平面节点](#072-添加其他控制平面节点)
+  - [0.7.3. 添加worker节点](#073-添加worker节点)
+
+## 0.1. google镜像下载地址
 
 [google-image](https://console.cloud.google.com/gcr/images/google-containers/GLOBAL)
 
-## 安装前检查
+## 0.2. 安装前检查
 
 - Linux操作系统：Centos 7
 - 2GB以上内存、2核以上CPU
@@ -16,7 +32,7 @@ draft: false
 - 每个节点需要有唯一的hostname、MAC地址和produc_uuid
 - 打开特定的端口
 - 禁用swap（**必须禁用swap才能使kubelet正常工作**）
-  
+
 ```bash
 # 获取网络接口的MAC地址
 ip link
@@ -30,7 +46,7 @@ sudo cat /sys/class/dmi/id/product_uuid
 
 如果有多个网络适配器，并且在默认路由上无法访问的Kubernetes组件，建议添加IP路由，以便通过适当的适配器访问Kubernetes群集。
 
-### Master
+### 0.2.1. Master
 
 协议|方向|端口范围|目的|使用者
 ---|---|---|---|---
@@ -42,7 +58,7 @@ TCP|入站|10252|kube-controller-manager|Self
 
 > `*`标记的端口可以自定义为其他端口。etcd也可以使用集群外的集群或自定义的其他端口。
 
-### Worker
+### 0.2.2. Worker
 
 协议|方向|端口范围|目的|使用者
 ---|---|---|---|---
@@ -51,7 +67,7 @@ TCP|入站|30000-32767|NodePort Services**|All
 
 > `**`标记的端口是对外提供服务是的Service的默认端口范围。Pod的网络插件也需要使用特定的端口。
 
-## 安装运行时环境
+## 0.3. 安装运行时环境
 
 kubeadm将尝试通过扫描已知的域套接字列表来自动检测Linux节点上的容器运行时，可以在下表中找到所使用的可检测运行时和套接字路径。
 
@@ -67,7 +83,7 @@ CRI-O|/var/run/crio/crio.sock
 
 **以`root`用户或者在增加命令前缀`sudo`**。
 
-## Docker
+## 0.4. Docker
 
 ```bash
 # Install Docker CE
@@ -110,7 +126,7 @@ systemctl restart docker
 
 更多安装细节[参考](https://docs.docker.com/install/)
 
-## Kubeadm、Kubelet、kubectl
+## 0.5. Kubeadm、Kubelet、kubectl
 
 每个节点都需要安装：
 
@@ -155,7 +171,7 @@ modprobe br_netfilter       # 加载模块
 
 完成以上设置后，kubelet进入一个crashloop中（每隔几秒重新启动一次）等待kubeadm告诉它该怎么做。
 
-### 配置主节点的kubelet的Cgroup驱动
+### 0.5.1. 配置主节点的kubelet的Cgroup驱动
 
 当使用Docker作为容器运行时，kubeadm会自动检测cgroup驱动，并且在运行时期间将其设置在`/var/lib/kubelet/kubeadm-flags.env`文件中。
 
@@ -172,9 +188,9 @@ systemctl daemon-reload
 systemctl restart kubelet
 ```
 
-## 部署高可用集群
+## 0.6. 部署高可用集群
 
-### 为kube-apiserver部署负载均衡器
+### 0.6.1. 为kube-apiserver部署负载均衡器
 
 1. 创建一个名称可解析为DNS的kube-apiserver负载均衡器
     - 负载平衡器必须能够通过apiserver端口与所有控制平面节点通信，还必须允许其监听端口上的传入流量
@@ -191,7 +207,7 @@ systemctl restart kubelet
 
 3. 将剩余的控制平面节点添加到负载平衡器目标组
 
-### 安装keepalived & HAProxy
+### 0.6.2. 安装keepalived & HAProxy
 
 通过keepalived + haproxy实现的，其中:
 
@@ -200,7 +216,7 @@ systemctl restart kubelet
 
 > 由于VIP在Master的机器上，默认配置API Server的端口是`6443`，所以需要将另外一个端口关联到这个VIP上，一般用`8443`。如下图所示：
 
-![image](https://jimmysong.io/kubernetes-handbook/images/master-ha.JPG)
+![image](/images/master-ha.jpeg)
 
 1. 在Master手工安装keepalived, haproxy
 
@@ -398,8 +414,13 @@ systemctl status haproxy -l
 
 # 查看kubernetes集群信息
 kubectl version
-**Client Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.1", GitCommit:"3a1c9449a956b6026f075fa3134ff92f7d55f812", GitTreeState:"clean", BuildDate:"2018-01-03T22:31:01Z", GoVersion:"go1.9.2", Compiler:"gc", Platform:"linux/amd64"}
-Server Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.1", GitCommit:"3a1c9449a956b6026f075fa3134ff92f7d55f812", GitTreeState:"clean", BuildDate:"2018-01-03T22:18:41Z", GoVersion:"go1.9.2", Compiler:"gc", Platform:"linux/amd64"}**
+**Client Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.1", \
+GitCommit:"3a1c9449a956b6026f075fa3134ff92f7d55f812", GitTreeState:"clean", \
+BuildDate:"2018-01-03T22:31:01Z", GoVersion:"go1.9.2", Compiler:"gc", Platform:"linux/amd64"}
+
+Server Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.1", \
+GitCommit:"3a1c9449a956b6026f075fa3134ff92f7d55f812", GitTreeState:"clean", \
+BuildDate:"2018-01-03T22:18:41Z", GoVersion:"go1.9.2", Compiler:"gc", Platform:"linux/amd64"}**
 ```
 
 此时，说明keepalived和haproxy都是成功，可以依次将其他Master节点的keepalived和haproxy启动。
@@ -408,9 +429,9 @@ Server Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.1", GitCommi
 
 **主Master获取VIP是需要时间的，如果多个Master同时启动，会导致冲突。最稳妥的方式是先启动一台主Master，等VIP确定后再启动其他Master。**
 
-## 部署堆叠集群
+## 0.7. 部署堆叠集群
 
-### 部署第一个控制平面节点
+### 0.7.1. 部署第一个控制平面节点
 
 1. 在第一个控制平面节点上创建`kubeadm-config.yaml`文件：
 
@@ -438,14 +459,20 @@ Server Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.1", GitCommi
 
     # 命令执行完成后，会看到如下信息
     ...
-    You can now join any number of control-plane node by running the following command on each as a root:
-      kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv --discovery-token-ca-cert-hash sha256:7c2e69131a36ae2a042a339b33381c6d0d43887e2de83720eff5359e26aec866 --experimental-control-plane --certificate-key f8902e114ef118304e561c3ecd4d0b543adc226b7a07f675f56564185ffe0c07
+    You can now join any number of control-plane node by running the following command on each as a root:\
 
-    Please note that the certificate-key gives access to cluster sensitive data, keep it secret!
+      kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv --discovery-token-ca-cert-hash \
+      sha256:7c2e69131a36ae2a042a339b33381c6d0d43887e2de83720eff5359e26aec866 \
+      --experimental-control-plane --certificate-key f8902e114ef118304e561c3ecd4d0b543adc226b7a07f675f56564185ffe0c07
+
+    Please note that the certificate-key gives access to cluster sensitive data, keep it secret!\
+
     As a safeguard, uploaded-certs will be deleted in 2 hours; If necessary, you can use kubeadm init phase upload-certs to reload certs afterward.
 
-    Then you can join any number of worker nodes by running the following on each as root:
-      kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv --discovery-token-ca-cert-hash sha256:7c2e69131a36ae2a042a339b33381c6d0d43887e2de83720eff5359e26aec866
+    Then you can join any number of worker nodes by running the following on each as root:\
+
+      kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv \
+      --discovery-token-ca-cert-hash sha256:7c2e69131a36ae2a042a339b33381c6d0d43887e2de83720eff5359e26aec866
 
     # 将输出信息保存到文本中，添加控制平面节点和工作节点到集群时，需要使用
     # 在kubeadm init的时候使用了`experimental-upload-certs`参数后，主控制平面的证书被加密并上传到kubeadm-certs Secret中
@@ -470,7 +497,7 @@ Server Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.1", GitCommi
 
 一旦pod网络安装完成，CoreDNS就能正常运行，然后就可以开始添加其他节点。
 
-### 添加其他控制平面节点
+### 0.7.2. 添加其他控制平面节点
 
 > 警告：只有在第一个节点完成初始化后，才能按顺序添加新的控制平面节点。
 
@@ -479,7 +506,9 @@ Server Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.1", GitCommi
 1. 执行先前由第一个节点上的kubeadm init输出提供给您的join命令
 
 ```bash
-sudo kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv --discovery-token-ca-cert-hash sha256:7c2e69131a36ae2a042a339b33381c6d0d43887e2de83720eff5359e26aec866 --experimental-control-plane --certificate-key f8902e114ef118304e561c3ecd4d0b543adc226b7a07f675f56564185ffe0c07
+sudo kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv \
+--discovery-token-ca-cert-hash sha256:7c2e69131a36ae2a042a339b33381c6d0d43887e2de83720eff5359e26aec866 \
+--experimental-control-plane --certificate-key f8902e114ef118304e561c3ecd4d0b543adc226b7a07f675f56564185ffe0c07
 
 # `--experimental-control-plane`参数是告诉kubeadm join创建一个新的控制平面节点
 # ` --certificate-key`参数将导致控制平面证书从集群中下`kubeadm-certs`Secret中下载下来，并使用对应的秘钥进行解密
@@ -487,10 +516,11 @@ sudo kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv --discovery
 
 其余控制平面节点添加完成后，开始添加worker节点。
 
-### 添加worker节点
+### 0.7.3. 添加worker节点
 
 可以使用先前存储的命令将工作节点连接到集群，作为kubeadm init命令的输出：
 
 ```bash
-sudo kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv --discovery-token-ca-cert-hash sha256:7c2e69131a36ae2a042a339b33381c6d0d43887e2de83720eff5359e26aec866
+sudo kubeadm join 192.168.0.200:6443 --token 9vr73a.a8uxyaju799qwdjv \
+--discovery-token-ca-cert-hash sha256:7c2e69131a36ae2a042a339b33381c6d0d43887e2de83720eff5359e26aec866
 ```
