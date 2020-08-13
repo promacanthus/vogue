@@ -74,7 +74,7 @@ goroutine exit
 main exit
 ```
 
-### panci异常退出
+### panic异常退出
 
 ```golang
 package main
@@ -262,5 +262,3 @@ goroutine [nums]: 1
 1. Go提供的pprof工具。
 2. 利用`runtime.NumGoroutine`接口，实时查看程序中运行的`goroutine`数。
 3. 开源三方`profiling`库，如：[gops](https://github.com/google/gops)或[goleak](https://github.com/uber-go/goleak)。
-
-
