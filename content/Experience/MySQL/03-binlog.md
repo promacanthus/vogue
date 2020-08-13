@@ -45,7 +45,8 @@ mysql> show variables like 'log_%';
 
 ```bash
 mysql> show logs;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'logs' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; \
+check the manual that corresponds to your MySQL server version for the right syntax to use near 'logs' at line 1
 
 mysql> show master logs;
 +---------------+-----------+-----------+
@@ -99,7 +100,8 @@ mysqlbinlog -v --base64-output=decode-rows /var/lib/mysql/master.000003 \
 
 # binlog输入出下
 # at 21019
-#190308 10:10:09 server id 1  end_log_pos 21094 CRC32 0x7a405abc Query thread_id=113 exec_time=0 error_code=0
+# 190308 10:10:09 server id 1  end_log_pos 21094
+# CRC32 0x7a405abc Query thread_id=113 exec_time=0 error_code=0
 SET TIMESTAMP=1552011009/*!*/;
 BEGIN
 /*!*/;
@@ -121,11 +123,12 @@ mysql客户端查看binlog：
 
 ```bash
 mysql> show binlog events in 'binlog.000002' from 968 limit 10;
-+---------------+------+----------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------+
++---------------+------+----------------+-----------+-------------
 | Log_name      | Pos  | Event_type     | Server_id | End_log_pos | Info                                                                                                                            |
-+---------------+------+----------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------+
++---------------+------+----------------+-----------+-------------
 | binlog.000002 |  968 | Anonymous_Gtid |         1 |        1047 | SET @@SESSION.GTID_NEXT= 'ANONYMOUS'                                                                                            |
-| binlog.000002 | 1047 | Query          |         1 |        1256 | ALTER USER 'cuishifeng'@'%' IDENTIFIED WITH 'mysql_native_password' AS '*10320381F36BE49A18F09B06A4BC005223975101' /* xid=12 */ |
+| binlog.000002 | 1047 | Query          |         1 |        1256 | \
+ALTER USER 'cuishifeng'@'%' IDENTIFIED WITH 'mysql_native_password' AS '*10320381F36BE49A18F09B06A4BC005223975101' /* xid=12 */ |
 | binlog.000002 | 1256 | Anonymous_Gtid |         1 |        1333 | SET @@SESSION.GTID_NEXT= 'ANONYMOUS'                                                                                            |
 | binlog.000002 | 1333 | Query          |         1 |        1423 | flush privileges                                                                                                                |
 | binlog.000002 | 1423 | Anonymous_Gtid |         1 |        1500 | SET @@SESSION.GTID_NEXT= 'ANONYMOUS'                                                                                            |
@@ -134,7 +137,7 @@ mysql> show binlog events in 'binlog.000002' from 968 limit 10;
 | binlog.000002 | 1723 | Query          |         1 |        1813 | flush privileges                                                                                                                |
 | binlog.000002 | 1813 | Anonymous_Gtid |         1 |        1890 | SET @@SESSION.GTID_NEXT= 'ANONYMOUS'                                                                                            |
 | binlog.000002 | 1890 | Query          |         1 |        1968 | FLUSH TABLES                                                                                                                    |
-+---------------+------+----------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------+
++---------------+------+----------------+-----------+-------------
 10 rows in set (0.00 sec)
 
 # 从最早的binlog开始
@@ -148,7 +151,8 @@ mysql> show binlog events;
 mysql> source  /var/lib/mysql/database-backup.sql
 
 # 根据时间恢复
-mysqlbinlog --start-datetime="2013-11-29 13:18:54" --stop-datetime="2013-11-29 13:21:53" --database=zyyshop binlog.000002 | mysql -uroot -p123456
+mysqlbinlog --start-datetime="2013-11-29 13:18:54" --stop-datetime="2013-11-29 13:21:53" \
+--database=zyyshop binlog.000002 | mysql -uroot -p123456
 
 # 根据位置恢复
 mysqlbinlog  --start-position=293963814  --stop-position=346091760 --database=academy | mysql -uroot -pmysql
@@ -167,10 +171,15 @@ mysqlbinlog  --start-position=293963814  --stop-position=346091760 --database=ac
 
 ### innodb_flush_log_at_trx_commit
 
-提交事务的时候将 `redo` 日志写入磁盘中，(所谓的 redo 日志，就是记录下来你对数据做了什么修改)。如果要提交一个事务，此时就会根据一定的策略把 redo 日志从 redo log buffer 里刷入到磁盘文件里去。此时这个策略是通过 `innodb_flush_log_at_trx_commit` 来配置的，它的配置选项：
+提交事务的时候将 `redo` 日志写入磁盘中，(所谓的 redo 日志，就是记录下来你对数据做了什么修改)。
+
+如果要提交一个事务，此时就会根据一定的策略把 redo 日志从 redo log buffer 里刷入到磁盘文件里去。
+
+此时这个策略是通过 `innodb_flush_log_at_trx_commit` 来配置的，它的配置选项：
 
 - 值为0 : 提交事务的时候，不立即把 redo log buffer 刷入磁盘文件，而是依靠 InnoDB 的主线程每秒执行一次刷新到磁盘。
-- 值为1 : 提交事务的时候，就必须把 redo log buffer 刷入磁盘文件，只要事务提交成功，redo log 必然在磁盘。注意，因为操作系统的“延迟写”特性，此时的刷入只是写到了操作系统的缓冲区中，因此执行**同步**操作才能保证一定持久化到了硬盘中。
+- 值为1 : 提交事务的时候，就必须把 redo log buffer 刷入磁盘文件，只要事务提交成功，redo log 必然在磁盘。
+  - 注意，因为操作系统的“延迟写”特性，此时的刷入只是写到了操作系统的缓冲区中，因此执行**同步**操作才能保证一定持久化到了硬盘中。
 - 值为2 : 提交事务的时候，把 redo 日志写入磁盘文件对应的 os cache 缓存里，而不是直接进入磁盘文件，可能 1 秒后才会把 os cache 里的数据写入到磁盘文件里去。
 
 ### sync_binlog
