@@ -424,7 +424,8 @@ StatefulSet编排“有状态应用”的过程，其实就是对现有典型运
 > 使用StatefulSet进行“滚动更新”，只需要修改StatefulSet的Pod模板，就会自动触发“滚动更新”的操作。
 
 ```bash
-kubectl patch statefulset mysql --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/image", "value":"mysql:5.7.23"}]' statefulset.apps/mysql patched
+kubectl patch statefulset mysql --type='json' \
+  -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/image", "value":"mysql:5.7.23"}]' statefulset.apps/mysql patched
 ```
 
 使用kubectl path命令，以“补丁”的方式（JSON格式的）修改一个API对象的指定字段，即`spec/template/spec/containers/0/image`。
@@ -436,7 +437,8 @@ kubectl patch statefulset mysql --type='json' -p='[{"op": "replace", "path": "/s
 如下命令，将StatefulSet的partition字段设置为2：
 
 ```bash
-kubectl patch statefulset mysql -p '{"spec":{"updateStrategy":{"type":"RollingUpdate","rollingUpdate":{"partition":2}}}}' statefulset.apps/mysql patched
+kubectl patch statefulset mysql \
+  -p '{"spec":{"updateStrategy":{"type":"RollingUpdate","rollingUpdate":{"partition":2}}}}' statefulset.apps/mysql patched
 ```
 
 上面的操作等同于使用`kubectl edit`命令直接打开这个对象，然后把partition字段修改为2。这样当模板发生变化时，只有序号大于等于2的Pod会被更新到这个版本，并且如果删除或者重启序号小于2的Pod，它再次启动后，还是使用原来的模板。
@@ -776,12 +778,15 @@ spec:
           cd /var/lib/mysql
           # 从备份信息文件里读取 MASTER_LOG_FILEM 和 MASTER_LOG_POS 这两个字段的值，用来拼装集群初始化 SQLA
           if [[ -f xtrabackup_slave_info ]]; then
-            # 如果 xtrabackup_slave_info 文件存在，说明这个备份数据来自于另一个 Slave 节点。这种情况下，XtraBackup 工具在备份的时候，就已经在这个文件里自动生成了 "CHANGE MASTER TO" SQL 语句。所以，我们只需要把这个文件重命名为 change_master_to.sql.in，后面直接使用即可
+            # 如果 xtrabackup_slave_info 文件存在，说明这个备份数据来自于另一个 Slave 节点。
+            # 这种情况下，XtraBackup 工具在备份的时候，就已经在这个文件里自动生成了 "CHANGE MASTER TO" SQL 语句。
+            # 所以，我们只需要把这个文件重命名为 change_master_to.sql.in，后面直接使用即可
             mv xtrabackup_slave_info change_master_to.sql.in
             # 所以，也就用不着 xtrabackup_binlog_info 了
             rm -f xtrabackup_binlog_info
           elif [[ -f xtrabackup_binlog_info ]]; then
-            # 如果只存在 xtrabackup_binlog_inf 文件，那说明备份来自于 Master 节点，我们就需要解析这个备份信息文件，读取所需的两个字段的值
+            # 如果只存在 xtrabackup_binlog_inf 文件，那说明备份来自于 Master 节点，
+            # 我们就需要解析这个备份信息文件，读取所需的两个字段的值
             [[ `cat xtrabackup_binlog_info` =~ ^(.*?)[[:space:]]+(.*?)$ ]] || exit 1
             rm xtrabackup_binlog_info
             # 把两个字段的值拼装成 SQL，写入 change_master_to.sql.in 文件
@@ -794,9 +799,11 @@ spec:
             echo "Waiting for mysqld to be ready (accepting connections)"
             until mysql -h 127.0.0.1 -e "SELECT 1"; do sleep 1; done
             echo "Initializing replication from clone position"
-            # 将文件 change_master_to.sql.in 改个名字，防止这个 Container 重启的时候，因为又找到了 change_master_to.sql.in，从而重复执行一遍这个初始化流程
+            # 将文件 change_master_to.sql.in 改个名字，防止这个 Container 重启的时候，
+            # 因为又找到了 change_master_to.sql.in，从而重复执行一遍这个初始化流程
             mv change_master_to.sql.in change_master_to.sql.orig
-            # 使用 change_master_to.sql.orig 的内容，也是就是前面拼装的 SQL，组成一个完整的初始化和启动 Slave 的 SQL 语句
+            # 使用 change_master_to.sql.orig 的内容，
+            # 也是就是前面拼装的 SQL，组成一个完整的初始化和启动 Slave 的 SQL 语句
             mysql -h 127.0.0.1 <<EOF
           $(<change_master_to.sql.orig),
             MASTER_HOST='mysql-0.mysql',
@@ -806,7 +813,8 @@ spec:
           START SLAVE;
           EOF
           fi
-          # 使用 ncat 监听 3307 端口。它的作用是，在收到传输请求的时候，直接执行 "xtrabackup --backup" 命令，备份 MySQL 的数据并发送给请求者
+          # 使用 ncat 监听 3307 端口。它的作用是，在收到传输请求的时候，
+          # 直接执行 "xtrabackup --backup" 命令，备份 MySQL 的数据并发送给请求者
           exec ncat --listen --keep-open --send-only --max-conns=1 3307 -c \
             "xtrabackup --backup --slave-info --stream=xbstream --host=127.0.0.1 --user=root"
         volumeMounts:
