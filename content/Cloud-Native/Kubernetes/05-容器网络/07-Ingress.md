@@ -4,6 +4,11 @@ date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 ---
 
+- [1. Nginx Ingress Controller](#1-nginx-ingress-controller)
+  - [1.1. 第一步，部署Nginx Ingress Controller](#11-第一步部署nginx-ingress-controller)
+  - [1.2. 第二部，创建Service来暴露Nginx Ingress Controller管理的Nginx服务](#12-第二部创建service来暴露nginx-ingress-controller管理的nginx服务)
+- [2. 具体例子](#2-具体例子)
+
 在Service对外暴露的是三种方法中，LoadBalancer类型的Service，会在Cloud Provider（如GCP）里面创建一个该Service对应的负载均衡服务。
 
 但是每个Service都要一个负载均衡服务，这个做法实际上很浪费而且成本高。如果在kubernetes中内置一个全局的负载均衡器，然后通过访问的URL，把请求转发给不同的后端Service。**这种全局的、为了代理不同后端Service而设置的负载均衡服务，就是kubernetes中的Ingress服务**。Ingress其实就是Service的“Service”。
@@ -50,8 +55,10 @@ Fully Qualified Domian Name 的具体格式：[FQDN](https://tools.ietf.org/html
 
 > 业界常用的反向代理项目，Nginx、HAproxy、Envoy、Traefik等，都已经为kubernetes专门维护了对应Ingress Controller。
 
-# Nginx Ingress Controller
-## 第一步，部署Nginx Ingress Controller
+# 1. Nginx Ingress Controller
+
+## 1.1. 第一步，部署Nginx Ingress Controller
+
 ```yaml
 $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
 
@@ -123,6 +130,7 @@ spec:
 
 # 使用nginx-ingress-controller镜像的pod，启动命令是要使用该pod所在的Namespace作为参数，这些信息通过Downward API获得，即pod的env字段中定义的`env.valueFrom.filedRef.fieldPath`
 ```
+
 这个pod本身，就是一个监听Ingress对象以及它所代理的后端Service变化的控制器。当一个新的Ingress对象由用户创建后，nginx-ingress-controller就会根据Ingress对象里定义的内容，生成一份对应的Nginx配置文件（`/etc/nginx/nginx.conf`）,并使用这个配置文件启动一个Nginx服务。
 
 > 一旦Ingress对象被更新，nginx-ingress-controller就会更新这个配置文件，需要注意的是，如果这里只是被代理的Service对象被更新，nginx-ingress-controller所管理的Nginx服务是不需要重新加载的。因为nginx-ingress-controller通过[Nginx Lua](https://github.com/openresty/lua-nginx-module)方案实现了Nginx Upstream的动态配置。
@@ -131,7 +139,8 @@ nginx-ingress-controller运行通过ConfigMap对象来对上述Nginx的配置文
 
 **一个Nginx Ingress Controller提供的服务，其实是一个可以根据Ingress对象和被代理的后端Service的变化来自动更新的Nginx负载均衡器**。
 
-## 第二部，创建Service来暴露Nginx Ingress Controller管理的Nginx服务
+## 1.2. 第二部，创建Service来暴露Nginx Ingress Controller管理的Nginx服务
+
 ```yaml
 $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/baremetal/service-nodeport.yaml
 
@@ -173,9 +182,11 @@ $ IC_IP=10.168.0.2 # 任意一台宿主机的地址
 $ IC_HTTPS_PORT=31453 # NodePort 端口
 
 ```
+
 Ingress Controller和它所需要的Service部署完成后，就可以使用它了。
 
-# 具体例子
+# 2. 具体例子
+
 ```bash
 # 首先部署应用pod和对应的service
 $ kubectl create -f cafe.yaml
@@ -194,7 +205,7 @@ cafe-ingress   cafe.example.com             80, 443   2h
 $ kubectl describe ingress cafe-ingress
 Name:             cafe-ingress
 Namespace:        default
-Address:          
+Address:
 Default backend:  default-http-backend:80 (<none>)
 TLS:
   cafe-secret terminates cafe.example.com
@@ -230,16 +241,10 @@ Request ID: 32191f7ea07cb6bb44a1f43b8299415c
 
 # Nginx Ingress Controller创建的Nginx负载均衡器，成功地将请求转发给了对应的后端Service
 ```
+
 如果请求没有匹配到IngressRule，会返回Nginx的404页面，因为这个Nginx Ingress Controller是Nginx实现的。
 
 > Ingress Controller运行通过Pod启动命令的`--default-backend-service`参数，设置一条默认的规则，如`--default-backend-service=nginx-default-backend`。这样任何匹配失败的请求，都会被转发到这个`nginx-default-backend`的Service。**可以专门部署一个专用的pod，来为用户返回自定义的404页面**。
 
 目前，Ingress只能工作在七层，Service只能工作在四层，所有想要在kubernetes里为应用进行TLS配置等HTT
 P相关的操作时，都必须通过Ingress来进行。
-
-
-
-
-
-
-

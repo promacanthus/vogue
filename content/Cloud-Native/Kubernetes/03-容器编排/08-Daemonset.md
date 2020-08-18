@@ -83,7 +83,7 @@ spec:
 
 fluented启动后，它会从这两个目录里搜集日志信息，并转发给ElasticSearch保存，这样就可有通过ElasticSearch方便地检索这些日志了。
 
-> 注意，DOcker容器里应用的日志，默认会保存在宿主机的`/var/lib/docker/containers/{{.容器ID}}/{{.容器ID}}-json.log`文件里，这个目录就是fluented搜集的目标之一。
+> 注意，Docker容器里应用的日志，默认会保存在宿主机的`/var/lib/docker/containers/{{.容器ID}}/{{.容器ID}}-json.log`文件里，这个目录就是fluented搜集的目标之一。
 
 ## 0.3. 如何保证每个Node上有且仅有一个被管理的Pod
 
@@ -92,9 +92,9 @@ fluented启动后，它会从这两个目录里搜集日志信息，并转发给
 
 ### 0.3.1. 检查结果有三种情况
 
-1. 没有被管理的pod，所有需要在这个节点上新建一个
+1. 没有被管理的pod，所以需要在这个节点上新建一个
 2. 有被管理的pod，但是数量超过1，直接调用kubernetes API这个节点上删除多余的pod
-3. 有且只有一个，真个节点很正常
+3. 有且只有一个，整个节点很正常
 
 第一种情况，新建Pod的时候，利用Pod API，通过`nodeSelector`选择Node的名字即可。新版本中`nodeSelector`将被弃用，使用新的`nodeAffinity`字段。如下例子：
 
@@ -128,7 +128,7 @@ nodeAffinity的定义支持丰富的语法：
 
 **所以，DaemonSet Controller会在创建Pod的时候，自动在这个Pod的API对象里加上这个nodeAffinity定义，nodeAffinity中需要绑定的节点名字，正是当前正在遍历的这个节点**。
 
-1. DaemonSet并不修改用户提交的YAML文件里的Pod模板，而是在想kubernetes发起请求之前，直接修改根据模板生成的Pod对象。
+1. DaemonSet并不修改用户提交的YAML文件里的Pod模板，而是在向kubernetes发起请求之前，直接修改根据模板生成的Pod对象。
 2. DaemonSet会给这个Pod自动加上另一个与调度相关的字段的字段`tolerations`，这就意味着这个Pod能够容忍（toleration）某些Node上的污点（taint）。会自动加入如下字段：
 
 ```yaml
@@ -166,7 +166,7 @@ template:
         effect: NoSchedule
 ```
 
-> 这种机制正是在部署kubernetes集群的时候，能够现部署kubernetes本身，再部署网络插件的分根本原因。因为网络插件本身就是一个DaemonSet。
+> 这种机制正是在部署kubernetes集群的时候，能够现部署kubernetes本身，再部署网络插件的根本原因。因为网络插件本身就是一个DaemonSet。
 
 ## 0.4. 技巧
 
@@ -184,7 +184,7 @@ tolerations:
 
 ## 0.5. 版本管理（ControllerRevision）
 
-> ControllerRevision 其实是一个通用的版本管理对象，这样可以巧妙的避免每种控制器都要维护一套荣誉的代码和逻辑。
+> ControllerRevision 其实是一个通用的版本管理对象，这样可以巧妙的避免每种控制器都要维护一套冗余的代码和逻辑。
 
 DaemonSet也可以想Deployment那样进行版本管理：
 

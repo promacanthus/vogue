@@ -4,6 +4,19 @@ date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 ---
 
+
+- [0.1. iptables模式](#01-iptables模式)
+- [0.2. IPVS模式](#02-ipvs模式)
+- [0.3. DNS](#03-dns)
+- [0.4. 小结](#04-小结)
+- [0.5. Service 调试](#05-service-调试)
+  - [0.5.1. Nodeport](#051-nodeport)
+  - [0.5.2. LoadBalancer](#052-loadbalancer)
+  - [0.5.3. ExternalName](#053-externalname)
+  - [0.5.4. externalIPs](#054-externalips)
+- [0.6. 解决问题](#06-解决问题)
+- [0.7. 总结](#07-总结)
+
 kubernetes使用Service：
 
 1. Pod的IP地址不固定
@@ -51,7 +64,9 @@ spec:
         - containerPort: 9376
           protocol: TCP
 ```
+
 被选中的Pod就是Service的Endpoints，使用`kubectl get ep`可以看到如下所示：
+
 ```bash
 $ kubectl get endpoints hostnames
 NAME        ENDPOINTS
@@ -60,7 +75,9 @@ hostnames   10.244.0.5:9376,10.244.0.6:9376,10.244.0.7:9376
 # 只有处于Running，且readinessProbe检查通过的Pod才会出现在这个Service的Endpoints列表中
 # 当某个Pod出现问题时，kubernetes会自动把它从Service里去除掉
 ```
+
 通过该Service的VIP地址`10.0.1.175`，就能访问到它代理的Pod：
+
 ```bash
 $ kubectl get svc hostnames
 NAME        TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
@@ -75,9 +92,11 @@ hostnames-yp2kp
 $ curl 10.0.1.175:80
 hostnames-bvc05
 ```
+
 这个VIP地址是kubernetes自动为Service分配的。通过三次连续不断地访问Service的VIP地址和代理端口80，为我们一次返回三个Pod的hostname，Service提供的是RoundRobin方式的负载均衡。这种方式称之为ClusterIP模式的Service。
 
-## iptables模式
+## 0.1. iptables模式
+
 **Service是由kube-proxy组件，加上iptables来共同实现**。
 
 > 举个例子，对应创建的Service，一旦提交给kubernetes，那么kube-proxy就可以通过Service的Informer感知到这样一个Service对象的添加操作。作为对这个事件的响应，就会在宿主机上创建如下所示的iptables规则。
@@ -90,7 +109,9 @@ hostnames-bvc05
 # 10.0.1.175真是这个Service的VIP，这条规则就是为Service设置了一个固定的入口地址
 # 由于10.0.1.175只是一条iptables规则上的配置，并没有真正的网络设备，所以ping这个地址，是不会有任何响应的
 ```
+
 KUBE-SVC-NWV5X2332I4OT4T3的规则是一个规则的集合，如下所示：
+
 ```bash
 -A KUBE-SVC-NWV5X2332I4OT4T3 -m comment --comment "default/hostnames:" -m statistic --mode random --probability 0.33332999982 -j KUBE-SEP-WNBA2IHDGP2BOBGZ
 -A KUBE-SVC-NWV5X2332I4OT4T3 -m comment --comment "default/hostnames:" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-X3P2623AGDH6CDF3
@@ -105,6 +126,7 @@ KUBE-SVC-NWV5X2332I4OT4T3的规则是一个规则的集合，如下所示：
 > iptables规则匹配是从上到下逐条进行的，所以为了保证上述三条规则，每条被选中的概率一样，应该将他们的probability字段的值分别设置为1/3（0.333）、1/2和1。第一条选中的概率是三分之一，第一条没选择剩下两条的概率是二分之一，最后一条为1。
 
 Service进行转发的具体原理如下所示：
+
 ```bash
 -A KUBE-SEP-57KPRZ3JQVENLNBR -s 10.244.3.6/32 -m comment --comment "default/hostnames:" -j MARK --set-xmark 0x00004000/0x00004000
 -A KUBE-SEP-57KPRZ3JQVENLNBR -p tcp -m comment --comment "default/hostnames:" -m tcp -j DNAT --to-destination 10.244.3.6:9376
@@ -125,8 +147,10 @@ Service进行转发的具体原理如下所示：
 
 IPVS模式的Service是解决这个问题行之有效的方法。
 
-## IPVS模式
+## 0.2. IPVS模式
+
 工作原理，与iptables模式类似，创建了Service之后，kube-proxy首先会在宿主机上创建一个虚拟网卡（kube-ipvs0），并为它分配Service VIP作为IP地址，如下所示：
+
 ```bash
 # ip addr
   ...
@@ -136,18 +160,21 @@ IPVS模式的Service是解决这个问题行之有效的方法。
   valid_lft forever  preferred_lft forever
 
 ```
+
 kube-proxy就会通过Linux的IPVS模式，为这个IP地址设置三个IPVS虚拟主机，并设置这个虚拟主机之间使用的轮询模式（rr）来作为负载均衡策略，通过ipvsadm查看这个设置，如下所示：
+
 ```bash
 # ipvsadm -ln
  IP Virtual Server version 1.2.1 (size=4096)
   Prot LocalAddress:Port Scheduler Flags
-    ->  RemoteAddress:Port           Forward  Weight ActiveConn InActConn     
+    ->  RemoteAddress:Port           Forward  Weight ActiveConn InActConn
   TCP  10.102.128.4:80 rr
-    ->  10.244.3.6:9376    Masq    1       0          0         
+    ->  10.244.3.6:9376    Masq    1       0          0
     ->  10.244.1.7:9376    Masq    1       0          0
     ->  10.244.2.3:9376    Masq    1       0          0
 
 ```
+
 这三个IPVS虚拟主机的IP地址和端口，对应的正是三个被代理的Pod。这样任何发往`10.102.128.4:80`的请求，就都会被IPVS模块转发到某一个后端Pod上了。
 
 相比于iptables，IPVS在内核中的实现其实也是基于Netfilter的NAT模式，所以在转发这一层上，理论上IPVS并没有显著的性能提升。但是，IPVS并不需要在宿主机上为每个Pod设置iptables规则，而是把这些“规则”的处理放在内核态，从而极大地降低了维护这些规则的代价。
@@ -158,11 +185,13 @@ IPVS模块只负责上述的负载均衡和代理功能。而一个完整的Serv
 
 > 在大规模集群里，建议kube-proxy设置`--proxy-mode=ipvs`来开启这个功能，它为kubernetes集群规模带来的提升是非常巨大的。
 
-# DNS
+## 0.3. DNS
+
 Service与DNS也有关系，在kubernetes中，Service和Pod都会被分配对应的DNS A记录（从域名解析IP的记录）。
 
 - 对于**ClusterIP模式**的Service来说，它的A记录的格式是：`..svc.cluster.local`。当你访问这个A记录的时候，它解析到的就是该Service的VIP地址。它代理的Pod被自动分配的A记录格式是：`..pod.cluster.local`，这条记录指向Pod的IP地址。
 - 对于执行**clusterIP=None**的Headless Service来说，它的A记录的格式也是：`..svc.cluster.local`，但是访问这个A记录的时候，它返回的是所代理的Pod的IP地址集合。（如果客户端无法解析这个集合，那可能只会拿到第一个Pod的IP地址）。它代理的Pod被自动分配的A记录的格式是：`..svc.cluster.local`。这条记录指向Pod的IP地址。
+
 > 如果为pod指定了Headless Service，并且Pod本身声明了`hostname`和`subdomain`字段，那么Pod的A记录就会变成：`<pod的hostname>...svc.cluster.local`，如下所示。、
 
 ```yaml
@@ -196,28 +225,33 @@ spec:
     name: busybox
 
 ```
+
 通过`busybox-1.default-subdomain.default.svc.cluster.local`解析到这个pod的IP地址。
 
 **在kubernetes中，`/etc/hosts`文件是单独挂载的，所以kubelet能够对hostname进行修改并且pod重建后依然有效。与Docker的init层是一个原理。**
 
-# 小结
+## 0.4. 小结
+
 Service机制和DNS插件都是为了解决同一个问题，如何找到某个容器。在平台级项目中称为**服务发现**，即当一个服务（Pod）的IP堵住是不固定的且没办法提前获知时，该如何通过固定的方式访问到这个Pod。
 
 - **ClusterIP模式的Service**，提供的是一个Pod的**稳定的IP地址**，即VIP，并且pod和Service的关系通过Label确定。
 - **Headless Service**，提供的是一个Pod的**稳定的DNS名字**，并且这个名字可以通过Pod名字和Service名字拼接出来。
 
-# Service 调试
+## 0.5. Service 调试
+
 **Service的访问信息在kubernetes集群之外是无效的**。
 
 > Service的访问入库，就是每台宿主机上由kube-proxy生成的iptables规则，以及kube-dns生成的DNS记录。一旦离开这个集群，这些信息对用户来说，是没有作用的。
 
 如何从kubernetes集群之外，访问到Kubernetes里创建的Service？
+
 1. Nodeport
 2. LoadBalancer
 3. ExternalName
 4. externalIPs
 
-## Nodeport
+### 0.5.1. Nodeport
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -238,26 +272,32 @@ spec:
   selector:
     run: my-nginx
 ```
+
 不显示声明nodePort字段，会随机分配`30000-32767`之间的端口，通过kube-apiserver的`--service-node-port-range`参数来修改它。
 
 访问以上Service`<任何一台宿主机的IP地址>：8080`，就能够访问到某一个被代理的Pod的80端口。
 
 NodePort模式的工作原理，是kube-proxy在每台宿主机上生成一条iptables规则，如下所示：
+
 ```bash
 -A KUBE-NODEPORTS -p tcp -m comment --comment "default/my-nginx: nodePort" -m tcp --dport 8080 -j KUBE-SVC-67RL4FN6JRUPOJYM
 
 # KUBE-SVC-67RL4FN6JRUPOJYM是一组随机模式的iptables规则
 ```
+
 在NodePort模式下，kubernetes会在IP包离开宿主机发往目的Pod时，对这个IP包做一次SNAT操作，如下所示：
+
 ```
 -A KUBE-POSTROUTING -m comment --comment "kubernetes service traffic requiring SNAT" -m mark --mark 0x4000/0x4000 -j MASQUERADE
 
 # 这条规则设置在POSTROUTING检查点，为即将离开这台主机的IP包，进行一次SNAT操作，
 # 将这个IP包的源地址替换成了这个宿主机的CNI网桥地址，或者宿主机本身的IP地址（CNI网桥不存在时）
 ```
+
 SNAT操作只需要对Service转发出来的IP包进行（否则普通的IP包就被影响了）。iptables做这个判断的依据就是查看该IP包是否有一个`0x4000`的标志，这个标志是在IP包被执行DNAT操作之前被打上的。
 
 原理如下图：
+
 ```
            client
              \ ^
@@ -270,6 +310,7 @@ SNAT操作只需要对Service转发出来的IP包进行（否则普通的IP包�
  endpoint
 
 ```
+
 当一个外部的Client通过node2的地址访问一个Service的时候，node2上的负载均衡规则就可能把这个IP包转发给一个node1上的pod，当node1上的这个pod处理完请求之后，它就会按照这个IP包的源地址发出回复。
   
 如果没有SNAT操作，这个时候被转发的IP包源地址就是client的IP地址，**pod就会直接回复client**，对于client来说，它的请求明明是发给node2，收到的回复却来自node1，此时client可能会报错。
@@ -279,6 +320,7 @@ SNAT操作只需要对Service转发出来的IP包进行（否则普通的IP包�
 **这样的话pod只知道这个IP包来自node2，而不是外部client，对于pod需要知道所有请求来源的场景来说，这是不行的**。需要将Service的`spec.externalTrafficPolicy`字段设置为`local`，保证所有pod通过Service收到请求之后，一定可以看到真正的、外部client的源地址。
 
 这个机制的实现原理：**一台宿主机上的iptables规则会设置为只将IP包转发给运行在这台宿主机上的Pod**。这样pod就可以直接使用源地址将回复包发出，不需要事先进行SNAT。操作流程如下：
+
 ```bash
        client
        ^ /   \
@@ -293,8 +335,10 @@ SNAT操作只需要对Service转发出来的IP包进行（否则普通的IP包�
 # 如果在一台宿主机上没有任何被代理的pod存在（如图中node2），那么使用node2的IP地址访问这个Service是无效的，请求会被DROP掉
 ```
 
-## LoadBalancer
+### 0.5.2. LoadBalancer
+
 适用于公有云上的Kubernetes集群的访问方式，指定一个LoadBalancer类型的Service，如下所示：
+
 ```yaml
 ---
 kind: Service
@@ -310,10 +354,13 @@ spec:
   type: LoadBalancer
 
 ```
+
 在公有云提供的kubernetes服务里，都是用了CloudProvider的转接层，来跟公有云本身的API进行对接。所有在LoadBalancer类型的Service被提交后，kubernetes就会调用CloudProvider在公有云上创建一个负载均衡服务，并且被代理的Pod的IP地址配置给负载均衡服务器做后端。
 
-## ExternalName
+### 0.5.3. ExternalName
+
 kubernetes v1.7之后支持的新特性，ExternalName，如下：
+
 ```yaml
 kind: Service
 apiVersion: v1
@@ -324,11 +371,13 @@ spec:
   externalName: my.database.example.com
 
 ```
+
 指定一个`externalName=my.database.example.com`字段，并且不需要指定selector。通过Service的DNS名字（如`my-service.service.default.svc.cluster.local`）访问的时候，kubernetes返回的是`my.database.example.com`，所有externalName类型的Service，其实是在kube-dns里添加一条CNAME记录，此时访问`my-service.service.default.svc.cluster.local`和访问`my.database.example.com`是一个效果。
 
+### 0.5.4. externalIPs
 
-## externalIPs
 同时，kubernetes的Service还可以为Service分配公有IP地址，如下：
+
 ```yaml
 kind: Service
 apiVersion: v1
@@ -346,13 +395,16 @@ spec:
   - 80.11.12.10
 
 ```
+
 指定`externalIPs=80.11.12.10`,此时通过访问`80.11.12.10`来方位被代理的pod。**在这里kubernetes要求externalIPs必须是至少能够路由到一个kubernetes节点的**。
 
-## 解决问题
+## 0.6. 解决问题
+
 > 很多与Service相关的问题，都可以通过分享Service在宿主机上对应的iptables规则（或者IPVS配置）得到解决。
 
 1. 问题1
 当Service无法通过DNS访问时，区分是Service本身的配置问题还是集群的DNS出现问题。**通过检查kubernetes自己Master节点的Service DNS是否正常**：
+
 ```bash
 # 在一个 Pod 里执行
 $ nslookup kubernetes.default
@@ -363,10 +415,12 @@ Name:      kubernetes.default
 Address 1: 10.0.0.1 kubernetes.default.svc.cluster.local
 
 ```
+
 如果上述访问`kubernetes.default`返回的值都有问题，那么就需要检查kube-dns的运行状态和日志。否则就应该去检查Service定义是否有问题。
 
 2. 问题2
 如果Service没办法通过ClusterIP访问到，首先应该检查这个Service是否有Endpoints：
+
 ```bash
 $ kubectl get endpoints hostnames
 NAME        ENDPOINTS
@@ -374,7 +428,9 @@ hostnames   10.244.0.5:9376,10.244.0.6:9376,10.244.0.7:9376
 
 # 如果pod的readinessProbe没有通过，它是不会出现在Endpoints列表里。
 ```
+
 如果Endpoints正常，就需要确认kube-proxy是否正确运行。通过kubeadm部署的集群中，kube-proxy的输出日志如下：
+
 ```bash
 I1027 22:14:53.995134    5063 server.go:200] Running in resource-only container "/kube-proxy"
 I1027 22:14:53.998163    5063 server.go:247] Using iptables Proxier.
@@ -388,7 +444,9 @@ I1027 22:14:54.040154    5063 proxier.go:294] Adding new service "kube-system/ku
 I1027 22:14:54.040223    5063 proxier.go:294] Adding new service "kube-system/kube-dns:dns-tcp" at 10.0.0.10:53/TCP
 
 ```
+
 如果kube-proxy一起正常，就应该查看宿主机上iptables。一个iptables模式的Service对应的规则应该包括：
+
 1. KUBE-SERVICES或者KUBE-NODEPORTS规则对应的Service入口链，这个规则应该与VIP和Service端口一一对应
 2. KUBE-SEP-（hash）规则对应的DNAT链，这些规则应该与Endpoints一一对应
 3. KUBE-SVC-（hash）规则对应的负载均衡链,这些规则的数目应该与Endpoints数目一致
@@ -400,7 +458,8 @@ I1027 22:14:54.040223    5063 proxier.go:294] Adding new service "kube-system/ku
 Pod无法通过Service访问到自己。这是因为kubelet的hairpin-mode没有被正确的设置，只需要将kubelet的hairpin-mode设置为hairpin-veth或者promiscuous-bridge即可。
 
 - hairpin-veth模式下，应该看到CNI网桥对应的各个VETH设备，都将Hairpin模式设置为1，如下所示；
-```
+
+```bash
 $ for d in /sys/devices/virtual/net/cni0/brif/veth*/hairpin_mode; do echo "$d = $(cat $d)"; done
 /sys/devices/virtual/net/cni0/brif/veth4bfbfe74/hairpin_mode = 1
 /sys/devices/virtual/net/cni0/brif/vethfc2a18c5/hairpin_mode = 1
@@ -408,18 +467,20 @@ $ for d in /sys/devices/virtual/net/cni0/brif/veth*/hairpin_mode; do echo "$d = 
 ```
 
 - promiscuous-bride模式。应该看到CNI网桥的混杂模式（PROMISC）被开启，如下所示：
-```
+
+```bash
 $ ifconfig cni0 |grep PROMISC
 UP BROADCAST RUNNING PROMISC MULTICAST  MTU:1460  Metric:1
   
 ```
 
-# 总结
+## 0.7. 总结
+
 所谓Service就是kubernetes为Pod分配的、固定的、基于iptables（或者IPVS）的访问入口，这些访问入口代理的Pod信息，来自Etcd，由kube-proxy通过控制循环来维护。
 
 kubernetes里的Service和DNS机制，都不具备强多租户能力。在多租户情况下：
+
 - 每个租户应该拥有一套独立的Service规则（Service只应该看到和代理同一个租户下的Pod）
 - 每个租户应该拥有自己的kube-dns（kube-dns只应该为同一个租户下的Service和Pod创建DNS Entry）
 
 > 在kubernetes中，kube-proxy和kube-dns都只是普通的插件，可以根据自己的需求，实现符合自己预期的Service。
-

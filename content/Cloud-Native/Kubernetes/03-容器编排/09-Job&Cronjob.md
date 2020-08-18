@@ -6,7 +6,7 @@ draft: false
 
 - [0.1. Job](#01-job)
   - [0.1.1. 来个例子](#011-来个例子)
-  - [0.1.2. 控制起模式](#012-控制起模式)
+  - [0.1.2. 控制器模式](#012-控制器模式)
   - [0.1.3. 失败重启策略](#013-失败重启策略)
   - [0.1.4. 最长运行时间](#014-最长运行时间)
   - [0.1.5. 并行运行](#015-并行运行)
@@ -94,7 +94,7 @@ pi-tqbcz                            0/1       Error               0          5s
 # 根据restartPolicy的定义，如果为never，则会重新创建新的Pod再次计算，如果为onfailure则restart这个pod里面的容器
 ```
 
-### 0.1.2. 控制起模式
+### 0.1.2. 控制器模式
 
 通过describe可以看到，这个Job对象在创建后，它的Pod模板，被自动添加上了一个controller-uid=<一个随机字符串> 这样的`label`。而这个Job对象本身，则被自动加上了这个Label对应的`Selector`，从而保证了Job与它所管理的Pod之间的匹配关系。
 
@@ -124,7 +124,7 @@ spec:
 
 在Job对象中，负责并行控制的参数有两个：
 
-1. spec.parallelism:定义的是一个JOb在任意时间最多可以启动多少个Pod同时运行
+1. spec.parallelism:定义的是一个Job在任意时间最多可以启动多少个Pod同时运行
 2. spec.completions:定义的是Job至少完成的Pod数目，即Job最小完成数
 
 #### 0.1.5.1. 举个例子
@@ -265,7 +265,7 @@ process-item-cherry-dnfu9   0/1       Completed   0          4m
 
 ### 0.3.1. 拥有固定任务数目的并行Job
 
-这种模式下，只关心最后是否拥有指定数目（spec.completions）个任务成功退出。至于执行的并行度是多少并不关心。
+这种模式下，只关心最后是否拥有指定数目（`spec.completions`）个任务成功退出。至于执行的并行度是多少并不关心。
 
 可以使用工作队列（Work Queue）进行任务分发，job的yaml定义如下：
 
@@ -292,11 +292,11 @@ spec:
       restartPolicy: OnFailure
 ```
 
-在yaml中总共定义了总共有8个任务会被放入工作队列，可以使用RabbitMQ充当工作队列，所以在Pod 的模板中定义BROKER_URL,来作为消费者。
+在yaml中总共定义了总共有8个任务会被放入工作队列，可以使用RabbitMQ充当工作队列，所以在Pod 的模板中定义`BROKER_URL`作为消费者。
 
 pod中的执行逻辑如下：
 
-```
+```console
 /* job-wq-1 的伪代码 */
 queue := newQueue($BROKER_URL, $QUEUE)
 task := queue.Pop()
@@ -304,7 +304,7 @@ process(task)
 exit
 ```
 
-创建这个job后，每组两个pod，一共八个，每个pod都会连接BROKER_URL，从RabbitMQ里读取任务，融合各自处理。
+创建这个job后，每组两个pod，一共八个，每个pod都会连接`BROKER_URL`，从RabbitMQ里读取任务，然后各自处理。
 
 每个pod只要将任务信息读取并完成计算，用户只关心总共有8个任务计算完成并退出，就任务整个job计算完成，对应的就是“任务总数固定”的场景。
 
@@ -338,7 +338,7 @@ spec:
 
 pod 的执行逻辑如下：
 
-```
+```console
 /* job-wq-2 的伪代码 */
 for !queue.IsEmpty($BROKER_URL, $QUEUE) {
   task := queue.Pop()
@@ -377,7 +377,7 @@ spec:
           restartPolicy: OnFailure
 ```
 
-在这个yaml文件中，最重要的是`jobTemplate`，**CronJob是一个Job对象的控制器**。它创建和删除Job的依据是schedule字段定义的、一个标准[UNix Cron](https://en.wikipedia.org/wiki/Cron)格式的表达式。
+在这个yaml文件中，最重要的是`jobTemplate`，**CronJob是一个Job对象的控制器**。它创建和删除Job的依据是schedule字段定义的、一个标准[UNIX Cron](https://en.wikipedia.org/wiki/Cron)格式的表达式。
 
 Cron表达式中的五个部分分别代表：分钟、小时、日、月、星期。
 
