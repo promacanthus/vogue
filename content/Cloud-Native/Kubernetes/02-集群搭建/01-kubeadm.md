@@ -4,6 +4,20 @@ date: 2020-04-14T10:09:14.158627+08:00
 draft: false
 ---
 
+- [0.1. 部署Kubernetes](#01-部署kubernetes)
+- [0.2. Kubeadm原理](#02-kubeadm原理)
+- [0.3. kubeadm步骤](#03-kubeadm步骤)
+  - [0.3.1. kubeadm init](#031-kubeadm-init)
+    - [0.3.1.1. 第一步：Preflight Checks](#0311-第一步preflight-checks)
+    - [0.3.1.2. 第二步：生成证书](#0312-第二步生成证书)
+    - [0.3.1.3. 第三步：生成conf文件](#0313-第三步生成conf文件)
+    - [0.3.1.4. 第四步：生成yaml文件](#0314-第四步生成yaml文件)
+  - [0.3.2. kubeadm join](#032-kubeadm-join)
+  - [0.3.3. 配置kubeadm参数](#033-配置kubeadm参数)
+- [0.4. Kubeadm源代码](#04-kubeadm源代码)
+- [0.5. 生产环境部署](#05-生产环境部署)
+- [0.6. 制作证书的方法](#06-制作证书的方法)
+
 1. Linux容器相关的技术可以帮助我们快速定位问题，并解决问题。
 2. 要真正发挥容器技术的实力的关键在于如何使用这些技术“容器化”应用。
 
@@ -13,7 +27,7 @@ draft: false
 - 容器之间的自动发现和通信如何完成？
 - 容器的持久化数据如何保持？
 
-## 部署Kubernetes
+## 0.1. 部署Kubernetes
 
 主流云厂商使用[SaltStack](https://www.saltstack.com/)、[Ansible](https://www.ansible.com/)等运维工具自动化地执行安装脚本和配置文件。**但是，这些工具的学习成本比kubernetes项目还高**。
 
@@ -27,7 +41,7 @@ kubeadm init
 kubeadm join <Master节点的IP和端口>
 ```
 
-## Kubeadm原理
+## 0.2. Kubeadm原理
 
 1. **传统部署方式**：在部署Kubernetes时，它的每一个组件都是一个需要被执行的、单独的二进制文件。使用SaltStack这样的运维工具或者社区维护的脚本，就需要把这些二进制文件传输到指定的节点上，然后编写控制脚本来启停这些组件。
 2. **容器化部署方式**：给每个组件做一个容器镜像，然后在每台宿主机上运行`docker run`命令来启动这些组件容器。
@@ -45,7 +59,7 @@ Kubelet是Kubernetes项目用来操作Docker等容器运行时的核心组件，
 
 **因此，妥协的方案就是，kubelet直接运行在宿主机上，然后使用容器部署其他的kubernetes组件**。
 
-## kubeadm步骤
+## 0.3. kubeadm步骤
 
 使用kubeadm的第一步，在机器上手动安装 **kubeadm**、**kubelet**、**kubectl** 这三个二进制文件。kubeadm已经为各个发行版的Linux准备好了安装包，所以只需要执行如下命令：
 
@@ -56,9 +70,9 @@ yum install kubeadm       #Redhat or Centos
 kubeadm  init   #部署Master 节点
 ```
 
-### kubeadm init
+### 0.3.1. kubeadm init
 
-#### 第一步：Preflight Checks
+#### 0.3.1.1. 第一步：Preflight Checks
 
 确定服务器是否可以用来部署kubernetes。
 
@@ -77,7 +91,7 @@ kubeadm  init   #部署Master 节点
 8. Docker是否已经安装？
 9. 。。。。。。
 
-#### 第二步：生成证书
+#### 0.3.1.2. 第二步：生成证书
 
 当通过了Preflight Checks后，kubeadm会生成Kubernetes对外提供服务所需的各种**证书**和对应的**目录**。
 
@@ -89,7 +103,7 @@ kubeadm  init   #部署Master 节点
 
 其他的如Aggregate APIServer 等特性，也需要生成专门的证书，同时也可以选择不让kubeadm生成证书，而是拷贝现成的证书到指定的目录中`/etc/kubernetes/pki/ca.{crt,key}`。那么，此时kubeadm会跳过生成证书的步骤。
 
-#### 第三步：生成conf文件
+#### 0.3.1.3. 第三步：生成conf文件
 
 证书生成后，kubeadm接下来会为其他组件生成访问kube-apiserver所需的配置文件。配置文件的路径是：`/etc/kubernetes/xxx.conf`
 
@@ -100,7 +114,7 @@ admin.conf controller-manager.conf kubelet.conf scheduler.conf
 
 这些文件里记录的是，当前这个Master节点的 **服务器地址**、**监听端口**、**证书目录** 等信息。这样，对应的客户端（如scheduler、kubelet等），可以直接加载相应的文件，使用里面的信息与kube-apiserver建立安全连接。
 
-#### 第四步：生成yaml文件
+#### 0.3.1.4. 第四步：生成yaml文件
 
 kubeadm为Master组件（kube-apiserver、kube-controller-manager、kube-scheduler）生成pod yaml文件，它们都以pod的方式部署起来。
 
@@ -123,7 +137,7 @@ etcd.yaml kube-apiserver.yaml kube-controller-manager.yaml kube-scheduler.yaml
 3. token生成后，kubeadm会将`ca.crt`等Master节点的重要信息，通过ConfigMap的方式保存在Etcd中，供后续部署Node节点使用。（这个ConfigMap的名字 cluster-info）
 4. kubernetes默认kube-proxy和DNS这两个插件是必须安装的，提供集群的**服务发现**和**DNS**功能，这两个插件也是两个容器镜像，创建两个pod即可。
 
-### kubeadm join
+### 0.3.2. kubeadm join
 
 使用`kubeadm init`生成的bootstrap token 在安装了kubeadm和kubelet的服务器上执行`kubeadm join`。
 
@@ -136,7 +150,7 @@ bootstrap token的作用：
 
 **bootstrap token扮演的就是这个过程中的安全验证的角色，有了cluster-info里的kube-apiserver的地址、端口、证书，kubelet就可以“安全模式”连接到apiserver上**。
 
-### 配置kubeadm参数
+### 0.3.3. 配置kubeadm参数
 
 可以通过 --config 参数指定启动时读取的配置文件：
 
@@ -199,11 +213,11 @@ apiServerExtraArgs:
 4. 指定自己的证书文件
 5. 指定特殊的容器运行时
 
-## Kubeadm源代码
+## 0.4. Kubeadm源代码
 
 源代码在`kubernetes/cmd/kubeadm`目录下，其中`app/phases`文件夹下的代码就是上述的步骤。
 
-## 生产环境部署
+## 0.5. 生产环境部署
 
 部署规模化的生产环境，推荐使用：
 
@@ -214,7 +228,7 @@ apiServerExtraArgs:
 5. [K8S实验平台](https://console.magicsandbox.com)
 6. [谷歌镜像](https://github.com/anjia0532/gcr.io_mirror)
 
-## 制作证书的方法
+## 0.6. 制作证书的方法
 
 1. CFSSL
 2. OpenSSL

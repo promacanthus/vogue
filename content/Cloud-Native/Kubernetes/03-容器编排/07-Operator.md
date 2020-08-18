@@ -4,18 +4,29 @@ date: 2020-04-14T10:09:14.162627+08:00
 draft: false
 ---
 
+- [0.1. 例子](#01-例子)
+- [0.2. Operator工作原理](#02-operator工作原理)
+- [0.3. Etcd集群的构建方式](#03-etcd集群的构建方式)
+- [0.4. Etcd Operator构建过程](#04-etcd-operator构建过程)
+- [0.5. 编写EtcdCluster这个CRD](#05-编写etcdcluster这个crd)
+- [0.6. Operator创建集群](#06-operator创建集群)
+  - [0.6.1. 启动种子节点](#061-启动种子节点)
+  - [0.6.2. 添加普通节点](#062-添加普通节点)
+- [0.7. Etcd Operator工作原理](#07-etcd-operator工作原理)
+- [0.8. Operator与StatefulSet对比](#08-operator与statefulset对比)
+
 管理**有状态应用**的另一个解决方方案：Operator。
 
-# 例子
+## 0.1. 例子
 
 Etcd Operator。
 
 1. 克隆仓库
 
-```bash
-$ git clone https://github.com/coreos/etcd-operator
+  ```bash
+  git clone https://github.com/coreos/etcd-operator
 
-```
+  ```
 
 2. 部署Operator
 
@@ -128,14 +139,14 @@ spec:
 
 这个yaml文件的内容很简单，只有集群节点数3，etcd版本3.2.13，具体创建集群的逻辑有Etcd Operator完成。
 
-# Operator工作原理
+## 0.2. Operator工作原理
 
 1. 利用kubernetes的自定义API资源（CRD）来描述需要部署的**有状态应用**
 2. 在自定义控制器里，根据自定义API对象的变化，来完成具体的部署和运维工作
 
 > 编写Operator和编写自定义控制器的过程，没什么不同。
 
-# Etcd集群的构建方式
+## 0.3. Etcd集群的构建方式
 
 Etcd Operator部署Etcd集群，采用的是**静态集群**（Static）的方式。
 
@@ -176,9 +187,9 @@ $ etcd --name infra2 --initial-advertise-peer-urls http://10.0.1.12:2380 \
 
 编写Operator就是要把上述对每个节点进行启动参数配置的过程自动化完成，即使用代码生成每个Etcd节点Pod的启动命令，然后把它们启动起来。
 
-# Etcd Operator构建过程
+## 0.4. Etcd Operator构建过程
 
-## 编写EtcdCluster这个CRD
+## 0.5. 编写EtcdCluster这个CRD
 
 CRD对应的内容在`types.go`文件中，如下所示：
 
@@ -207,7 +218,7 @@ EtcdCluster是一个有Status字段的CRD，在Spec中只需要关心Size（集�
 
 **这种scale能力，也是Etcd Operator自动化运维Etcd集群需要实现的主要功能**。为了实现这个功能，不能在`--initial-cluster`参数中把拓扑结构固定死。所有Etcd Operator在构建集群时，虽然也是静态集群，但是是通过逐个节点动态添加的方式实现。
 
-## Operator创建集群
+## 0.6. Operator创建集群
 
 1. Operator创建“种子节点”
 2. Operator创建新节点，逐一加入集群中，直到集群节点数等于size
@@ -217,9 +228,9 @@ EtcdCluster是一个有Status字段的CRD，在Spec中只需要关心Size（集�
 - 参数值设为new，表示为种子节点，**种子节点不需要通过`--initial-cluster-token`声明独一无二的Token**
 - 参数值为existing，表示为普通节点，Operator将它加入已有集群
 
-> 需要主要，种子节点启动时，集群中只有一个节点，即`--initial-cluster`参数的值为infra0=http://10.0.1.10:2380，其他节点启动时，节点个数依次增加，即`--initial-cluster`参数的值不断变化。
+> 需要注意，种子节点启动时，集群中只有一个节点，即`--initial-cluster`参数的值为`infra0=<http://10.0.1.10:2380>`，其他节点启动时，节点个数依次增加，即`--initial-cluster`参数的值不断变化。
 
-### 启动种子节点
+### 0.6.1. 启动种子节点
 
 用户提交YAML文件声明要创建EtcdCluster对象，Etcd Operator先创建一个单节点的种子集群，并启动它，启动参数如下：
 
@@ -238,7 +249,7 @@ $ etcd
 
 这个创建种子节点的阶段称为：Bootstrap。
 
-### 添加普通节点
+### 0.6.2. 添加普通节点
 
 对于其他每个节点，Operator只需要执行如下两个操作即可：
 
@@ -260,7 +271,7 @@ $ etcd
 
 继续添加，直到集群数量变成size为止。
 
-# Etcd Operator工作原理
+## 0.7. Etcd Operator工作原理
 
 与其他自定义控制器一样，Etcd Operator的启动流程也是围绕Informer，如下：
 
@@ -296,7 +307,7 @@ Etcd Operator：
 
 **注意，Etcd Operator并没有使用work queue来协调Informer和控制循环。**
 
-> 因为在控制循环中执行的业务逻辑（如穿件Etcd集群）往往比较耗时，而Informer的WATCH机制对API对象变化的响应，非常迅速。所以控制器里的业务逻辑会拖慢Informer的执行周期，甚至可能block它，要协调快慢任务典型的解决方案，就是引入工作队列。
+> 因为在控制循环中执行的业务逻辑（如创建Etcd集群）往往比较耗时，而Informer的WATCH机制对API对象变化的响应，非常迅速。所以控制器里的业务逻辑会拖慢Informer的执行周期，甚至可能block它，要协调快慢任务典型的解决方案，就是引入工作队列。
 
 在Etcd Operator里没有工作队列，在它的EventHandler部分，就不会有入队的操作，而是直接就是每种事件对应的具体的业务逻辑。Etcd Operator在业务逻辑的实现方式上，与常规自定义控制器略有不同，如下所示：
 
@@ -304,15 +315,15 @@ Etcd Operator：
 
 > 不同之处在于，Etcd Operator为每一个EtcdCluster对象都启动一个控制循环，并发地响应这些对象的变化。**这样不仅可以简化Etcd Operator的代码实现，还有助于提高响应速度**。
 
-# Operator与StatefulSet对比
+## 0.8. Operator与StatefulSet对比
 
 1. StatefulSet里，它为Pod创建的名字是带编号的，这样就把整个集群的拓扑状态固定，而在Operator中名字是随机的
 
-> Etcd Operator在每次添加节点或删除节点时都执行etcdclt的命令，整个过程会更新Etcd内部维护的拓扑信息，所以不需要在集群外部通过编号来固定拓扑关系。
+  > Etcd Operator在每次添加节点或删除节点时都执行`etcdctl`命令，整个过程会更新Etcd内部维护的拓扑信息，所以不需要在集群外部通过编号来固定拓扑关系。
 
 2. 在Operator中没有为EtcdCluster对象声明Persistent Volume，在节点宕机时，是否会导致数据丢失？
 
-- Etcd是一个基于Raft协议实现的高可用键值对存储，根据Raft协议的设计原则，当Etcd集群里只有半数以下的节点失效时，当前集群依然可用，此时，Etcd Operator只需要通过控制循环创建出新的Pod，然后加入到现有集群中，就瓦城了期望状态和实际状态的调谐工作。
+- Etcd是一个基于Raft协议实现的高可用键值对存储，根据Raft协议的设计原则，当Etcd集群里只有半数以下的节点失效时，当前集群依然可用，此时，Etcd Operator只需要通过控制循环创建出新的Pod，然后加入到现有集群中，就完成了期望状态和实际状态的调谐工作。
 - 当集群中半数以上的节点失效时，这个集群就会丧失数据写入能力，从而进入“不可用”状态，此时，即使Etcd Operator 创建出新的Pod出来，Etcd集群本身也无法自动恢复起来。**这个时候就必须使用Etcd本身的备份数据（由单独的Etcd Backup Operator完成）来对集群进行恢复操作**。
 
 创建和使用Etcd Backup Operator的过程：

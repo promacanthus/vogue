@@ -4,7 +4,13 @@ date: 2020-04-14T10:09:14.158627+08:00
 draft: false
 ---
 
-## 典型示例
+- [0.1. 典型示例](#01-典型示例)
+- [0.2. docker exec](#02-docker-exec)
+- [0.3. docker commit](#03-docker-commit)
+- [0.4. Volume（数据卷）](#04-volume数据卷)
+- [0.5. 总结](#05-总结)
+
+## 0.1. 典型示例
 
 用docker部署一个Python编写的Web应用，代码如下：
 
@@ -18,7 +24,7 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     html = "<h3>Hello {name}!</h3>" \
-           "<b>Hostname:</b> {hostname}<br/>"           
+           "<b>Hostname:</b> {hostname}<br/>"
     return html.format(name=os.getenv("NAME", "world"), hostname=socket.gethostname())
 
 if __name__ == "__main__":
@@ -156,7 +162,7 @@ curl 172.17.0.2:80
 <h3>Hello World!</h3><b>Hostname:</b> 47982cd180a1<br/>
 ```
 
-## docker exec
+## 0.2. docker exec
 
 **使用docker exec命令可以进入容器，那么它是如何做到的呢**？
 Linux Namespace创建的隔离空间虽然看不见摸不着，但是一个进程的Namespace信息在宿主机上以文件形式存在。
@@ -212,7 +218,7 @@ int main(int argc, char *argv[]) {
 - 以上代码的**功能**， 接收两个参数，第一个是当前argv[1]，表示当前进程要加入的Namespace文件的路径，第二个参数，是要在这个Namespace里运行的进程。
 - 以上代码的**核心操作**，通过open()系统调用打开了指定的Namespace文件，并把这个文件的描述符fd交给setns()使用，在setns()执行后，当前进程就加入了这个文件对应的Linux Namespace中。
 
-## docker commit
+## 0.3. docker commit
 
 docker commit 实际上就是在容器运行起来后，把最上层的“可读写层”，加上原先容器镜像的只读层，打包组合成一个新的镜像，**原先的只读层在宿主机上是共享的，不占用额外空间**。
 
@@ -220,7 +226,7 @@ docker commit 实际上就是在容器运行起来后，把最上层的“可读
 
 有了Init层的存在，就是为了避免在commit的时候，把容器自己对`/etc/hosts`等文件的修改也一起提交掉。
 
-## Volume（数据卷）
+## 0.4. Volume（数据卷）
 
 容器技术使用rootfs机制和Mount Namespace，构建出了与宿主机完全隔离开的文件系统环境。那么以下两个问题如何解决：
 
@@ -287,7 +293,7 @@ dockerinit负责完成：
 - 因为，容器的镜像操作，比如docker commit 都是发生在宿主机空间的。而由于Mount Namespace的隔离作用，宿主机不知道这个绑定挂载的存在，所以在宿主机看来，容器中可读写层的/test目录（`/var/lib/docker/aufs/mnt/[可读写层ID]/test`）始终是空的。
 - Docker在一开始会创建`/test`这个目录作为挂载点，所以执行了docker commit之后，在新的镜像中，会多出来一个空的`/test`目录。
 
-## 总结
+## 0.5. 总结
 
 Docker容器全景图
 
