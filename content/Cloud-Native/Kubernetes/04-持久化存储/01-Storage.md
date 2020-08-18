@@ -23,7 +23,7 @@ draft: false
 容器化一个应用比较复杂的地方是**状态**的管理，常见的状态就是**存储状态**。
 
 - PV：描述持久化存储数据卷，这个API对象主要定义的是持久化存储在**宿主机上的目录**，比如一个NFS挂载目录。
-- PVC：描述的Pod所希望使用的持久化存储的**属性**。比如Volume存储的大学、可读写权限等。
+- PVC：描述的Pod所希望使用的持久化存储的**属性**。比如Volume存储的大小、可读写权限等。
 
 通常情况，PV对象是由运维人员事先创建在kubernetes集群中待用，可以定义如下的PV：
 
@@ -43,7 +43,7 @@ spec:
     path: "/"
 ```
 
-PVC对象通常由开发人员创建，或者以PVC模板的方式成为StatefulSet的一部分，然后由StatefulSet控制器负责CHAUNGJIAN带编号的PVC，如下：
+PVC对象通常由开发人员创建，或者以PVC模板的方式成为StatefulSet的一部分，然后由StatefulSet控制器负责创建带编号的PVC，如下：
 
 ```yaml
 apiVersion: v1
@@ -64,7 +64,7 @@ spec:
 1. PV和PVC的spec字段，比如PV的存储（`Storage`）大小，必须满足PVC的要求。
 2. PV和PVC的`storageClassName`字段必须一样
 
-绑定成功后，Pod就能够像使用hostPath等常规类型发Volume一样，在YAML文件中声明使用这个PVC，如下所示：
+绑定成功后，Pod就能够像使用hostPath等常规类型的Volume一样，在YAML文件中声明使用这个PVC，如下所示：
 
 ```yaml
 apiVersion: v1
@@ -89,14 +89,14 @@ spec:
 
 ```
 
-Pod在volumes字段中声明要使用的PV名字，等这个Pod创建后裔，kubelet就会把这个PVC所对应的PV挂载到Pod容器内的目录上。
+Pod在volumes字段中声明要使用的PV名字，等这个Pod创建后，kubelet就会把这个PVC所对应的PV挂载到Pod容器内的目录上。
 
 **PV与PVC的设计，和面向对象的思想完全一样**。开发人员只需要和PVC这个接口打交道，不必关心具体的实现细节。
 
 - PVC可以理解为持久化存储的“接口”，提供了对某种持久化存储的描述，但不提供具体的实现，
 - PV负责持久化存储的具体实现
 
-> 创建Pod是，集群中没有适合的PV与PVC进行绑定，即容器需要的volume不存在，那么Pod的启动就会报错。当需要的PV被创建后，PVC可以再次与之绑定，从而使得Pod能够顺利启动。
+> 创建Pod时，集群中没有适合的PV与PVC进行绑定，即容器需要的volume不存在，那么Pod的启动就会报错。当需要的PV被创建后，PVC可以再次与之绑定，从而使得Pod能够顺利启动。
 
 Volume Controller专门处理持久化存储的控制器，维护多个控制循环，其中之一就是帮助PV和PVC进行绑定，即PersistenVolumeController。它会不断的查看当前每一个PVC是否处于Bound状态，如果没有处于绑定状态，则会遍历全部可用的PV，并尝试将PVC与PV进行绑定。
 
@@ -111,7 +111,7 @@ Volume Controller专门处理持久化存储的控制器，维护多个控制循
 - 远程文件存储（NFS、GlusterFS）
 - 远程块存储（公有云提供的远程磁盘）等。
 
-kubernetes的工作就是使用这些存储服务，来为容器准备一个持久化的宿主机目录，以供将来进行绑定挂载使用。所谓持久化是是容器在这个目录里写的文件，都会保存在远程存储中，从而使得这个目录具备了持久性。
+kubernetes的工作就是使用这些存储服务，来为容器准备一个持久化的宿主机目录，以供将来进行绑定挂载使用。所谓持久化是容器在这个目录里写的文件，都会保存在远程存储中，从而使得这个目录具备了持久性。
 
 ## 0.2. 持久化宿主机目录的过程，两步走
 
@@ -178,7 +178,7 @@ docker run -v /var/lib/kubelet/pods/<Pod 的 ID>/volumes/kubernetes.io~<Volume �
 
 在这个PV的处理过程中，与Pod和容器的启动流程没有太多的耦合，只要kubelet在向Docker发起CRI请求之前，确保持久化的宿主机目录已经处理完毕即可。**在kubernetes中，关于PV的处理过程，是独立与kubelet主控制循环（kubelet sync loop）之外的两个控制循环实现的。**
 
-- Attach和Dettach操作，由Volume Controller负责维护，这个控制循环的名字叫AttachDettchController。它的作用就是不断地检查每一个Pod对应的PV，和这个Pod所在宿主机之间的挂载清理，从而决定是否需要对这个PV进行Attach或者Dettach操作。
+- Attach和Dettach操作，由Volume Controller负责维护，这个控制循环的名字叫AttachDettchController。它的作用就是不断地检查每一个Pod对应的PV，和这个Pod所在宿主机之间的挂载情况，从而决定是否需要对这个PV进行Attach或者Dettach操作。
 
 > kubernetes内置的控制器，Volume Controller是kube-controller-manager的一部分，所有AttachDettach也是运行在Master节点，Attach操作只需要调用公有云或者具体存储项目的API，并不需要在具体宿主机上执行操作。
 
@@ -270,7 +270,7 @@ spec:
 
 - PVC 描述的是Pod想要使用的**持久化存储的属性**，比如存储的大小、读写权限等
 - PV 描述的是具体的**Volume的属性**，比如volume的类型，挂载的目录，远程存储服务器地址等
-- StorageClass的作用时候充当PV的模板，并且只有属于同一个StorageClass的PV和PVC才可以绑定
+- StorageClass的作用是充当PV的模板，并且只有属于同一个StorageClass的PV和PVC才可以绑定
 
 > StorageClass的另一个重要的作用是指定Provisioner(存储插件),这时候,如果存储插件支持Dynamic Provisioning的话,kubernetes就可以自动创建PV。
 
@@ -328,7 +328,7 @@ Local Persistent Volume并不适用于所有应用。它的使用范围非常固
 
 以内存盘为例子进行挂载。
 
-1. 在节点上CHAUNGJIAN挂载点`/mnt/disks`
+1. 在节点上创建挂载点`/mnt/disks`
 2. 用RAM Disk模拟本地磁盘
 
 ```bash
