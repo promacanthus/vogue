@@ -112,7 +112,7 @@ kind: CronJob
 
 ### 0.2.1. 第一步，让kubernetes认识这个自定义的API对象
 
-在kubernetes v1.7之后，添加了权限的API插件机制CRD，使得自定义API变得容易很多。
+在kubernetes v1.7之后，添加了全新的API插件机制CRD，使得自定义API变得容易很多。
 
 CRD（custom Resource Definition），允许用户在kubernetes中添加与Pod、Node类似的新的API资源类型，即自定义API资源。
 
@@ -157,6 +157,7 @@ spec:
   scope: Namespaced
 ```
 
+考考你  
 在这个CRD的定义中：
 
 1. Group（API组）： apiextensions.k8s.io
@@ -239,7 +240,7 @@ package v1
 package v1
 ...
 /* +genclient，代码生成注释的意思是为下面这个API资源类型生成对应的Client代码
-   +genclient:noStatus，表示这个API类型定义中没有Status字段，否则生成的CLient会自动带上UpdateStatus方法
+   +genclient:noStatus，表示这个API类型定义中没有Status字段，否则生成的Client会自动带上UpdateStatus方法
 */
 
 // +genclient
@@ -286,7 +287,7 @@ type NetworkList struct {       //描述一组Network对象应该包括哪些字
 
 Network类型定义方法和标准的kubernetes对象一样，包括TypeMeta（API元数据）和ObjectMeta字段（对象元数据）。
 
-> 注意，+genclient卸载Network类型（主类型）上，而不是NetworkList类型（返回值类型）上。
+> 注意，+genclient写在Network类型（主类型）上，而不是NetworkList类型（返回值类型）上。
 
 `registry.go`(pkg/apis/samplecrd/v1/register.go,定义了如下的一个addKnowTypes()方法：
 
@@ -403,7 +404,7 @@ Spec:
 
 ## 0.3. 为自定义API对象编写控制器
 
-创建出一个自定义API对象，只是完成了kubernetes声明式API的一半工作，接下来还需要为这个API对象编写一个自定义控制器，这样kubernetes才能更具Network API对象的增删改查操作。
+创建出一个自定义API对象，只是完成了kubernetes声明式API的一半工作，接下来还需要为这个API对象编写一个自定义控制器，这样kubernetes才能根据Network API对象的增删改查操作。
 
 > **声明是API**并不像**命令式API**那样有着明显的执行逻辑，使得基于声明式API的业务功能实现，往往需要通过控制器模式来“监视”API对象的变化（创建或删除），然后以此来决定实际要执行的具体工作。
 
@@ -470,9 +471,9 @@ Reflector使用ListAndWatch方法来获取并监听这些network对象实例的�
 
 每经过resyncPeriod指定时间，Informer维护的本地缓存，都会使用最近一次LIST返回的结果强制更新一次，从而保证换成的有效性。该操作也会出发informer注册的更新事件，但是两个对象的ResourceVersion一样，因此informer不做进一步处理。
 
-> 如果事件类型是Added，informer就会通知indexer把这个API对象保存到本地缓存，并为它创建索引。如果是删除，则从本地换成中删除这个对象。
+> 如果事件类型是Added，informer就会通知indexer把这个API对象保存到本地缓存，并为它创建索引。如果是删除，则从本地缓存中删除这个对象。
 
-**同步本地换成是informer的第一个职责，最重要的职责**。
+**同步本地缓存是informer的第一个职责，最重要的职责**。
 
 #### 0.3.2.2. 第二步：根据事件类型触发事先注册好的ResourceEventHandler
 
@@ -539,7 +540,7 @@ func (c *Controller) Run(threadiness int, stopCh <-chan struct{}) error {
 }
 ```
 
-1. 等待informer完成一次本地换成的数据同步操作
+1. 等待informer完成一次本地缓存的数据同步操作
 2. 通过goroutine启动一个（或者并发启动多个）无限循环的任务（任务的每一个循环周期执行的正式具体的业务逻辑）
 
 自定义控制器的业务逻辑如下：
