@@ -4,6 +4,17 @@ date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 ---
 
+
+- [0.1. CRI](#01-cri)
+- [0.2. CRI设计与工作原理](#02-cri设计与工作原理)
+  - [0.2.1. RuntimeService](#021-runtimeservice)
+    - [0.2.1.1. 容器声明周期的实现](#0211-容器声明周期的实现)
+    - [0.2.1.2. 实现exec和logs接口](#0212-实现exec和logs接口)
+  - [0.2.2. ImageService](#022-imageservice)
+- [0.3. 总结](#03-总结)
+
+## 0.1. CRI
+
 在完成调度之后，kubernetes就需要负责将这个调度城管的Pod，在宿主机上创建出来，并把它所定义的各个容器启动起来。这是kubelet这个核心组件的主要功能。
 
 > 与kubelet以及容器运行时管理相关的内容，都属于SIG-Node的范畴。SIG-Node和kubelet是kubernetes整套体系里非常核心的一部分，它们才是kubernetes容器编排与管理系统跟容器打交道的主要场所。
@@ -72,7 +83,7 @@ kubelet将kubernetes对应用的定义，一步步转换成最终对Docker或者
 
 基于以上设计，SyncLoop本身就要求这个控制循环是绝对不可以被阻塞的，所以凡是在kubelet里有可能会消耗大量时间的操作，如准备Pod 的Volume，拉取镜像等，SyncLoop都会开启单独的Goroutine来进行操作。
 
-# CRI设计与工作原理
+## 0.2. CRI设计与工作原理
 
 CRI机制能够发挥作用的核心，就在于每一种容器项目现在都可以自己实现一个CRI shim，自行对CRI请求进行处理。这样，kubernetes就有了一个统一的容易抽象层，使得下层容器运行时可以自由地对接进入kubernetes中。
 
@@ -91,9 +102,9 @@ CRI待实现的接口如下图所示：
 1. RuntimeService,它提供的接口，主要是容器相关的操作，如创建、启动和删除容器，执行exec命令等
 2. ImageService，它提供的接口，主要是容器镜像相关的操作，如拉取和除镜像等
 
-## RuntimeService
+### 0.2.1. RuntimeService
 
-### 容器声明周期的实现
+#### 0.2.1.1. 容器声明周期的实现
 
 在这一部分CRI设计的一个重要原则，就是确保这个接口本身，之关注容器不关注Pod，原因是：
 
@@ -109,6 +120,7 @@ PodSandbox这个接口其实是kubernetes将Pod这个概念映射到容器运行
 1. 比如执行`kubectl run`创建一个包含A和B两个容器的叫作foo的Pod之后，这个Pod的信息最后来到kubelet，kubelet会按照图中所示的顺序调用CRI接口。
 
 > 在具体的CRI shim中，这些接口的实现是完全不同的：
+>
 > - 如Docker项目的Dockershim就会创建一个叫作foo的Infra容器（pause容器），用来hold住整个Pod的Network Namespace
 > - 如基于虚拟化技术的容器Kata Containers项目的CRI实现会直接创建出一个轻量级虚拟机来充当Pod
 
@@ -118,7 +130,8 @@ PodSandbox这个接口其实是kubernetes将Pod这个概念映射到容器运行
 
 4. 如果是Kata Container，CreateContainer和StartContainer接口的实现就之后在创建的轻量级虚拟机中创建A、B容器对应的Mount Namespace，最后在宿主机上，只会用一个叫作foo的轻量级虚拟机在运行。
 
-### 实现exec和logs接口
+#### 0.2.1.2. 实现exec和logs接口
+
 除了上述对容器声明周期的实现之外，CRI shim的另一个重要工作就是实现exec和logs等接口，这些接口与前面的操作有一个很大的不同，这些gRPC接口调用期间，kubelet需要跟容器项目维护一个长连接来传输数据，这种API成为Streaming API。
 
 CRI shim中对Streaming API的实现，依赖于一套独立的Streaming Server机制，如下图所示：
@@ -126,6 +139,7 @@ CRI shim中对Streaming API的实现，依赖于一套独立的Streaming Server�
 ![image](https://static001.geekbang.org/resource/image/a8/ef/a8e7ff6a6b0c9591a0a4f2b8e9e9bdef.png)
 
 对一个容器执行kubectl exec 命令的时候:
+
 1. 这个请求首先被交给APIServer
 2. APIServer会调用kubelet的Exec API
 3. kubelet调用CRI的Exec接口
@@ -135,11 +149,14 @@ CRI shim中对Streaming API的实现，依赖于一套独立的Streaming Server�
 
 > 此处的Streaming Server只需要通过使用SIG-Node维护的Streaming API库来实现，Streaming Server会在CRI shim启动时一起启动，一起启动的这一部分如何实现，由CRI shim自行决定，如Docker的dockershim就直接调用Docker的Exec API来作为实现。
 
-## ImageService
+### 0.2.2. ImageService
+
 这个比较简单。
 
-# 总结
+## 0.3. 总结
+
 CRI接口的设计相对比较宽松，容器项目在实现CRI的具体接口时，拥有很高的自由，包括：
+
 1. 容器的声明周期管理
 2. 如何将Pod映射成为自己的实现
 3. 如何调动CNI插件为Pod设置网络

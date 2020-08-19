@@ -4,6 +4,11 @@ date: 2020-04-14T10:09:14.198627+08:00
 draft: false
 ---
 
+- [0.1. Device Plugin](#01-device-plugin)
+- [0.2. 总结](#02-总结)
+
+## 0.1. Device Plugin
+
 > 对于云的用户来说，在GPU的支持上，只要在Pod的YAML文件中声明，某个容器需要的GPU个数，那么kubernetes创建的容器里就应该出现对应的GPU设备，以及它所对应的驱动目录。
 
 以NVIDIA的GPU设备为例，上面的需求就意味着当用户的容器创建之后，这个容器里必须出现如下两部分设备和目录：
@@ -66,6 +71,7 @@ http://localhost:8001/api/v1/nodes/<your-node-name>/status
 ```
 
 PATCH操作完成后，Node是Status变成如下的内容：
+
 ```yaml
 apiVersion: v1
 kind: Node
@@ -77,6 +83,7 @@ Status:
    nvidia.com/gpu: 1
 
 ```
+
 这样在调度器里，他就能在缓存里记录下node-1上的`nvidia.com/gpu`类型的资源数量是1。
 
 在kubernetes的GPU支持方案中，并不需要真正做上述关于Extended Resource的操作，在kubernetes中，对所有硬件加速设备进行管理的功能是`Device Plugin`插件的责任。包括对硬件的Extended Resource进行汇报的逻辑。
@@ -99,6 +106,7 @@ kubernetes的Device Plugin机制，可用如下的一幅图来描述：
 被分配GPu对应的设备路径和驱动目录信息被返回给kubelet之后，kubelet就完成了为一个容器分配GPU的操作。然后kubelet会把这些信息追加在创建该容器所对应的CRI请求当中。这样当这个CRI请求发给Docker之后，Docker创建出来的容器里，就会出现这个GPU设备，并把它所需要的驱动目录挂载进去。
 
 对于其他类型的硬件来说，要想在kubernetes所管理的容器里使用这些硬件的话，需要遵守Device Plugin的流程，实现如下所示的Allocate和ListAndWatch API：
+
 ```go
   service DevicePlugin {
         // ListAndWatch returns a stream of List of Devices
@@ -112,9 +120,11 @@ kubernetes的Device Plugin机制，可用如下的一幅图来描述：
   }
 
 ```
+
 目前支持的硬件有：FPGA、SRIOV、RDMA等。
 
-# 总结
+## 0.2. 总结
+
 GPU硬件设备的的调度工作，实际上是由kubelet完成的，kubelet会负责从它所持有的硬件设备列表中，为容器挑选一个硬件设备，然后调用Device Plugin的Allocate API来完成这个分配操作。在整条链路中，调度器扮演的角色，仅仅是为Pod寻找到可用的、支持这种硬件设备的节点而已。
 
 这使得kubernetes里对硬件设备的管理、只能处于”设备个数“这唯一一种情况，一旦设备是异构的，不能简单地用数目去描述具体使用需求的时候（如Pod想要运行计算能力最强的那个GPU上），Device Plugin就完全不能处理了。
@@ -124,6 +134,3 @@ GPU硬件设备的的调度工作，实际上是由kubelet完成的，kubelet会
 上述Device Plugin的设计，使得kubernetes里，缺乏一种能够对Device进行描述的API对象，这使得如果硬件设备本身的属性比较复杂，并且Pod也关系这些硬件的属性的时，Device Plugin完全没办法支持。
 
 目前，kubernetes的Device Plugin的设计，覆盖的场景非常单一，能用却不好用，Device Plugin的API本身的扩展性也不好。
-
-
- 
