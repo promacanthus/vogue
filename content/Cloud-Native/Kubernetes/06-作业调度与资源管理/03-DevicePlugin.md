@@ -97,13 +97,13 @@ kubernetes的Device Plugin机制，可用如下的一幅图来描述：
 
 > ListAndWatch向上汇报的信息，只要本机上GPU的ID列表，而不会有任何关于GPU设备本身的信息。kubelet在向APIServer汇报的时候，只会汇报该GPU对应的Extended Resource数量。**kubelet本身会将这个GPU的ID列表保存在自己的内存里，并通过ListAndWatch API定时更新**。
 
-当一个Pod想要使用一个GPU的时候，需要在Pod的limits字段声明`nvidia.com/gpu:1`，那么kubernetes的调度器就hi从它的缓存里，寻找GPU数量满足条件的Node，然后将缓存里GPU数量减少1，完成Pod与Node的绑定。
+当一个Pod想要使用一个GPU的时候，需要在Pod的limits字段声明`nvidia.com/gpu:1`，那么kubernetes的调度器就会从它的缓存里，寻找GPU数量满足条件的Node，然后将缓存里GPU数量减少1，完成Pod与Node的绑定。
 
-这个调度成功后的Pod信息，会被对应的kubelet拿来进行容器操作，当kubelet发现Pod的容器请求一个GPU的时候，kubelet就会从自己持有的GPU列表里，为这个容器分配一个GPU，此时kubelet会向本机的Device Plugin发起一个Allocate（）请求。这个请求携带的参数，就是即将被分配给该容器的设备ID列表。
+这个调度成功后的Pod信息，会被对应的kubelet拿来进行容器操作，当kubelet发现Pod的容器请求一个GPU的时候，kubelet就会从自己持有的GPU列表里，为这个容器分配一个GPU，此时kubelet会向本机的Device Plugin发起一个`Allocate()`请求。这个请求携带的参数，就是即将被分配给该容器的设备ID列表。
 
-当Device Plugin收到Allocate请求之后，根据kubelet传递的设备ID，从Device Plugin里找到这些设备对应的设备路径和驱动目录（这些信息正式Device Plugin周期性从本机查询到的，如NVIDIA Device Plugin的实现里，会定期访问nvidia-docker插件，从而获取到本机的GPU信息）。
+当Device Plugin收到`Allocate()`请求之后，根据kubelet传递的设备ID，从Device Plugin里找到这些设备对应的设备路径和驱动目录（这些信息正式Device Plugin周期性从本机查询到的，如NVIDIA Device Plugin的实现里，会定期访问nvidia-docker插件，从而获取到本机的GPU信息）。
 
-被分配GPu对应的设备路径和驱动目录信息被返回给kubelet之后，kubelet就完成了为一个容器分配GPU的操作。然后kubelet会把这些信息追加在创建该容器所对应的CRI请求当中。这样当这个CRI请求发给Docker之后，Docker创建出来的容器里，就会出现这个GPU设备，并把它所需要的驱动目录挂载进去。
+被分配GPU对应的设备路径和驱动目录信息被返回给kubelet之后，kubelet就完成了为一个容器分配GPU的操作。然后kubelet会把这些信息追加在创建该容器所对应的CRI请求当中。这样当这个CRI请求发给Docker之后，Docker创建出来的容器里，就会出现这个GPU设备，并把它所需要的驱动目录挂载进去。
 
 对于其他类型的硬件来说，要想在kubernetes所管理的容器里使用这些硬件的话，需要遵守Device Plugin的流程，实现如下所示的Allocate和ListAndWatch API：
 
@@ -121,11 +121,15 @@ kubernetes的Device Plugin机制，可用如下的一幅图来描述：
 
 ```
 
-目前支持的硬件有：FPGA、SRIOV、RDMA等。
+目前支持的硬件有：
+
+- FPGA(Field Programmable Gate Array)：作为专用集成电路（ASIC）领域中的一种半定制电路，既解决了定制电路的不足，又克服了原有可编程器件门电路数有限的缺点
+- SR-IOV(Single Root I/O Virtualization)：启用SR-IOV将大大减轻宿主机的CPU负荷，提高网络性能，降低网络时延等
+- RDMA(remote direct memory access)：绕过远程主机操作系统内核访问其内存中数据的技术，不经过操作系统，节省大量CPU资源，提高系统吞吐量、降低系统的网络通信延迟，适合大规模并行计算机集群
 
 ## 0.2. 总结
 
-GPU硬件设备的的调度工作，实际上是由kubelet完成的，kubelet会负责从它所持有的硬件设备列表中，为容器挑选一个硬件设备，然后调用Device Plugin的Allocate API来完成这个分配操作。在整条链路中，调度器扮演的角色，仅仅是为Pod寻找到可用的、支持这种硬件设备的节点而已。
+GPU硬件设备的调度工作，实际上是由kubelet完成的，kubelet会负责从它所持有的硬件设备列表中，为容器挑选一个硬件设备，然后调用Device Plugin的Allocate API来完成这个分配操作。在整条链路中，调度器扮演的角色，仅仅是为Pod寻找到可用的、支持这种硬件设备的节点而已。
 
 这使得kubernetes里对硬件设备的管理、只能处于”设备个数“这唯一一种情况，一旦设备是异构的，不能简单地用数目去描述具体使用需求的时候（如Pod想要运行计算能力最强的那个GPU上），Device Plugin就完全不能处理了。
 

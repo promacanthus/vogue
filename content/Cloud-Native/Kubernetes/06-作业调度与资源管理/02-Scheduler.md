@@ -120,10 +120,10 @@ draft: false
 |---|---|
 |PodFitsResources|宿主机的CPU和内存资源等是否够用|
 |PodFitsHost|宿主机的名字是否跟Pod的spec.nodeName一致|
-|PodFitsHostPorts|Pod生气的宿主机端口（spec.nodePort）是不是跟已经被使用的端口有冲突|
+|PodFitsHostPorts|Pod申请的宿主机端口（spec.nodePort）是不是跟已经被使用的端口有冲突|
 |PodMatchNodeSelector|Pod的nodeSelector或者nodeAffinity指定的节点，是否与待考察节点匹配|
 
-这一组GeneralPredicate正式Kubernetes考察一个Pod能不能运行在一个Node上最基本的过滤条件。所以，GeneralPredicate也会被其他组件（如kubelet在启动pod钱，会执行Admit操作，就是再执行一次GeneralPredicate）直接调用。
+这一组GeneralPredicate正式Kubernetes考察一个Pod能不能运行在一个Node上最基本的过滤条件。所以，GeneralPredicate也会被其他组件（如kubelet在启动pod前，会执行Admit操作，就是再执行一次GeneralPredicate）直接调用。
 
 > PodFitsResources检查的只是Pod的requests字段，kubernetes的调度器没有为GPU等硬件资源定义具体的资源类型，而是统一用External Resource的，Key-Value格式的扩展字段来描述，如下例子。
 
@@ -156,7 +156,7 @@ spec:
 |VolumeZonePredicate|检查持久化Volume的Zone（高可用域）标签，是否与待考察节点的Zone标签相匹配|
 |VolumeBindingPredicate|Pod对应的PV的nodeAffinity字段是否与某个节点的标签相匹配|
 
-> Local Persistent Volume(本地持久化卷)，必须使用nodeAffinity来跟某个具体节点绑定，这就意味着Predicates节点，Kubernetes就必须能够根据Pod的Volume属性来进行调度。如果该Pod的PVC还没有跟具体的Pv绑定，调度器还要负责检查所有待绑定PV，当有可用的PV存在并且该PV的nodeAffinity与待考察节点一致时，VolumeBindingPredicate这条规则才会返回成功，如下所示。
+> Local Persistent Volume(本地持久化卷)，必须使用nodeAffinity来跟某个具体节点绑定，这就意味着Predicates节点，Kubernetes就必须能够根据Pod的Volume属性来进行调度。如果该Pod的PVC还没有跟具体的PV绑定，调度器还要负责检查所有待绑定PV，当有可用的PV存在并且该PV的nodeAffinity与待考察节点一致时，VolumeBindingPredicate这条规则才会返回成功，如下所示。
 
 ```yaml
 apiVersion: v1
@@ -183,7 +183,7 @@ spec:
 
 ```
 
-这个PV对应的持久化目录，只能出现在my-node宿主机上，任何一个通过PVC使用这个PV的Pod，都必须被调度到my-node上可可以正常工作，VolumeBindingPredicate正是调度器里完成这个决策的位置。
+这个PV对应的持久化目录，只能出现在my-node宿主机上，任何一个通过PVC使用这个PV的Pod，都必须被调度到my-node上可以正常工作，VolumeBindingPredicate正是调度器里完成这个决策的位置。
 
 #### 0.3.1.3. 宿主机相关过滤规则
 
@@ -197,7 +197,8 @@ spec:
 #### 0.3.1.4. Pod相关过滤规则
 
 这一组规则，与GeneralPredicates大多数是重合的，比较特殊的是：
-| 调度策略 | 描述 |
+
+|调度策略|描述|
 |---|---|
 |PodAffinityPredicate|检查待调度Pod与Node上的已有Pod之间的亲密（Affinity）和反亲密（Anti-Affinity）关系|
 
@@ -271,7 +272,7 @@ spec:
 |调度规则|描述|
 |---|---|
 |LeastRequestPriority|选择空闲资源最多的宿主机|
-|BalancedResourceAllocation|选择各种资源分配最近好的宿主机|
+|BalancedResourceAllocation|选择各种资源分配最均衡的宿主机|
 |NodeAffinityPriority|与PodMatchNodeSelector的含义和计算方法类似，一个Node满足上述规则的字段数越多，得分越高|
 |TaintTolerationPriority|PodToleratesNodeTaints的含义和计算方法类似，一个Node满足上述规则的字段数越多，得分越高
 |InterPodAffinityPriority|PodAffinityPredicate的含义和计算方法类似，一个Node满足上述规则的字段数越多，得分越高|
@@ -350,7 +351,7 @@ spec:
 在调度器里维护着一个调度队列，当Pod拥有了优先级之后，高优先级的Pod就可能会比低优先级的Pod提前出队，从而尽早完成调度过程，这个过程就是**“优先级”**这个概念在kubernetes里的主要体现。
 
 - 抢占
-当一个高优先级的Pod调度失败的时候，调度器的抢占能力就会被触发，这时调度器就会试图从当前集群里寻找一个节点，使得当前这个节点上的一个或者多个低优先级的Pod被删除后，待调度的高邮件Pod就可以被调度到这个节点上。这个过程，就是“抢占”这个概念在kubernetes里的主要体现。
+当一个高优先级的Pod调度失败的时候，调度器的抢占能力就会被触发，这时调度器就会试图从当前集群里寻找一个节点，使得当前这个节点上的一个或者多个低优先级的Pod被删除后，待调度高优先级Pod就可以被调度到这个节点上。这个过程，就是“抢占”这个概念在kubernetes里的主要体现。
 
 将高优先级Pod称为抢占者，当上述抢占过程发生时：
 
@@ -360,7 +361,7 @@ spec:
 4. 在下一个周期，调度器也不能保证抢占者一定会运行在被抢占的节点上
 
 > 这样设计的重要原因是，调度器只会通过标准的DELETE API来删除被抢占的Pod，所有，这些Pod必然是有一定的“优雅退出”时间（默认30秒），在这段时间里，其他节点也可能会变成能够调度的，或者有新节点加入集群中，**所以鉴于优雅退出期间，集群的可调度性可能会发生变化，把抢占者交给下一个调度周期再处理**，是一个非常合理的选择。
-> 在抢占者等待被调度的过程中，如果有其他更高优先级的Pod也要抢占同一个节点，那么调度器就会清空原抢占者的`spec.nominatedNodeName`字段，从而运行更高级别的抢占者执行抢占，并且原抢占者也有机会重新抢占其他节点，这是设置`niminatedNodeName`字段的主要目的。
+> 在抢占者等待被调度的过程中，如果有其他更高优先级的Pod也要抢占同一个节点，那么调度器就会清空原抢占者的`spec.nominatedNodeName`字段，从而运行更高级别的抢占者执行抢占，并且原抢占者也有机会重新抢占其他节点，这是设置`nominatedNodeName`字段的主要目的。
 
 ### 0.4.1. 抢占机制的设计
 
@@ -379,7 +380,7 @@ kubernetes调度器实现抢占算法的一个重要设计就是在调度队列�
 
 2. 如果确定抢占可以发生，那么调度器就会把自己缓存的所有节点信息复制一份，然后使用这个副本来模拟抢占过程
 
-> 抢占的过程就是调度器检查婚车副本里的每一个节点，然后从该节点上最低优先级的Pod开始，逐一删除这些Pod，没删除一个Pod调度器都会检查一下抢占者是否能够运行在该Node上，一旦可以运行，调度器就会记录下这个Node的名字和被删除Pod的列表，这就是一次抢占过程的结果。
+> 抢占的过程就是调度器检查缓存副本里的每一个节点，然后从该节点上最低优先级的Pod开始，逐一删除这些Pod，每删除一个Pod调度器都会检查一下抢占者是否能够运行在该Node上，一旦可以运行，调度器就会记录下这个Node的名字和被删除Pod的列表，这就是一次抢占过程的结果。
 
 ### 0.4.2. 抢占操作
 
