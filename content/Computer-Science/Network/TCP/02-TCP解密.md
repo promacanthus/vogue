@@ -22,7 +22,6 @@ draft: true
     - [0.7.1.1. 提升三次握手性能](#0711-提升三次握手性能)
     - [0.7.1.2. 提升四次挥手性能](#0712-提升四次挥手性能)
 
-
 ## 0.1. 握手与挥手
 
 通过实战分析HTTP协议来解密TCP协议。
@@ -286,9 +285,9 @@ setsockopt(sock_fd,IPPROTO_TCP,TCP_QUICKACK,(char *)&value,sizeof(int));
 
 发送方使用了 Nagle 算法，接收方使用了 TCP 延迟确认会发生如下的过程：
 
-1. 发送方先发出一个小报文，接收方收到后，由于**延迟确认**机制，自己又没有要发送的数据，只能干等着发送方的下一个报文到达；优化
-2. 而发送方由于 Nagle 算法机制，在未收到第一个报文的确认前，是不会发送后续的数据；
-3. 所以接收方只能等待最大时间 `200` ms 后，才回 `ACK` 报文，发送方收到第一个报文的确认报文后，也才可以发送后续的数据。
+1. 发送方先发出一个小报文，接收方收到后，由于**延迟确认**机制，自己又没有要发送的数据，只能干等着发送方的下一个报文到达
+2. 而发送方由于 Nagle 算法机制，在未收到第一个报文的确认前，是不会发送后续的数据
+3. 所以接收方只能等待最大时间 `200` ms 后，才回 `ACK` 报文，发送方收到第一个报文的确认报文后，也才可以发送后续的数据
 
 同时使用会造成额外的时延，这就会使得网络"很慢"的感觉，要解决这个问题，只有两个办法：
 
@@ -305,8 +304,7 @@ sugoi@sugoi:~$ ll  /proc/sys/net/ipv4/tcp*
 -rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_adv_win_scale
 -rw-r--r-- 1 root root 0 6月  17 13:2优化9 /proc/sys/net/ipv4/tcp_allowed_congestion_control
 -rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_app_win
--rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_
-corking
+-rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_corking
 -r--r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_available_congestion_control
 -r--r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_available_ulp
 -rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_base_mss
