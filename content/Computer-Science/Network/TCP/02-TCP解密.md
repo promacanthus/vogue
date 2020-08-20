@@ -4,7 +4,26 @@ date: 2020-06-17T10:33:44+08:00
 draft: true
 ---
 
-## 握手与挥手
+- [0.1. 握手与挥手](#01-握手与挥手)
+- [0.2. 握手时异常处理](#02-握手时异常处理)
+  - [0.2.1. 第一次握手 SYN 丢包](#021-第一次握手-syn-丢包)
+  - [0.2.2. TCP 第二次握手 SYN、ACK 丢包](#022-tcp-第二次握手-synack-丢包)
+  - [0.2.3. TCP 第三次握手 ACK 丢包](#023-tcp-第三次握手-ack-丢包)
+  - [0.2.4. TCP 保活机制](#024-tcp-保活机制)
+- [0.3. TCP 快速建立连接](#03-tcp-快速建立连接)
+  - [0.3.1. 开启 Fast Open](#031-开启-fast-open)
+- [0.4. TCP 重复确认和快速重传](#04-tcp-重复确认和快速重传)
+- [0.5. TCP 流量控制](#05-tcp-流量控制)
+  - [0.5.1. 零窗口通知与窗口探测](#051-零窗口通知与窗口探测)
+- [0.6. TCP 延迟确认与 Nagle 算法](#06-tcp-延迟确认与-nagle-算法)
+  - [0.6.1. 延迟确认 和 Nagle 算法混合使用](#061-延迟确认-和-nagle-算法混合使用)
+- [0.7. TCP参数优化](#07-tcp参数优化)
+  - [0.7.1. 优化策略](#071-优化策略)
+    - [0.7.1.1. 提升三次握手性能](#0711-提升三次握手性能)
+    - [0.7.1.2. 提升四次挥手性能](#0712-提升四次挥手性能)
+
+
+## 0.1. 握手与挥手
 
 通过实战分析HTTP协议来解密TCP协议。
 
@@ -38,14 +57,14 @@ curl http://192.168.3.200
 
 > 在通常情况下，服务器端收到客户端的 `FIN` 后，可能还没发送完数据，所以先回复客户端一个 `ACK` 包，完成所有数据包的发送后，才会发送 `FIN` 包，这就是四次挥手了。
 
-## 握手时异常处理
+## 0.2. 握手时异常处理
 
 实验环境：
 
 - Server：192.168.12.36（apache）
 - Client：192.168.12.37（curl、telnet、tcpdump）
 
-### 第一次握手 SYN 丢包
+### 0.2.1. 第一次握手 SYN 丢包
 
 > 断开客户端与服务器之间的网线。
 
@@ -73,7 +92,7 @@ sugoi@sugoi:~$ cat /proc/sys/net/ipv4/tcp_syn_retries
 # 修改这个值会影响重试次数
 ```
 
-### TCP 第二次握手 SYN、ACK 丢包
+### 0.2.2. TCP 第二次握手 SYN、ACK 丢包
 
 > 客户端设置防火墙规则丢弃从服务器响应的数据。`iptables -I INPUT -s 192.168.12.36 -j DROP`
 
@@ -98,7 +117,7 @@ sugoi@sugoi:~$ cat /proc/sys/net/ipv4/tcp_synack_retries
 
 将客户端的`tcp_syn_retries`设置为`1`后重新发生请求，这样可以防止客户端多次重传`SYN`后重置服务器的超时计数器。
 
-### TCP 第三次握手 ACK 丢包
+### 0.2.3. TCP 第三次握手 ACK 丢包
 
 > 服务器配置防火墙屏蔽客户端TCP报文中标志位是`ACK`的包。`iptables -I INPUT -s 192.168.12.37 -p tcp --tcp-flag ACK ACK -j DROP`
 
@@ -132,7 +151,7 @@ sugoi@sugoi:~$ cat /proc/sys/net/ipv4/tcp_retries2
 15
 ```
 
-### TCP 保活机制
+### 0.2.4. TCP 保活机制
 
 如果客户端不发生数据，那么已经建立的`TCP`连接（即状态为`ESTABLISHED`）的何时断开？
 
@@ -152,7 +171,7 @@ net.ipv4.tcp_keepalive_probes=9     # 保活探测次数9次，无响应则认�
 
 **在 Linux 系统中，最少需要经过 2 小时 11 分 15 秒才可以发现一个「死亡」连接**。
 
-## TCP 快速建立连接
+## 0.3. TCP 快速建立连接
 
 > RTT (Round-Trip Time 往返时延)，就是数据**从网络一端传送到另一端所需的时间**，也就是包的往返时间。
 
@@ -172,7 +191,7 @@ net.ipv4.tcp_keepalive_probes=9     # 保活探测次数9次，无响应则认�
 
 > 注：客户端在请求并存储了 `Fast Open Cookie` 之后，可以不断重复 `TCP Fast Open` 直至服务器认为 `Cookie` 无效（通常为过期）。
 
-### 开启 Fast Open
+### 0.3.1. 开启 Fast Open
 
 可以通过设置 `net.ipv4.tcp_fastopn` 内核参数，来打开 `Fast Open` 功能。
 
@@ -183,7 +202,7 @@ net.ipv4.tcp_keepalive_probes=9     # 保活探测次数9次，无响应则认�
 - 2 ：作为服务端使用 Fast Open 功能
 - 3 ：无论作为客户端还是服务器，都可以使用 Fast Open 功能
 
-## TCP 重复确认和快速重传
+## 0.4. TCP 重复确认和快速重传
 
 当接收方收到乱序数据包时，会发送重复的 `ACK`，以使告知发送方要重发该数据包，**当发送方收到 `3` 个重复 `ACK` 时，就会触发快速重传，立该重发丢失数据包**。
 
@@ -195,7 +214,7 @@ net.ipv4.tcp_keepalive_probes=9     # 保活探测次数9次，无响应则认�
 
 如果要支持 `SACK`，必须双方都要支持。在 Linux 下，可以通过 `net.ipv4.tcp_sack` 内核参数打开这个功能（Linux 2.4 后默认打开）。
 
-## TCP 流量控制
+## 0.5. TCP 流量控制
 
 TCP 为了防止发送方无脑的发送数据，导致接收方缓冲区被填满，所以有**滑动窗口**机制，利用接收方的接收窗口来控制发送方要发送的数据量，也就是**流量控制**。
 
@@ -210,14 +229,14 @@ TCP 为了防止发送方无脑的发送数据，导致接收方缓冲区被填�
 
 > 如果接收方接收到数据后，应用层能很快的从缓冲区里读取数据，那么窗口大小会一直保持不变，但现实中服务器会出现繁忙的情况，当应用程序读取速度慢，那么缓存空间会慢慢被占满，于是为了保证发送方发送的数据不会超过缓冲区大小，则服务器会调整窗口大小的值，接着通过 `ACK` 报文通知给对方，告知现在的接收窗口大小，从而控制发送方发送的数据大小。
 
-### 零窗口通知与窗口探测
+### 0.5.1. 零窗口通知与窗口探测
 
 1. 如果接收方处理数据的速度跟不上接收数据的速度，缓存就会被占满，从而导致接收窗口为 0，当发送方接收到**零窗口通知**时，就会停止发送数据，这就是窗口关闭。
 2. 接着，发送方会**定时发送窗口大小探测报文**（时间逐渐翻倍递增），以便及时知道接收方窗口大小的变化。
 
 > 发送窗口：决定一口气发多少字节，取值为min（拥塞窗口，接收窗口）；`MSS`决定这些字节要分多少包才能发完。
 
-## TCP 延迟确认与 Nagle 算法
+## 0.6. TCP 延迟确认与 Nagle 算法
 
 当 `TCP` 报文承载的数据非常小（如几个字节），那么整个网络的效率是很低的，因为每个 `TCP` 报文中都有会 `20` 个字节的 `TCP` 头部，和 `20` 个字节的 `IP` 头部，而数据只有几个字节，所以在整个报文中有效数据占有的比重就会非常低。
 
@@ -259,7 +278,7 @@ CONFIG_HZ=250
 setsockopt(sock_fd,IPPROTO_TCP,TCP_QUICKACK,(char *)&value,sizeof(int));
 ```
 
-### 延迟确认 和 Nagle 算法混合使用
+### 0.6.1. 延迟确认 和 Nagle 算法混合使用
 
 延迟确认 和 Nagle 算法混合使用会产生耗时增长的问题：
 
@@ -276,7 +295,7 @@ setsockopt(sock_fd,IPPROTO_TCP,TCP_QUICKACK,(char *)&value,sizeof(int));
 - 要么发送方关闭 Nagle 算法
 - 要么接收方关闭 TCP 延迟确认
 
-## TCP参数优化
+## 0.7. TCP参数优化
 
 Linux系统中，TCP参数都在这里：
 
@@ -286,7 +305,8 @@ sugoi@sugoi:~$ ll  /proc/sys/net/ipv4/tcp*
 -rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_adv_win_scale
 -rw-r--r-- 1 root root 0 6月  17 13:2优化9 /proc/sys/net/ipv4/tcp_allowed_congestion_control
 -rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_app_win
--rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_autocorking
+-rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_
+corking
 -r--r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_available_congestion_control
 -r--r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_available_ulp
 -rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_base_mss
@@ -355,9 +375,9 @@ sugoi@sugoi:~$ ll  /proc/sys/net/ipv4/tcp*
 -rw-r--r-- 1 root root 0 6月  17 13:29 /proc/sys/net/ipv4/tcp_workaround_signed_windows
 ```
 
-### 优化策略
+### 0.7.1. 优化策略
 
-#### 提升三次握手性能
+#### 0.7.1.1. 提升三次握手性能
 
 1. 客户端优化：`echo 5 > /proc/sys/net/ipv4/tcp_syn_retries`，调整超时重试次数
 2. 服务端优化：
@@ -389,7 +409,7 @@ tcp_abort_on_overflow 共有两个值分别是 0 和 1，其分别表示：
 
 > 把 `tcp_abort_on_overflow` 设置为 `1`，这时如果在客户端异常中可以看到很多 `connection reset by peer` 的错误，那么就可以证明是由于服务端 `TCP` 全连接队列溢出的问题。通常情况下，应当把 `tcp_abort_on_overflow` 设置为 `0`，因为这样更有利于应对突发流量。
 
-#### 提升四次挥手性能
+#### 0.7.1.2. 提升四次挥手性能
 
 客户端和服务端双方都可以主动断开连接，通常**先关闭连接的一方**称为主动方，**后关闭连接的一方**称为被动方。
 
