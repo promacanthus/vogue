@@ -4,7 +4,14 @@ date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 ---
 
-## RPC框架原理
+- [0.1. RPC框架原理](#01-rpc框架原理)
+- [0.2. 主流的RPC框架](#02-主流的rpc框架)
+- [0.3. gRPC简介](#03-grpc简介)
+- [0.4. gRPC特点](#04-grpc特点)
+- [0.5. 使用Protocol Buffers](#05-使用protocol-buffers)
+- [0.6. protocol buffers的版本](#06-protocol-buffers的版本)
+
+## 0.1. RPC框架原理
 
 RPC框架的目标就是让**远程服务调用更加简单、透明**，RPC框架负责屏蔽底层的传输方式（**TCP**或者**UDP**）、序列化方式（**XML**/**JSON**/**二进制**）和通信细节。服务调用者可以像调用本地接口一样调用远程的服务提供者，而不需要关心底层通信细节和调用过程。
 
@@ -12,7 +19,7 @@ RPC框架的调用原理图如下所示：
 
 ![image](/images/RPC.png)
 
-## 主流的RPC框架
+## 0.2. 主流的RPC框架
 
 业界主流的RPC框架整体上分为三类：
 
@@ -29,7 +36,7 @@ RPC框架的调用原理图如下所示：
 
 >例如Netflix的API服务编排层和后端的微服务之间就采用gRPC进行通信。
 
-## gRPC简介
+## 0.3. gRPC简介
 
 本文档介绍gRPC和protocol buffers，gRPC可以使用protocol buffers作为其接口定义语言（Interface Definition Language，IDL）和其基础消息交换格式。
 
@@ -44,14 +51,14 @@ gRPC的调用示例如下所示：
 
 gRPC客户端和服务端可以在各种环境中相互运行和通信（从Google内部的服务器到桌面应用），并且可以使用任何gRPC支持的语言编写。因此，可以使用Go，Python或Ruby轻松创建gRPC客户端与使用Java编写的gRPC服务端通信。此外，最新的Google API将具有gRPC版本的接口，可以轻松地在编写的应用程序中构建Google提供的功能和服务。
 
-## gRPC特点
+## 0.4. gRPC特点
 
 1. 语言中立，支持多种语言；
 2. 基于IDL文件定义服务，通过protoc工具生成指定语言的数据结构、服务端接口以及客户端Stub；
 3. 通信协议基于标准的HTTP/2设计，支持双向流、消息头压缩、单TCP的多路复用、服务端推送等特性，这些特性使得gRPC在移动端设备上更加省电和节省网络流量；
 4. 序列化支持PB（ProtocolBuffer）和JSON，PB是一种语言无关的高性能序列化框架，基于HTTP/2 + PB，保障了RPC调用的高性能。
 
-## 使用Protocol Buffers
+## 0.5. 使用Protocol Buffers
 
 默认情况下，gRPC使用[protocol buffers](https://developers.google.com/protocol-buffers/docs/overview)，这是Google成熟的开源机制，用于序列化结构化数据（尽管它可以与其他数据格式，如JSON一起使用）。
 
@@ -97,7 +104,7 @@ gRPC还可以使用带有特殊gRPC插件的`protoc`来生成proto文件中的�
 
 可以在[Protocol Buffers文档](https://developers.google.com/protocol-buffers/docs/overview)中找到有关protocol buffers的更多信息，并了解如何使用所选语言的快速入门来获取和安装带有gRPC插件的`protoc`。
 
-## protocol buffers的版本
+## 0.6. protocol buffers的版本
 
 虽然在很早之前，protocol buffers已经可供开源用户使用，但在示例中使用了一种新的protocol buffers，称为proto3，它具有略微简化的语法，一些有用的新功能，并支持更多语言。
 

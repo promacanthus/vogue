@@ -4,22 +4,41 @@ date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 ---
 
-## 介绍
+- [0.1. 介绍](#01-介绍)
+- [0.2. Protocol](#02-protocol)
+  - [0.2.1. Outline](#021-outline)
+  - [0.2.2. Requests](#022-requests)
+  - [0.2.3. Responses](#023-responses)
+    - [0.2.3.1. Example](#0231-example)
+    - [0.2.3.2. User Agents](#0232-user-agents)
+    - [0.2.3.3. Idempotency and Retries](#0233-idempotency-and-retries)
+    - [0.2.3.4. HTTP2 Transport Mapping](#0234-http2-transport-mapping)
+      - [0.2.3.4.1. Stream Identification](#02341-stream-identification)
+      - [0.2.3.4.2. Data Frames](#02342-data-frames)
+      - [0.2.3.4.3. Errors](#02343-errors)
+      - [0.2.3.4.4. Security](#02344-security)
+      - [0.2.3.4.5. Connection Management](#02345-connection-management)
+        - [0.2.3.4.5.1. GOAWAY Frame](#023451-goaway-frame)
+        - [0.2.3.4.5.2. PING Frame](#023452-ping-frame)
+        - [0.2.3.4.5.3. Connection failure](#023453-connection-failure)
+  - [0.2.4. Appendix A - GRPC for Protobuf](#024-appendix-a---grpc-for-protobuf)
+
+## 0.1. 介绍
 
 本文档用作[HTTP2 framing](ttps://tools.ietf.org/html/rfc7540)承载的gRPC实现的详细描述。它假设您熟悉HTTP2规范。
 
-## Protocol
+## 0.2. Protocol
 
 Production rules are using `<a href="http://tools.ietf.org/html/rfc5234">ABNF syntax</a>`.
 
-### Outline
+### 0.2.1. Outline
 
 The following is the general sequence of message atoms in a GRPC request & response message stream
 
 * Request → Request-Headers \*Length-Prefixed-Message EOS
 * Response → (Response-Headers \*Length-Prefixed-Message Trailers) / Trailers-Only
 
-### Requests
+### 0.2.2. Requests
 
 * Request → Request-Headers \*Length-Prefixed-Message EOS
 
@@ -69,7 +88,7 @@ If **Content-Type** does not begin with "application/grpc", gRPC servers SHOULD 
 
 **Custom-Metadata** is an arbitrary set of key-value pairs defined by the application layer. Header names starting with "grpc-" but not listed here are reserved for future GRPC use and should not be used by applications as **Custom-Metadata**.
 
-Note that HTTP2 does not allow arbitrary octet sequences for header values so binary header values must be encoded using Base64 as per https://tools.ietf.org/html/rfc4648#section-4. Implementations MUST accept padded and un-padded values and should emit un-padded values. Applications define binary headers by having their names end with "-bin". Runtime libraries use this suffix to detect binary headers and properly apply base64 encoding & decoding as headers are sent and received.
+Note that HTTP2 does not allow arbitrary octet sequences for header values so binary header values must be encoded using Base64 as per <https://tools.ietf.org/html/rfc4648#section-4>. Implementations MUST accept padded and un-padded values and should emit un-padded values. Applications define binary headers by having their names end with "-bin". Runtime libraries use this suffix to detect binary headers and properly apply base64 encoding & decoding as headers are sent and received.
 
 **Custom-Metadata** header order is not guaranteed to be preserved except for
 values with duplicate header names. Duplicate header names may have their values
@@ -105,7 +124,7 @@ A **Compressed-Flag** value of 1 indicates that the binary octet sequence of **M
 
 For requests, **EOS** (end-of-stream) is indicated by the presence of the END_STREAM flag on the last received DATA frame. In scenarios where the **Request** stream needs to be closed but no data remains to be sent implementations MUST send an empty DATA frame with this flag set.
 
-### Responses
+### 0.2.3. Responses
 
 * **Response** → (Response-Headers \*Length-Prefixed-Message Trailers) / Trailers-Only
 * **Response-Headers** → HTTP-Status [Message-Encoding] [Message-Accept-Encoding] Content-Type \*Custom-Metadata
@@ -142,7 +161,7 @@ implementation can decode valid portions while leaving broken %-encodings as-is
 or replacing them with a replacement character (e.g., '?' or the Unicode
 replacement character).
 
-#### Example
+#### 0.2.3.1. Example
 
 Sample unary-call showing HTTP2 framing sequence
 
@@ -179,7 +198,7 @@ grpc-status = 0 # OK
 trace-proto-bin = jher831yy13JHy3hc
 ```
 
-#### User Agents
+#### 0.2.3.2. User Agents
 
 While the protocol does not require a user-agent to function it is recommended that clients provide a structured user-agent string that provides a basic description of the calling library, version & platform to facilitate issue diagnosis in heterogeneous environments. The following structure is recommended to library developers
 
@@ -196,7 +215,7 @@ grpc-ruby-jruby/1.3.4
 grpc-java-android/0.9.1 (gingerbread/1.2.4; nexus5; tmobile)
 ```
 
-#### Idempotency and Retries
+#### 0.2.3.3. Idempotency and Retries
 
 Unless explicitly defined to be, gRPC Calls are not assumed to be idempotent.  Specifically:
 
@@ -204,18 +223,17 @@ Unless explicitly defined to be, gRPC Calls are not assumed to be idempotent.  S
 * There is no mechanism for duplicate suppression as it is not necessary.
 * Calls that are marked as idempotent may be sent multiple times.
 
+#### 0.2.3.4. HTTP2 Transport Mapping
 
-#### HTTP2 Transport Mapping
-
-##### Stream Identification
+##### 0.2.3.4.1. Stream Identification
 
 All GRPC calls need to specify an internal ID. We will use HTTP2 stream-ids as call identifiers in this scheme. NOTE: These ids are contextual to an open HTTP2 session and will not be unique within a given process that is handling more than one HTTP2 session nor can they be used as GUIDs.
 
-##### Data Frames
+##### 0.2.3.4.2. Data Frames
 
 DATA frame boundaries have no relation to **Length-Prefixed-Message** boundaries and implementations should make no assumptions about their alignment.
 
-##### Errors
+##### 0.2.3.4.3. Errors
 
 When an application or runtime error occurs during an RPC a **Status** and **Status-Message** are delivered in **Trailers**.
 
@@ -239,27 +257,27 @@ CONNECT_ERROR|INTERNAL
 ENHANCE_YOUR_CALM|RESOURCE_EXHAUSTED ...with additional error detail provided by runtime to indicate that the exhausted resource is bandwidth.
 INADEQUATE_SECURITY| PERMISSION_DENIED … with additional detail indicating that permission was denied as protocol is not secure enough for call.
 
-##### Security
+##### 0.2.3.4.4. Security
 
 The HTTP2 specification mandates the use of TLS 1.2 or higher when TLS is used with HTTP2. It also places some additional constraints on the allowed ciphers in deployments to avoid known-problems as well as requiring SNI support. It is also expected that HTTP2 will be used in conjunction with proprietary transport security mechanisms about which the specification can make no meaningful recommendations.
 
-##### Connection Management
+##### 0.2.3.4.5. Connection Management
 
-###### GOAWAY Frame
+###### 0.2.3.4.5.1. GOAWAY Frame
 
 Sent by servers to clients to indicate that they will no longer accept any new streams on the associated connections. This frame includes the id of the last successfully accepted stream by the server. Clients should consider any stream initiated after the last successfully accepted stream as UNAVAILABLE and retry the call elsewhere. Clients are free to continue working with the already accepted streams until they complete or the connection is terminated.
 
 Servers should send GOAWAY before terminating a connection to reliably inform clients which work has been accepted by the server and is being executed.
 
-###### PING Frame
+###### 0.2.3.4.5.2. PING Frame
 
 Both clients and servers can send a PING frame that the peer must respond to by precisely echoing what they received. This is used to assert that the connection is still live as well as providing a means to estimate end-to-end latency. If a server initiated PING does not receive a response within the deadline expected by the runtime all outstanding calls on the server will be closed with a CANCELLED status. An expired client initiated PING will cause all calls to be closed with an UNAVAILABLE status. Note that the frequency of PINGs is highly dependent on the network environment, implementations are free to adjust PING frequency based on network and application requirements.
 
-###### Connection failure
+###### 0.2.3.4.5.3. Connection failure
 
 If a detectable connection failure occurs on the client all calls will be closed with an UNAVAILABLE status. For servers open calls will be closed with a CANCELLED status.
 
-### Appendix A - GRPC for Protobuf
+### 0.2.4. Appendix A - GRPC for Protobuf
 
 The service interfaces declared by protobuf are easily mapped onto GRPC by
 code generation extensions to protoc. The following defines the mapping

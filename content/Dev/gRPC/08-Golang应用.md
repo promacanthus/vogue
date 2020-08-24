@@ -4,6 +4,26 @@ date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 ---
 
+- [0.1. 为何使用gRPC](#01-为何使用grpc)
+- [0.2. 样例代码与设置](#02-样例代码与设置)
+- [0.3. 定义服务](#03-定义服务)
+- [0.4. 生成客户端和服务端代码](#04-生成客户端和服务端代码)
+- [0.5. 创建服务端](#05-创建服务端)
+  - [0.5.1. 实现 RouteGuide](#051-实现-routeguide)
+    - [0.5.1.1. 简单RPC](#0511-简单rpc)
+    - [0.5.1.2. 服务端侧流数据RPC](#0512-服务端侧流数据rpc)
+    - [0.5.1.3. 客户端侧流数据RPC](#0513-客户端侧流数据rpc)
+    - [0.5.1.4. 双向流数据RPC](#0514-双向流数据rpc)
+  - [0.5.2. 启动服务端](#052-启动服务端)
+- [0.6. 创建客户端](#06-创建客户端)
+  - [0.6.1. 创建一个stub（存根）](#061-创建一个stub存根)
+  - [0.6.2. 调用服务端方法](#062-调用服务端方法)
+    - [0.6.2.1. 简单RPC](#0621-简单rpc)
+    - [0.6.2.2. 服务端侧流数据RPC](#0622-服务端侧流数据rpc)
+    - [0.6.2.3. 客户端侧流数据RPC](#0623-客户端侧流数据rpc)
+    - [0.6.2.4. 双向流数据RPC](#0624-双向流数据rpc)
+- [0.7. 搞起来](#07-搞起来)
+
 本教程提供了一个基本对Go程序员的指导关于如何使用gRPC。
 
 通过练习这个例子，可以学习到如下知识：
@@ -14,13 +34,13 @@ draft: false
 
 假定已阅读概述并熟悉`protocol buffers`。请注意，本教程中的示例使用`protocol buffers`的`proto3`版本：可以在proto3语言指南和[Go代码生成指南](../09-go生成代码指南/)中找到更多信息。
 
-## 为何使用gRPC
+## 0.1. 为何使用gRPC
 
 我们的示例是一个简单的路径映射应用程序，允许客户端获取有关其路径`Feature`的信息，并创建其`RouteSummary`后与其他服务端或客户端交换路径信息，如，进行流量更新。
 
 使用gRPC，只需要在`.proto`文件中定义一次服务，然后就可以使用gRPC支持的任何语言实现客户端和服务端，而这些语言又可以在谷歌内部的服务器或个人平板电脑等各种环境中运行，不同的语言和环境之间通信的复杂性都由gRPC处理。我们还获得了使用`protocol buffers`的所有优势，包括**高效的序列化**，**简单的IDL**和**简单的接口更新**。
 
-## 样例代码与设置
+## 0.2. 样例代码与设置
 
 本例子的样例代码在GitHub的[grcp-go仓库](https://github.com/grpc/grpc-go/tree/master/examples/route_guide)中。执行如下指令来克隆仓库中的代码：
 
@@ -36,7 +56,7 @@ cd $GOPATH/src/google.golang.org/grpc/examples/route_guide
 
 还应该安装相关工具来生成服务端和客户端接口代码，如果还没有准备好，请按照Go快速入门指南中的设置说明进行操作。
 
-## 定义服务
+## 0.3. 定义服务
 
 第一步，使用`protocol buffers`定义：
 
@@ -96,7 +116,7 @@ message Point {
 }
 ```
 
-## 生成客户端和服务端代码
+## 0.4. 生成客户端和服务端代码
 
 第二步，使用`protoc`(`protocol buffers`的编译器)和特定的`gRPC-GO`插件(`protoc-gen-go`)，根据`.proto`文件中定义的服务生成gRPC客户端和服务端接口。这与[快速入门](../07-golang快速入门)中的操作一样。
 
@@ -116,7 +136,7 @@ route_guide.pb.go文件包含：
 - 实现`RouteGuide`服务中定义的客户端接口类型或stub（存根）和方法
 - 实现`RouteGuide`服务中定义的服务端接口类型和方法
 
-## 创建服务端
+## 0.5. 创建服务端
 
 首先创建`RouteGuide`服务端。如果只对创建gRPC客户端感兴趣，可以跳过本节直接阅读创建客户端。
 
@@ -127,7 +147,7 @@ route_guide.pb.go文件包含：
 
 在`grpc-go/examples/route_guide/server/server.go`中可以看到`RouteGuide`服务端样例。
 
-### 实现 RouteGuide
+### 0.5.1. 实现 RouteGuide
 
 如下所示，服务端有一个叫`routeGuideServer`的结构体类型它实现了自动生成的`RouteGuideServer`接口。
 
@@ -158,7 +178,7 @@ func (s *routeGuideServer) RouteChat(stream pb.RouteGuide_RouteChatServer) error
 ...
 ```
 
-#### 简单RPC
+#### 0.5.1.1. 简单RPC
 
 `routeGuideServer`实现了所有的服务方法，先看看最简单的类型`GetFeature()`，它只是从客户端获取一个`Point`并从某个`Feature`自己的数据库中返回相应的特征信息。
 
@@ -176,7 +196,7 @@ func (s *routeGuideServer) GetFeature(ctx context.Context, point *pb.Point) (*pb
 
 该方法传递RPC的上下文对象和客户端`Point`类型的`protocol buffers`请求。它返回一个`Feature`类型的`protocol buffers`对象，其中包含响应信息和错误。在此方法中，我们使用适当的信息填充`Feature`，然后将其与`nil`错误一起返回来告诉gRPC已经完成了RPC的处理，然后`Feature`就可以返回给客户端。
 
-#### 服务端侧流数据RPC
+#### 0.5.1.2. 服务端侧流数据RPC
 
 现在看一下流数据RPC。`ListFeatures()`方法是服务端侧流数据RPC，因此需要将多个`Feature`返回给客户端。
 
@@ -197,7 +217,7 @@ func (s *routeGuideServer) ListFeatures(rect *pb.Rectangle, stream pb.RouteGuide
 
 在该方法中，填充尽可能多的需要被返回的`Feature`对象，并使用其`Send()`方法将`Feature`都写入`RouteGuide_ListFeaturesServer`。最后，就像在简单RPC方法中那样，返回一个`nil`错误告诉gRPC已经完成了写响应信息的操作。如果在此调用中发生任何错误，那么将返回非零错误; gRPC层会将其转换为适当的RPC状态，以便在线路上发送。
 
-#### 客户端侧流数据RPC
+#### 0.5.1.3. 客户端侧流数据RPC
 
 现在来看一些更复杂的东西：客户端侧流数据方法`RecordRoute()`，从客户端获取`Points`类型的流并返回单个包含有关传输链路信息的`RouteSummary`。如下所示，该方法根本没有请求参数。相反，它获取`RouteGuide_RecordRouteServer`流，服务端可以使用该流来读取和写入消息，服务端可以使用它的`Recv()`方法接收客户端消息，并使用它的`SendAndClose()`方法返回其单个响应。
 
@@ -245,7 +265,7 @@ func (s *routeGuideServer) RecordRoute(stream pb.RouteGuide_RecordRouteServer) e
 - 如果错误是`io.EOF`，那么说明消息流已经结束，服务端可以返回它的`RouteSummary`
 - 如果错误是任何其他值，那么将“按原样”返回错误，以便gRPC层将其转换为RPC状态
 
-#### 双向流数据RPC
+#### 0.5.1.4. 双向流数据RPC
 
 最后，看一下双向流数据PRC `RouteChat()`方法。
 
@@ -279,7 +299,7 @@ func (s *routeGuideServer) RouteChat(stream pb.RouteGuide_RouteChatServer) error
 
 这里的读写语法与客户端流方法中的语法非常相似，只是此处服务端使用流的`Send()`方法而不是`SendAndClose()`方法，因为它正在写入多个响应。尽管每一方都会按照写入的顺序获取对方的消息，但客户端和服务端都可以按任意顺序进行读写，因为，这些流完全独立运行。
 
-### 启动服务端
+### 0.5.2. 启动服务端
 
 实现了所有方法后，还需要启动一个gRPC服务端，以便客户端可以实际使用我们的服务。以下代码段显示了如何为`RouteGuide`服务执行此操作：
 
@@ -306,11 +326,11 @@ grpcServer.Serve(lis)
 3. 使用gRPC服务端注册我们实现的服务
 4. 使用端口详细信息调用服务端的`Serve()`方法进行阻塞等待，直到进程被终止或调用`Stop()`。
 
-## 创建客户端
+## 0.6. 创建客户端
 
 在本节中，将介绍如何为`RouteGuide`服务创建Go客户端，可以在`grpc-go/examples/route_guide/client/client.go`中查看完整的示例客户端代码。
 
-### 创建一个stub（存根）
+### 0.6.1. 创建一个stub（存根）
 
 要调用服务端的方法，首先需要创建一个gRPC通道来与服务端通信。通过将服务器地址和端口号传递给`grpc.Dial()`来创建它，如下所示：
 
@@ -330,11 +350,11 @@ defer conn.Close()
 client := pb.NewRouteGuideClient(conn)
 ```
 
-### 调用服务端方法
+### 0.6.2. 调用服务端方法
 
 现在来看看如何调用服务方法。请注意，在`gRPC-Go`中，RPC以**阻塞/同步**模式运行，这意味着RPC调用等待服务端响应，并将返回响应或错误。
 
-#### 简单RPC
+#### 0.6.2.1. 简单RPC
 
 调用简单RPC的`GetFeature()`方法几乎与调用本地方法一样简单。
 
@@ -351,7 +371,7 @@ if err != nil {
 log.Println(feature)
 ```
 
-#### 服务端侧流数据RPC
+#### 0.6.2.2. 服务端侧流数据RPC
 
 这是调用服务端流方法`ListFeatures()`的地方，该方法返回地理`Feature`流。如果已经阅读过创建服务端，其中一些部分可能看起来非常熟悉：流数据RPC在服务端和客户端之间都以类似的方式实现。
 
@@ -381,7 +401,7 @@ for {
 - 如果是`io.EOF`，那么说明消息流已经结束
 - 否则必须有一个RPC错误，它通过`err`参数传递。
 
-#### 客户端侧流数据RPC
+#### 0.6.2.3. 客户端侧流数据RPC
 
 客户端流方法`RecordRoute`类似于服务器端方法，不过只传递给方法一个上下文，然后会获取一个`RouteGuide_RecordRouteClient`流的返回，这个流可以用来写和读消息。
 
@@ -421,7 +441,7 @@ log.Printf("Route summary: %v", reply)
 
 `RouteGuide_RecordRouteClient`有一个`Send()`方法，可以用它向服务端发送请求。一旦使用`Send()`将客户端的请求向流中写入完成，就需要在流上调用`CloseAndRecv()`方法让gRPC知道我们已完成写入并期望收到响应。可以从`CloseAndRecv()`返回的错误`err`中获取RPC状态，如果状态为`nil`，那么`CloseAndRecv()`的第一个返回值将是有效的服务端响应。
 
-#### 双向流数据RPC
+#### 0.6.2.4. 双向流数据RPC
 
 最后是双向流数据RPC`RouteChat()`。与`RecordRoute`的情况一样，只给方法传递一个上下文对象，然后获得返回一个可用于写入和读取消息的流。但是，这次通过方法的流返回值，而服务端仍在向其消息流写入消息。
 
@@ -453,7 +473,7 @@ stream.CloseSend()
 
 这里的读写语法与客户端流方法的语法非常相似，只是在完成调用后使用流的`CloseSend()`方法。尽管每一方都会按照写入顺序获取对方的消息，但客户端和服务端都可以按任意顺序进行读写，这些流完全独立运行。
 
-## 搞起来
+## 0.7. 搞起来
 
 要编译和运行服务端，假设位于`$GOPATH/src/google.golang.org/grpc/examples/route_guide`文件夹中，只需：
 

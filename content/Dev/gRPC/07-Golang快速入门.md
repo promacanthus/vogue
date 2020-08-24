@@ -4,11 +4,25 @@ date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 ---
 
+- [0.1. 先决条件](#01-先决条件)
+  - [0.1.1. Go 版本](#011-go-版本)
+  - [0.1.2. 安装gRPC](#012-安装grpc)
+  - [0.1.3. 安装protocol buffers v3](#013-安装protocol-buffers-v3)
+- [0.2. 下载示例](#02-下载示例)
+- [0.3. 编译示例](#03-编译示例)
+- [0.4. 尝试一下](#04-尝试一下)
+- [0.5. 更新gRPC服务端](#05-更新grpc服务端)
+- [0.6. 生成gRPC代码](#06-生成grpc代码)
+- [0.7. 更新并运行应用](#07-更新并运行应用)
+  - [0.7.1. 更新服务端](#071-更新服务端)
+  - [0.7.2. 更新客户端](#072-更新客户端)
+  - [0.7.3. 运行](#073-运行)
+
 本指南以简单的工作示例为您介绍Go中的gRPC。
 
-## 先决条件
+## 0.1. 先决条件
 
-### Go 版本
+### 0.1.1. Go 版本
 
 gRPC要求Go版本大于等于1.6：
 
@@ -19,7 +33,7 @@ go version go1.12.7 linux/amd64
 
 有关安装说明，请遵循以下指南：[入门-Go编程语言](https://golang.org/doc/install)。
 
-### 安装gRPC
+### 0.1.2. 安装gRPC
 
 使用下面的指令安装gRPC:
 
@@ -27,7 +41,7 @@ go version go1.12.7 linux/amd64
 go get -u google.golang.org/grpc
 ```
 
-### 安装protocol buffers v3
+### 0.1.3. 安装protocol buffers v3
 
 安装用于生成gRPC服务代码的protoc编译器。最简单的方法是从[此处](https://github.com/google/protobuf/releases)下载适用于您的平台的预编译二进制文件（`protoc-<version>-<platform>.zip`）：
 
@@ -53,11 +67,11 @@ export GOPATH=/home/sugoi/go
 export PATH=$PATH:/opt/go/bin:$GOPATH/bin
 ```
 
-## 下载示例
+## 0.2. 下载示例
 
 使用`go get google.golang.org/grpc`获取的grpc代码也包含它示例。它们可以在示例`dir:$GOPATH/src/google.golang.org/grpc/examples`下找到。
 
-## 编译示例
+## 0.3. 编译示例
 
 进入示例所在的目录下：
 
@@ -74,7 +88,7 @@ gRPC服务在`.proto`文件中定义，该文件用于生成相应的`.pb.go`文
 - 生成客户端和服务端的代码
 - 用于填充，序列化和检索`HelloRequest`和`HelloReply`消息类型的代码
 
-## 尝试一下
+## 0.4. 尝试一下
 
 使用`go run`代码来编译并执行服务端和客户端代码，在示例目录下执行如下命令：
 
@@ -90,7 +104,7 @@ go run greeter_client/main.go
 
 这样就成功的使用gRPC运行客户端-服务端应用程序。
 
-## 更新gRPC服务端
+## 0.5. 更新gRPC服务端
 
 现在让我们看看如何使用其他方法更新应用程序中服务端的代码以供客户端调用。我们的gRPC服务是使用protocol buffers定义的；可以在[gRPC简介](../gRPC/01-gRPC简介.md)和[gRPC基础:Go](https://grpc.io/docs/tutorials/basic/go/)中找到更多关于如何在`.proto`文件中定义服务的知识。现在需要知道的是，服务端和客户端的stub都有一个`SayHello` RPC方法，该方法从客户端获取`HelloRequest`参数并从服务器返回`HelloReply`，此方法定义如下：
 
@@ -136,7 +150,7 @@ message HelloReply {
 }
 ```
 
-## 生成gRPC代码
+## 0.6. 生成gRPC代码
 
 接下来，更新应用程序使用的gRPC代码以使用新的服务定义，还在上面的例子目录（`$GOPATH/src/google.golang.org/grpc/examples/helloworld`）
 
@@ -146,11 +160,11 @@ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:hellowor
 
 这会使我们的更改重新生成`helloworld.pb.go`文件。
 
-## 更新并运行应用
+## 0.7. 更新并运行应用
 
 现在有了新生成的服务端和客户端代码，还需要在示例应用程序的手动编写部分中实现并调用新方法。
 
-### 更新服务端
+### 0.7.1. 更新服务端
 
 编辑`greeter_server/main.go`并向其添加以下函数：
 
@@ -160,7 +174,7 @@ func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.He
 }
 ```
 
-### 更新客户端
+### 0.7.2. 更新客户端
 
 编辑`greeter_client/main.go`并向其添加以下函数：
 
@@ -172,7 +186,7 @@ if err != nil {
 log.Printf("Greeting: %s", r.Message)
 ```
 
-### 运行
+### 0.7.3. 运行
 
 ```bash
 # 第一个命令行终端，运行服务端
