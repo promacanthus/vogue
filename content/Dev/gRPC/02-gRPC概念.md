@@ -51,7 +51,7 @@ gRPC允许您定义四种服务方法：
   rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse) ;
 ```
 
-- **双向流数据RPC**，双方使用读写流发送一系列消息，这两个流独立运行，因此客户端和服务端可以按照自己喜欢的顺序进行读写（例如，服务端可以在写入响应之前等待接收所有客户端消息，或者它可以交替地读取消息然后写入消息，或者其他一些读写组合）。gRPC保留每个流中的消息顺序。
+- **双向流数据RPC**，双方使用读写流发送一系列消息，这两个流独立运行，因此客户端和服务端可以按照自己喜欢的顺序进行读写（例如，服务端可以在写入响应之前等待接收所有客户端消息，或者它可以交替地读取消息然后写入消息，或者其他一些读写组合）。gRPC保证每个流中的消息顺序。
 
 ```protobuf
   rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
