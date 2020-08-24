@@ -4,6 +4,41 @@ date: 2020-04-14T10:09:14.258627+08:00
 draft: false
 ---
 
+- [0.1. 定义消息类型](#01-定义消息类型)
+  - [0.1.1. 指定字段类型](#011-指定字段类型)
+  - [0.1.2. 分配字段编号](#012-分配字段编号)
+  - [0.1.3. 自定字段规则](#013-自定字段规则)
+  - [0.1.4. 添加更多消息类型](#014-添加更多消息类型)
+  - [0.1.5. 添加注释](#015-添加注释)
+  - [0.1.6. 保留字段](#016-保留字段)
+  - [0.1.7. `.proto`文件将生成什么](#017-proto文件将生成什么)
+- [0.2. 标量值类型](#02-标量值类型)
+- [0.3. 默认值](#03-默认值)
+- [0.4. 枚举](#04-枚举)
+  - [0.4.1. 保留值](#041-保留值)
+- [0.5. 使用其他消息类型](#05-使用其他消息类型)
+  - [0.5.1. 导入定义](#051-导入定义)
+  - [0.5.2. 使用`proto2`消息类型](#052-使用proto2消息类型)
+- [0.6. 嵌套类型](#06-嵌套类型)
+- [0.7. 更新消息类型](#07-更新消息类型)
+- [0.8. 未知字段](#08-未知字段)
+- [0.9. `Any`](#09-any)
+- [0.10. `Oneof`](#010-oneof)
+  - [0.10.1. 使用`Oneof`](#0101-使用oneof)
+  - [0.10.2. `Oneof`的功能](#0102-oneof的功能)
+  - [0.10.3. 向后兼容性问题](#0103-向后兼容性问题)
+    - [0.10.3.1. 标签重用问题](#01031-标签重用问题)
+- [0.11. Maps](#011-maps)
+  - [0.11.1. 向后兼容性](#0111-向后兼容性)
+- [0.12. Packages](#012-packages)
+  - [0.12.1. 包和名称解析](#0121-包和名称解析)
+- [0.13. 定义服务](#013-定义服务)
+- [0.14. JSON映射](#014-json映射)
+  - [0.14.1. JSON选项](#0141-json选项)
+- [0.15. 可用选项](#015-可用选项)
+  - [0.15.1. 自定义选项](#0151-自定义选项)
+- [0.16. 生成自定义的类](#016-生成自定义的类)
+
 本指南介绍如何使用`protocol buffers`语言构建`protocol buffers`数据，包括：
 
 - `.proto`文件语法
@@ -13,7 +48,7 @@ draft: false
 
 这是一个参考指南，对于使用本文档中描述的许多功能的分步示例，请参阅所选语言的[教程](https://developers.google.com/protocol-buffers/docs/tutorials)（目前仅限`proto`2，更多`proto3`文档即将推出）。
 
-## 定义消息类型
+## 0.1. 定义消息类型
 
 首先看一个非常简单的例子。假设要定义搜索请求消息格式，其中每个搜索请求都有：
 
@@ -34,11 +69,11 @@ message SearchRequest {     // 消息格式以名称-值对的形式指定三个
 }
 ```
 
-### 指定字段类型
+### 0.1.1. 指定字段类型
 
 在上面的例子中，所有的字段都是标量类型：两个整型一个字符串类型。同时也可以给字段指定组合类型（包括枚举或其他类型）。
 
-### 分配字段编号
+### 0.1.2. 分配字段编号
 
 如上所示，消息定义中的每个字段都定义一个**唯一的编号**。这些字段的编号用于在消息的[二进制格式](../04-编码/)中标识字段，一旦消息类型被使用就不能再更改。请注意：
 
@@ -51,7 +86,7 @@ message SearchRequest {     // 消息格式以名称-值对的形式指定三个
 
 如果在`.proto`中使用这些保留数字之一，`protocol buffers`编译器会发出警告。同样，不能使用任何以前保留的字段编号。
 
-### 自定字段规则
+### 0.1.3. 自定字段规则
 
 消息的字段可以是以下之一：
 
@@ -62,7 +97,7 @@ message SearchRequest {     // 消息格式以名称-值对的形式指定三个
 
 在[`Protocol Buffer Encoding`](../04-编码/)中找到有关压缩编码的更多信息。
 
-### 添加更多消息类型
+### 0.1.4. 添加更多消息类型
 
 可以在单个`.proto`文件中定义多种消息类型。如果要定义多个相关消息，这非常有用。例如，如果要定义与`SearchResponse`消息类型对应的回复消息格式，则可以将其添加到相同的`.proto`文件中：
 
@@ -78,7 +113,7 @@ message SearchResponse {
 }
 ```
 
-### 添加注释
+### 0.1.5. 添加注释
 
 要为`.proto`文件添加注释，请使用`C/C++`样式`//`和`/* ... */`语法。
 
@@ -93,7 +128,7 @@ message SearchRequest {
 }
 ```
 
-### 保留字段
+### 0.1.6. 保留字段
 
 如果通过完全删除字段或将其注释来更新消息类型，未来的用户可以在对类型进行更新时再次使用该字段编号。如果以后加载相同`.proto`文件的旧版本，这可能会导致严重问题，包括数据损坏，隐私错误等。确保不会发生这种情况的一种方法是**指定已删除字段或字段的编号为保留的**（否则可能导致JSON序列化问题）。如果将来的任何用户尝试使用这些字段标识符，`protocol buffers`编译器将会发出警告。
 
@@ -106,7 +141,7 @@ message Foo {
 
 请注意，不能在同一保留语句中混合字段名称和字段编号。
 
-### `.proto`文件将生成什么
+### 0.1.7. `.proto`文件将生成什么
 
 在`.proto`文件上运行`protocol buffers`编译器时，编译器会根据文件中的描述生成所选语言的代码，这些代码是需要使用的消息类型，包括：获取和设置字段值，将消息序列化为输出流，并从输入流中解析消息。
 
@@ -121,7 +156,7 @@ message Foo {
 
 可以按照所选语言的教程（即将推出的proto3版本）了解有关为每种语言使用API​​的更多信息。有关更多API详细信息，请参阅相关[API参考](https://developers.google.com/protocol-buffers/docs/reference/overview)（proto3版本即将推出）。
 
-## 标量值类型
+## 0.2. 标量值类型
 
 标量消息字段可以具有以下类型之一：该表显示`.proto`文件中指定的类型，以及自动生成的类中的相应类型：
 
@@ -145,7 +180,7 @@ message Foo {
 
 在[`protocol buffers`编码](../04-编码/)中可以找到更多关于在序列化消息时这些类型是如何被编码的信息。
 
-## 默认值
+## 0.3. 默认值
 
 在解析消息时，如果编码消息不包含某个特定的单数元素，则解析对象中相应的字段将被设置为该字段的默认值。这些默认值根据类型而不同：
 
@@ -162,7 +197,7 @@ message Foo {
 
 有关默认值如何在生成的代码中工作的更多详细信息，请参阅所选语言的[生成代码指南](https://developers.google.com/protocol-buffers/docs/reference/overview)。
 
-## 枚举
+## 0.4. 枚举
 
 在定义消息类型时，可能希望其中一个字段只有一个预定义的值列表。例如，假设要为每个`SearchRequest`添加语料库（`corups`）字段，其中语料库可以是`UNIVERSAL`，`WEB`，`IMAGES`，`LOCAL`，`NEWS`，`PRODUCTS`或`VIDEO`。可以非常简单地通过向消息定义添加枚举（`enum`），并为每个可能的值添加常量。
 
@@ -220,7 +255,7 @@ enum EnumNotAllowingAlias {
 
 有关如何在应用程序中使用消息枚举的详细信息，请参阅所选语言的[生成代码指南](https://developers.google.com/protocol-buffers/docs/reference/overview)。
 
-### 保留值
+### 0.4.1. 保留值
 
 如果通过完全删除枚举条目或将其注释掉来更新枚举类型，那么未来的用户可以在对类型进行更新时重用该数值。如果后面又加载相同`.proto`文件的旧版本，这可能会导致严重问题（包括数据损坏，隐私错误等）。确保不会发生这种情况的一种方法是设置已删除条目的数值（和`/`或名称，也可能导致JSON序列化问题））为`reserved`。如果将来的任何用户尝试使用这些标识符，`protocol buffers`编译器将会发出警告。可以使用`max`关键字指定保留（`reserved`）的数值范围达到最大可能值。
 
@@ -233,7 +268,7 @@ enum Foo {
 
 请注意，不能在同一保留（`reserved`）语句中混合字段名称和数值。
 
-## 使用其他消息类型
+## 0.5. 使用其他消息类型
 
 可以使用其他消息类型作为字段类型。例如，假设在每个`SearchResponse`消息中包含`Result`消息，为此，可以在同一`.proto`中定义`Result`消息类型，然后在`SearchResponse`中指定`Result`类型的字段：
 
@@ -249,7 +284,7 @@ message Result {
 }
 ```
 
-### 导入定义
+### 0.5.1. 导入定义
 
 在上面的示例中，`Result`消息类型在与`SearchResponse`相同的文件中定义，如果要用作字段类型的消息类型在另一个`.proto`文件中定义，可以通过导入来使用其他`.proto`文件中的定义。
 
@@ -277,11 +312,11 @@ import "old.proto";
 
 `proto`编译器使用`-I/--proto_path`标志在编译器命令行中指定的一组目录中搜索导入的文件。如果没有给出标志，它将查找调用编译器的目录。通常，应将`--proto_path`标志设置为项目的根目录，并对所有导入使用完全限定名称。
 
-### 使用`proto2`消息类型
+### 0.5.2. 使用`proto2`消息类型
 
 可以导入[`proto2`](https://developers.google.com/protocol-buffers/docs/proto)消息类型并在`proto3`消息中使用它们，反之亦然。但是，`proto2`枚举不能直接用于`proto3`语法（如果已导入的`proto2`消息使用它们就没关系）。
 
-## 嵌套类型
+## 0.6. 嵌套类型
 
 可以在其他消息类型中定义和使用消息类型，如下例所示：此处`Result`消息在`SearchResponse`消息中定义：
 
@@ -323,7 +358,7 @@ message Outer {       // Level 0
 }
 ```
 
-## 更新消息类型
+## 0.7. 更新消息类型
 
 如果现有的消息类型不再满足需求，例如，希望消息格式具有额外的字段，但仍然希望使用旧格式创建的代码。**在不破坏任何现有代码的情况下更新消息类型非常简单**。请记住以下规则：
 
@@ -338,13 +373,13 @@ message Outer {       // Level 0
 - `enum`在传输格式中与`int32`，`uint32`，`int64`和`uint64`兼容（请注意，如果值不合适，将截断值）。但请注意，在反序列化消息时，客户端代码可能会以不同方式对待它们：例如，无法识别的`proto3`枚举类型将保留在消息中，但在反序列化消息时如何表示它是依赖于编程语言的。`Int`字段总是保留它们的值。
 - 将单个值更改为新`oneof`的成员是安全且二进制兼容的。如果确保没有代码一次设置多个字段，那么将多个字段移动到新的`oneof`可能是安全的。将任何字段移动到某个现有的`oneof`中都是不安全的。
 
-## 未知字段
+## 0.8. 未知字段
 
 未知字段是格式良好的`protocol buffers`序列化数据，它表示解析器无法识别的字段。例如，当旧二进制文件解析具有新字段的新二进制文件发送的数据时，这些新字段将成为旧二进制文件中的未知字段。
 
 最初，`proto3`消息在解析期间总是丢弃未知字段，但在3.5版本中，重新引入了未知字段的保存以匹配`proto2`行为。在版本3.5及更高版本中，未知字段在解析期间保留并包含在序列化输出中。
 
-## `Any`
+## 0.9. `Any`
 
 `Any`消息类型允许将消息用作嵌入类型，而无需使用这些消息的`.proto`定义。`Any`包含任意序列化消息（如`byte`），并带有一个`URL`作为该消息类型的全局唯一标识符用于表示和解析它。要使用`Any`类型，需要导入`google/protobuf/any.proto`。
 
@@ -382,13 +417,13 @@ for (const Any& detail : status.details()) {
 
 如果已熟悉[`proto2`语法](https://developers.google.com/protocol-buffers/docs/proto)，则`Any`类型将替换[扩展](https://developers.google.com/protocol-buffers/docs/proto#extensions)。
 
-## `Oneof`
+## 0.10. `Oneof`
 
 如果有一个包含许多字段的消息，并且最多只能同时设置一个字段，则可以使用`oneof`来强制执行此操作同时还能节省内存。
 
 `oneof`字段与正常的字段一样，只是在同一个`oneof`中的所有字段共享内存，并且最多可以同时设置一个字段。设置`oneof`中的任何一个成员时都会自动清除所有其他成员。可以使用`case()`或`WhichOneof()`方法检查`oneof`中的哪个值（如果有）被设置了，具体使用哪个取决于选择的编程语言。
 
-### 使用`Oneof`
+### 0.10.1. 使用`Oneof`
 
 要在`.proto`中定义`oneof`，请使用`oneof`关键字，并在后面跟着`oneof`名称，在本例中为`test_oneof`：
 
@@ -405,7 +440,7 @@ message SampleMessage {
 
 在生成的代码中，`oneof`字段与常规字段具有相同的`getter`和`setter`。还可以获得一种特殊方法来检查`oneof`中设置了哪个值（如果有）。可以在相关[API参考](https://developers.google.com/protocol-buffers/docs/reference/overview)中找到有关所选语言的`oneof API`的更多信息。
 
-### `Oneof`的功能
+### 0.10.2. `Oneof`的功能
 
 - 设置`oneof`字段将自动清除`oneof`的所有其他成员。因此，如果设置多个字段，则只有设置的最后一个字段仍然具有值。
 
@@ -441,17 +476,17 @@ message SampleMessage {
     CHECK(msg2.has_name());
     ```
 
-### 向后兼容性问题
+### 0.10.3. 向后兼容性问题
 
 添加或删除`oneof`字段时要小心。如果在检查`oneof`的值返回`None/NOT_SET`，这可能意味着`oneof`尚未设置或已设置为`oneof`的另一个不同版本。没有办法区分，因为没有办法知道传输中的未知字段是否是`oneof`的成员。
 
-#### 标签重用问题
+#### 0.10.3.1. 标签重用问题
 
 - **将字段移入或移出`oneof`**：在序列化或解析消息后，可能会丢失一些信息（某些字段将被清除）。但是，可以安全地将单个字段移动到新的`oneof`字段中，并且如果已知只有一个字段被设置，则可以移动多个字段。
 - **删除`oneof`字段并将其添加回**：在序列化或解析消息后，这可能会清除当前设置的`oneof`字段。
 - **拆分或合并`oneof`**：这与移动常规字段有类似的问题。
 
-## Maps
+## 0.11. Maps
 
 如果要在数据定义中创建关联映射，`protocol buffers`提供了一种方便的快捷方式语法：
 
@@ -475,7 +510,7 @@ map<string, Project> projects = 3;
 
 目前，所有`proto3`支持的编程语言都能生成`map`API，更多关于所选语言的`map`API的参考查看[API参考文档](https://developers.google.com/protocol-buffers/docs/reference/overview)。
 
-### 向后兼容性
+### 0.11.1. 向后兼容性
 
 在传输时，`map`的语法等效于下面的示例，因此不支持`map`的`protocol buffers`实现仍然可以处理传输的数据：
 
@@ -490,7 +525,7 @@ repeated MapFieldEntry map_field = N;
 
 支持`map`的任何`protocol buffers`实现都必须生成和接受上述定义所表示的可接受的数据。
 
-## Packages
+## 0.12. Packages
 
 可以将可选的`package`说明符添加到`.proto`文件，以防止`protocol buffers`消息类型之间的名称冲突。
 
@@ -518,13 +553,13 @@ message Foo {
 - 在`Ruby`中，生成的类包含在嵌套的`Ruby`命名空间中，转换为所需的`Ruby`大写形式（首字母大写;如果第一个字符不是字母，则`PB_`前置）。例如，`Open`将位于名称空间`Foo::Bar`中。
 - 在`C＃`中，转换为`PascalCase`后，包将用作命名空间，除非在`.proto`文件中明确提供选项`csharp_namespace`。例如，`Open`将位于名称空间`Foo.Bar`中。
 
-### 包和名称解析
+### 0.12.1. 包和名称解析
 
 `protocol buffers`语言中的类型名称解析与`C++`类似：首先搜索最里面的范围，然后搜索下一个范围，依此类推，每个包被认为是其父包的“内部”。一个`'.'` （例如`.foo.bar.Baz`）意味着从最外层的范围开始。
 
 `protocol buffers`编译器通过解析导入的`.proto`文件来解析所有类型名称。每种编程语言的代码生成器都知道如何引用该语言中的每种类型，即使它具有不同的范围规则。
 
-## 定义服务
+## 0.13. 定义服务
 
 如果要在RPC（远程过程调用）系统中使用自定义消息类型，可以在`.proto`文件中定义RPC服务接口`protocol buffers`编译器将以选择的编程语言生成服务接口代码和`stub`。
 
@@ -542,7 +577,7 @@ service SearchService {
 
 还有一些正在进行的第三方项目为`Protocol Buffers`开发RPC实现。有关我们了解的项目的链接列表，请参阅[第三方加载项wiki页面](https://github.com/protocolbuffers/protobuf/blob/master/docs/third_party.md)。
 
-## JSON映射
+## 0.14. JSON映射
 
 `Proto3`支持`JSON`中的规范编码，使得在系统之间共享数据变得更加容易。在下表中逐个类型地描述编码。
 
@@ -571,7 +606,7 @@ service SearchService {
 | NullValue              | null          |                                           | JSON中的`null`                                                                                                                                                                                                                                                                     |
 | Empty                  | object        | `{}`                                      | 空的JSON对象                                                                                                                                                                                                                                                                       |
 
-### JSON选项
+### 0.14.1. JSON选项
 
 `proto3 JSON`实现可以提供以下可用选项：
 
@@ -580,7 +615,7 @@ service SearchService {
 - **使用`proto`字段名称而不是小驼峰命名的名称**：默认情况下，`proto3 JSON`会将字段名称转换为小驼峰命名并将其用作JSON的名称。有一个选项可以提供使用`proto`字段名称作为JSON的名称。`proto3 JSON`解析器需要接受转换后的小驼峰命名的名称和`proto`字段名称。
 - **将枚举值作为整数而不是字符串输出**：默认情况下，在JSON输出中使用枚举值的名称。可以提供一个选项以使用枚举值的数值。
 
-## 可用选项
+## 0.15. 可用选项
 
 `.proto`文件中的各个声明可以使用许多选项进行注释。选项不会更改声明的整体含义，但可能会影响该声明在特定上下文中被处理的方式。可用选项的完整列表在`google/protobuf/descriptor.proto`中定义。
 
@@ -616,9 +651,9 @@ service SearchService {
     option optimize_for = CODE_SIZE;
     ```
 
-    - `SPEED`（default）：`protocol buffers`编译器将生成用于对消息类型进行序列化、解析和执行其他常见操作的代码。此代码经过高度优化。
-    - `CODE_SIZE`：`protocol buffers`编译器将生成最小的类，并依赖于基于反射的共享代码来实现序列化、解析和各种其他操作。因此生成的代码将比使用`SPEED`小得多，但操作会更慢。生成的类仍将实现与`SPEED`模式完全相同的公共API。此模式在包含大量`.proto`文件的应用程序中最有用，并且不需要所有这些文件都非常快速。
-    - `LITE_RUNTIME`：`protocol buffers`编译器将生成仅依赖于`“lite”`的运行时库的类（即依赖于`libprotobuf-lite`而不是`libprotobuf`）。`lite`运行时库比完整库小得多（大约小一个数量级），其中省略了描述符和反射等功能。这对于在移动电话等受限平台上运行的应用程序尤其有用。编译器仍将生成所有方法的快速实现，就像在`SPEED`模式下那样。生成的类将仅实现每种语言的`MessageLite`接口，该接口仅提供完整`Message`接口的方法的子集。
+  - `SPEED`（default）：`protocol buffers`编译器将生成用于对消息类型进行序列化、解析和执行其他常见操作的代码。此代码经过高度优化。
+  - `CODE_SIZE`：`protocol buffers`编译器将生成最小的类，并依赖于基于反射的共享代码来实现序列化、解析和各种其他操作。因此生成的代码将比使用`SPEED`小得多，但操作会更慢。生成的类仍将实现与`SPEED`模式完全相同的公共API。此模式在包含大量`.proto`文件的应用程序中最有用，并且不需要所有这些文件都非常快速。
+  - `LITE_RUNTIME`：`protocol buffers`编译器将生成仅依赖于`“lite”`的运行时库的类（即依赖于`libprotobuf-lite`而不是`libprotobuf`）。`lite`运行时库比完整库小得多（大约小一个数量级），其中省略了描述符和反射等功能。这对于在移动电话等受限平台上运行的应用程序尤其有用。编译器仍将生成所有方法的快速实现，就像在`SPEED`模式下那样。生成的类将仅实现每种语言的`MessageLite`接口，该接口仅提供完整`Message`接口的方法的子集。
 `
 - `cc_enable_arenas`（文件级选项）：为`C++`生成的代码启用[竞技场分配](https://developers.google.com/protocol-buffers/docs/reference/arenas)。
 - `objc_class_prefix`（文件级选项）：设置`Objective-C`类前缀，该前缀由此`.proto`文件提供给所有`Objective-C`生成的类和枚举，没有默认值。应该使用[Apple建议](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html#//apple_ref/doc/uid/TP40011210-CH10-SW4)的3-5个大写字符之间的前缀。请注意，Apple保留所有2个字母的前缀。
@@ -628,11 +663,11 @@ service SearchService {
     int32 old_field = 6 [deprecated=true];
     ```
 
-### 自定义选项
+### 0.15.1. 自定义选项
 
 `Protocol Buffers`还允许定义和使用自定义的选项。这是大多数人不需要的**高级功能**。如果确实认为需要创建自定义的选项，请参阅[`proto2`语言指南](https://developers.google.com/protocol-buffers/docs/proto.html#customoptions)以获取详细信息。请注意，创建自定义的选项使用的[扩展](https://developers.google.com/protocol-buffers/docs/proto.html#extensions)仅允许用于`proto3`中的自定义的选项。
 
-## 生成自定义的类
+## 0.16. 生成自定义的类
 
 需要使`.proto`文件中定义的消息类型来生成`Java`，`Python`，`C++`，`Go`，`Ruby`，`Objective-C`或`C＃`代码，这需要在`.proto`上运行`protocol buffers`编译器`protoc`。如果尚未安装编译器，请下载该软件包并按照自述文件中的说明进行操作。对于`Go`，还需要为编译器安装一个特殊的代码生成器插件，可以在`GitHub`上的`golang/protobuf`存储库中找到这个插件和安装说明。
 
@@ -652,14 +687,14 @@ protoc --proto_path=IMPORT_PATH \
 
 - `IMPORT_PATH`指定解析导入指令时查找`.proto`文件的目录，如果省略，则使用当前目录。可以通过多次传递`--proto_path`选项来指定多个导入目录,将按顺序搜索。`-I=IMPORT_PATH`可以用作`--proto_path`的缩写形式。
 - 可以提供一个或多个输出指令：
-    - `--cpp_out`在`DST_DIR`中生成`C++`代码。有关更多信息，请参阅[`C++`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/cpp-generated)。
-    - `--java_out`在`DST_DIR`中生成`Java`代码。有关更多信息，请参阅[`Java`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/java-generated)。
-    - `--python_out`在`DST_DIR`中生成`Python`代码。有关更多信息，请参阅[`Python`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/python-generated)。
-    - `--go_out`在`DST_DIR`中生成`Go`代码。有关更多信息，请参阅[`Go`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/go-generated)。
-    - `--ruby_out`在`DST_DIR`中生成`Ruby`代码。`Ruby`生成的代码参考即将推出！
-    - `--objc_out`在`DST_DIR`中生成`Objective-C`代码。有关更多信息，请参阅[`Objective-C`生成的代码参考](https://developers.google.com/protocol-buffers/docs/reference/objective-c-generated)。
-    - `--csharp_out`在`DST_DIR`中生成`C＃`代码。有关更多信息，请参阅[`C＃`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/csharp-generated)。
-    - `--php_out`在`DST_DIR`中生成`PHP`代码。有关更多信息，请参阅[`PHP`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/php-generated)。
+  - `--cpp_out`在`DST_DIR`中生成`C++`代码。有关更多信息，请参阅[`C++`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/cpp-generated)。
+  - `--java_out`在`DST_DIR`中生成`Java`代码。有关更多信息，请参阅[`Java`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/java-generated)。
+  - `--python_out`在`DST_DIR`中生成`Python`代码。有关更多信息，请参阅[`Python`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/python-generated)。
+  - `--go_out`在`DST_DIR`中生成`Go`代码。有关更多信息，请参阅[`Go`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/go-generated)。
+  - `--ruby_out`在`DST_DIR`中生成`Ruby`代码。`Ruby`生成的代码参考即将推出！
+  - `--objc_out`在`DST_DIR`中生成`Objective-C`代码。有关更多信息，请参阅[`Objective-C`生成的代码参考](https://developers.google.com/protocol-buffers/docs/reference/objective-c-generated)。
+  - `--csharp_out`在`DST_DIR`中生成`C＃`代码。有关更多信息，请参阅[`C＃`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/csharp-generated)。
+  - `--php_out`在`DST_DIR`中生成`PHP`代码。有关更多信息，请参阅[`PHP`生成代码参考](https://developers.google.com/protocol-buffers/docs/reference/php-generated)。
 
     为方便起见，如果`DST_DIR`以`.zip`或.`jar`结尾，编译器会将输出写入具有给定名称的单个`ZIP`格式存档文件。`.jar`输出还将根据`Java JAR`规范的要求提供清单文件。请注意，如果输出存档已存在，则会被覆盖; 编译器不够智能，无法将文件添加到现有存档中。
 

@@ -4,9 +4,15 @@ date: 2020-04-14T10:09:14.254627+08:00
 draft: false
 ---
 
+- [0.1. Protocol buffers如何工作](#01-protocol-buffers如何工作)
+- [0.2. 为什么不直接用XML](#02-为什么不直接用xml)
+- [0.3. 如何开始使用](#03-如何开始使用)
+- [0.4. `proto3`简介](#04-proto3简介)
+- [0.5. 一点小历史](#05-一点小历史)
+  
 `Protocol buffers`是一种灵活，高效，自动化的机制，用于序列化结构化的数据（如`XML`），但是它更小，更快，更简单。可以定义数据如何被结构化，然后使用特定的生成的源代码轻松地将结构化数据在各种数据流中写入和读取，这支持各种编程语言。甚至可以更新数据结构，而不会破坏根据“旧”格式编译的已部署程序。
 
-## Protocol buffers如何工作
+## 0.1. Protocol buffers如何工作
 
 通过在`.proto`文件中定义`protocol buffers`消息类型来指定希望如何构建序列化信息。每个`protocol buffers`消息都是一个小的逻辑信息记录，包含一系列**名称-值**对。以下是`.proto`文件的一个非常基本的示例，该文件定义了包含有关人员信息的消息：
 
@@ -77,7 +83,7 @@ cout << "E-mail: " << person.email() << endl;
 
 将在[API参考](https://developers.google.com/protocol-buffers/docs/reference/overview)部分找到有关使用生成的`protocol buffers`代码的完整参考，在[`protocol buffers`编码](https://developers.google.com/protocol-buffers/docs/encoding)中找到有关`protocol buffers`消息如何编码的更多信息。
 
-## 为什么不直接用XML
+## 0.2. 为什么不直接用XML
 
 对于序列化结构化数据，`protocol buffers`比`XML`具有许多优点：
 
@@ -133,13 +139,13 @@ cout << "E-mail: " << person.email() << endl;
 2. `XML`是人类可读和可编辑的; `protocol buffers`在它原生的格式中不是人类可读和可编辑的。
 3. `XML`在某种程度上也是自我描述的。只有拥有消息定义（如`.proto文件`）时，`protocol buffers`才有意义。
 
-## 如何开始使用
+## 0.3. 如何开始使用
 
 [下载这个包](https://developers.google.com/protocol-buffers/docs/downloads)，它包含`Java`，`Python`和`C++`版本的`protocol buffers`编译器的完整源代码，以及`I/O`和测试所需的类。要构建和安装编译器，请按照自述文件中的说明进行操作。
 
 完成所有设置后，请尝试按照所选语言的[教程](https://developers.google.com/protocol-buffers/docs/tutorials)进行操作，这将指导你创建一个使用`protocol buffers`的简单应用程序。
 
-## `proto3`简介
+## 0.4. `proto3`简介
 
 最新的版本3[发布](https://github.com/protocolbuffers/protobuf/releases)了一个新的语言版本：`Protocol Buffers语言版本3`（简称`proto3`），以及现有语言版本（简称`proto2`）中的一些新功能。`Proto3`简化了`protocol buffers`语言，既易于使用，又可以在更广泛的编程语言中使用：当前的版本允许使用`Java`，`C++`，`Python`，`Java Lite`，`Ruby`，`JavaScript`，`Objective`和`C＃`来生成`protocol buffers`代码。此外，可以使用最新的`Go protoc`插件为Go生成`proto3`代码，该插件可从[`golang/protobuf`](https://github.com/golang/protobuf) Github存储库获得。更多的语言正在筹备中。
 
@@ -149,7 +155,7 @@ cout << "E-mail: " << person.email() << endl;
 
 （如果名称`proto2`和`proto3`看起来有点令人困惑，那是因为最初开源`protocol buffers`时，它实际上是Google的第二版语言，也称为`proto2`，这也是开源版本号从v2开始的原因。
 
-## 一点小历史
+## 0.5. 一点小历史
 
 `protocol buffers`最初是在Google开发的，用于处理索引服务器请求/响应协议。在`protocol buffers`之前，有一种请求和响应的格式，它使用请求和响应的手动编组/解组，并支持许多版本的协议。 这导致一些非常丑陋的代码，如：
 
