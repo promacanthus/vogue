@@ -465,7 +465,7 @@ func lorem(ctx context.Context, service lorem_grpc.Service, requestType string, 
 cd $GOPATH
 
 #Running grpc server
-go run src/github.com/ru-rocker/gokit-playground/lorem-grpc/server/src/github.com/ru-rocker/gokit-playground/lorem-grpc/server/server_grpc_main.go
+go run src/github.com/ru-rocker/gokit-playground/lorem-grpc/server/server_grpc_main.go
 ```
 
 接下来，执行客户端：
@@ -491,7 +491,18 @@ difficultates
 
 # paragraph
 go run src/github.com/ru-rocker/gokit-playground/lorem-grpc/client/cmd/client_grpc_main.go lorem paragraph 10 20
-En igitur aequo tibi ita recedimus an aut eum tenacius quae mortalitatis eram aut rapit montium inaequaliter dulcedo aditum. Rerum tempus mala anima volebant dura quae o modis, fama vanescit fit. Nuntii comprehendet ponamus redducet cura sero prout, nonne respondi ipsa angelos comes, da ea saepe didici. Crebro te via hos adsit. Psalmi agam me mea pro da. Audi pati sim da ita praeire nescio faciant. Deserens da contexo e suaveolentiam qualibus subtrahatur excogitanda pusillus grex, e o recorder cor re libidine. Ore siderum ago mei, cura hi deo. Dicens ore curiosarum, filiorum eruuntur munerum displicens ita me repente formaeque agam nosti. Deo fama propterea ab persentiscere nam acceptam sed e a corruptione. Rogo ea nascendo qui, fuit ceterarumque. Drachmam ore operatores exemplo vivunt. Recolo hi fac cor secreta fama, domi, rogo somnis. Sapores fidei maneas saepe corporis re oris quantulum doleam te potu ita lux da facie aut. Benedicendo e tertium nosse agam ne amo, mole invenio dicturus me cognoscere ita aer se memor consulerem ab te rei. Miles ita amaritudo rogo hi flendae quietem invoco quae odor desuper tu. Temptatione dicturus ita mediator ita mundum lux partes miseros percepta seu dicant avaritiam nares contra deseri securus. Ea sobrios tale, rogo sanctis. Ita ne manu uspiam hierusalem, transeam dicite subduntur responsa cor socialiter fit deseri album praeditum.
+En igitur aequo tibi ita recedimus an aut eum tenacius quae mortalitatis eram aut rapit montium inaequaliter dulcedo aditum.
+Rerum tempus mala anima volebant dura quae o modis fama vanescit fit. Nuntii comprehendet ponamus redducet cura sero prout,
+nonne respondi ipsa angelos comes, da ea saepe didici. Crebro te via hos adsit. Psalmi agam me mea pro da.
+Audi pati sim da ita praeire nescio faciant. Deserens da contexo e suaveolentiam qualibus subtrahatur excogitanda pusillus grex,
+e o recorder cor re libidine. Ore siderum ago mei, cura hi deo.
+Dicens ore curiosarum, filiorum eruuntur munerum displicens ita me repente formaeque agam nosti.
+Deo fama propterea ab persentiscere nam acceptam sed e a corruptione. Rogo ea nascendo qui, fuit ceterarumque. Drachmam ore operatores exemplo vivunt.
+Recolo hi fac cor secreta fama, domi, rogo somnis. Sapores fidei maneas saepe corporis re oris quantulum doleam te potu ita lux da facie aut.
+Benedicendo e tertium nosse agam ne amo, mole invenio dicturus me cognoscere ita aer se memor consulerem ab te rei.
+Miles ita amaritudo rogo hi flendae quietem invoco quae odor desuper tu.
+Temptatione dicturus ita mediator ita mundum lux partes miseros percepta seu dicant avaritiam nares contra deseri securus.
+Ea sobrios tale, rogo sanctis. Ita ne manu uspiam hierusalem, transeam dicite subduntur responsa cor socialiter fit deseri album praeditum.
 ```
 
 ## 总结
