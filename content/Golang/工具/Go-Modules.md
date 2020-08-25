@@ -10,7 +10,7 @@ Go 语言中一直被人诟病的一个问题就是**没有一个比较好用的
 
 - govendor
 - dep
-- glide等
+- glide
 
 有一些差不多成了半官方的工具了，但是这些工具都还是需要依赖于`GOPATH`。
 
@@ -66,7 +66,7 @@ module <模块名>
 
 ### 第三步
 
-上述第二步，将当前包变成了一个Module，将代码推送到仓库，以Github为例，仓库地址为：https://github.com/sample_golang_module/example。
+上述第二步，将当前包变成了一个Module，将代码推送到仓库，以Github为例，仓库地址为：<https://github.com/sample_golang_module/example>。
 
 ```bash
 git init
@@ -265,7 +265,7 @@ func main() {
 
 go run main.go命令会自动拉取v2模块的代码：
 
-```
+```bash
 $ go run main.go
 go: finding github.com/sample_golang_module/example/v2 v2.0.0
 go: downloading github.com/sample_golang_module/example/v2 v1.0.0
@@ -293,7 +293,7 @@ go mod tidy
 
 Go Modules 默认会忽略 `vendor/` 这个目录，但是如果还想将依赖放入 vendor 目录的话，可以执行下面的命令：
 
-```
+```bash
 go mod vendor
 ```
 
@@ -301,19 +301,40 @@ go mod vendor
 
 > 不过建议还是不要使用该命令，尽量去忘掉 vendor 的存在。
 
+### 如何将vendor和modules一起使用
+
+> vendor是不是渐行渐远了？
+> vgo博客文章中建议完全放弃vendor，但是社区的反馈意见导致对vendor的支持。
+
+简而言之，在modules中使用vendor：
+
+- `go mod vendor`会重置moudules中的vendor目录，并基于go.mod的内容和Go源代码，将build和test需要的所有moudels包都放入这个目录中
+- 默认情况下，开启module模式后，go的命令如`go build`会忽略vendor目录
+- 标识参数`-mod=vendor`(如`go buld -mod=vendor`)告诉go命令使用主模块中顶级目录下的vendor目录来满足依赖。这种模式下，这个go命令会因此而忽略在go.mod中描述的依赖并假设vendor目录中存放着所有依赖的正确拷贝。**注意：只有在主模块的顶级目录下的vendor目录会被使用，其他路径下的vendor目录依然会被忽略**
+- 一些人可能希望通过设置`GOFLAGS=-mod=vendor`环境变量，来习惯性的加入vendor
+
+Go的老版本（如1.10）知道如何使用通过`go mod vendor`命令创建vendor目录，在禁用module模块的Go1.11和1.12+版本也是如此。
+
+因此，vendor是module提供依赖的一种方式，对于不能完全理解module模块的老版本和没有启用module模块的项目。
+
+### 用例
+
+制作依赖副本：`go mod vendor -v`
+
+- -v ：打印出依赖模块的名字到stderr
+
 ## 镜像仓库
 
 如果有一些依赖包下载不下来的，我们可以使用 GOPROXY 这个参数来设置模块代理，比如：
 
 ```bash
-$ export GOPROXY="https://goproxy.io"
+export GOPROXY="https://goproxy.io"
 ```
 
-阿里云也提供了 Go Modules 代理仓库服务：http://mirrors.aliyun.com/goproxy/，使用很简单就两步：
+阿里云也提供了 Go Modules 代理仓库服务：<http://mirrors.aliyun.com/goproxy/>，使用很简单就两步：
 
 1. 使用 go1.11 以上版本并开启 go module 机制：`export GO111MODULE=on`
 2. 导出 GOPROXY 环境变量：`export GOPROXY=https://mirrors.aliyun.com/goproxy/`
-
 
 如果你想上面的配置始终生效，可以将这两条命令添加到. bashrc 中去。
 
@@ -338,6 +359,7 @@ docker run -d -v $ATHENS_STORAGE:/var/lib/athens \
 其中 ATHENS_STORAGE 是用来存放我们下载下来的模块的本地路径，另外 ATHENS 还支持其他类型的存储，比如 内存, AWS S3 或 Minio，都是 OK 的。
 
 然后修改 GOPROXY 配置：
+
 ```bash
 export GOPROXY=http://127.0.0.1:3000
 ```
