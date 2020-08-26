@@ -8,10 +8,10 @@ draft: true
   - [0.1.1. 示例一](#011-示例一)
   - [0.1.2. 示例二](#012-示例二)
 - [0.2. 更多](#02-更多)
-- [for-range与goroutine](#for-range与goroutine)
-  - [问题代码](#问题代码)
-  - [原因](#原因)
-  - [解决方案](#解决方案)
+- [0.3. for-range与goroutine](#03-for-range与goroutine)
+  - [0.3.1. 问题代码](#031-问题代码)
+  - [0.3.2. 原因](#032-原因)
+  - [0.3.3. 解决方案](#033-解决方案)
 
 ## 0.1. 技巧
 
@@ -151,9 +151,9 @@ string：
 //   }
 ```
 
-## for-range与goroutine
+## 0.3. for-range与goroutine
 
-### 问题代码
+### 0.3.1. 问题代码
 
 ```golang
 package main
@@ -187,7 +187,7 @@ server url: 0.0.0.0:7000
 server url: 0.0.0.0:7000
 ```
 
-### 原因
+### 0.3.2. 原因
 
 goroutine的启动需要准备时间。
 
@@ -195,7 +195,7 @@ goroutine的启动需要准备时间。
 
 此时url局部变量中的值是最后一次for循环的url的内容，三个goroutine准备完毕开始启动读取url局部变量时都读取到同样的内容，因此就造成了上面的bug。
 
-### 解决方案
+### 0.3.3. 解决方案
 
 ```golang
 package main
