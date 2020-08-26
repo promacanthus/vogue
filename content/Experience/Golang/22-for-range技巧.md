@@ -4,12 +4,21 @@ date: 2020-08-06T18:15:21+08:00
 draft: true
 ---
 
-## 技巧
+- [0.1. 技巧](#01-技巧)
+  - [0.1.1. 示例一](#011-示例一)
+  - [0.1.2. 示例二](#012-示例二)
+- [0.2. 更多](#02-更多)
+- [for-range与goroutine](#for-range与goroutine)
+  - [问题代码](#问题代码)
+  - [原因](#原因)
+  - [解决方案](#解决方案)
+
+## 0.1. 技巧
 
 1. 在for range开始之前，就先获取slice的大小，在后面的迭代中不会改变
 2. 在for range开始之前，就先声明两个全局变量`index`和`value`
 
-### 示例一
+### 0.1.1. 示例一
 
 ```golang
 func main() {
@@ -41,7 +50,7 @@ func main() {
 
 第二行，在遍历之前就获取切片的长度`len_temp := len(for_temp)`，遍历的次数不会随着切片的变化而变化。
 
-### 示例二
+### 0.1.2. 示例二
 
 ```golang
 func main() {
@@ -75,7 +84,7 @@ func main() {
 
 > 理解技巧：`for index, value := range slice`其实是在开始之前先声明了两个全局变量，而不是在每次循环中声明局部变量（临时变量），这样也是更为合理的操作。
 
-## 更多
+## 0.2. 更多
 
 map：
 
@@ -141,3 +150,77 @@ string：
 //           // original body
 //   }
 ```
+
+## for-range与goroutine
+
+### 问题代码
+
+```golang
+package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+func mockSendToServer(url string) {
+    fmt.Printf("server url: %s\n", url)
+}
+
+func main() {
+    urls := []string{"0.0.0.0:5000", "0.0.0.0:6000", "0.0.0.0:7000"}
+    wg := sync.WaitGroup{}
+    for _, url := range urls {
+        wg.Add(1)
+        go func() {
+            defer wg.Done()
+            mockSendToServer(url)
+        }()
+    }
+    wg.Wait()
+}
+
+// output
+$ go run main.go
+server url: 0.0.0.0:7000
+server url: 0.0.0.0:7000
+server url: 0.0.0.0:7000
+```
+
+### 原因
+
+goroutine的启动需要准备时间。
+
+当主goroutine中的for循环逻辑已经走完并阻塞于`wg.Wait()`一段时间后，go func的goroutine才启动准备（准备资源，挂载M线程等）完毕。
+
+此时url局部变量中的值是最后一次for循环的url的内容，三个goroutine准备完毕开始启动读取url局部变量时都读取到同样的内容，因此就造成了上面的bug。
+
+### 解决方案
+
+```golang
+package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+func mockSendToServer(url string) {
+    fmt.Printf("server url: %s\n", url)
+}
+
+func main() {
+    urls := []string{"0.0.0.0:5000", "0.0.0.0:6000", "0.0.0.0:7000"}
+    wg := sync.WaitGroup{}
+    for _, url := range urls {
+        wg.Add(1)
+        go func(url string) {
+            defer wg.Done()
+            mockSendToServer(url)
+        }(url)
+    }
+    wg.Wait()
+}
+```
+
+将每次遍历的url所指向值，通过函数入参，作为数据资源赋予给go func,这样不管goroutine启动会有多耗时，其url已经作为goroutine的私有数据保存，后续运行就用上了正确的url，那么，上文bug也相应解除。
