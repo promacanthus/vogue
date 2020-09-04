@@ -4,11 +4,17 @@ date: 2019-11-25T11:15:47.526182+08:00
 draft: false
 ---
 
+- [0.1. 使用Context包实现一对多goroutine协作流程](#01-使用context包实现一对多goroutine协作流程)
+  - [0.1.1. 撤销信号](#011-撤销信号)
+  - [0.1.2. 撤销信号在上下文树中的传播](#012-撤销信号在上下文树中的传播)
+  - [0.1.3. 通过Context携带数据，并获取数据](#013-通过context携带数据并获取数据)
+- [0.2. 总结](#02-总结)
+
 使用WaitGroup可以实现一对多的goroutine协作流程同步，如果一开始不能确定子任务的goroutine数量，那么使用WaitGroup值来协调它们和分发子任务的goroutine就存在一定的风险。
 
 > 一个解决方案是：分批地启用执行子任务的goroutine。
 
-## 使用Context包实现一对多goroutine协作流程
+## 0.1. 使用Context包实现一对多goroutine协作流程
 
 ```go
 func coordinateWithContext() {
@@ -52,7 +58,7 @@ context包中包含四个用于衍生context值的函数：
 
 这些函数的第一个参数类型都是`context.Context`，名称都是parent，这个位置上的参数都是它们将产生的Context值的父值。
 
-### 撤销信号
+### 0.1.1. 撤销信号
 
 Context接口类型中有两个方法与撤销相关：
 
@@ -72,7 +78,7 @@ Context接口类型中有两个方法与撤销相关：
 
 这是创建Context包和Context类型时的**初衷**。
 
-### 撤销信号在上下文树中的传播
+### 0.1.2. 撤销信号在上下文树中的传播
 
 Context包中包含四个用于衍生Context值的函数，其中的`WithCancel`，`WithDeadline`，`WithTimeout`都是被用来基于给定的Context值产生可撤销的子值。
 
@@ -94,7 +100,7 @@ func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)
 
 **注意，通过调用`context.WithValue`函数得到的Context值是不可撤销的。撤销信号在被传播时，如遇到它们则会直接跨过，并试图将信号直接传给它们的子值**。
 
-### 通过Context携带数据，并获取数据
+### 0.1.3. 通过Context携带数据，并获取数据
 
 ```go
 func WithValue(parent Context, key, val interface{}) Context
@@ -110,7 +116,7 @@ Context类型的Value方法就是被用来获取数据的，在调用含数据�
 
 Context接口并没有提供改变数据的方法，因此在通常情况下，只能通过上下文树中添加含数据的Context值来存储新的数据，或者通过撤销此种值的父值丢弃相应的数据。**如果存储在这里的数据可以从外部改变，那么必须自行保证安全**。
 
-## 总结
+## 0.2. 总结
 
 Context类型的实际值分为三种：
 
