@@ -69,7 +69,7 @@ type slice struct {
 
 因为，`slice`是一个结构体且参数传递是值传递，所以`changeSlice()`函数中的`s`是`slice`的一个副本，所以`changeSlice()`函数的返回值`ret`的地址与`slice`不同，他们是内存中的两个对象。
 
-在`slice`中`array`是一个指针，指向底层数组的开头，所以在`changeSlice()`函数中`s[1] = 111`是对底层数组的修改。那么在`main()`函数中不论是读取`slice`还是读取`ret`，他们都指向同一个底层数组，所以看起来就是`changeSlice()`函数修改了传入的切片对象的预原始值。
+在`slice`中`array`是一个指针，指向底层数组的开头，所以在`changeSlice()`函数中`s[1] = 111`是对底层数组的修改。那么在`main()`函数中不论是读取`slice`还是读取`ret`，他们都指向同一个底层数组，所以看起来就是`changeSlice()`函数修改了传入的切片对象的原始值。
 
 ### 为啥appendSlice没有生效
 
