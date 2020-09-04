@@ -1,8 +1,71 @@
 ---
-title: 06-链表
+title: 06-Container
 date: 2019-11-25T11:15:47.522182+08:00
 draft: false
 ---
+
+- [0.1. heap](#01-heap)
+- [0.2. list](#02-list)
+  - [0.2.1. 开箱即用](#021-开箱即用)
+  - [0.2.2. 延迟初始化](#022-延迟初始化)
+- [0.3. ring与list的区别](#03-ring与list的区别)
+
+container包中的容器都不是线程安全的。
+
+## 0.1. heap
+
+heap 是一个堆的实现。一个堆正常保证了获取/弹出最大（最小）元素的时间为o(logn)、插入元素的时间为 o(logn)。
+
+包中有示例。
+
+堆实现接口如下：
+
+```golang
+// src/container/heap.go
+type Interface interface {
+ sort.Interface
+ Push(x interface{}) // add x as element Len()
+ Pop() interface{} // remove and return element Len() - 1.
+}
+```
+
+heap 是基于 `sort.Interface` 实现的:
+
+```golang
+// src/sort/
+type Interface interface {
+ Len() int
+ Less(i, j int) bool
+ Swap(i, j int)
+}
+```
+
+因此，如果要使用官方提供的 heap，需要我们实现如下几个接口：
+
+```go
+Len() int {} // 获取元素个数
+Less(i, j int) bool  {} // 比较方法
+Swap(i, j int) // 元素交换方法
+Push(x interface{}){} // 在末尾追加元素
+Pop() interface{} // 返回末尾元素
+```
+
+然后在使用时，我们可以使用如下几种方法：
+
+```go
+// 初始化一个堆
+func Init(h Interface){}
+// push一个元素倒堆中
+func Push(h Interface, x interface{}){}
+// pop 堆顶元素
+func Pop(h Interface) interface{} {}
+// 删除堆中某个元素，时间复杂度 log n
+func Remove(h Interface, i int) interface{} {}
+// 调整i位置的元素位置（位置I的数据变更后）
+func Fix(h Interface, i int){}
+```
+
+## 0.2. list
 
 Go语言的链表实现在标准库的`container/list`代码包中。代码包中有两个公开的程序实体：
 
@@ -37,7 +100,7 @@ func (l *List) PushFront(v interface{}) *Element        //将指定元素插入�
 func (l *List) PushBack(v interface{}) *Element         //将指定元素插入到链表尾
 ```
 
-## 链表开箱即用
+### 0.2.1. 开箱即用
 
 List和Element都是结构体类型，**结构体类型的特点是它们的零值都拥有特定结构，但是没有任何定制化内容的值，值中的字段都被赋予各自类型的零值**。
 
@@ -45,7 +108,7 @@ List和Element都是结构体类型，**结构体类型的特点是它们的零�
 
 `var l list.List`声明的变量l的值是一个长度为0的链表，链表持有的根元素也是一个空壳，其中包含缺省的内容。这样的链表可以开箱即用的原因在于“延迟初始化”机制。
 
-### 延迟初始化
+### 0.2.2. 延迟初始化
 
 **优点：**
 
@@ -64,7 +127,7 @@ List和Element都是结构体类型，**结构体类型的特点是它们的零�
 
 > `PushFront()`、`PushBack()`、`PushBackList()`、`PushFrontList()`方法总是会先判断链表的状态，并在必要时进行延迟初始化。在向新链表中添加新元素时，肯定会调用这四个方法之一。
 
-## Ring与List的区别
+## 0.3. ring与list的区别
 
 `container/ring`包中的Ring类型实现的是一个循环链表（环）。
 
@@ -79,7 +142,3 @@ List和Element都是结构体类型，**结构体类型的特点是它们的零�
 | 时间复杂度           | Ring的len方法时间复杂度o(N)                                | List的len方法时间复杂度o(1)               |
 
 List中的根元素不会持有实际元素值，计算长度时不会包含它。
-
-
-
-
